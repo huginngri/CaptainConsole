@@ -1,5 +1,9 @@
 *.pyc
+.idea
+Captain_Console/.idea
 Captain_Console/venv
+.idea
+Captain_Console/.idea
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
