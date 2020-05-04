@@ -1,4 +1,6 @@
 *.pyc
+.idea
+Captain_Console/.idea
 Captain_Console/venv
 # Byte-compiled / optimized / DLL files
 __pycache__/
