@@ -4,7 +4,9 @@ INSERT INTO products_product (name, description, price, rating, console_type_id,
 INSERT INTO products_productimage (image, product_id) VALUES ('https://romsemulator.net/wp-content/uploads/mnt2/images/2018/07/5139front-61287-2.jpg', 1)
 INSERT INTO products_productimage (image, product_id) VALUES ('https://cdn.mos.cms.futurecdn.net/nHysFiFzH3k9jfV6VCcgb.jpg', 1)
 
+
 INSERT INTO products_productimage (image, product_id) VALUES ('images/captain-console.jpg', 1)
+
 
 INSERT INTO manufacturers_manufacturer (name, description, image) VALUES('Playstation', 'The best manufacturer', 'images/captain-console.jpg');
 INSERT INTO products_productconsole (name) VALUES('Playstation 2');
@@ -23,3 +25,4 @@ INSERT INTO products_productconsole (name) VALUES('Atari2600');
 
 INSERT INTO products_product (name, description, price, rating, console_type_id, manufacturer_id) VALUES ('Atari 2600 console', 'A lovely console', 20.99, 4.5, 6, 6);
 INSERT INTO products_productimage (image, product_id) VALUES ('images/atari2600.jpg', 12);
+
