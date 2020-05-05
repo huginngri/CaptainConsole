@@ -29,7 +29,6 @@ class Review(models.Model):
     comment = models.CharField(max_length=999)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
-
 class Search(models.Model):
     search_content = models.CharField(max_length=255)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
