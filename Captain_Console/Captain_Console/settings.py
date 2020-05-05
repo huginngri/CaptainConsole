@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'manufacturers.apps.ManufacturersConfig',
     'products.apps.ProductsConfig',
-    'users.apps.UserConfig',
+    'users.apps.UsersConfig',
     'orders.apps.OrdersConfig'
 
 ]
@@ -132,3 +132,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+LOGIN_URL = '/user/login'
+LOGIN_REDIRECT_URL = '/manufacturers'
