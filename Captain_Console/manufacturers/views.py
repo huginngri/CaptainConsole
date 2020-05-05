@@ -9,3 +9,8 @@ from django.http import HttpResponse
 # Create your views here.
 def index(request):
     return render(request, "manufacturers/index.html")
+
+def get_manufacturer_by_id(request, id):
+    #the_str = "manufacturers" + request.path
+    return render(request, "manufacturers/products.html")
+
