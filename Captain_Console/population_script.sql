@@ -3,4 +3,23 @@ INSERT INTO products_productconsole (name) VALUES('Playstation 1');
 INSERT INTO products_product (name, description, price, rating, console_type_id, manufacturer_id) VALUES ('MGS1', 'The game mgs', 10.1, 4.5, 1, 1)
 INSERT INTO products_productimage (image, product_id) VALUES ('https://romsemulator.net/wp-content/uploads/mnt2/images/2018/07/5139front-61287-2.jpg', 1)
 INSERT INTO products_productimage (image, product_id) VALUES ('https://cdn.mos.cms.futurecdn.net/nHysFiFzH3k9jfV6VCcgb.jpg', 1)
+INSERT INTO products_productimage (image, product_id) VALUES ('images/captain-console.jpg', 1)
+INSERT INTO manufacturer_manufacturer (name, description, logo) VALUES('Playstation', 'The best console', 'images/captain-console');
 
+
+INSERT INTO manufacturers_manufacturer(name, description, image) VALUES('Nintendo', 'Epic manufacturer', 'images/captain-console.jpg');
+INSERT INTO products_productconsole (name) VALUES('Nintendo NES');
+INSERT INTO products_product (name, description, price, rating, console_type_id, manufacturer_id) VALUES ('Teenage mutant ninja turtles', 'A very cool game', 10.1, 4.5, 5, 5);
+
+
+INSERT INTO products_product (name, description, price, rating, console_type_id, manufacturer_id) VALUES ('Mario bros', 'A classic game', 12, 4, 5, 5);
+
+
+INSERT INTO products_product (name, description, price, rating, console_type_id, manufacturer_id) VALUES ('Nintendo NES console', 'An average console', 11, 3, 5, 5);
+
+
+INSERT INTO products_productimage (image, product_id) VALUES ('images/TMNT-nintendo-nes.jpg', 8);
+INSERT INTO products_productimage (image, product_id) VALUES ('images/mario-bros-nintendo-nes.jpg', 11);
+INSERT INTO products_productimage (image, product_id) VALUES ('images/nintendo-nes.jpg', 10)
+
+DElETE FROM products_product WHERE id=9;

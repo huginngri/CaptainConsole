@@ -7,14 +7,12 @@ from django.http import JsonResponse
 def index(request):
 
     if 'search_filter' in request.GET:
-        search_filter = request.GET('search-filter')
+        search_filter = request.GET['search_filter']
         products = [{
             'name': x.name,
             'description': x.name,
             'price': x.price,
             'rating': x.rating
-            # 'console-type-id'
-            # 'manufacturer-id'
         } for x in Product.objects.filter(name__icontains=search_filter)]
         return JsonResponse({'data': products})
 
@@ -23,7 +21,7 @@ def index(request):
 
 def get_product_by_id(request, id):
     product = {'product': get_object_or_404(Product, pk=id)}
-    return render(request, 'products/product.html', product)
+    return render(request, 'products/product_details.html', product)
 
 def create_product(request):
     if request.method == 'POST':
