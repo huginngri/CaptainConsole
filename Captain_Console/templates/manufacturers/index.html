@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
-    {% block content %}
-        <div class="atari">
-            <h2>welcome to manufacturers</h2>
-        </div>
-    {% endblock %}
+{% block content %}
+    {% for manufacturer in  manufacturers%}
+        {% include 'manufacturers/manufacturer_details.html' with manufacturer=manufacturer %}
+    {% endfor %}
+{% endblock %}
