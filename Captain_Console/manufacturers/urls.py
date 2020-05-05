@@ -4,5 +4,5 @@ from . import views
 urlpatterns = [
     #http://localhost:8000/manufacturers
     path('', views.index, name="manufacturers-index"),
-    path('<str:id>', views.get_manufacturer_by_id, name="manufacturers-product"),
+    path('<str:name>', views.get_manufacturer_by_name, name="manufacturers-product"),
 ]

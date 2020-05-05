@@ -7,8 +7,8 @@ def index(request):
     context = {'products': Product.objects.all().order_by('name')}
     return render(request, 'products/index.html', context)
 
-def get_product_by_name(request, name):
-    product = {'product': get_object_or_404(Product, pk=name)}
+def get_product_by_id(request, id):
+    product = {'product': get_object_or_404(Product, pk=id)}
     return render(request, 'products/product.html')
 
 def create_product(request):

@@ -1,16 +1,12 @@
 from django.shortcuts import render
+from manufacturers.models import Manufacturer
 from django.http import HttpResponse
 
-# products = [
-#     {'name': 'atari console', "price": 100},
-#     {'name': 'atari controler', "price": 50}
-# ]
-# , context={'products': products}
-# Create your views here.
+
 def index(request):
-    return render(request, "manufacturers/index.html")
+    context = {'manufacturers': Manufacturer.objects.all().order_by('name')}
+    return render(request, 'manufacturers/index.html', context)
 
-def get_manufacturer_by_id(request, id):
-    #the_str = "manufacturers" + request.path
-    return render(request, "manufacturers/products.html")
-
+def get_manufacturer_by_name(request, name):
+    manufacturer = {'manufacturer': Manufacturer.objects.get(name=name)}
+    return render(request, 'manufacturers/manufacturer_details.html')
