@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'manufacturers.apps.ManufacturersConfig'
+    'manufacturers.apps.ManufacturersConfig',
+    'products.apps.ProductsConfig',
+    'users.apps.UserConfig',
+    'orders.apps.OrdersConfig'
 ]
 
 MIDDLEWARE = [
@@ -83,7 +86,7 @@ DATABASES = {
          'PASSWORD': '6dtV2wg_4sBDSjMw5eXFi3WpuXPcDDus',
          'HOST': 'balarama.db.elephantsql.com',
          'PORT': '5432'
-    }
+     }
 }
 
 

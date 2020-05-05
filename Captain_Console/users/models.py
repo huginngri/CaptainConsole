@@ -24,4 +24,3 @@ class Customer(models.Model):
     payment = models.ForeignKey(Payment, on_delete=models.CASCADE)
     billing = models.ForeignKey(Billing, on_delete=models.CASCADE)
 
-

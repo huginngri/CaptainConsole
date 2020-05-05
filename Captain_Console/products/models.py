@@ -3,7 +3,10 @@ from manufacturers.models import Manufacturer
 from users.models import Customer
 
 # Create your models here.
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1c4e0834cf0d54759811b86fc0ae2c6e3d9a2c61
 class ProductConsole(models.Model):
     name = models.CharField(max_length=255)
     def __str__(self):
@@ -28,6 +31,11 @@ class Review(models.Model):
     star = models.FloatField()
     comment = models.CharField(max_length=999)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+<<<<<<< HEAD
+=======
+    def __str__(self):
+        return self.customer.name
+>>>>>>> 1c4e0834cf0d54759811b86fc0ae2c6e3d9a2c61
 
 class Search(models.Model):
     search_content = models.CharField(max_length=255)
