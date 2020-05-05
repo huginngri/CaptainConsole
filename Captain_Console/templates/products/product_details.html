@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div>
+        <a href="#"></a>
+        <img src="{% static   product.productimage_set.last.image  %}">
+        <h4>{{ product.name }}</h4>
+        <p>{{ product.description }}</p>
+        <p>{{ product.manufacturer }}</p>
+        <p>{{ product.console_type }}</p>
+        <p>{{ product.price }} $</p>
+        <p>{{ product.rating }}</p>
+    </div>
+{% endblock %}
