@@ -43,7 +43,7 @@ class Migration(migrations.Migration):
                 ('image', models.CharField(max_length=999)),
                 ('billing', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.Billing')),
                 ('payment', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.Payment')),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('users', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]
