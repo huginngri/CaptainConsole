@@ -3,6 +3,10 @@ from products.models import Product
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 
+def frontpage(request):
+    context = {'products': Product.objects.all().order_by('name')}
+    return render(request, 'products/frontpage.html', context)
+
 def index(request):
     context = {'products': Product.objects.all().order_by('name')}
     return render(request, 'products/index.html', context)
