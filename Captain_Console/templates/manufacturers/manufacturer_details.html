@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
-    {% block content %}
-        <div class="atari">
-            <h2>welcom to hilmar</h2>
-        </div>
-    {% endblock %}
+{% block content %}
+    <div>
+        <a href="#"></a>
+        <img src="{% static   manufacturer.manufactorerimage_set.last.image  %}">
+        <h4>{{ manufacturer.name }}</h4>
+        <p>{{ manufacturer.description }}</p>
+        <p>{{ product.manufacturer }}</p>
+        <p>{{ product.console_type }}</p>
+        <p>{{ product.price }} $</p>
+        <p>{{ product.rating }}</p>
+    </div>
+{% endblock %}
