@@ -8,7 +8,7 @@ def index(request):
     return render(request, 'products/index.html', context)
 
 def get_product_by_name(request, name):
-    product = {'product': get_object_or_404(Product, name=name)}
+    product = {'product': get_object_or_404(Product, pk=name)}
     return render(request, 'products/product.html')
 
 def create_product(request):

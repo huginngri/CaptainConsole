@@ -10,7 +10,7 @@ class ProductConsole(models.Model):
         return self.name
 
 class Product(models.Model):
-    name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255)
     description = models.CharField(max_length=999)
     manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
     price = models.FloatField()
