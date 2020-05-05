@@ -1,6 +1,7 @@
 *.pyc
 .idea
 Captain_Console/.idea
+Captain_Console/.vscode
 Captain_Console/venv
 .idea
 Captain_Console/.idea
