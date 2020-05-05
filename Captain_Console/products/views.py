@@ -9,7 +9,7 @@ def index(request):
 
 def get_product_by_id(request, id):
     product = {'product': get_object_or_404(Product, pk=id)}
-    return render(request, 'products/product.html')
+    return render(request, 'products/product.html', product)
 
 def create_product(request):
     if request.method == 'POST':
