@@ -1,12 +1,15 @@
 from django.shortcuts import render
+from products.models import Product
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 
 def index(request):
-    return HttpResponse('Hello from index view in products app')
+    context = {'products': Product.objects.all().order_by('name')}
+    return render(request, 'products/index.html', context)
 
-def get_product_by_name(request, name):
-    # TODO: select from database
-    return HttpResponse(name)
+def get_product_by_id(request, id):
+    product = {'product': get_object_or_404(Product, pk=id)}
+    return render(request, 'products/product.html', product)
 
 def create_product(request):
     if request.method == 'POST':
