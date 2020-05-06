@@ -81,7 +81,17 @@ body{
     justify-content: center;
 }
 
+.product_container{
+    jdisplay: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
-.ccnavbar{
-    width: 100%
+.product_boxes{
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 10%;
 }
