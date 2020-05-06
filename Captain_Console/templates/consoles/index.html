@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-    {% for console in  consoles%}
+    {% for console in  consoles %}
         {% include 'consoles/console_details.html' with console=console %}
     {% endfor %}
 {% endblock %}
