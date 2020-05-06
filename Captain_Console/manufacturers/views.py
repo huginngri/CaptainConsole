@@ -9,12 +9,8 @@ def index(request):
     return render(request, 'manufacturers/index.html', context)
 
 def get_manufacturer_by_name(request, name):
-<<<<<<< HEAD
-    print("in this function now")
-    manufacturer = {'manufacturer': Manufacturer.objects.get(name=name)}
-    return render(request, 'manufacturers/manufacturer_details.html', manufacturer)
-=======
+
     manufacturer = Manufacturer.objects.get(name=name)
     context = {'manufacturer': manufacturer, 'products': Product.objects.filter(manufacturer=manufacturer.id)}
     return render(request, 'manufacturers/manufacturer_details.html', context)
->>>>>>> showproduct
+
