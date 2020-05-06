@@ -15,6 +15,7 @@ class Product(models.Model):
     manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
     price = models.FloatField()
     console_type = models.ForeignKey(ProductConsole, on_delete=models.CASCADE)
+    type = models.CharField(max_length=255, null=True)
     rating = models.FloatField()
     def __str__(self):
         return self.name
