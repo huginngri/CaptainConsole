@@ -1,5 +1,7 @@
 $(document).ready(function() {
+    console.log("in products")
     $('#search-btn').on('click', function(e) {
+        console.log("in here")
         e.preventDefault();
         var searchText = $('#search-box').val();
         var url = '/products?search_filter=' + searchText
