@@ -2,30 +2,35 @@
 {% load static %}
 
     {% block content %}
-        <div class = "intro" id = "cclightblue">
+        <div>
 {#            <img class ="mediumimages" src="{% static 'images/family_new.jpg' %}">#}
-            <h1 id="ccorangehuge" class = centered> Welcome to the largest retro gaming store</h1>
+            <h1 class="homepagetext ccorangehuge"> Welcome to the largest retro gaming store</h1>
         </div>
-        <div class =  "informationbar" id = "ccblue">
+        <div class =  "informationbar ccblue">
             <div class = "cccontainer">
                 <img class ="mediumimages" src="{% static 'images/controller.png' %}">
-                <p id="ccorangesmall">Wide selection of console</p>
+                <p class="ccorangesmall">Wide selection of console</p>
             </div>
             <div class = "cccontainer">
                 <img class ="mediumimages" src="{% static 'images/like.png' %}">
-                <p id="ccorangesmall">Good customer service</p>
+                <p class="ccorangesmall">Good customer service</p>
             </div>
             <div class = "cccontainer">
                 <img class ="mediumimages" src="{% static 'images/sheild.png' %}">
-                <p id="ccorangesmall">safe payment</p>
+                <p class="ccorangesmall">safe payment</p>
             </div>
              <div class = "cccontainer">
                 <img class ="mediumimages" src="{% static 'images/earth.png' %}">
-                <p id="ccorangesmall">All around the world delivery</p>
+                <p class="ccorangesmall">All around the world delivery</p>
             </div>
             <div class = "cccontainer">
                 <img class ="mediumimages" src="{% static 'images/sticks.png' %}">
-                <p id="ccorangesmall">Family friendly</p>
+                <p class="ccorangesmall">Family friendly</p>
             </div>
         </div>
+{#        <div class = "cclightblue">#}
+{#            {% for product in  products%}#}
+{#                {% include 'products/product_details.html' with product=product %}#}
+{#            {% endfor %}#}
+{#        </div>#}
     {% endblock %}
