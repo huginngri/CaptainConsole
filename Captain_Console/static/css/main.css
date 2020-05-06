@@ -12,12 +12,18 @@ main{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    box-shadow: 0px 5px #888888;
 }
 
-.mediumimages{
+.largeimages{
     width: 100%;
 }
-
+.mediumimages{
+    width: 60%;
+    object-fit: cover;
+    hight: 100px;
+    /*margin:-21.875% 0;*/
+}
 .cccontainer{
     justify-content: center;
     margin-top: 20px;
@@ -82,16 +88,24 @@ body{
 }
 
 .product_container{
-    jdisplay: flex;
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
 .product_boxes{
+    display: block;
+    background-color: white;
     justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
     margin-left: 5%;
     margin-right: 5%;
-    width: 10%;
+    width: 20%;
+    box-shadow: 0px 5px #888888;
+    border-radius: 25px;
+    height: 300px;
+    /*overflow:hidden;*/
 }
+
+
