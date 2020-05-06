@@ -32,8 +32,6 @@
     width: 10%;
 }
 
-
-
 .intro {
     justify-content: center;
 }
@@ -69,17 +67,7 @@
     text-align: center;
 }
 
-.price{
-}
-
-.buy-button{
-}
-
-
 .filler{height: 100px;}
-
-
-
 
 
 /*colors*/
@@ -103,10 +91,6 @@
     background-color: #51647D;
 }
 
-
-
-
-
 /*font*/
 .ccorangehuge{
     color: #F1AA19;
@@ -119,22 +103,17 @@
         font-family: 'Press Start 2P', cursive;
         font-size: xx-large;
         text-align: center;
-
-
 }
 .ccorangemedium{
         color: #F1AA19;
         font-family: 'Press Start 2P', cursive;
         font-size: medium;
-
-
 }
 .ccorangesmall{
         color: #F1AA19;
         font-family: 'Press Start 2P', cursive;
         font-size: small;
         padding: 10px
-
 }
 
 .intro {
@@ -174,5 +153,18 @@
 }
 
 .information{
-    justify-content: left;
+    width: 65%;
+}
+
+.footerlogo{
+    justify-content: right;
+    float: right;
+    width: 30%;
+    margin-top:5%;
+}
+
+.footer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
