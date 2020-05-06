@@ -7,4 +7,4 @@ INSERT INTO products_productimage (image, product_id) VALUES ('https://cdn.mos.c
 
 INSERT INTO products_productimage (image, product_id) VALUES ('images/captain-console.jpg', 1)
 
-INSERT INTO manufacturer_manufacturer (name, description, logo) VALUES('Playstation', 'The best console', 'images/captain-console');
+INSERT INTO manufacturers_manufacturer (name, description) VALUES('Playstation9', 'The best console');

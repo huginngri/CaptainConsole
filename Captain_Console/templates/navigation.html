@@ -84,7 +84,7 @@
           </ul>
         </li>
         <li class="btn-group">
-          <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'products' %}'>Other</button>
+          <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'products' %}'">Other</button>
           <button type="button" class="btn btn-default dropdown-toggle navbar-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span class="caret"></span>
               <span class="sr-only">Toggle Dropdown</span>
@@ -106,6 +106,7 @@
       </form>
       <ul class="nav navbar-nav navbar-right">
           {%  if user.is_authenticated %}
+              <li><a href='{% url 'profile' %}'>Profile</a></li>
               <li><a href='{% url 'logout' %}'>Log out</a></li>
           {%  else %}
               <li><a href='{% url 'login' %}'>Log in</a></li>

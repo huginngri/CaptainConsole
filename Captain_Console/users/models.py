@@ -1,8 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-# Create your models here.
-from carts.models import Cart
+
 
 
 class Payment(models.Model):
@@ -22,7 +21,7 @@ class Billing(models.Model):
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.CharField(max_length=999)
-    payment = models.ForeignKey(Payment, on_delete=models.CASCADE)
-    billing = models.ForeignKey(Billing, on_delete=models.CASCADE)
+    image = models.CharField(default="images/mario-bros-nintendo-nes.jpg", max_length=999)
+    payment = models.ForeignKey(Payment, null=True, on_delete=models.CASCADE)
+    billing = models.ForeignKey(Billing, null=True, on_delete=models.CASCADE)
 
