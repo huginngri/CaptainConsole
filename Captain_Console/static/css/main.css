@@ -1,11 +1,10 @@
 
-main{
-}
+
 .homepagetext {
-     width: 50%;
+    width: 50%;
     margin-right: auto;
     margin-left: auto;
-    padding-top: 100px;
+    padding-top: 50px;
     padding-bottom: 100px;
 }
 .informationbar{
@@ -31,16 +30,67 @@ main{
     margin-left: 5%;
     margin-right: 5%;
     width: 10%;
-
 }
 
 
+
+.intro {
+    justify-content: center;
+}
+
+.product_container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.product_boxes{
+    display: block;
+    background-color: white;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 20%;
+    box-shadow: 0px 5px #888888;
+    border-radius: 25px;
+    height: 300px;
+    /*overflow:hidden;*/
+}
+
+.product-img {
+    margin-left: 20%;
+    margin-top: 10%;
+    height: 100px;
+}
+
+.button_and_text{
+    text-align: center;
+}
+
+.price{
+}
+
+.buy-button{
+}
+
+
+.filler{height: 100px;}
+
+
+
+
+
 /*colors*/
-body{
+.cclightblue{
     background-color: #8F9EB2;
 }
 
 .cclightgray{
+    color: #C4C4C4;
+}
+#cclightgray{
     color: #C4C4C4;
 }
 
@@ -52,6 +102,12 @@ body{
 .ccblue{
     background-color: #51647D;
 }
+
+
+
+
+
+/*font*/
 .ccorangehuge{
     color: #F1AA19;
     font-family: 'Press Start 2P', cursive;
@@ -108,4 +164,17 @@ body{
     /*overflow:hidden;*/
 }
 
+.product-img {
+    margin-left: 20%;
+    margin-top: 10%;
+    height: 120px;
+}
 
+.button_and_text{
+    margin-top:15%;
+    text-align: center;
+}
+
+.information{
+    justify-content: left;
+}
