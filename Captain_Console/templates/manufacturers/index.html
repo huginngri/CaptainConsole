@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-    {% for manufacturer in  manufacturers%}
-        {% include 'manufacturers/manufacturer_details.html' with manufacturer=manufacturer %}
-    {% endfor %}
+    <div class="product_container">
+        {% for manufacturer in  manufacturers%}
+            {% include 'manufacturers/manufacturer_details.html' with manufacturer=manufacturer %}
+        {% endfor %}
+    </div>
 {% endblock %}

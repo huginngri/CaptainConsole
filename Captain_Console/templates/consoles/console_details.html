@@ -7,7 +7,7 @@
             <h3>{{ filter }}</h3>
         {% endif %}
     </div>
-    <div>
+    <div class="products product_container">
     {% for product in  products%}
         {% include 'products/product_details.html' with product=product %}
     {% endfor %}
