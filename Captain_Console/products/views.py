@@ -4,6 +4,10 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 
+def frontpage(request):
+    context = {'products': Product.objects.all().order_by('name')}
+    return render(request, 'products/frontpage.html', context)
+
 def index(request):
 
     if 'search_filter' in request.GET:

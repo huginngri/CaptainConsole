@@ -1,3 +1,74 @@
 main{
-    height: 1000px;
+}
+
+.informationbar{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.mediumimages{
+    width: 100%;
+}
+
+.cccontainer{
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 10%;
+}
+
+
+/*colors*/
+body{
+    background-color: #8F9EB2;
+}
+#ccblue{
+    background-color: #51647D;
+}
+#ccorangehuge{
+        color: #F1AA19;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 5rem;
+        text-align: center;
+
+
+}
+#ccorangelarge{
+        color: #F1AA19;
+        font-family: 'Press Start 2P', cursive;
+        font-size: xx-large;
+        text-align: center;
+
+
+}
+#ccorangemedium{
+        color: #F1AA19;
+        font-family: 'Press Start 2P', cursive;
+        font-size: medium;
+    text-align: center;
+
+
+}
+#ccorangesmall{
+        color: #F1AA19;
+        font-family: 'Press Start 2P', cursive;
+        font-size: small;
+        text-align: center;
+
+}
+
+.intro {
+    justify-content: center;
+    height: 400px;
+}
+
+.centered {
+    width: 50%;
+
+    margin: auto;
+    padding-top: 100px;
+
 }

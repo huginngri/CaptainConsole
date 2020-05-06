@@ -20,6 +20,8 @@ from . import views
 
 urlpatterns = [
     # http://localhost:8000/products
+    path('', views.frontpage, name="frontpage"),
+
     path('', views.index, name="products"),
     # http://localhost:8000/products/q?=name
     path('<int:id>', views.get_product_by_id, name="products-from-search"),
