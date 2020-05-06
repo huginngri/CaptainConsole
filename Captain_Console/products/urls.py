@@ -23,7 +23,7 @@ urlpatterns = [
     path('', views.index, name="products"),
     # http://localhost:8000/products/q?=name
     path('<int:id>', views.get_product_by_id, name="products-from-search"),
-    path('create', views.create_product, name="create_product")
+    path('create', views.create_product, name="create-product")
     # Admin create product
     # path('create_product', views.create_product, name="create_product")
 ]
