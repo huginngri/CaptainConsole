@@ -108,4 +108,18 @@ body{
     /*overflow:hidden;*/
 }
 
+.product-img {
+    margin-left: 20%;
+    margin-top: 10%;
+    height: 100px;
+}
 
+.button_and_text{
+    text-align: center;
+}
+
+.price{
+}
+
+.buy-button{
+}
