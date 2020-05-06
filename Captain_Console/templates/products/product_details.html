@@ -1,10 +1,10 @@
 {% load static %}
 {% block content %}
 
-    <div class=" product_boxes">
+    <div class="product_boxes">
         <div>
             <a href="/products/{{ product.id }}"></a>
-            <img class = "product-img mediumimages" src="{% static   product.productimage_set.last.image  %}">
+            <img class = "product_img mediumimages" src="{% static   product.productimage_set.last.image  %}">
         </div>
         <div class="button_and_text">
             <div class="info">
