@@ -2,7 +2,7 @@
 {% block content %}
 
     <div class=" product_boxes">
-        <div>
+        <div onclick="location.href='{% url 'create_product' %}'">
             <a href="/products/{{ product.id }}"></a>
             <img class = "product-img mediumimages" src="{% static   product.productimage_set.last.image  %}">
         </div>
