@@ -111,15 +111,14 @@ body{
 .product-img {
     margin-left: 20%;
     margin-top: 10%;
-    height: 100px;
+    height: 120px;
 }
 
 .button_and_text{
+    margin-top:15%;
     text-align: center;
 }
 
-.price{
-}
-
-.buy-button{
+.information{
+    justify-content: left;
 }
