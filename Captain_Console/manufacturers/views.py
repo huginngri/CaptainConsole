@@ -8,5 +8,6 @@ def index(request):
     return render(request, 'manufacturers/index.html', context)
 
 def get_manufacturer_by_name(request, name):
+    print("in this function now")
     manufacturer = {'manufacturer': Manufacturer.objects.get(name=name)}
     return render(request, 'manufacturers/manufacturer_details.html', manufacturer)

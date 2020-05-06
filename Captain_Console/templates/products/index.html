@@ -1,6 +1,23 @@
 {% extends 'base.html' %}
-{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="products">
+    {% for product in products%}
+        {% include 'product/product_details.html' with product=product%}
+    {% endfor %}
+</div>
+
+</body>
+</html>
+<!-- {% block content %}
     {% for product in  products%}
         {% include 'products/product_details.html' with product=product %}
     {% endfor %}
-{% endblock %}
+{% endblock %} -->
