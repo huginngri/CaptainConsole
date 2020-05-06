@@ -41,7 +41,7 @@ def index(request):
     context = {'products': Product.objects.all().order_by('name')}
     return render(request, 'products/index.html', context)
 
-def get_product_by_id(request, id):
+def get_product_by_id(request, id, consolename=None):
     product = {'product': get_object_or_404(Product, pk=id)}
     return render(request, 'products/product_details.html', product)
 

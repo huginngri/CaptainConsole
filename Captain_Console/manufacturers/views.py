@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from manufacturers.forms.manufacturers_form import ManufacturerForm
 from manufacturers.models import Manufacturer
 from products.models import Product
+from consoles.models import Console
 from django.http import HttpResponse
 
 
@@ -13,7 +14,7 @@ def index(request):
 def get_manufacturer_by_name(request, name):
 
     manufacturer = Manufacturer.objects.get(name=name)
-    context = {'manufacturer': manufacturer, 'products': Product.objects.filter(manufacturer=manufacturer.id)}
+    context = {'manufacturer': manufacturer, 'products': Product.objects.filter(manufacturer=manufacturer.id), 'consoles': Console.objects.filter(manufacturer=manufacturer.id)}
     return render(request, 'manufacturers/manufacturer_details.html', context)
 
 def create_manufacturer(request):

@@ -3,6 +3,9 @@
 {% block content %}
     <div>
         <h4>{{ console.name }}</h4>
+        {% if  filter != 'none' %}
+            <h3>{{ filter }}</h3>
+        {% endif %}
     </div>
     <div>
     {% for product in  products%}
