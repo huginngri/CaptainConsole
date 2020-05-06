@@ -3,6 +3,8 @@ $(document).ready(function() {
         e.preventDefault();
         var searchText = $('#search-box').val();
         console.log(searchText)
+        var url = '/products?search_filter=' + searchText
+        window.location = url;
         $.ajax({
             url: '/products?search_filter=' + searchText,
             type: 'GET',
