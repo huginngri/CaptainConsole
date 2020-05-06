@@ -1,5 +1,3 @@
-
-
 .homepagetext {
     width: 50%;
     margin-right: auto;
@@ -186,7 +184,8 @@
     justify-content: right;
     float: right;
     width: 30%;
-    margin-top:5%;
+    margin-top:3%;
+    margin-right:0%;
 }
 
 .footer{
@@ -194,6 +193,7 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+
 
 
 @media screen and (max-width: 1000px) {
@@ -220,3 +220,19 @@
         width: 40%;
     }
 }
+
+.navbar-btn{
+    background-color: #51647D;
+    color: white;
+    border:none;
+}
+
+.search-btn{
+    background-color: #51647D;
+    color: white;
+    border:none;
+}
+
+.search-btn-main{
+}
+
