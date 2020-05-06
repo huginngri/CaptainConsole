@@ -1,25 +1,18 @@
 {% extends 'base.html' %}
-<<<<<<< HEAD
-=======
 {% load static %}
->>>>>>> showproduct
+
 {% block content %}
     <div>
         <a href="#"></a>
         <img src="{% static   manufacturer.manufactorerimage_set.last.image  %}">
         <h4>{{ manufacturer.name }}</h4>
         <p>{{ manufacturer.description }}</p>
-<<<<<<< HEAD
-        <p>{{ product.manufacturer }}</p>
-        <p>{{ product.console_type }}</p>
-        <p>{{ product.price }} $</p>
-        <p>{{ product.rating }}</p>
-=======
+
     </div>
     <div>
     {% for product in  products%}
         {% include 'products/product_details.html' with product=product %}
     {% endfor %}
->>>>>>> showproduct
+
     </div>
 {% endblock %}
