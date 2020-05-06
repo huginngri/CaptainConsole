@@ -1,20 +1,17 @@
 from django.db import models
 from manufacturers.models import Manufacturer
 from users.models import Customer
+from consoles.models import Console
 
 # Create your models here.
-
-class ProductConsole(models.Model):
-    name = models.CharField(max_length=255)
-    def __str__(self):
-        return self.name
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=999)
     manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
     price = models.FloatField()
-    console_type = models.ForeignKey(ProductConsole, on_delete=models.CASCADE)
+    console_type = models.ForeignKey(Console, on_delete=models.CASCADE)
+    type = models.CharField(max_length=255, null=True)
     rating = models.FloatField()
     def __str__(self):
         return self.name
