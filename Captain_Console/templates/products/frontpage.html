@@ -8,29 +8,33 @@
         </div>
         <div class =  "informationbar ccblue">
             <div class = "cccontainer">
-                <img class ="mediumimages" src="{% static 'images/controller.png' %}">
+                <img class ="largeimages" src="{% static 'images/controller.png' %}">
                 <p class="ccorangesmall">Wide selection of console</p>
             </div>
             <div class = "cccontainer">
-                <img class ="mediumimages" src="{% static 'images/like.png' %}">
+                <img class ="largeimages" src="{% static 'images/like.png' %}">
                 <p class="ccorangesmall">Good customer service</p>
             </div>
             <div class = "cccontainer">
-                <img class ="mediumimages" src="{% static 'images/sheild.png' %}">
+                <img class ="largeimages" src="{% static 'images/sheild.png' %}">
                 <p class="ccorangesmall">safe payment</p>
             </div>
              <div class = "cccontainer">
-                <img class ="mediumimages" src="{% static 'images/earth.png' %}">
+                <img class ="largeimages" src="{% static 'images/earth.png' %}">
                 <p class="ccorangesmall">All around the world delivery</p>
             </div>
             <div class = "cccontainer">
-                <img class ="mediumimages" src="{% static 'images/sticks.png' %}">
-                <p class="ccorangesmall">Family friendly</p>
+                <img class ="largeimages" src="{% static 'images/sticks.png' %}">
+                <p class="cclightgray">Family friendly</p>
             </div>
         </div>
-{#        <div class = "cclightblue">#}
-{#            {% for product in  products%}#}
-{#                {% include 'products/product_details.html' with product=product %}#}
-{#            {% endfor %}#}
-{#        </div>#}
+        <div>
+            <h1 class="homepagetext ccorangehuge">scroll down to shop <br>↓</h1>
+        </div>
+        <div class = "cclightblue product_container">
+            {% for product in  products%}
+                {% include 'products/product_details.html' with product=product %}
+            {% endfor %}
+        </div>
+
     {% endblock %}

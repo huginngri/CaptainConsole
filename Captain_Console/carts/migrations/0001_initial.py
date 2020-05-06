@@ -15,19 +15,18 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Order',
+            name='Cart',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('billing', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.Billing')),
-                ('customer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.Customer')),
-                ('payment', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.Payment')),
+                ('total', models.FloatField()),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.Customer')),
             ],
         ),
         migrations.CreateModel(
-            name='OrderProduct',
+            name='CartDetails',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='orders.Order')),
+                ('cart', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='carts.Cart')),
                 ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='products.Product')),
             ],
         ),

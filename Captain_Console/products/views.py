@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+from products.forms.product_form import ProductForm
+from products.forms.image_form import ImageForm
 from products.models import Product
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
@@ -43,8 +46,16 @@ def get_product_by_id(request, id, consolename=None):
     return render(request, 'products/product_details.html', product)
 
 def create_product(request):
-    if request.method == 'POST':
-        print(1)
-    else:
-        print(2)
-        # TODO: Instance new ProductCreateForm()
+    if request.method == "POST":
+        form1 = ProductForm(data=request.POST)
+        if form1.is_valid():
+            form1.save()
+            form2 = ImageForm(data=request.POST)
+            form2.instance.product = form1.instance
+            form2.save()
+            return redirect('products')
+    return render(request, 'products/create_product.html', {
+        'form1': ProductForm(),
+        'form2': ImageForm()
+    })
+

@@ -42,11 +42,11 @@ INSERT INTO products_productconsole (name) VALUES('Atari2600');
 
 INSERT INTO products_product (name, description, price, rating, console_type_id, manufacturer_id) VALUES ('Atari 2600 console', 'A lovely console', 20.99, 4.5, 6, 6);
 INSERT INTO products_productimage (image, product_id) VALUES ('images/atari2600.jpg', 12);
-
+DELETE FROM django_migrations where id =58
 TRUNCATE Table products_product CASCADE ;
 TRUNCATE Table consoles_console CASCADE ;
 TRUNCATE Table manufacturers_manufacturer CASCADE ;
-TRUNCATE Table products_productimage CASCADE ;
+TRUNCATE Table django_migrations CASCADE ;
 
 
 CREATE TABLE products_productconsole (

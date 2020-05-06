@@ -5,6 +5,7 @@ from manufacturers.models import Manufacturer
 
 class Console(models.Model):
     name = models.CharField(max_length=255, unique=True)
-    #manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
+
+    manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
     def __str__(self):
         return self.name
