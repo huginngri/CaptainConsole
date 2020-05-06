@@ -1,14 +1,23 @@
 {% load static %}
 {% block content %}
-    <div class="well product product_boxes">
-        <a href="/products/{{ product.id }}"></a>
-        <img class = "product-img" src="{% static   product.productimage_set.last.image  %}">
 
-        <h4>{{ product.name }}</h4>
-        <p>{{ product.description }}</p>
-        <p>{{ product.manufacturer }}</p>
-        <p>{{ product.console_type }}</p>
-        <p>{{ product.price }} $</p>
-        <p>{{ product.rating }}</p>
+    <div class=" product_boxes">
+        <div>
+            <a href="/products/{{ product.id }}"></a>
+            <img class = "product-img mediumimages" src="{% static   product.productimage_set.last.image  %}">
+        </div>
+        <div>
+            <h4>{{ product.name }}</h4>
+    {#        <p>{{ product.description }}</p>#}
+    {#        <p>{{ product.manufacturer }}</p>#}
+    {#        <p>{{ product.console_type }}</p>#}
+            <p>{{ product.price }} $</p>
+    {#        <p>{{ product.rating }}</p>#}
+            <div class="btn-group" role="group" aria-label="...">
+                  <button type="button" class="btn btn-default">Buy</button>
+                  <button type="button" class="btn btn-default">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
+            </div>
+        </div>
     </div>
+
 {% endblock %}
