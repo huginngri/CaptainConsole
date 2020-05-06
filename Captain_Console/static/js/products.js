@@ -7,15 +7,17 @@ $(document).ready(function() {
             url: '/products?search_filter=' + searchText,
             type: 'GET',
             success: function(resp) {
-
+                console.log(resp)
+                console.log(resp.data)
                 var newHtml = resp.data.map(d => {
                     return `<div class="well product">
-                            <a href="/products$(d.id)">
+                            <a href="/products/$(d.id)">
                                 <h4>$(d.name)</h4>
                                 <p>$(d.description)</p>
                             </a>
                         </div>`
                 });
+
                 $('.products').html(newHtml.join(''));
                 $('#search-box').val('');
 
@@ -23,6 +25,7 @@ $(document).ready(function() {
                 console.log(resp.data)
                 return newHtml
             },
+
             error: function(xhr, status, error) {
                 console.log('error')
                 console.error(error)

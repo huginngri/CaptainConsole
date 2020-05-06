@@ -5,6 +5,18 @@ from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 
 def frontpage(request):
+
+    if 'search_filter' in request.GET:
+        search_filter = request.GET['search_filter']
+        products = [{
+            'name': x.name,
+            'description': x.description,
+            'price': x.price,
+            'rating': x.rating,
+            'image': x.productimage_set.last.image
+        } for x in Product.objects.filter(name__icontains=search_filter)]
+        return JsonResponse({'data': products})
+
     context = {'products': Product.objects.all().order_by('name')}
     return render(request, 'products/frontpage.html', context)
 
@@ -14,9 +26,10 @@ def index(request):
         search_filter = request.GET['search_filter']
         products = [{
             'name': x.name,
-            'description': x.name,
+            'description': x.description,
             'price': x.price,
-            'rating': x.rating
+            'rating': x.rating,
+            'image': x.productimage_set.last.image
         } for x in Product.objects.filter(name__icontains=search_filter)]
         return JsonResponse({'data': products})
 
