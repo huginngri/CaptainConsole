@@ -22,10 +22,10 @@
         </form>
         <ul class="nav navbar-nav navbar-right">
               {%  if user.is_authenticated %}
-                  <li><a class = "cclightgray" href='{% url 'logout' %}'>Log out</a></li>
+                  <li><a id = "cclightgray" href='{% url 'logout' %}'>Log out</a></li>
               {%  else %}
-                  <li><a class = "cclightgray" href='{% url 'login' %}'>Log in</a></li>
-                  <li><a class = "cclightgray" href='{% url 'register' %}'>Register</a></li>
+                  <li><a id = "cclightgray" href='{% url 'login' %}'>Log in</a></li>
+                  <li><a id = "cclightgray" href='{% url 'register' %}'>Register</a></li>
               {%  endif %}
 
         </ul>
@@ -118,5 +118,10 @@
     </div>
   </div><!-- /.container-fluid -->
 </nav>
+<div class = "filler cclightblue"></div>
+
+
+
+
 
 <!--button type="button" class="btn btn-default navbar-btn" -->

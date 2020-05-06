@@ -2,10 +2,10 @@
 main{
 }
 .homepagetext {
-     width: 50%;
+    width: 50%;
     margin-right: auto;
     margin-left: auto;
-    padding-top: 100px;
+    padding-top: 50px;
     padding-bottom: 100px;
 }
 .informationbar{
@@ -31,57 +31,9 @@ main{
     margin-left: 5%;
     margin-right: 5%;
     width: 10%;
-
 }
 
 
-/*colors*/
-body{
-    background-color: #8F9EB2;
-}
-
-.cclightgray{
-    color: #C4C4C4;
-}
-
-#ccorange{
-    color: #F1AA19;
-}
-
-
-.ccblue{
-    background-color: #51647D;
-}
-.ccorangehuge{
-    color: #F1AA19;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 5rem;
-    text-align: center;
-}
-.ccorangelarge{
-        color: #F1AA19;
-        font-family: 'Press Start 2P', cursive;
-        font-size: xx-large;
-        text-align: center;
-
-
-}
-.ccorangemedium{
-        color: #F1AA19;
-        font-family: 'Press Start 2P', cursive;
-        font-size: medium;
-        text-align: center;
-
-
-}
-.ccorangesmall{
-        color: #F1AA19;
-        font-family: 'Press Start 2P', cursive;
-        font-size: small;
-        text-align: center;
-        padding: 10px
-
-}
 
 .intro {
     justify-content: center;
@@ -122,4 +74,68 @@ body{
 }
 
 .buy-button{
+}
+
+
+.filler{height: 100px;}
+
+
+
+
+
+/*colors*/
+.cclightblue{
+    background-color: #8F9EB2;
+}
+
+.cclightgray{
+    color: #C4C4C4;
+}
+#cclightgray{
+    color: #C4C4C4;
+}
+
+#ccorange{
+    color: #F1AA19;
+}
+
+
+.ccblue{
+    background-color: #51647D;
+}
+
+
+
+
+
+/*font*/
+.ccorangehuge{
+    color: #F1AA19;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 5rem;
+    text-align: center;
+}
+.ccorangelarge{
+        color: #F1AA19;
+        font-family: 'Press Start 2P', cursive;
+        font-size: xx-large;
+        text-align: center;
+
+
+}
+.ccorangemedium{
+        color: #F1AA19;
+        font-family: 'Press Start 2P', cursive;
+        font-size: medium;
+        text-align: center;
+
+
+}
+.ccorangesmall{
+        color: #F1AA19;
+        font-family: 'Press Start 2P', cursive;
+        font-size: small;
+        text-align: center;
+        padding: 10px
+
 }
