@@ -1,6 +1,13 @@
+
 main{
 }
-
+.homepagetext {
+     width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
 .informationbar{
     display: flex;
     flex-wrap: wrap;
@@ -18,6 +25,7 @@ main{
     margin-left: 5%;
     margin-right: 5%;
     width: 10%;
+
 }
 
 
@@ -25,18 +33,22 @@ main{
 body{
     background-color: #8F9EB2;
 }
-#ccblue{
+
+#ccorange{
+    color: #F1AA19;
+}
+
+
+.ccblue{
     background-color: #51647D;
 }
-#ccorangehuge{
-        color: #F1AA19;
-        font-family: 'Press Start 2P', cursive;
-        font-size: 5rem;
-        text-align: center;
-
-
+.ccorangehuge{
+    color: #F1AA19;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 5rem;
+    text-align: center;
 }
-#ccorangelarge{
+.ccorangelarge{
         color: #F1AA19;
         font-family: 'Press Start 2P', cursive;
         font-size: xx-large;
@@ -44,31 +56,28 @@ body{
 
 
 }
-#ccorangemedium{
+.ccorangemedium{
         color: #F1AA19;
         font-family: 'Press Start 2P', cursive;
         font-size: medium;
-    text-align: center;
+        text-align: center;
 
 
 }
-#ccorangesmall{
+.ccorangesmall{
         color: #F1AA19;
         font-family: 'Press Start 2P', cursive;
         font-size: small;
         text-align: center;
+        padding: 10px
 
 }
 
 .intro {
     justify-content: center;
-    height: 400px;
 }
 
-.centered {
-    width: 50%;
 
-    margin: auto;
-    padding-top: 100px;
-
+.ccnavbar{
+    width: 100%
 }

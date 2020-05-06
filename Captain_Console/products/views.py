@@ -9,11 +9,12 @@ def frontpage(request):
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
         products = [{
+            'id': x.id,
             'name': x.name,
             'description': x.description,
             'price': x.price,
             'rating': x.rating,
-            'image': x.productimage_set.last.image
+            'image': x.productimage_set.last().image
         } for x in Product.objects.filter(name__icontains=search_filter)]
         return JsonResponse({'data': products})
 
@@ -25,6 +26,7 @@ def index(request):
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
         products = [{
+            'id': x.id,
             'name': x.name,
             'description': x.description,
             'price': x.price,
