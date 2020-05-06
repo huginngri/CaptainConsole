@@ -2,15 +2,16 @@ $(document).ready(function() {
     $('#search-btn').on('click', function(e) {
         e.preventDefault();
         var searchText = $('#search-box').val();
-        console.log(searchText)
         var url = '/products?search_filter=' + searchText
-        window.location = url;
         $.ajax({
             url: '/products?search_filter=' + searchText,
             type: 'GET',
             success: function(resp) {
                 console.log(resp)
                 console.log(resp.data)
+                var id = resp.data[0].id
+                console.log(id)
+                window.location = '/products/'+id
                 var newHtml = resp.data.map(d => {
                     return `<div class="well product">
                             <a href="/products/$(d.id)">
@@ -27,9 +28,6 @@ $(document).ready(function() {
 
                 $('.products').html(newHtml.join(''));
                 $('#search-box').val('');
-
-                console.log('success')
-                console.log(resp.data)
                 return newHtml
             },
 
