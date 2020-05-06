@@ -60,7 +60,7 @@
               </ul>
             </li>
               <li class="btn-group">
-              <button type="button" class="btn btn-default navbar-btn">Playstation</button>
+              <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'create_product' %}'">Playstation</button>
               <button type="button" class="btn btn-default dropdown-toggle navbar-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <span class="caret"></span>
                   <span class="sr-only">Toggle Dropdown</span>
@@ -100,7 +100,7 @@
               </ul>
             </li>
             <li class="btn-group">
-              <button type="button" class="btn btn-default navbar-btn" onclick="location.href"='{% url 'products' %}'>Other</button>
+              <button type="button" class="btn btn-default navbar-btn" >Other</button>
               <button type="button" class="btn btn-default dropdown-toggle navbar-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <span class="caret"></span>
                   <span class="sr-only">Toggle Dropdown</span>
@@ -111,6 +111,7 @@
                   <li><a href="#">KNOW</a></li>
               </ul>
             </li>
+            <li><button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'create_product' %}'">Create product</button></li>
             <li><button type="button" class="btn btn-default navbar-btn">Deals</button></li>
             <li><button type="button" class="btn btn-default navbar-btn">About us</button></li>
         </ul>
