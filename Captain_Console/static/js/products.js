@@ -12,8 +12,13 @@ $(document).ready(function() {
                 var newHtml = resp.data.map(d => {
                     return `<div class="well product">
                             <a href="/products/$(d.id)">
-                                <h4>$(d.name)</h4>
-                                <p>$(d.description)</p>
+                            <img class="product-img" src="${d.image}"/>
+                            <h4>{{ product.name }}</h4>
+                            <p>{{ product.description }}</p>
+                            <p>{{ product.manufacturer }}</p>
+                            <p>{{ product.console_type }}</p>
+                            <p>{{ product.price }} $</p>
+                            <p>{{ product.rating }}</p>
                             </a>
                         </div>`
                 });
