@@ -41,9 +41,9 @@
                       <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <ul class="dropdown-menu">
-                      <li><a href="#">Atari 2600</a></li>
-                      <li><a href="#">Atari 5200</a></li>
-                      <li><a href="#">Atari 7200</a></li>
+                      <li><a href="{% url 'consoles-product' 'Atari' 'Atari 2600'  %}">Atari 2600</a></li>
+                      <li><a href="{% url 'consoles-product' 'Atari' 'Atari 5200'  %}">Atari 5200</a></li>
+                      <li><a href="{% url 'consoles-product' 'Atari' 'Atari 7200'  %}">Atari 7200</a></li>
                   </ul>
                 </li>
                 <li class="btn-group">
@@ -53,14 +53,13 @@
                       <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <ul class="dropdown-menu">
-                      <li><a href="#"></a></li>
-                      <li><a href="#">Nintendo 64</a></li>
-                      <li><a href="#">Nintendo NES</a></li>
-                      <li><a href="#">Super Nintendo</a></li>
-                      <li><a href="#">Wii</a></li>
-                      <li><a href="#">GameCube</a></li>
-                      <li><a href="#">Game Boy Advance</a></li>
-                      <li><a href="#">Nintendo DS</a></li>
+                      <li><a href="{% url 'consoles-product' 'Nintendo' 'Nintendo 64'  %}">Nintendo 64</a></li>
+                      <li><a href="{% url 'consoles-product' 'Nintendo' 'Nintendo NES'  %}">Nintendo NES</a></li>
+                      <li><a href="{% url 'consoles-product' 'Nintendo' 'Super Nintendo'  %}">Super Nintendo</a></li>
+                      <li><a href="{% url 'consoles-product' 'Nintendo' 'Wii'  %}">Wii</a></li>
+                      <li><a href="{% url 'consoles-product' 'Nintendo' 'GameCube'  %}">GameCube</a></li>
+                      <li><a href="{% url 'consoles-product' 'Nintendo' 'Game Boy Advance'  %}">Game Boy Advance</a></li>
+                      <li><a href="{% url 'consoles-product' 'Nintendo' 'Nintendo DS'  %}">Nintendo DS</a></li>
                   </ul>
                 </li>
                   <li class="btn-group">
@@ -70,10 +69,9 @@
                       <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <ul class="dropdown-menu">
-                      <li><a href="#"></a></li>
-                      <li><a href="#">Playstation 1</a></li>
-                      <li><a href="#">Playstation 2</a></li>
-                      <li><a href="#">Playstation 3</a></li>
+                      <li><a href="{% url 'consoles-product' 'Playstation' 'Playstation 1'  %}">Playstation 1</a></li>
+                      <li><a href="{% url 'consoles-product' 'Playstation' 'Playstation 2'  %}">Playstation 2</a></li>
+                      <li><a href="{% url 'consoles-product' 'Playstation' 'Playstation 3'  %}">Playstation 3</a></li>
                       <li><a href="#">PSP</a></li>
                   </ul>
                 </li>
@@ -84,11 +82,11 @@
                       <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <ul class="dropdown-menu">
-                      <li><a href="#">Genisis</a></li>
-                      <li><a href="#">Dreamcast</a></li>
-                      <li><a href="#">Game Gear</a></li>
-                      <li><a href="#">Saturn</a></li>
-                      <li><a href="#">32X</a></li>
+                      <li><a href="{% url 'consoles-product' 'Sega' 'Genisis'  %}">Genisis</a></li>
+                      <li><a href="{% url 'consoles-product' 'Sega' 'Dreamcast'  %}">Dreamcast</a></li>
+                      <li><a href="{% url 'consoles-product' 'Sega' 'Game Gear'  %}">Game Gear</a></li>
+                      <li><a href="{% url 'consoles-product' 'Sega' 'Saturn'  %}">Saturn</a></li>
+                      <li><a href="{% url 'consoles-product' 'Sega' '32X'  %}">32X</a></li>
                   </ul>
                 </li>
 
@@ -99,8 +97,8 @@
                       <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <ul class="dropdown-menu">
-                      <li><a href="#">Xbox original</a></li>
-                      <li><a href="#">Xbox 360</a></li>
+                      <li><a href="{% url 'consoles-product' 'Xbox' 'Xbox original'  %}">Xbox original</a></li>
+                      <li><a href="{% url 'consoles-product' 'Xbox' 'Xbox 360'  %}">Xbox 360</a></li>
                   </ul>
                 </li>
                 <li class="btn-group">
