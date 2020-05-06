@@ -11,4 +11,4 @@ def index(request):
 def get_manufacturer_by_name(request, name):
     console = Console.objects.get(name=name)
     context = {'console': console, 'products': Product.objects.filter(console=console.id)}
-    return render(request, 'consoles/console_details.html', context)
+    return render(request, 'consoles/console_details.html', context) 
