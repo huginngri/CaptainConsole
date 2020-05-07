@@ -14,11 +14,14 @@
 {#            <p>{{ product.rating }}</p>#}
             <p class="ccbluemedium">{{ product.description }}</p>
         </div>
-        <div class =  "informationbar ccblue">
+
+    </div>
+    <div class =  "informationbar ccblue">
             {% for image in product.productimage_set.all %}
-                <img class="largeimages" src="{% static   image.image  %}">
+                <div class = "ccontainer">
+                    <img class="largeimages" src="{% static   image.image  %}">
+                </div>
             {% endfor %}
-        </div>
     </div>
 
 
