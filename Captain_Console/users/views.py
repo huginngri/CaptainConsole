@@ -15,6 +15,8 @@ def register(request):
         form = UserCreationForm(data=request.POST)
         if form.is_valid():
             form.save()
+            customer = Customer(user=form.instance)
+            customer.save()
             return redirect('login')
     return render(request, 'users/register.html', {
         'form' : UserCreationForm()
