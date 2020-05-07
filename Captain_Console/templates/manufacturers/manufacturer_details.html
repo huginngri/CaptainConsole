@@ -3,32 +3,31 @@
 {% load static %}
 
 {% block content %}
-    <div>
+    <div class="about-manufacturer">
         <a href="#"></a>
         <img src="{% static   manufacturer.manufactorerimage_set.last.image  %}">
-        <h4 class = "homepagetext cc2plarge">{{ manufacturer.name }}</h4>
+        <h4 class = "homepagetext">{{ manufacturer.name }}</h4>
         <p >{{ manufacturer.description }}</p>
-
     </div>
-    <div class="product_container">
+
+    <div class="manufacturer_containter product_container">
     {% for console in  consoles%}
         <div class="console_boxes box ccwhite">
             <div class="">
-                <h4 class="homepagetext cc2plarge">{{ console.name }}</h4>
+                <h4 class="homepagetext">{{ console.name }}</h4>
             </div>
         </div>
     {% endfor %}
 
     </div>
+        <div class = "informationbar ccblue">
+            <h1 class="homepagetext cc2phuge">scroll down to shop <br>↓</h1>
+        </div>
+    </div>
 
-    <div class = "informationbar ccblue">
-        <h1 class="homepagetext cc2phuge">scroll down to shop <br>↓</h1>
-    </div>
-    </div>
     <div class="product_container">
-    {% for product in  products%}
-        {% include 'products/product_details.html' with product=product %}
-    {% endfor %}
-
+        {% for product in  products%}
+            {% include 'products/product_details.html' with product=product %}
+        {% endfor %}
     </div>
 {% endblock %}
