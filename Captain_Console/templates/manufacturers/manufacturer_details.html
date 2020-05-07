@@ -10,7 +10,22 @@
         <p>{{ manufacturer.description }}</p>
 
     </div>
-    <div>
+    <div class="product_container box ccwhite">
+    {% for console in  consoles%}
+        <div class="console_boxes">
+            <div class="info">
+                <h4 class="name">{{ console.name }}</h4>
+            </div>
+        </div>
+    {% endfor %}
+
+    </div>
+
+    <div class =  "informationbar ccblue">
+        <h1 class="homepagetext cc2phuge">scroll down to shop <br>↓</h1>
+    </div>
+    </div>
+    <div class="product_container">
     {% for product in  products%}
         {% include 'products/product_details.html' with product=product %}
     {% endfor %}

@@ -1,3 +1,5 @@
+{% load static %}
+
 <nav class="navbar navbar-default navbar-fixed-top ccblue" >
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -8,18 +10,29 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand ccorangemedium" id = "ccorange" href="{% url "frontpage" %}">Captain Console</a>
+      <a class="navbar-brand cc2pmedium" id = "ccorange" href="{% url "frontpage" %}">Captain Console</a>
+
     </div>
 {#    {% url 'other-index' %}#}
     <!-- Collect the nav links, forms, and other content for toggling -->
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <form class="navbar-form navbar-left">
+        <!--<form class="navbar-form navbar-left">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Search" id = "search-box">
             </div>
-            <button type="submit" class="btn btn-default" id="search-btn">Submit</button>
-        </form>
+            <button type="submit" class="btn btn-default search-btn" id="search-btn">Submit</button>
+        </form>-->
+
+        <div class="search-btn-main">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <!-- The form -->
+            <form class="search" action="action_page.php">
+                <input class="input" type="text" placeholder="Search.." name="search">
+                <button type="submit" class="btn btn-default search-btn"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+
         <ul class="nav navbar-nav navbar-right">
               {%  if user.is_authenticated %}
                   <li><a id = "cclightgray" href='{% url 'logout' %}'>Log out</a></li>
