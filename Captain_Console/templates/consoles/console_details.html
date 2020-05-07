@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div>
+        <h4>{{ console.name }}</h4>
+        {% if  filter != 'none' %}
+            <h3>{{ filter }}</h3>
+        {% endif %}
+    </div>
+    <div class="product_container">
+    {% for product in  products%}
+        {% include 'products/product_details.html' with product=product %}
+    {% endfor %}
+    </div>
+{% endblock %}

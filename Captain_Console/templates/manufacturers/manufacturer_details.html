@@ -1,6 +1,34 @@
 {% extends 'base.html' %}
-    {% block content %}
-        <div class="atari">
-            <h2>welcom to hilmar</h2>
+
+{% load static %}
+
+{% block content %}
+    <div>
+        <a href="#"></a>
+        <img src="{% static   manufacturer.manufactorerimage_set.last.image  %}">
+        <h4>{{ manufacturer.name }}</h4>
+        <p>{{ manufacturer.description }}</p>
+
+    </div>
+    <div class="product_container box ccwhite">
+    {% for console in  consoles%}
+        <div class="console_boxes">
+            <div class="info">
+                <h4 class="name">{{ console.name }}</h4>
+            </div>
         </div>
-    {% endblock %}
+    {% endfor %}
+
+    </div>
+
+    <div class =  "informationbar ccblue">
+        <h1 class="homepagetext cc2phuge">scroll down to shop <br>↓</h1>
+    </div>
+    </div>
+    <div class="product_container">
+    {% for product in  products%}
+        {% include 'products/product_details.html' with product=product %}
+    {% endfor %}
+
+    </div>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="product_container">
+        {% for console in  consoles %}
+            {% include 'consoles/console_details.html' with console=console %}
+        {% endfor %}
+    </div>
+{% endblock %}

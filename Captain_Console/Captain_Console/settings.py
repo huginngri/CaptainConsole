@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'products.apps.ProductsConfig',
     'users.apps.UsersConfig',
     'orders.apps.OrdersConfig',
-    'carts.apps.CartsConfig'
+    'carts.apps.CartsConfig',
+    'consoles.apps.ConsolesConfig'
 
 ]
 
@@ -83,9 +84,9 @@ WSGI_APPLICATION = 'Captain_Console.wsgi.application'
 DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.postgresql',
-         'NAME': 'siqilzjv',
-         'USER': 'siqilzjv',
-         'PASSWORD': '6dtV2wg_4sBDSjMw5eXFi3WpuXPcDDus',
+         'NAME': 'siroieri',
+         'USER': 'siroieri',
+         'PASSWORD': 'XMevaQBlysBjqyWitt6ekooPubdVpmwV',
          'HOST': 'balarama.db.elephantsql.com',
          'PORT': '5432'
      }

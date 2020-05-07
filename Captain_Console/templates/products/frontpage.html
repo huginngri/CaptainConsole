@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+    {% block content %}
+        <div>
+{#            <img class ="mediumimages" src="{% static 'images/family_new.jpg' %}">#}
+            <h1 class="homepagetext cc2phuge"> Welcome to the largest retro gaming shop</h1>
+        </div>
+        <div class =  "informationbar ccblue">
+            <div class = "cccontainer">
+                <img class ="largeimages" src="{% static 'images/controller.png' %}">
+                <p class="cclightgrayfont">Wide selection of console</p>
+            </div>
+            <div class = "cccontainer">
+                <img class ="largeimages" src="{% static 'images/like.png' %}">
+                <p class="cclightgrayfont">Good customer service</p>
+            </div>
+            <div class = "cccontainer">
+                <img class ="largeimages" src="{% static 'images/sheild.png' %}">
+                <p class="cclightgrayfont">safe payment</p>
+            </div>
+             <div class = "cccontainer">
+                <img class ="largeimages" src="{% static 'images/earth.png' %}">
+                <p class="cclightgrayfont">All around the world delivery</p>
+            </div>
+            <div class = "cccontainer">
+                <img class ="largeimages" src="{% static 'images/sticks.png' %}">
+                <p class="cclightgrayfont">Family friendly</p>
+            </div>
+        </div>
+        <div>
+            <h1 class="homepagetext cc2phuge">scroll down to shop <br>↓</h1>
+        </div>
+        <div class = "cclightblue product_container">
+            {% for product in  products%}
+                {% include 'products/product_details.html' with product=product %}
+            {% endfor %}
+        </div>
+
+    {% endblock %}
