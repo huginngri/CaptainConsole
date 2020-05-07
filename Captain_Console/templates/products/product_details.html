@@ -1,16 +1,25 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+    <div class = "product_container ">
+        <div class="imageproductdetails ccwhite ">
+            <img class="largeimages" src="{% static   product.productimage_set.first.image  %}">
+            <p class="ccbluelarge">{{ product.console_type }}</p>
+            <p class="ccbluemedium">{{ product.price }} $</p>
 
-    {% for image in product.productimage_set.all %}
-        <img src="{% static   image.image  %}">
-    {% endfor %}
-    <h4>{{ product.name }}</h4>
-    <p>{{ product.description }}</p>
-    <p>{{ product.manufacturer }}</p>
-    <p>{{ product.console_type }}</p>
-    <p>{{ product.price }} $</p>
-    <p>{{ product.rating }}</p>
+        </div>
+        <div class="textproductdetails ccwhite ">
+            <h4 class="cc2plarge">{{ product.name }}</h4>
+            <p class="ccbluelarge">{{ product.manufacturer }}</p>
+{#            <p>{{ product.rating }}</p>#}
+            <p class="ccbluemedium">{{ product.description }}</p>
+        </div>
+        <div class =  "informationbar ccblue">
+            {% for image in product.productimage_set.all %}
+                <img class="largeimages" src="{% static   image.image  %}">
+            {% endfor %}
+        </div>
+    </div>
 
 
     {# <div class="btn-group buy-button" role="group" aria-label="..."> #}
