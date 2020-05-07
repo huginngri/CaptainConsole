@@ -8,5 +8,5 @@ class ImageForm(ModelForm):
         model = ProductImage
         exclude = ['id', 'product']
         widgets = {
-            'image': widgets.TextInput(attrs={'class': 'form-controll'})
+            'image': widgets.TextInput(attrs={'class': 'form-control'})
         }

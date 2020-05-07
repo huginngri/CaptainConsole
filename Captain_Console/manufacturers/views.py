@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+from manufacturers.forms.manufacturers_form import ManufacturerForm
 from manufacturers.models import Manufacturer
 from products.models import Product
 from consoles.models import Console
@@ -15,3 +17,12 @@ def get_manufacturer_by_name(request, name):
     context = {'manufacturer': manufacturer, 'products': Product.objects.filter(manufacturer=manufacturer.id), 'consoles': Console.objects.filter(manufacturer=manufacturer.id)}
     return render(request, 'manufacturers/manufacturer_details.html', context)
 
+def create_manufacturer(request):
+    if request.method == "POST":
+        form1 = ManufacturerForm(data=request.POST)
+        if form1.is_valid():
+            form1.save()
+            return redirect('frontpage')
+    return render(request, 'products/create_product.html', {
+        'form1': ManufacturerForm()
+    })

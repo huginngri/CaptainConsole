@@ -1,7 +1,7 @@
 {% load static %}
 {% block content %}
 
-    <div class="product_boxes">
+    <div class="product_boxes box ccwhite">
         <div>
             <a href="/products/{{ product.id }}"></a>
             <img class = "product_img mediumimages" src="{% static   product.productimage_set.last.image  %}">

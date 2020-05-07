@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% load static %}
 
 {% block content %}
@@ -9,7 +10,7 @@
         <p>{{ manufacturer.description }}</p>
 
     </div>
-    <div class="product_container">
+    <div class="product_container box ccwhite">
     {% for console in  consoles%}
         <div class="console_boxes">
             <div class="info">
@@ -21,7 +22,7 @@
     </div>
 
     <div class =  "informationbar ccblue">
-        <h1 class="homepagetext ccorangehuge">scroll down to shop <br>↓</h1>
+        <h1 class="homepagetext cc2phuge">scroll down to shop <br>↓</h1>
     </div>
     </div>
     <div class="product_container">

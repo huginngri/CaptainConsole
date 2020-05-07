@@ -8,5 +8,5 @@ class ProfileForm(ModelForm):
         model = Customer
         exclude = ['id', 'user', 'billing', 'payment']
         widgets = {
-            'image' : widgets.TextInput(attrs={'class':'form-control'})
+            'image': widgets.TextInput(attrs={'class': 'form-control'})
         }
