@@ -259,6 +259,13 @@
     width:100%;
 }
 
-.manufacturer_text {
+.manufacturer_info {
+    height: 250px;
     text-align:center;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.manufacturer_text{
 }
