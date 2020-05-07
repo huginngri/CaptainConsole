@@ -3,21 +3,23 @@
 {% load static %}
 
 {% block content %}
-    <div class="about-manufacturer">
+    <div class="console_boxes box ccwhite">
         <a href="#"></a>
         <img src="{% static   manufacturer.manufactorerimage_set.last.image  %}">
-        <h4 class = "homepagetext">{{ manufacturer.name }}</h4>
-        <p >{{ manufacturer.description }}</p>
+        <div class="manufacturer_text">
+            <h4>{{ manufacturer.name }}</h4>
+            <p >{{ manufacturer.description }}</p>
+        </div>
     </div>
 
-    <div class="manufacturer_containter product_container">
+    <!--<div class="manufacturer_containter product_container">
     {% for console in  consoles%}
         <div class="console_boxes box ccwhite">
             <div class="">
                 <h4 class="homepagetext">{{ console.name }}</h4>
             </div>
         </div>
-    {% endfor %}
+    {% endfor %}-->
 
     </div>
         <div class = "informationbar ccblue">

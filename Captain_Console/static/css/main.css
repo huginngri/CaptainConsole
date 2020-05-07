@@ -259,6 +259,6 @@
     width:100%;
 }
 
-.manufacturer_container {
-    width:30%;
+.manufacturer_text {
+    text-align:center;
 }
