@@ -87,7 +87,8 @@
 
 .popup{
     margin: auto;
-    margin-bottom: 50px;
+    margin-bottom: 400px;
+    padding: 200px;
     justify-content: center;
     box-shadow: 5px 10px #888888;
     border-radius: 25px;
