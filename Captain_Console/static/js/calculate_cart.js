@@ -1,10 +1,8 @@
 
-function add_to_cart_js(product) {
-    console.log(product)
+function calculate_cart(user_id) {
     $.ajax({
         type: "GET",
-        url: '/carts',
-        data: {product_id: product},
+        url: '/carts/' + user_id,
         success: function (response) {
             console.log(response.count)
 
@@ -12,8 +10,7 @@ function add_to_cart_js(product) {
             cart_number.textContent = response.count;
         },
         error: function (xhr, status, error) {
-            console.log('Þóranna er belja')
+            console.log('Request failed')
         }
     });
 }
-
