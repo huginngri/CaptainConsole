@@ -14,7 +14,6 @@ class BillingForm(ModelForm):
         model = Billing
         exclude = ['id']
         widgets = {
-            'image' : widgets.TextInput(attrs={'class':'form-control'}),
             'street_name': widgets.TextInput(attrs={'class': 'form-control'}),
             'house_number': widgets.TextInput(attrs={'class': 'form-control'}),
             'city': widgets.TextInput(attrs={'class': 'form-control'}),

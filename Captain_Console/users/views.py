@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 
 
 # Create your views here.
+from users.forms.payment_form import PaymentForm
 from users.forms.profile_form import ProfileForm
 from users.forms.billing_form import BillingForm
 from users.models import Customer
@@ -42,4 +43,17 @@ def update_billing(request):
             return redirect('profile')
     return render(request, "users/billing.html",{
         "form": BillingForm()
+    })
+
+def update_payment(request):
+    profile = Customer.objects.filter(user=request.user).first()
+    if request.method == "POST":
+        form = PaymentForm(data= request.POST)
+        if form.is_valid():
+            new_payment = form.save()
+            profile.payment = new_payment
+            profile.save()
+            return redirect('profile')
+    return render(request, "users/payment.html",{
+        "form": PaymentForm()
     })
