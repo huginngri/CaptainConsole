@@ -17,9 +17,13 @@
     width: 100%;
 }
 .mediumimages{
+    display: block;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
     width: 60%;
-    object-fit: cover;
-    hight: 100px;
+    object-fit: scale-down;
+    max-hight: 100px;
 }
 .cccontainer{
     justify-content: center;
@@ -69,11 +73,6 @@
     height: 200px;
 }
 
-.product_img {
-    margin-left: 20%;
-    margin-top: 10%;
-    height: 120px;
-}
 
 .button_and_text{
     text-align: center;
