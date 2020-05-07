@@ -13,6 +13,7 @@ class Product(models.Model):
     console_type = models.ForeignKey(Console, on_delete=models.CASCADE)
     type = models.CharField(max_length=255, null=True)
     rating = models.FloatField()
+    stock = models.IntegerField(default=1)
     def __str__(self):
         return self.name
 
