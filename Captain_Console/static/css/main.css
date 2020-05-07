@@ -193,10 +193,6 @@
     border:none;
 }
 
-.search-btn-main{
-}
-
-
 .input{
     width: 30%;
     margin-left:40%;
@@ -240,10 +236,6 @@
     border:none;
 }
 
-.search-btn-main{
-}
-
-
 .input{
     width: 30%;
     margin-left:40%;
@@ -260,4 +252,12 @@
     border-radius:25px;
     width:80px;
     color:black;
+}
+
+.frontpage-img{
+    width:100%;
+}
+
+.navbar{
+    margin-bottom:none;
 }
