@@ -287,5 +287,19 @@
 }
 
 .login{
+    margin:0 auto;
     max-width:40%;
+}
+
+.login-btn{
+    margin-top:20%;
+    width:120px;
+}
+
+#password_id{
+    width:1000px;
+}
+
+#username_id{
+    width:1000px;
 }
