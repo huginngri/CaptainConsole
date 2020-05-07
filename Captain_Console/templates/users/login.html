@@ -1,12 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="popup ccwhite">
+    <div class="login popup ccwhite">
         <form method="post" class="form form-horizontal">
-            <div class="username_password">
-                {% csrf_token %}
-                {{ form }}
-            </div>
-        <input class="login-button" type="submit" class="btn btn-primary" value="Login" />
+            {% csrf_token %}
+            {{ form }}
+        <input class="btn btn-primary" type="submit" value="Login" />
         </form>
     </div>
 {% endblock %}

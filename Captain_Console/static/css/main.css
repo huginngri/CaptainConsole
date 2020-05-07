@@ -94,7 +94,6 @@
     border-radius: 25px;
     border: 3px solid #F1AA19;
     width: 50%;
-
 }
 
 .product_boxes{
@@ -182,9 +181,6 @@
 .intro {
     justify-content: center;
 }
-
-
-
 
 .information{
     width: 65%;
@@ -290,6 +286,10 @@
     margin-bottom: 50px;
 }
 
-.username_password{
-    width: 30%;
+#id_username{
+    width:300px;
+}
+
+#id_password{
+    witdh:250px;
 }
