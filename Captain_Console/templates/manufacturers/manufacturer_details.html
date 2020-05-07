@@ -6,22 +6,22 @@
     <div>
         <a href="#"></a>
         <img src="{% static   manufacturer.manufactorerimage_set.last.image  %}">
-        <h4>{{ manufacturer.name }}</h4>
-        <p>{{ manufacturer.description }}</p>
+        <h4 class = "homepagetext cc2plarge">{{ manufacturer.name }}</h4>
+        <p >{{ manufacturer.description }}</p>
 
     </div>
-    <div class="product_container box ccwhite">
+    <div class="product_container">
     {% for console in  consoles%}
-        <div class="console_boxes">
-            <div class="info">
-                <h4 class="name">{{ console.name }}</h4>
+        <div class="console_boxes box ccwhite">
+            <div class="">
+                <h4 class="homepagetext cc2plarge">{{ console.name }}</h4>
             </div>
         </div>
     {% endfor %}
 
     </div>
 
-    <div class =  "informationbar ccblue">
+    <div class = "informationbar ccblue">
         <h1 class="homepagetext cc2phuge">scroll down to shop <br>↓</h1>
     </div>
     </div>
