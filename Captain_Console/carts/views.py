@@ -1,3 +1,8 @@
 from django.shortcuts import render
+from users.models import Customer
+from carts.models import Cart
 
 # Create your views here.
+def add_to_cart(request, product_id):
+    customer = Customer.objects.filter(user=request.user).first()
+    cart = Cart.objects.filter(user=customer.id)
