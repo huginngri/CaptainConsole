@@ -14,9 +14,12 @@
     box-shadow: 0px 5px #888888;
     border-radius: 25px;
     display: inline;
-    width: 35%;
+    width: 30%;
     margin-right: 1%;
     margin-left: 5%;
+    position: relative;
+    height: 500px
+
 }
 
 .textproductdetails{
@@ -73,6 +76,7 @@
     right: 5%;
     max-height: 150px;
 }
+
 .cccontainer{
     justify-content: center;
     margin-top: 20px;
@@ -99,7 +103,6 @@
     box-shadow: 0px 5px #888888;
     border-radius: 25px;
     position: relative;
-
 }
 
 .box:hover{
@@ -122,7 +125,16 @@
     border-radius: 25px;
     border: 3px solid #F1AA19;
     width: 50%;
+}
 
+.popup-login-register{
+    margin: auto;
+    margin-bottom: 400px;
+    justify-content: center;
+    box-shadow: 5px 10px #888888;
+    border-radius: 25px;
+    border: 3px solid #F1AA19;
+    width: 50%;
 }
 
 .product_boxes{
@@ -160,6 +172,10 @@
 
 #ccorange{
     color: #F1AA19;
+}
+
+.ccorange{
+    background-color:#F1AA19;
 }
 
 .ccblue{
@@ -221,9 +237,6 @@
 .intro {
     justify-content: center;
 }
-
-
-
 
 .information{
     width: 65%;
@@ -292,3 +305,71 @@
     }
 }
 
+.navbar-btn{
+    background-color: #51647D;
+    color: white;
+    border:none;
+}
+
+.search-btn{
+    background-color: #51647D;
+    color: white;
+    border:none;
+}
+
+.input{
+    width: 30%;
+    margin-left:40%;
+    margin-top:10px;
+}
+
+.buy-btn{
+    border-radius:25px;
+    width:80px;
+    color:black;
+}
+
+.cart-btn{
+    border-radius:25px;
+    width:80px;
+    color:black;
+}
+
+.frontpage-img{
+    width:100%;
+}
+
+.manufacturer_info {
+    height: 250px;
+    text-align:center;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.login{
+    margin:0 auto;
+    max-width:40%;
+}
+
+.login-btn{
+    margin-top:20%;
+    width:120px;
+}
+
+#password_id{
+    width:1000px;
+}
+
+#username_id{
+    width:1000px;
+}
+
+.signup{
+    margin-top:0%;
+    margin-bottom:30%;
+}
+
+.singup-input{
+    width:100%;
+}
