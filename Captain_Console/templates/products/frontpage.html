@@ -28,11 +28,11 @@
             </div>
         </div>
         <div>
-            <h1 class="homepagetext cc2phuge">scroll down to shop <br>↓</h1>
+            <h1 class="homepagetext cc2phuge">Scroll down to shop <br>↓</h1>
         </div>
         <div class = "cclightblue product_container">
             {% for product in  products%}
-                {% include 'products/product_details.html' with product=product %}
+                {% include 'products/product_overview.html' with product=product %}
             {% endfor %}
         </div>
 

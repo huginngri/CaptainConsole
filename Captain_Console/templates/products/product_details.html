@@ -1,6 +1,8 @@
+{% extends 'base.html' %}
 {% load static %}
 {% block content %}
 
+<<<<<<< HEAD
     <div class="product_boxes box ccwhite">
         <div>
             <a href="/products/{{ product.id }}"></a>
@@ -21,5 +23,21 @@
             </div>
         </div>
     </div>
+=======
+    {% for image in product.productimage_set.all %}
+        <img src="{% static   image.image  %}">
+    {% endfor %}
+    <h4>{{ product.name }}</h4>
+    <p>{{ product.description }}</p>
+    <p>{{ product.manufacturer }}</p>
+    <p>{{ product.console_type }}</p>
+    <p>{{ product.price }} $</p>
+    <p>{{ product.rating }}</p>
+>>>>>>> 1c6640236fa2325086131a310e58d664e121a602
+
+
+    {# <div class="btn-group buy-button" role="group" aria-label="..."> #}
+    {# <button type="button" class="btn btn-default">Buy</button> #}
+    {# <button type="button" class="btn btn-default">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button> #}
 
 {% endblock %}

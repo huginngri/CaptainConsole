@@ -22,10 +22,22 @@
     {% endfor %}-->
 
     </div>
+<<<<<<< HEAD
         <div class = "informationbar ccblue">
             <h1 class="homepagetext cc2phuge">scroll down to shop <br>↓</h1>
         </div>
     </div>
+=======
+
+    <div class = "informationbar ccblue">
+        <h1 class="homepagetext cc2phuge">Scroll down to shop <br>↓</h1>
+    </div>
+    </div>
+    <div class="product_container">
+    {% for product in  products%}
+        {% include 'products/product_overview.html' with product=product %}
+    {% endfor %}
+>>>>>>> 1c6640236fa2325086131a310e58d664e121a602
 
     <div class="product_container">
         {% for product in  products%}
