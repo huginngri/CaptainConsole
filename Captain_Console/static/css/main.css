@@ -103,6 +103,10 @@
     color: #F1AA19;
 }
 
+.ccorange{
+    background-color:#F1AA19;
+}
+
 .ccblue{
     background-color: #51647D;
 }
@@ -248,8 +252,12 @@
 
 .buy-btn{
     border-radius:25px;
+    width:80px;
+    color:black;
 }
 
 .cart-btn{
     border-radius:25px;
+    width:80px;
+    color:black;
 }
