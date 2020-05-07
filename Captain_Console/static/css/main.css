@@ -286,10 +286,6 @@
     margin-bottom: 50px;
 }
 
-#id_username{
-    width:300px;
-}
-
-#id_password{
-    witdh:250px;
+.login{
+    max-width:40%;
 }
