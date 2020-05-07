@@ -2,14 +2,19 @@
 {% load static %}
 {% block content %}
     <div>
-        <h4 class = 'homepagetext cc2plarge'>{{ console.name }}</h4>
+
+        <h4 class = 'homepagetext cc2plarge' onclick="location.href='{% url 'consoles-product' console.manufacturer console.name %}'">{{ console.name }}</h4>
         {% if  filter != 'none' %}
-            <h3 >{{ filter }}</h3>
+            <h3>{{ filter }}</h3>
+        {% else %}
+            <h3 onclick="location.href='{% url 'consoles-consoles' console.manufacturer console.name %}'">Consoles</h3>
+            <h3 onclick="location.href='{% url 'consoles-games' console.manufacturer console.name %}'">Games</h3>
+            <h3 onclick="location.href='{% url 'consoles-accessories' console.manufacturer console.name %}'">Accessories</h3>
         {% endif %}
     </div>
     <div class="product_container">
     {% for product in  products%}
-        {% include 'products/product_details.html' with product=product %}
+        {% include 'products/product_overview.html' with product=product filter=filter %}
     {% endfor %}
     </div>
 {% endblock %}

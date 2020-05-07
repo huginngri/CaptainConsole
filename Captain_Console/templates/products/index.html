@@ -4,7 +4,7 @@
 
 <div class="products product_container">
     {% for product in products%}
-        {% include 'products/product_details.html' with product=product%}
+        {% include 'products/product_overview.html' with product=product%}
     {% endfor %}
 </div>
 {% endblock %}

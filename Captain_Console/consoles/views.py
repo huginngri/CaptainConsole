@@ -17,17 +17,17 @@ def get_console_by_name(request, consolename, name=None):
 
 def get_consoles_by_name_console_names(request, consolename, name=None):
     console = Console.objects.get(name=consolename)
-    context = {'console': console, 'products': Product.objects.filter(console_type=console.id, type='console'), 'filter': 'console'}
+    context = {'console': console, 'products': Product.objects.filter(console_type=console.id, type='console'), 'filter': 'Console'}
     return render(request, 'consoles/console_details.html', context)
 
 def get_games_by_name_console_names(request, consolename, name=None):
     console = Console.objects.get(name=consolename)
-    context = {'console': console, 'products': Product.objects.filter(console_type=console.id, type='game'), 'filter': 'games'}
+    context = {'console': console, 'products': Product.objects.filter(console_type=console.id, type='game'), 'filter': 'Games'}
     return render(request, 'consoles/console_details.html', context)
 
 def get_accessories_by_name(request, consolename, name=None):
     console = Console.objects.get(name=consolename)
-    context = {'console': console, 'products': Product.objects.filter(console_type=console.id, type='accessory'), 'filter': 'accessories'}
+    context = {'console': console, 'products': Product.objects.filter(console_type=console.id, type='accessory'), 'filter': 'Accessories'}
     return render(request, 'consoles/console_details.html', context)
 
 def create_console(request):
