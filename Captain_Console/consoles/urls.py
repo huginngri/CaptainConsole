@@ -9,7 +9,7 @@ urlpatterns = [
 
     path('', v1.index, name="consoles-index"),
     path('<str:consolename>', v1.get_console_by_name, name="consoles-product"),
-    path('<str:consolename>/consoles/', v1.get_consoles_by_name_console_names, name="consoles-consoles"),
+    path('<str:consolename>/<int:id>', v2.get_product_by_id, name="consoles-one"),
     path('<str:consolename>/consoles/', v1.get_consoles_by_name_console_names, name="consoles-consoles"),
     path('<str:consolename>/consoles/<int:id>', v2.get_product_by_id, name="consoles-one-console"),
     path('<str:consolename>/games/', v1.get_games_by_name_console_names, name="consoles-games"),

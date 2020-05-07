@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    {% for image in product.productimage_set.all %}
+        <img src="{% static   image.image  %}">
+    {% endfor %}
+    <h4>{{ product.name }}</h4>
+    <p>{{ product.description }}</p>
+    <p>{{ product.manufacturer }}</p>
+    <p>{{ product.console_type }}</p>
+    <p>{{ product.price }} $</p>
+    <p>{{ product.rating }}</p>
+
+    {# <div class="btn-group buy-button" role="group" aria-label="..."> #}
+    {# <button type="button" class="btn btn-default">Buy</button> #}
+    {# <button type="button" class="btn btn-default">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button> #}
+
+{% endblock %}

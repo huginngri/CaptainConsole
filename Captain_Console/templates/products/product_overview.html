@@ -2,7 +2,15 @@
 {% block content %}
 
     <div class=" product_boxes">
-        <div onclick="location.href='{% url 'create_product' %}'">
+        {% if filter == 'Consoles' %}
+            <div onclick="location.href='{% url 'consoles-one-console' product.manufacturer product.console_type product.id %}'">
+        {% elif filter == 'Games' %}
+            <div onclick="location.href='{% url 'consoles-one-game' product.manufacturer product.console_type product.id %}'">
+        {% elif filter == 'Accessories' %}
+            <div onclick="location.href='{% url 'consoles-one-accessory' product.manufacturer product.console_type product.id %}'">
+        {% else %}
+            <div onclick="location.href='{% url 'consoles-one' product.manufacturer product.console_type product.id %}'">
+        {% endif %}
             <a href="/products/{{ product.id }}"></a>
             <img class = "product-img mediumimages" src="{% static   product.productimage_set.last.image  %}">
         </div>
