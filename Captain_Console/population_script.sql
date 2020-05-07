@@ -5,6 +5,7 @@ INSERT INTO products_productimage (image, product_id) VALUES ('https://romsemula
 INSERT INTO products_productimage (image, product_id) VALUES ('https://cdn.mos.cms.futurecdn.net/nHysFiFzH3k9jfV6VCcgb.jpg', 1)
 
 INSERT INTO products_productimage (image, product_id) VALUES ('images/captain-console.jpg', 1)
+
 INSERT INTO manufacturer_manufacturer (name, description, logo) VALUES('Playstation', 'The best console', 'images/captain-console');
 
 
@@ -92,3 +93,4 @@ INSERT INTO products_product (name, description, price, rating, console_type_id,
 INSERT INTO products_productimage (image, product_id) VALUES ('images/TMNT-nintendo-nes.jpg', 6);
 INSERT INTO products_productimage (image, product_id) VALUES ('images/mario-bros-nintendo-nes.jpg', 7);
 INSERT INTO products_productimage (image, product_id) VALUES ('images/nintendo-nes.jpg', 8);
+

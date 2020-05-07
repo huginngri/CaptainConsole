@@ -136,4 +136,4 @@ STATICFILES_DIRS = [
 ]
 
 LOGIN_URL = '/user/login'
-LOGIN_REDIRECT_URL = '/manufacturers'
+LOGIN_REDIRECT_URL = '/user/profile'
