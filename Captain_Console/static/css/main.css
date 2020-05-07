@@ -199,3 +199,11 @@
     margin-left:40%;
     margin-top:10px;
 }
+
+.buy-btn{
+    border-radius:25px;
+}
+
+.cart-btn{
+    border-radius:25px;
+}
