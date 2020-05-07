@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 
 
 # Create your views here.
+from carts.models import Cart
 from users.forms.payment_form import PaymentForm
 from users.forms.profile_form import ProfileForm
 from users.forms.billing_form import BillingForm
@@ -27,6 +28,8 @@ def update(request):
             profile = form.save(commit=False)
             profile.user = request.user
             profile.save()
+            cart = Cart(total=0, user=profile)
+            cart.save()
             return redirect('profile')
     return render(request, "users/profile.html",{
         "form": ProfileForm(instance=profile)
