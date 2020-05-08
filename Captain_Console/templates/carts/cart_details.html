@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block content %}
-    {% for product in products %}
-        <p>{{ product.name }}</p>
-    {% endfor %}
+    <div class = "cclightblue product_container">
+        {% for product in  products%}
+            {% include 'products/product_cart.html' with product=product %}
+        {% endfor %}
+    </div>
+    <button type="button" class="ccorange proceed-to-checkout-btn btn" id="ccwhite">CHECKOUT</button>
 {% endblock %}
+

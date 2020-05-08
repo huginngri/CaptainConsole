@@ -10,7 +10,6 @@
 
 /* nav bar --------------------------------------------*/
 
-
 .navbar-btn{
     background-color: #51647D;"
     color: white;
@@ -21,16 +20,16 @@
     background-color: #51647D;
     color: white;
     border:none;
+    with:10%;
 }
 
 .search-btn-main{
-    display: inline;
+    margin-left:15%;
+    margin-top:10px;
 }
 
 .input{
-    width: 30%;
-    margin-left:40%;
-    margin-top:10px;
+    width: 60%;
 }
 
 /* product  ---------------------------------------------------*/
@@ -48,6 +47,20 @@
 
 .intro {
     justify-content: center;
+}
+
+.remove-cart-btn{
+    border:none;
+    margin-top:5px;
+    margin-left:85%;
+}
+
+.proceed-to-checkout-btn{
+    margin-left:41%;
+    margin-top:5%;
+    margin-bottom:5%;
+    height:60px;
+    width:250px;
 }
 
 /* User ------------------------------------------------*/

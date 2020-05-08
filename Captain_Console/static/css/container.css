@@ -46,6 +46,12 @@ filler2{
     margin-bottom: 50px;**/
 }
 
+.console_info{
+    height: 100px;
+    text-align:center;
+    box-shadow:2px 2px;
+}
+
 /*productdetail ----------------------*/
 
 .productdetails{
@@ -165,7 +171,7 @@ filler2{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    border-top:solid;
+    border-top:solid white 1px;
     padding:20px;
 }
 

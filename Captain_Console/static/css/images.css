@@ -15,6 +15,10 @@
     object-fit: scale-down;
 }
 
+.smallimages{
+    with:150px;
+}
+
 .product_details_images{
     display: block;
     margin-top: 10%;
