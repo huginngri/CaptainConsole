@@ -1,36 +1,40 @@
 $(document).ready(function() {
     console.log("in products")
-    $('#search-btn').on('click', function(e) {
-        console.log("in here")
+    $('#search-bt').on('click', function(e) {
         e.preventDefault();
-        var searchText = $('#search-box').val();
-        var url = '/products?search_filter=' + searchText
+        var searchText = $('#search').val();
         $.ajax({
             url: '/products?search_filter=' + searchText,
             type: 'GET',
             success: function(resp) {
-                console.log(resp)
-                console.log(resp.data)
-                var id = resp.data[0].id
-                console.log(id)
-                window.location = '/products/'+id
                 var newHtml = resp.data.map(d => {
-                    return `<div class="well product">
-                            <a href="/products/$(d.id)">
-                            <img class="product-img" src="${d.image}"/>
-                            <h4>{{ product.name }}</h4>
-                            <p>{{ product.description }}</p>
-                            <p>{{ product.manufacturer }}</p>
-                            <p>{{ product.console_type }}</p>
-                            <p>{{ product.price }} $</p>
-                            <p>{{ product.rating }}</p>
-                            </a>
-                        </div>`
-                });
+                    return `
+                                <div class=" product_boxes box ccwhite">
+                                        <a href="/products/${d.id}"></a>
+                                        <img class = "mediumimages" src="${d.image}" style="height:150px;">
+                                    
+                                    <div class="button_and_text">
+                                        <div class="info">
+                                            <h4 class="name">${d.name}</h4>
 
-                $('.products').html(newHtml.join(''));
+                                            <p class="price">${d.price} $</p>
+                                        </div>
+                                        <div class="btn-group buy-button" role="group" aria-label="...">
+                            
+                                              <button type="button" class="buy-btn">Buy</button>
+                                              <button type="button" class="cart-btn ccorange" onclick="add_to_cart_js(${d.id})">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
+                            
+                                        </div>
+                                    </div>
+                                </div>
+                            `
+                });
+                newHtml[0] = `<div class=product_container>` + newHtml[0]
+                newHtml[-1] += `</div>`
+                console.log(newHtml)
+                $('main').html(newHtml.join(''));
                 $('#search-box').val('');
-                return newHtml
+
             },
 
             error: function(xhr, status, error) {
