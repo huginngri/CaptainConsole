@@ -7,6 +7,7 @@ from carts.models import Cart
 from users.forms.payment_form import PaymentForm
 from users.forms.profile_form import ProfileForm
 from users.forms.billing_form import BillingForm
+from users.forms.user_form import UserForm
 from users.models import Customer
 
 
@@ -17,24 +18,28 @@ def register(request):
             form.save()
             customer = Customer(user=form.instance)
             customer.save()
+            cart = Cart(total=0, user=customer)
+            cart.save()
             return redirect('login')
     return render(request, 'users/register.html', {
         'form' : UserCreationForm()
     })
 
-def update(request):
+def update_profile(request):
     profile = Customer.objects.filter(user=request.user).first()
     if request.method == "POST":
-        form = ProfileForm(instance=profile, data= request.POST)
-        if form.is_valid():
-            profile = form.save(commit=False)
-            profile.user = request.user
+        form1 = ProfileForm(instance=profile, data= request.POST)
+        form2 = UserForm(instance=request.user, data= request.POST)
+        if form1.is_valid():
+            profile = form1.save(commit=False)
             profile.save()
-            cart = Cart(total=0, user=profile)
-            cart.save()
+            if form2.is_valid():
+                request.user = form2.save(commit=False)
+                request.user.save()
             return redirect('profile')
     return render(request, "users/profile.html",{
-        "form": ProfileForm(instance=profile)
+        "form1": ProfileForm(instance=profile),
+        "form2": UserForm(isinstance=request.user)
     })
 
 def update_billing(request):

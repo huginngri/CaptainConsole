@@ -1,38 +1,47 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <div class = "product_container ">
-        <div class=" imageproductdetails ccwhite">
-            <img class = "mediumimages" src="{% static   product.productimage_set.first.image  %}">
-            <div class="button_and_text">
-                <div class="info">
-                    <p class="ccbluelarge">{{ product.console_type }}</p>
-                    <p class="ccbluemedium">{{ product.price }} $</p>
-                </div>
-                <div class="btn-group buy-button" role="group" aria-label="...">
-                      <button type="button" class="buy-btn">Buy</button>
-                      <button type="button" class="cart-btn ccorange">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
+    <div    style=" background-image: url({% static   product.productimage_set.first.image  %});
+                    background-repeat: no-repeat;
+                    background-attachment: fixed;
+                    background-size: cover;">
+        <div class = "product_container">
+            <div class=" imageproductdetails productdetails ccwhite">
+                <img class = "product_details_images" src="{% static   product.productimage_set.first.image  %}">
+                <div class="button_and_text">
+                    <div class="info">
+                        <p class="ccbluelarge">{{ product.console_type }}</p>
+                        <p class="ccbluemedium">{{ product.price }} $</p>
+                    </div>
+                    <div class="btn-group buy-button" role="group" aria-label="...">
+                          <button type="button" class="buy-btn">Buy</button>
+                          <button type="button" class="cart-btn ccorange">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
+                    </div>
                 </div>
             </div>
+
+            <div class="textproductdetails productdetails ccwhite ">
+                <h4 class="cc2plarge">{{ product.name }}</h4>
+                <p class="ccbluelarge">{{ product.manufacturer }}</p>
+    {#            <p>{{ product.rating }}</p>#}
+                <p class="ccbluemedium">{{ product.description }}</p>
+            </div>
         </div>
+        <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'update-product' product.id%}'">update</button>
+        <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'delete-product' product.id%}'">delete</button>
 
-        <div class="textproductdetails ccwhite ">
-            <h4 class="cc2plarge">{{ product.name }}</h4>
-            <p class="ccbluelarge">{{ product.manufacturer }}</p>
-{#          <p>{{ product.rating }}</p>#}
-            <p class="ccbluemedium">{{ product.description }}</p>
+        {#  Here are all the images posted.      #}
+        <div class =  "informationbar ccblue">
+                {% for image in product.productimage_set.all %}
+                    <div class = "product_images_container" >
+                        <img class="largeimages" src="{% static   image.image  %}">
+                    </div>
+                {% endfor %}
         </div>
-
-    </div>
-    <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'update-product' product.id%}'">update</button>
-    <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'delete-product' product.id%}'">delete</button>
-
-    <div class =  "informationbar ccblue">
-            {% for image in product.productimage_set.all %}
-                <div class = "ccontainer">
-                    <img class="largeimages" src="{% static   image.image  %}">
-                </div>
-            {% endfor %}
+        {# for comments on the products #}
+        <div class = "product_container filler2">
+            <h1 class="homepagetext cc2phuge">Reviews</h1>
+        </div>
     </div>
 
     {# <div class="btn-group buy-button" role="group" aria-label="..."> #}
