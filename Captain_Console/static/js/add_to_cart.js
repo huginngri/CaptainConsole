@@ -5,7 +5,7 @@ function add_to_cart_js(product) {
     $.ajax({
         type: "POST",
         method: 'POST',
-        url: '/carts',
+        url: '/carts/',
         data: {
             product_id: product,
             username: $("#username").val(),
