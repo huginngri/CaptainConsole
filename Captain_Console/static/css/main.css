@@ -22,13 +22,12 @@
 }
 
 .search-btn-main{
-    display: inline;
+    margin-left:15%;
+    margin-top:10px;
 }
 
 .input{
-    width: 30%;
-    margin-left:40%;
-    margin-top:10px;
+    width: 70%;
 }
 
 /* product  ---------------------------------------------------*/
