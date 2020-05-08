@@ -68,10 +68,9 @@ def update_product(request, id):
             return redirect('products')
     return render(request, 'products/update_product.html', {
         'form': ProductForm(instance=the_product),
-
     })
 
 def delete_product(request, id):
     the_product = Product.objects.filter(pk=id).first()
     the_product.delete()
-    return  redirect('products')
+    return redirect('products')
