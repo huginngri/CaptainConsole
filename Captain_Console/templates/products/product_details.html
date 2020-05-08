@@ -26,8 +26,10 @@
     {#            <p>{{ product.rating }}</p>#}
                 <p class="ccbluemedium">{{ product.description }}</p>
             </div>
-
         </div>
+        <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'update-product' product.id%}'">update</button>
+        <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'delete-product' product.id%}'">delete</button>
+
         {#  Here are all the images posted.      #}
         <div class =  "informationbar ccblue">
                 {% for image in product.productimage_set.all %}
@@ -41,8 +43,6 @@
             <h1 class="homepagetext cc2phuge">Reviews</h1>
         </div>
     </div>
-
-
 
     {# <div class="btn-group buy-button" role="group" aria-label="..."> #}
     {# <button type="button" class="btn btn-default">Buy</button> #}

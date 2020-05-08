@@ -6,7 +6,6 @@
     padding-bottom: 50px;
 }
 
-
 /* nav bar --------------------------------------------*/
 
 
@@ -31,8 +30,6 @@
     margin-left:40%;
     margin-top:10px;
 }
-
-
 
 /* product  ---------------------------------------------------*/
 .buy-btn{
@@ -86,19 +83,10 @@
 
 /* junk ------------------------------------------------*/
 
-
 .intro {
     justify-content: center;
 }
 
 .information{
     width: 65%;
-}
-
-.manufacturer_info {
-    height: 250px;
-    text-align:center;
-    margin: auto;
-    margin-top: 50px;
-    margin-bottom: 50px;
 }

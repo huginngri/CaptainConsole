@@ -50,3 +50,12 @@
         font-size: medium;
         text-align: center;
 }
+
+.bold{
+    font-size:25px;
+    font-weight:900;
+}
+
+.centered-text{
+    text-align:center;
+}
