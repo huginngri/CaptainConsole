@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% load static %}
 
 {% block content %}
@@ -9,15 +8,15 @@
         <img src="{% static   manufacturer.manufactorerimage_set.last.image  %}">
         <p >{{ manufacturer.description }}</p>
     </div>
+
     <div class="product_container">
     {% for console in  consoles%}
         <div class="console_boxes box ccwhite">
-            <div class="">
+            <div class="centered-text">
                 <h4 class="homepagetext">{{ console.name }}</h4>
             </div>
         </div>
     {% endfor %}
-
     </div>
 
     <div class = "informationbar ccblue">
