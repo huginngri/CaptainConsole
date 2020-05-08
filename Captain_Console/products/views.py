@@ -67,7 +67,7 @@ def update_product(request, id):
             form.save()
             return redirect('products')
     return render(request, 'products/update_product.html', {
-        'form': ProductForm(instance=the_product),
+        'form': ProductForm(instance=the_product)
     })
 
 def delete_product(request, id):
