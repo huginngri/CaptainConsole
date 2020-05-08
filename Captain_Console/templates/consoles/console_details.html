@@ -4,13 +4,20 @@
     <div class="manufacturer_info ccwhite">
         <h4 class = "homepagetext bold" onclick="location.href='{% url 'consoles-product' console.manufacturer console.name %}'">{{ console.name }}</h4>
     </div>
+
+    <div class="product_container">
         {% if  filter != 'none' %}
-            <h3 class="console_boxes box ccwhite">{{ filter }}</h3>
+            <div class="console_boxes box ccwhite">
+            <h3>{{ filter }}</h3>
         {% else %}
-            <h3 class="console_boxes box ccwhite centered-text" onclick="location.href='{% url 'consoles-consoles' console.manufacturer console.name %}'">Consoles</h3>
-            <h3 class="console_boxes box ccwhite centered-text" onclick="location.href='{% url 'consoles-games' console.manufacturer console.name %}'">Games</h3>
-            <h3 class="console_boxes box ccwhite centered-text" onclick="location.href='{% url 'consoles-accessories' console.manufacturer console.name %}'">Accessories</h3>
+                <div class="centered-text">
+                <h3 onclick="location.href='{% url 'consoles-consoles' console.manufacturer console.name %}'">Consoles</h3>
+                <h3 onclick="location.href='{% url 'consoles-games' console.manufacturer console.name %}'">Games</h3>
+                <h3 onclick="location.href='{% url 'consoles-accessories' console.manufacturer console.name %}'">Accessories</h3>
+                </div>
+            </div>
         {% endif %}
+    </div>
 
     <div class="product_container">
     {% for product in  products%}
