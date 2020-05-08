@@ -3,13 +3,13 @@
 {% load static %}
 
 {% block content %}
-    <div>
+    <div class="manufacturer_info cclightblue">
         <a href="#"></a>
-        <img src="{% static   manufacturer.manufactorerimage_set.last.image  %}">
         <h4 class = "homepagetext cc2plarge">{{ manufacturer.name }}</h4>
+        <img src="{% static   manufacturer.manufactorerimage_set.last.image  %}">
         <p >{{ manufacturer.description }}</p>
-
     </div>
+
     <div class="product_container">
     {% for console in  consoles%}
         <div class="console_boxes box ccwhite">
