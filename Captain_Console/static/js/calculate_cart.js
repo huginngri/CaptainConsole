@@ -1,8 +1,8 @@
 
-function calculate_cart(user_id) {
+function calculate_cart() {
     $.ajax({
         type: "GET",
-        url: '/carts/' + user_id,
+        url: '/carts/',
         success: function (response) {
             console.log(response.count)
 
