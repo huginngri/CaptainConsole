@@ -8,7 +8,6 @@
 
 /* nav bar --------------------------------------------*/
 
-
 .navbar-btn{
     background-color: #51647D;
     color: white;
@@ -19,6 +18,7 @@
     background-color: #51647D;
     color: white;
     border:none;
+    with:10%;
 }
 
 .search-btn-main{
@@ -27,7 +27,7 @@
 }
 
 .input{
-    width: 70%;
+    width: 60%;
 }
 
 /* product  ---------------------------------------------------*/
