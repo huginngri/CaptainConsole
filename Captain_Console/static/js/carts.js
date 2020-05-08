@@ -28,7 +28,7 @@ $.ajaxSetup({
     });
 
 function add_to_cart_js(product) {
-    console.log(product)
+
 
     $.ajax({
         type: "POST",
@@ -49,5 +49,21 @@ function add_to_cart_js(product) {
     });
 }
 
+function calculate_cart(user_id) {
+    $.ajax({
+        type: "GET",
+        url: '/carts',
+        data: {
+            user_id: user_id
+        },
+        success: function (response) {
+            console.log(response.count)
 
-
+            let cart_number = document.getElementById("cart_count");
+            cart_number.textContent = response.count;
+        },
+        error: function (xhr, status, error) {
+            console.log('Request failed')
+        }
+    });
+}
