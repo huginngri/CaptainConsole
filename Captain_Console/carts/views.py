@@ -5,6 +5,10 @@ from carts.models import CartDetails
 from products.models import Product
 from django.http import HttpResponse
 from django.http import JsonResponse
+from users.models import Billing
+from users.models import Payment
+from users.views import update_billing
+from users.views import update_payment
 
 # Create your views here.
 def add_or_count_cart(request):
@@ -35,3 +39,9 @@ def view_cart(request):
         products.append(Product.objects.filter(id=cart_detail.product.id).first())
     context = {'cart': cart, 'products': products}
     return render(request, 'carts/cart_details.html', context)
+
+def checkout_billing(request):
+    return update_billing(request)
+
+def checkout_billing(request):
+    return update_payment(request)
