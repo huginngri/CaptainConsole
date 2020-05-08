@@ -3,9 +3,15 @@
 {% load static %}
 
 {% block content %}
+<<<<<<< HEAD
     <div class="manufacturer_info ccorange">
         <a href="#"></a>
         <h4 class = "homepagetext">{{ manufacturer.name }}</h4>
+=======
+    <div class="manufacturer_info ccwhite">
+        <a href="#"></a>
+        <h4 class = "homepagetext bold">{{ manufacturer.name }}</h4>
+>>>>>>> f630044dd7aba37dff6d9d2ca710fd73406dff49
         <img src="{% static   manufacturer.manufactorerimage_set.last.image  %}">
         <p >{{ manufacturer.description }}</p>
     </div>
@@ -14,7 +20,7 @@
     {% for console in  consoles%}
         <div class="console_boxes box ccwhite">
             <div class="">
-                <h4 class="homepagetext cc2plarge">{{ console.name }}</h4>
+                <h4 class="homepagetext">{{ console.name }}</h4>
             </div>
         </div>
     {% endfor %}
