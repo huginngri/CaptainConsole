@@ -26,6 +26,7 @@
             <div class="btn-group buy-button" role="group" aria-label="...">
 
                   <button type="button" class="buy-btn">Buy</button>
+                    {% csrf_token %}
                   <button type="button" class="cart-btn ccorange" onclick="add_to_cart_js({{ product.id }})">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
 
             </div>

@@ -8,7 +8,12 @@ from django.http import JsonResponse
 
 # Create your views here.
 def add_to_cart(request):
-    if request.method == 'GET':
+    print(request.method)
+    print(request)
+    print(request.GET['product_id'])
+    print(request.GET['csrfmiddlewaretoken'])
+    if request.method == 'POST':
+        print('virkar')
         customer = Customer.objects.filter(user=request.user).first()
         cart = Cart.objects.filter(user=customer.id).first()
         product = Product.objects.get(id=request.GET['product_id'])
