@@ -46,6 +46,13 @@ filler2{
     margin-bottom: 50px;**/
 }
 
+.console_info{
+    height: 100px;
+    text-align:center;
+    margin: auto;
+    box-shadow:2px 2px;
+}
+
 /*productdetail ----------------------*/
 
 .productdetails{

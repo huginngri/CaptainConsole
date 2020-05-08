@@ -48,6 +48,15 @@
     justify-content: center;
 }
 
+.remove-cart-btn{
+    border:none;
+    margin-top:5px;
+    margin-left:85%;
+}
+
+.proceed-to-checkout-btn{
+}
+
 /* User ------------------------------------------------*/
 .login{
     max-width:40%;
