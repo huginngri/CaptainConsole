@@ -3,15 +3,9 @@
 {% load static %}
 
 {% block content %}
-<<<<<<< HEAD
-    <div class="manufacturer_info ccorange">
-        <a href="#"></a>
-        <h4 class = "homepagetext">{{ manufacturer.name }}</h4>
-=======
     <div class="manufacturer_info ccwhite">
         <a href="#"></a>
         <h4 class = "homepagetext bold">{{ manufacturer.name }}</h4>
->>>>>>> f630044dd7aba37dff6d9d2ca710fd73406dff49
         <img src="{% static   manufacturer.manufactorerimage_set.last.image  %}">
         <p >{{ manufacturer.description }}</p>
     </div>
