@@ -59,3 +59,19 @@ def create_product(request):
         'form2': ImageForm()
     })
 
+def update_product(request, id):
+    the_product = Product.objects.filter(pk=id).first()
+    if request.method == "POST":
+        form = ProductForm(data=request.POST,instance=the_product)
+        if form.is_valid():
+            form.save()
+            return redirect('products')
+    return render(request, 'products/update_product.html', {
+        'form': ProductForm(instance=the_product),
+
+    })
+
+def delete_product(request, id):
+    the_product = Product.objects.filter(pk=id).first()
+    the_product.delete()
+    return  redirect('products')
