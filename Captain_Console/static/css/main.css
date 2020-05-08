@@ -55,11 +55,9 @@
 }
 
 .proceed-to-checkout-btn{
-    margin-left:42%;
+    margin-left:41%;
     margin-top:5%;
     margin-bottom:5%;
-    background-color:#F1AA19;
-    color:white;
     height:60px;
     width:250px;
 }
