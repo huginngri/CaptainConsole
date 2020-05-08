@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <div class="manufacturer_info ccwhite">
+    <div class="console_info ccwhite">
         <h4 class = "homepagetext bold" onclick="location.href='{% url 'consoles-product' console.manufacturer console.name %}'">{{ console.name }}</h4>
     </div>
 
@@ -20,6 +20,10 @@
             </div>
 
         {% endif %}
+    </div>
+
+    <div class = "informationbar ccblue">
+        <h1 class="homepagetext cc2phuge">Scroll down to shop <br>↓</h1>
     </div>
 
     <div class="product_container">
