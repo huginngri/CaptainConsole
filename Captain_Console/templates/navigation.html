@@ -36,7 +36,7 @@
 
         <ul class="nav navbar-nav navbar-right">
               {%  if user.is_authenticated %}
-                  <li role="presentation" ><a href="#"><span id = "cclightgray" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <span class="badge primary" id="cart_count" ></span></a></li>
+                  <li role="presentation" ><a href="{% url 'view-cart' %}"><span id = "cclightgray" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <span class="badge primary" id="cart_count" ></span></a></li>
                   <li><a id = "cclightgray" href='{% url 'logout' %}'>Log out</a></li>
               {%  else %}
                   <li><a id = "cclightgray" href='{% url 'login' %}'>Log in</a></li>
