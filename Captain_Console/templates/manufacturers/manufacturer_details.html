@@ -3,9 +3,9 @@
 {% load static %}
 
 {% block content %}
-    <div class="manufacturer_info cclightblue">
+    <div class="manufacturer_info ccorange">
         <a href="#"></a>
-        <h4 class = "homepagetext cc2plarge">{{ manufacturer.name }}</h4>
+        <h4 class = "homepagetext">{{ manufacturer.name }}</h4>
         <img src="{% static   manufacturer.manufactorerimage_set.last.image  %}">
         <p >{{ manufacturer.description }}</p>
     </div>
@@ -18,7 +18,6 @@
             </div>
         </div>
     {% endfor %}
-
     </div>
 
     <div class = "informationbar ccblue">
