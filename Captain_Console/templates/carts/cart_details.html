@@ -7,6 +7,6 @@
             {% include 'products/product_cart.html' with product=product %}
         {% endfor %}
     </div>
-    <button type="button" class="btn">Proceed to checkout</button>
+    <button type="button" class="btn" onclick="location.href='{% url 'checkout-billing' %}'">Proceed to checkout</button>
 {% endblock %}
 
