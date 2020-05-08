@@ -7,7 +7,7 @@
 }
 
 /* nav bar --------------------------------------------*/
-.filler{height: 150px;}
+
 
 .navbar-btn{
     background-color: #51647D;
@@ -31,8 +31,6 @@
     margin-top:10px;
 }
 
-
-
 /* product  ---------------------------------------------------*/
 .buy-btn{
     border-radius:25px;
@@ -50,13 +48,20 @@
     justify-content: center;
 }
 
+.remove-cart-btn{
+    border:none;
+    margin-top:5px;
+    margin-left:85%;
+}
+
+.proceed-to-checkout-btn{
+}
+
 /* User ------------------------------------------------*/
 .login{
     max-width:40%;
 }
 .form-horizontal{
-    display: flex;
-    width: 80%;
 
 }
 
@@ -93,19 +98,4 @@
 
 .information{
     width: 65%;
-}
-
-.manufacturer_info {
-    height: 250px;
-    text-align:center;
-    margin: auto;
-    box-shadow:2px 2px;
-    /**margin-top: 50px;
-    margin-bottom: 50px;**/
-}
-
-.manufacturer_container{
-    height: 250px;
-    box-shadow:2px 2px;
-    margin: auto;
 }

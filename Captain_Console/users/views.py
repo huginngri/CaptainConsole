@@ -39,7 +39,7 @@ def update_profile(request):
             return redirect('profile')
     return render(request, "users/profile.html",{
         "form1": ProfileForm(instance=profile),
-        "form2": UserForm(isinstance=request.user)
+        "form2": UserForm(instance=request.user)
     })
 
 def update_billing(request):

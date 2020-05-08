@@ -8,7 +8,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    box-shadow: 0px 5px #888888;
+    box-shadow: 0px 7px rgba(0, 0, 0, 0.5);
 }
 
 .cccontainer{
@@ -19,37 +19,66 @@
     margin-right: 3%;
     width: 14%;
 }
+.product_images_container{
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 20%
+}
 
+filler2{
+    height: 600px;
+}
+/*manufacturers -------------------*/
 
+.manufacturer_container{
+    height: 250px;
+    box-shadow:2px 2px;
+    margin: auto;
+}
+
+.manufacturer_info {
+    height: 250px;
+    text-align:center;
+    margin: auto;
+    box-shadow:2px 2px;
+    /**margin-top: 50px;
+    margin-bottom: 50px;**/
+}
+
+.console_info{
+    height: 100px;
+    text-align:center;
+    margin: auto;
+    box-shadow:2px 2px;
+}
 
 /*productdetail ----------------------*/
-.imageproductdetails{
-    padding:2%;
+
+.productdetails{
     display: block;
     justify-content: center;
     margin-top: 50px;
     margin-bottom: 50px;
-    box-shadow: 0px 5px #888888;
     border-radius: 25px;
     display: inline;
+    position: relative;
+    height: 500px;
+    border: 5px solid #F1AA19;
+    box-shadow: 0px 7px rgba(0, 0, 0, 0.5);
+
+}
+.imageproductdetails{
+    padding:2%;
     width: 30%;
     margin-right: 1%;
     margin-left: 5%;
-    position: relative;
-    height: 500px
-
+    height: 500px;
 }
 
 .textproductdetails{
     padding:100px;
-    display: block;
-    justify-content: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    box-shadow: 0px 5px #888888;
-    border-radius: 25px;
     position: relative;
-    display: inline;
     width:53%;
     margin-left: 1%;
     margin-right: 5%;
@@ -159,6 +188,7 @@
         margin-right: 5%;
         width: 40%;
     }
+    .filler{height: 150px;}
 }
 @media screen and (min-width: 1001px) {
     .product_boxes {
@@ -171,4 +201,5 @@
         margin-right: 5%;
         width: 40%;
     }
+    .filler{height: 80px;}
 }
