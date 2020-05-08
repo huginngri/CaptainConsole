@@ -10,7 +10,9 @@ class Product(models.Model):
     description = models.CharField(max_length=999)
     manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
     price = models.FloatField()
+
     console_type = models.ForeignKey(Console, on_delete=models.CASCADE)
+
     type = models.CharField(max_length=255, null=True)
     rating = models.FloatField()
     stock = models.IntegerField(default=1)

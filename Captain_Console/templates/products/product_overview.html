@@ -3,16 +3,16 @@
 
     <div class=" product_boxes box ccwhite">
         {% if filter == 'Consoles' %}
-            <div onclick="location.href='{% url 'consoles-one-console' product.manufacturer product.console_type product.id %}'">
+            <div class = "containerimage" onclick="location.href='{% url 'consoles-one-console' product.manufacturer product.console_type product.id %}'">
         {% elif filter == 'Games' %}
-            <div onclick="location.href='{% url 'consoles-one-game' product.manufacturer product.console_type product.id %}'">
+            <div class = "containerimage" onclick="location.href='{% url 'consoles-one-game' product.manufacturer product.console_type product.id %}'">
         {% elif filter == 'Accessories' %}
-            <div onclick="location.href='{% url 'consoles-one-accessory' product.manufacturer product.console_type product.id %}'">
+            <div class = "containerimage" onclick="location.href='{% url 'consoles-one-accessory' product.manufacturer product.console_type product.id %}'">
         {% else %}
-            <div onclick="location.href='{% url 'consoles-one' product.manufacturer product.console_type product.id %}'">
+            <div class = "containerimage" onclick="location.href='{% url 'consoles-one' product.manufacturer product.console_type product.id %}'">
         {% endif %}
             <a href="/products/{{ product.id }}"></a>
-            <img class = "mediumimages" src="{% static   product.productimage_set.last.image  %}">
+            <img class = "mediumimages" src="{% static   product.productimage_set.last.image  %}" style="height:150px;">
         </div>
         <div class="button_and_text">
             <div class="info">
@@ -24,8 +24,11 @@
         {#        <p>{{ product.rating }}</p>#}
             </div>
             <div class="btn-group buy-button" role="group" aria-label="...">
-                  <button type="button" class="btn btn-default">Buy</button>
-                  <button type="button" class="btn btn-default" onclick="add_to_cart_js({{ product.id }})">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
+
+                  <button type="button" class="buy-btn">Buy</button>
+                    {% csrf_token %}
+                  <button type="button" class="cart-btn ccorange" onclick="add_to_cart_js({{ product.id }})">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
+
 
             </div>
         </div>

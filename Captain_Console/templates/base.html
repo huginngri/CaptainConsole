@@ -15,8 +15,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
 </head>
-
-<body class = "cclightblue">
+{%  if user.is_authenticated %}
+    <body class = "cclightblue" onload="calculate_cart({{ user.id }})">
+{% else %}
+    <body class = "cclightblue">
+{% endif %}
 
     {% include "navigation.html" %}
     <!-- Latest compiled and minified JavaScript -->
@@ -35,6 +38,7 @@
     <script scr="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.js"></script>
     <script src="{% static 'js/products.js' %}"></script>
     <script src="{% static 'js/add_to_cart.js' %}"></script>
+    <script src="{% static 'js/calculate_cart.js' %}"></script>
 
 
 </body>
