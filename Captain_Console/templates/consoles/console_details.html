@@ -7,15 +7,18 @@
 
     <div class="product_container">
         {% if  filter != 'none' %}
-            <div class="console_boxes box ccwhite">
             <h3>{{ filter }}</h3>
         {% else %}
-                <div class="centered-text">
+            <div class="product_boxes box ccwhite centered-text">
                 <h3 onclick="location.href='{% url 'consoles-consoles' console.manufacturer console.name %}'">Consoles</h3>
-                <h3 onclick="location.href='{% url 'consoles-games' console.manufacturer console.name %}'">Games</h3>
-                <h3 onclick="location.href='{% url 'consoles-accessories' console.manufacturer console.name %}'">Accessories</h3>
-                </div>
             </div>
+            <div class="product_boxes box ccwhite centered-text">
+                <h3 onclick="location.href='{% url 'consoles-games' console.manufacturer console.name %}'">Games</h3>
+            </div>
+            <div class="product_boxes box ccwhite centered-text">
+                <h3 onclick="location.href='{% url 'consoles-accessories' console.manufacturer console.name %}'">Accessories</h3>
+            </div>
+
         {% endif %}
     </div>
 
