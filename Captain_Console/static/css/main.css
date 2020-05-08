@@ -5,257 +5,9 @@
     padding-top: 50px;
     padding-bottom: 50px;
 }
-.imageproductdetails{
-    padding:2%;
-    display: block;
-    justify-content: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    box-shadow: 0px 5px #888888;
-    border-radius: 25px;
-    display: inline;
-    width: 30%;
-    margin-right: 1%;
-    margin-left: 5%;
-    position: relative;
-    height: 500px
 
-}
-
-.textproductdetails{
-    padding:100px;
-    display: block;
-    justify-content: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    box-shadow: 0px 5px #888888;
-    border-radius: 25px;
-    position: relative;
-    display: inline;
-    width:53%;
-    margin-left: 1%;
-    margin-right: 5%;
-}
-
-.informationbar{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    box-shadow: 0px 5px #888888;
-}
-
-.largeimages{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 60%;
-}
-.mediumimages{
-    display: block;
-    margin-top: 10%;
-    margin-left: auto;
-    margin-right: auto;
-    width: 60%;
-    object-fit: scale-down;
-
-}
-
-.button_and_text{
-    margin-top: 10px;
-    text-align: center;
-    position: absolute;
-    bottom: 10px;
-    left: 5%;
-    right: 5%;
-}
-
-.containerimage{
-    position: absolute;
-    top: 0px;
-    left: 5%;
-    right: 5%;
-    max-height: 150px;
-}
-
-.cccontainer{
-    justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 3%;
-    margin-right: 3%;
-    width: 14%;
-}
-
-.intro {
-    justify-content: center;
-}
-
-.product_container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-.box{
-    display: block;
-    justify-content: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    box-shadow: 0px 5px #888888;
-    border-radius: 25px;
-    position: relative;
-}
-
-.box:hover{
-    display: block;
-    justify-content: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    box-shadow: 5px 10px #888888;
-    border-radius: 25px;
-    position: relative;
-    border: 3px solid #F1AA19;
-}
-
-.popup{
-    margin: auto;
-    margin-bottom: 400px;
-    padding: 200px;
-    justify-content: center;
-    box-shadow: 5px 10px #888888;
-    border-radius: 25px;
-    border: 3px solid #F1AA19;
-    width: 50%;
-}
-
-.popup-login-register{
-    margin: auto;
-    margin-bottom: 400px;
-    justify-content: center;
-    box-shadow: 5px 10px #888888;
-    border-radius: 25px;
-    border: 3px solid #F1AA19;
-    width: 50%;
-}
-
-.product_boxes{
-    height: 300px;
-}
-
-.console_boxes{
-    height: 200px;
-}
-
-
-.button_and_text{
-    text-align: center;
-}
-
+/* nav bar --------------------------------------------*/
 .filler{height: 150px;}
-
-
-/*colors*/
-.ccwhite {
-    background-color: white;
-}
-
-.cclightblue{
-    background-color: #8F9EB2;
-}
-
-.cclightgray{
-    color: #C4C4C4;
-}
-
-#cclightgray{
-    color: #C4C4C4;
-}
-
-#ccorange{
-    color: #F1AA19;
-}
-
-.ccorange{
-    background-color:#F1AA19;
-}
-
-.ccblue{
-    background-color: #51647D;
-}
-
-/*font*/
-.cc2phuge{
-    color: #F1AA19;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 5rem;
-    text-align: center;
-}
-
-.cc2plarge{
-        color: #F1AA19;
-        font-family: 'Press Start 2P', cursive;
-        font-size: xx-large;
-        text-align: center;
-}
-
-.cc2pmedium{
-        color: #F1AA19;
-        font-family: 'Press Start 2P', cursive;
-        font-size: medium;
-}
-
-.cc2psmall{
-        color: #F1AA19;
-        font-family: 'Press Start 2P', cursive;
-        font-size: small;
-        padding: 10px
-}
-
-
-.cclightgrayfont{
-    color: #C4C4C4;
-    font-size: large;
-    padding: 10px;
-    text-align: center;
-}
-
-.ccbluelarge{
-        color: #51647D;
-        font-size: xx-large;
-        text-align: center;
-}
-.ccbluemedium{
-        color: #51647D;
-        font-size: large;
-        text-align: center;
-}
-.ccbluesmall{
-        color: #51647D;
-        font-size: medium;
-        text-align: center;
-}
-
-.intro {
-    justify-content: center;
-}
-
-.information{
-    width: 65%;
-}
-
-.footerlogo{
-    justify-content: right;
-    float: right;
-    width: 30%;
-    margin-top:3%;
-    margin-right:0%;
-}
-
-.footer{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
 
 .navbar-btn{
     background-color: #51647D;
@@ -273,56 +25,15 @@
     display: inline;
 }
 
-
 .input{
     width: 30%;
     margin-left:40%;
     margin-top:10px;
 }
 
-@media screen and (max-width: 1000px) {
-    .product_boxes {
-        margin-left: 5%;
-        margin-right: 5%;
-        width: 40%;
-    }
-    .console_boxes {
-        margin-left: 5%;
-        margin-right: 5%;
-        width: 40%;
-    }
-}
-@media screen and (min-width: 1001px) {
-    .product_boxes {
-        margin-left: 5%;
-        margin-right: 5%;
-        width: 20%;
-    }
-    .console_boxes {
-        margin-left: 5%;
-        margin-right: 5%;
-        width: 40%;
-    }
-}
 
-.navbar-btn{
-    background-color: #51647D;
-    color: white;
-    border:none;
-}
 
-.search-btn{
-    background-color: #51647D;
-    color: white;
-    border:none;
-}
-
-.input{
-    width: 30%;
-    margin-left:40%;
-    margin-top:10px;
-}
-
+/* product  ---------------------------------------------------*/
 .buy-btn{
     border-radius:25px;
     width:80px;
@@ -335,26 +46,32 @@
     color:black;
 }
 
-.frontpage-img{
-    width:100%;
+.intro {
+    justify-content: center;
 }
 
-.manufacturer_info {
-    height: 250px;
-    text-align:center;
-    margin: auto;
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-
+/* User ------------------------------------------------*/
 .login{
     max-width:40%;
+}
+.form-horizontal{
+    display: flex;
+    width: 80%;
+
 }
 
 .login-btn{
     margin-left:13%;
     margin-top:20%;
     width:120px;
+}
+
+#password_id{
+    width:50%;
+}
+
+#username_id{
+    width:50%;
 }
 
 .signup{
@@ -364,4 +81,31 @@
 
 .singup-input{
     width:100%;
+}
+
+
+
+/* junk ------------------------------------------------*/
+
+.intro {
+    justify-content: center;
+}
+
+.information{
+    width: 65%;
+}
+
+.manufacturer_info {
+    height: 250px;
+    text-align:center;
+    margin: auto;
+    box-shadow:2px 2px;
+    /**margin-top: 50px;
+    margin-bottom: 50px;**/
+}
+
+.manufacturer_container{
+    height: 250px;
+    box-shadow:2px 2px;
+    margin: auto;
 }
