@@ -28,7 +28,7 @@ $.ajaxSetup({
     });
 
 function add_to_cart_js(product) {
-    console.log(product)
+
 
     $.ajax({
         type: "POST",

@@ -25,6 +25,7 @@ def add_or_count_cart(request):
     else:
         return JsonResponse({'error': 'Request failed'})
 
+
 def view_cart(request):
     customer = Customer.objects.filter(user=request.user).first()
     cart = Cart.objects.filter(user=customer.id).first()
