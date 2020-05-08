@@ -4,13 +4,15 @@
     margin-left: auto;
     padding-top: 50px;
     padding-bottom: 50px;
+
 }
+
 
 /* nav bar --------------------------------------------*/
 
 
 .navbar-btn{
-    background-color: #51647D;
+    background-color: #51647D;"
     color: white;
     border:none;
 }
