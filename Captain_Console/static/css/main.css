@@ -10,6 +10,25 @@
 
 /* nav bar --------------------------------------------*/
 
+.navlink{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding: 3px;
+    text-decoration: none;
+    display:block;
+
+}
+.navlink:hover{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding: 3px;
+    background: #8F9EB2;;
+    text-decoration: none;
+    display:block;
+    text-underline: none;
+}
+
+
 .navbar-btn{
     background-color: #51647D;"
     color: white;
@@ -30,6 +49,47 @@
 
 .input{
     width: 60%;
+}
+
+.block{
+    width: 100%;
+    flex-wrap: wrap;
+    border-top: 1px solid #C4C4C4;
+    display: flex;
+    padding-left: 10%;
+}
+@media screen and (max-width: 1000px) {
+   .block{
+        padding-left: 0%;
+    }
+}
+
+.ccnavbuttons{
+    list-style-type: none;
+    width: 100%;
+    padding: 0px
+}
+
+
+.ccdropdown {
+      position: relative;
+      display: inline-block;
+}
+
+.ccdropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 5px 8px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 0px;
+    list-style-type: none;
+    float: left;
+}
+
+.ccdropdown:hover .ccdropdown-content {
+    display: block;
 }
 
 /* product  ---------------------------------------------------*/
@@ -108,3 +168,4 @@
 .information{
     width: 65%;
 }
+

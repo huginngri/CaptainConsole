@@ -108,9 +108,11 @@ filler2{
     justify-content: center;
     margin-top: 50px;
     margin-bottom: 50px;
-    box-shadow: 0px 5px #888888;
+    box-shadow: 3px 5px rgba(0, 0, 0, 0.5);
     border-radius: 25px;
     position: relative;
+    box-sizing: border-box;
+
 }
 
 .box:hover{
@@ -118,10 +120,12 @@ filler2{
     justify-content: center;
     margin-top: 50px;
     margin-bottom: 50px;
-    box-shadow: 5px 10px #888888;
+    box-shadow: 6px 10px rgba(0, 0, 0, 0.5);
     border-radius: 25px;
     position: relative;
     border: 3px solid #F1AA19;
+    box-sizing: border-box;
+
 }
 
 .product_boxes{
@@ -141,7 +145,7 @@ filler2{
     margin-bottom: 400px;
     padding: 100px;
     justify-content: center;
-    box-shadow: 5px 10px #888888;
+    box-shadow: 5px 10px rgba(0, 0, 0, 0.5);
     border-radius: 25px;
     border: 3px solid #F1AA19;
     width: 50%;
