@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
+{#    <script>#}
+{#        .helptext{#}
+{#        display:block;#}
+{#        background-color: green;#}
+{#        }#}
+{#    </script>#}
     <div class = "popup ccwhite">
-        <h1 class = cc2plarge>Sign up now!</h1>
+        <h1 class = "cc2plarge">Sign up now!</h1>
         <form class="form form-horizontal" method="post">
             {% csrf_token %}
             {{ form }}
