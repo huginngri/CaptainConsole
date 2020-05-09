@@ -11,19 +11,11 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand cc2pmedium" id = "ccorange" href="{% url "frontpage" %}">Captain Console</a>
-
     </div>
 {#    {% url 'other-index' %}#}
     <!-- Collect the nav links, forms, and other content for toggling -->
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <!--<form class="navbar-form navbar-left">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search" id = "search-box">
-            </div>
-            <button type="submit" class="btn btn-default search-btn" id="search-btn">Submit</button>
-        </form>-->
-
         <div class="search-btn-main">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <!-- The form -->
@@ -33,17 +25,17 @@
             </form>
         </div>
 
-
         <ul class="nav navbar-nav navbar-right">
               {%  if user.is_authenticated %}
                   <li role="presentation" ><a href="{% url 'view-cart' %}"><span id = "cclightgray" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <span class="badge primary" id="cart_count" ></span></a></li>
+                  <li><a id = "cclightgray" href='{% url 'profile' %}'><img src="/static/images/profile-icon.png" alt="profile-icon" style="width:25px;"></a></li>
                   <li><a id = "cclightgray" href='{% url 'logout' %}'>Log out</a></li>
               {%  else %}
                   <li><a id = "cclightgray" href='{% url 'login' %}'>Log in</a></li>
                   <li><a id = "cclightgray" href='{% url 'register' %}'>Register</a></li>
               {%  endif %}
-
         </ul>
+
         <ul class="nav navbar-nav">
             <li class="btn-group">
               <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'manufacturers-product' 'Atari' %}'">Atari</button>

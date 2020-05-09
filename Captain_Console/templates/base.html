@@ -20,9 +20,15 @@
 
 </head>
 {%  if user.is_authenticated %}
-    <body class = "cclightblue" onload="calculate_cart({{ user.id }})">
+    <body class = "cclightblue" onload="calculate_cart({{ user.id }})" style="background-image: url('https://wallpaperplay.com/walls/full/1/d/d/101186.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;" >
 {% else %}
-    <body class = "cclightblue">
+    <body class = "cclightblue homepage" style="background-image: url('https://wallpaperplay.com/walls/full/1/d/d/101186.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;">
 {% endif %}
 
     {% include "navigation.html" %}

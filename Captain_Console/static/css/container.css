@@ -49,7 +49,6 @@ filler2{
 .console_info{
     height: 100px;
     text-align:center;
-    margin: auto;
     box-shadow:2px 2px;
 }
 
@@ -164,7 +163,7 @@ filler2{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    border-top:solid;
+    border-top:solid white 1px;
     padding:20px;
 }
 
