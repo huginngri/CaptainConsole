@@ -30,6 +30,10 @@
     width: 60%;
 }
 
+.login-navbar{
+    margin-bottom: 100px;
+}
+
 /* product  ---------------------------------------------------*/
 .buy-btn{
     border-radius:25px;
