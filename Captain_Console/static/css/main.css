@@ -188,7 +188,10 @@ a:link{
 /*profile ---------------------------------------------------*/
 
 .profilebuttons{
-    margin: 10px;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    width:240px;
 }
 
 
