@@ -52,6 +52,12 @@
         text-align: center;
 }
 
+.infromationfont{
+    width: 50%;
+    padding-top: 10px;
+    border-top: 3px solid #F1AA19;
+    font-family: Helvetica,Arial,sans-serif;;
+}
 .bold{
     font-size:25px;
     font-weight:900;
