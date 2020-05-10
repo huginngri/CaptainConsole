@@ -45,14 +45,14 @@ def update_profile(request):
 def update_billing(request):
     profile = Customer.objects.filter(user=request.user).first()
     if request.method == "POST":
-        form = BillingForm(data= request.POST)
+        form = BillingForm(instance=profile.billing, data= request.POST)
         if form.is_valid():
             new_billing = form.save()
             profile.billing = new_billing
             profile.save()
             return redirect('profile')
     return render(request, "users/billing.html",{
-        "form": BillingForm()
+        "form": BillingForm(instance=profile.billing)
     })
 
 def update_payment(request):

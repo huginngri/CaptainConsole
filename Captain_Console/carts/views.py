@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from users.models import Customer
 from carts.models import Cart
 from carts.models import CartDetails
 from products.models import Product
-from django.http import HttpResponse
 from django.http import JsonResponse
+from users.forms.payment_form import PaymentForm
+from users.forms.billing_form import BillingForm
+
 
 # Create your views here.
 def add_or_count_cart(request):

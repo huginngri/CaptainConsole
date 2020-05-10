@@ -5,7 +5,11 @@ from consoles.models import Console
 from manufacturers.models import Manufacturer
 from products.forms.product_form import ProductForm
 from products.forms.image_form import ImageForm
+
+from products.models import Product
+
 from products.models import Product, ProductImage
+
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse

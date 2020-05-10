@@ -9,6 +9,7 @@
             {% include 'products/product_cart.html' with product=product %}
         {% endfor %}
     </div>
-    <button type="button" class="ccorange proceed-to-checkout-btn btn " id="ccwhite">CHECKOUT</button>
+    <button type="button" class="ccorange proceed-to-checkout-btn btn " id="ccwhite" onclick="location.href='{% url 'checkout-billing' %}'">CHECKOUT</button>
+
 {% endblock %}
 
