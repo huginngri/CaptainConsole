@@ -28,6 +28,7 @@ def frontpage(request):
 def index(request):
 
     if 'search_filter' in request.GET:
+        search_filter = request.GET['search_filter']
         products = [{
             'id': x.id,
             'name': x.name,
