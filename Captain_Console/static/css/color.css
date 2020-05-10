@@ -9,6 +9,7 @@
 
 .cclightgray{
     color: #C4C4C4;
+    font-weight:bold;
 }
 
 #cclightgray{
@@ -25,4 +26,8 @@
 
 .ccblue{
     background-color: #51647D;
+}
+
+#ccwhite{
+    color:white;
 }

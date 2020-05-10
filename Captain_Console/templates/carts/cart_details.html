@@ -2,11 +2,14 @@
 {% load static %}
 
 {% block content %}
-    <div class = "cclightblue product_container">
+    <h1 class="homepagetext cc2phuge">Your Cart</h1>
+    <div class = "product_container">
+
         {% for product in  products%}
             {% include 'products/product_cart.html' with product=product %}
         {% endfor %}
     </div>
-    <button type="button" class="btn" onclick="location.href='{% url 'checkout-billing' %}'">Proceed to checkout</button>
+    <button type="button" class="ccorange proceed-to-checkout-btn btn " id="ccwhite" onclick="location.href='{% url 'checkout-billing' %}'">CHECKOUT</button>
+
 {% endblock %}
 

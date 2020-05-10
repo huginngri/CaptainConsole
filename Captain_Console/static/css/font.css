@@ -5,6 +5,7 @@
     font-family: 'Press Start 2P', cursive;
     font-size: 5rem;
     text-align: center;
+    text-shadow: 1px 7px rgba(0, 0, 0, 0.5);;
 }
 
 .cc2plarge{
@@ -51,6 +52,12 @@
         text-align: center;
 }
 
+.infromationfont{
+    width: 50%;
+    padding-top: 10px;
+    border-top: 3px solid #F1AA19;
+    font-family: Helvetica,Arial,sans-serif;;
+}
 .bold{
     font-size:25px;
     font-weight:900;
