@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
-from users.forms.payment_form import PaymentForm
+from orders.forms.payment_form import PaymentFormOrder
+from orders.forms.billing_form import BillingFormOrder
 from users.forms.billing_form import BillingForm
+from users.forms.payment_form import PaymentForm
 from users.models import Customer
 from users.models import Billing
 from users.models import Payment
@@ -11,17 +13,19 @@ from carts.models import CartDetails
 from products.models import Product
 
 # Create your views here.
-def checkout_billing(request):
+def checkout(request):
+    print(('vitlaust'))
     profile = Customer.objects.filter(user=request.user).first()
     if request.method == "POST":
-        form = BillingForm(instance=profile.billing, data=request.POST)
-        if form.is_valid():
-            new_billing = form.save()
-            #profile.billing = new_billing
-            #profile.save()
-            return redirect('orders/payment_checkout.html', {'billing_id':  new_billing.id})
-    return render(request, "orders/billing_checkout.html", {
-        "form": BillingForm(instance=profile.billing)
+        form_billing = BillingFormOrder(instance=profile.billing, data=request.POST)
+        form_payment = PaymentFormOrder(instance=profile.billing, data=request.POST)
+        if form_billing.is_valid() and form_payment.is_valid():
+            new_billing = form_billing.save()
+            new_payment = form_payment.save()
+            return create_order(request, new_billing.id, new_payment.id)
+    return render(request, "orders/checkout.html", {
+        "form_billing": BillingFormOrder(instance=profile.billing),
+        "form_payment": PaymentFormOrder(instance=profile.payment)
     })
 
 def save_billing(request):
@@ -37,17 +41,17 @@ def save_billing(request):
         "form": BillingForm(instance=profile.billing)
     })
 
-def checkout_payment(request):
+def save_payment(request):
     profile = Customer.objects.filter(user=request.user).first()
     if request.method == "POST":
-        form = PaymentForm(data=request.POST)
+        form = PaymentForm(instance=profile.billing, data=request.POST)
         if form.is_valid():
             new_payment = form.save()
-            profile.payment = new_payment
+            profile.billing = new_payment
             profile.save()
-            return create_order(request, request.POST['billing_id'], new_payment.id)
+            return redirect('checkout-payment')
     return render(request, "orders/payment_checkout.html", {
-        "form": PaymentForm()
+        "form": PaymentForm(instance=profile.billing)
     })
 
 def create_order(request, billing_id, payment_id):
