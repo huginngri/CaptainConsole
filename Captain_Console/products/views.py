@@ -6,6 +6,7 @@ from manufacturers.models import Manufacturer
 from products.forms.product_form import ProductForm
 from products.forms.image_form import ImageForm
 from products.models import Product, ProductImage
+from users.models import Search
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
@@ -13,7 +14,6 @@ from django.http import JsonResponse
 def frontpage(request):
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
-
         products = [{
             'id': x.id,
             'name': x.name,
@@ -29,6 +29,8 @@ def frontpage(request):
 def index(request):
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
+        new_search = Search(search_string=search_filter, user=request.user)
+        new_search.save()
         list_of_manu = Manufacturer.objects.filter(name__icontains=search_filter)
         list_of_cons = Console.objects.filter(name__icontains=search_filter)
         manu_id = []

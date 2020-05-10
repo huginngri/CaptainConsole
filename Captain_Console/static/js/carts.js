@@ -67,3 +67,9 @@ function calculate_cart(user_id) {
         }
     });
 }
+
+function sortit(products) {
+    console.log(products.substring(1, products.length-1).split(','))
+
+
+}

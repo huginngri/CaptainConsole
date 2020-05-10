@@ -27,6 +27,7 @@
     </div>
 
     <div class="product_container">
+
     {% for product in  products%}
         {% include 'products/product_overview.html' with product=product filter=filter %}
     {% endfor %}

@@ -24,6 +24,7 @@
     </div>
     </div>
     <div class="product_container">
+    <button type="button" class="btn btn-default navbar-btn" onclick="sortit('{{  products }}')" id = "cclightgray">Order</button>
     {% for product in  products%}
         {% include 'products/product_overview.html' with product=product %}
     {% endfor %}
