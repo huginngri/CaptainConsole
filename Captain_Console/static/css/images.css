@@ -15,7 +15,6 @@
     object-fit: scale-down;
 }
 
-
 .smallimages{
     with:150px;
 }
@@ -23,6 +22,15 @@
 .product_details_images{
     display: block;
     margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    max-height: 50%;
+    object-fit: scale-down;
+}
+
+.manufacturer_images{
+    display: block;
     margin-left: auto;
     margin-right: auto;
     width: 60%;
