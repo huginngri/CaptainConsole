@@ -133,9 +133,16 @@ filler2{
 .product_boxes{
     height: 300px;
 }
+.product_boxes:hover {
+        transform: scale(1.1);;
+}
 
 .console_boxes{
     height: 200px;
+}
+
+.console_boxes:hover {
+        transform: scale(1.1);;
 }
 
 
@@ -182,6 +189,7 @@ filler2{
         margin-right: 5%;
         width: 40%;
     }
+
     .console_boxes {
         margin-left: 5%;
         margin-right: 5%;
@@ -195,6 +203,7 @@ filler2{
         margin-right: 5%;
         width: 20%;
     }
+
     .console_boxes {
         margin-left: 5%;
         margin-right: 5%;
