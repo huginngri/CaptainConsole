@@ -27,8 +27,8 @@
                 <p class="ccbluemedium">{{ product.description }}</p>
             </div>
         </div>
-        <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'update-product' product.id%}'">update</button>
-        <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'delete-product' product.id%}'">delete</button>
+        <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'update-product' product.id%}'" id="cclightgray">update</button>
+        <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'delete-product' product.id%}'" id="cclightgray">delete</button>
 
         {#  Here are all the images posted.      #}
         <div class =  "informationbar ccblue">

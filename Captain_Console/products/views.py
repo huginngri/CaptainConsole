@@ -1,43 +1,50 @@
+from django.db.models import Q
 from django.shortcuts import render, redirect
 
+from consoles.models import Console
+from manufacturers.models import Manufacturer
 from products.forms.product_form import ProductForm
 from products.forms.image_form import ImageForm
-from products.models import Product
+from products.models import Product, ProductImage
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 
 def frontpage(request):
-
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
+
         products = [{
             'id': x.id,
             'name': x.name,
             'description': x.description,
             'price': x.price,
             'rating': x.rating,
-            'image': x.productimage_set.last().image
+            'image': ProductImage.objects.filter(product=x.id).first().image
         } for x in Product.objects.filter(name__icontains=search_filter)]
         return JsonResponse({'data': products})
-
     context = {'products': Product.objects.all().order_by('name')}
     return render(request, 'products/frontpage.html', context)
 
 def index(request):
-
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
+        list_of_manu = Manufacturer.objects.filter(name__icontains=search_filter)
+        list_of_cons = Console.objects.filter(name__icontains=search_filter)
+        manu_id = []
+        cons_id = []
+        for x in list_of_manu:
+            manu_id.append(x.id)
+        for y in list_of_cons:
+            cons_id.append(y.id)
         products = [{
             'id': x.id,
             'name': x.name,
             'description': x.description,
             'price': x.price,
-            'rating': x.rating,
-            'image': x.productimage_set.last.image
-        } for x in Product.objects.filter(name__icontains=search_filter)]
+            'image': ProductImage.objects.filter(product=x.id).first().image
+        } for x in Product.objects.filter(Q(name__icontains=search_filter) | Q(console_type__in=cons_id )| Q(manufacturer__in=manu_id))]
         return JsonResponse({'data': products})
-
     context = {'products': Product.objects.all().order_by('name')}
     return render(request, 'products/index.html', context)
 
@@ -67,11 +74,10 @@ def update_product(request, id):
             form.save()
             return redirect('products')
     return render(request, 'products/update_product.html', {
-        'form': ProductForm(instance=the_product),
-
+        'form': ProductForm(instance=the_product)
     })
 
 def delete_product(request, id):
     the_product = Product.objects.filter(pk=id).first()
     the_product.delete()
-    return  redirect('products')
+    return redirect('products')

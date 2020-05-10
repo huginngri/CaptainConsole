@@ -25,6 +25,8 @@
     margin-bottom: 20px;
     width: 20%
 }
+.filler{height: 100px;}
+
 
 filler2{
     height: 600px;
@@ -109,9 +111,11 @@ filler2{
     justify-content: center;
     margin-top: 50px;
     margin-bottom: 50px;
-    box-shadow: 0px 5px #888888;
+    box-shadow: 3px 5px rgba(0, 0, 0, 0.5);
     border-radius: 25px;
     position: relative;
+    box-sizing: border-box;
+
 }
 
 .box:hover{
@@ -119,18 +123,27 @@ filler2{
     justify-content: center;
     margin-top: 50px;
     margin-bottom: 50px;
-    box-shadow: 5px 10px #888888;
+    box-shadow: 6px 10px rgba(0, 0, 0, 0.5);
     border-radius: 25px;
     position: relative;
     border: 3px solid #F1AA19;
+    box-sizing: border-box;
+
 }
 
 .product_boxes{
     height: 300px;
 }
+.product_boxes:hover {
+        transform: scale(1.1);;
+}
 
 .console_boxes{
     height: 200px;
+}
+
+.console_boxes:hover {
+        transform: scale(1.1);;
 }
 
 
@@ -138,42 +151,36 @@ filler2{
 
 .popup{
     margin: auto;
+    margin-top: 100px;
     margin-bottom: 400px;
-    padding: 200px;
+    padding: 100px;
     justify-content: center;
-    box-shadow: 5px 10px #888888;
+    box-shadow: 5px 10px rgba(0, 0, 0, 0.5);
     border-radius: 25px;
     border: 3px solid #F1AA19;
     width: 50%;
 }
 
-.popup-login-register{
-    margin: auto;
-    margin-bottom: 400px;
-    justify-content: center;
-    box-shadow: 5px 10px #888888;
-    border-radius: 25px;
-    border: 3px solid #F1AA19;
-    width: 50%;
-}
 
 
 /*footer -----------------------------------*/
 
 .footerlogo{
-    justify-content: right;
+    justify-content: center;
     float: right;
     width: 30%;
-    margin-top:3%;
-    margin-right:0%;
 }
 
 .footer{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    border-top:solid white 2px;
-    padding:20px;
+    padding:50px;
+}
+
+
+.information{
+    width: 65%;
 }
 
 
@@ -183,12 +190,13 @@ filler2{
         margin-right: 5%;
         width: 40%;
     }
+
     .console_boxes {
         margin-left: 5%;
         margin-right: 5%;
         width: 40%;
     }
-    .filler{height: 150px;}
+
 }
 @media screen and (min-width: 1001px) {
     .product_boxes {
@@ -196,10 +204,23 @@ filler2{
         margin-right: 5%;
         width: 20%;
     }
+
     .console_boxes {
         margin-left: 5%;
         margin-right: 5%;
         width: 40%;
     }
-    .filler{height: 80px;}
+
+}
+@media screen and (max-width: 700px) {
+    .footerlogo{
+    width: 1000%;
+}
+
+
+
+.information{
+    width: 100%;
+}
+
 }
