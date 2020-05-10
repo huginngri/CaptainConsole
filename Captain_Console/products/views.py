@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from products.forms.product_form import ProductForm
 from products.forms.image_form import ImageForm
 from products.models import Product
+
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
@@ -27,7 +28,6 @@ def frontpage(request):
 def index(request):
 
     if 'search_filter' in request.GET:
-        search_filter = request.GET['search_filter']
         products = [{
             'id': x.id,
             'name': x.name,
