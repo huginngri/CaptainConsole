@@ -26,3 +26,6 @@ class Customer(models.Model):
     payment = models.ForeignKey(Payment, blank=True, null=True, on_delete=models.CASCADE)
     billing = models.ForeignKey(Billing,blank=True, null=True, on_delete=models.CASCADE)
 
+class Search(models.Model):
+    search_string = models.CharField(max_length=255)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
