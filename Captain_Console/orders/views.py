@@ -17,14 +17,27 @@ def checkout_billing(request):
         form = BillingForm(instance=profile.billing, data=request.POST)
         if form.is_valid():
             new_billing = form.save()
-            profile.billing = new_billing
-            profile.save()
-            return checkout_payment(request, new_billing.id)
+            #profile.billing = new_billing
+            #profile.save()
+            return redirect('orders/payment_checkout.html', {'billing_id':  new_billing.id})
     return render(request, "orders/billing_checkout.html", {
         "form": BillingForm(instance=profile.billing)
     })
 
-def checkout_payment(request, billing_id):
+def save_billing(request):
+    profile = Customer.objects.filter(user=request.user).first()
+    if request.method == "POST":
+        form = BillingForm(instance=profile.billing, data=request.POST)
+        if form.is_valid():
+            new_billing = form.save()
+            profile.billing = new_billing
+            profile.save()
+            return redirect('checkout-billing')
+    return render(request, "orders/billing_checkout.html", {
+        "form": BillingForm(instance=profile.billing)
+    })
+
+def checkout_payment(request):
     profile = Customer.objects.filter(user=request.user).first()
     if request.method == "POST":
         form = PaymentForm(data=request.POST)
@@ -32,7 +45,7 @@ def checkout_payment(request, billing_id):
             new_payment = form.save()
             profile.payment = new_payment
             profile.save()
-            return create_order(request, billing_id, new_payment.id)
+            return create_order(request, request.POST['billing_id'], new_payment.id)
     return render(request, "orders/payment_checkout.html", {
         "form": PaymentForm()
     })
