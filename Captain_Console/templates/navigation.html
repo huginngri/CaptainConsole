@@ -1,46 +1,45 @@
 {% load static %}
 
-<nav  class="navbar navbar-fixed-top ccblue" >
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand cc2pmedium" id = "ccorange" href="{% url "frontpage" %}">Captain Console</a>
-        </div>
-    {#    {% url 'other-index' %}#}
-        <!-- Collect the nav links, forms, and other content for toggling -->
+<nav  class="navbar navbar-default navbar-fixed-top ccblue" >
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand cc2pmedium" id = "ccorange" href="{% url "frontpage" %}">Captain Console</a>
+    </div>
+{#    {% url 'other-index' %}#}
+    <!-- Collect the nav links, forms, and other content for toggling -->
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <div class="search-btn-main">
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-                <!-- The form -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <!-- The form -->
 
-                <form class="search" action="action_page.php">
-                    <input class="input" type="text" placeholder="Search.." id="search">
-                    <button type="submit" class="btn btn-default search-btn" id="search-bt"><i class="fa fa-search"></i></button>
-                </form>
-            </div>
+            <form class="navbar-form navbar-left search" action="action_page.php">
+                <input class="input" type="text" placeholder="Search.." id="search">
+                <button type="submit" class="btn btn-default search-btn" id="search-bt"><i class="fa fa-search"></i></button>
+            </form>
 
             <ul class="nav navbar-nav navbar-right">
-                  {%  if user.is_authenticated %}
-                      <li role="presentation" ><a href="{% url 'view-cart' %}"><span id = "cclightgray" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <span class="badge primary" id="cart_count" ></span></a></li>
-                      <li><a id = "cclightgray" href='{% url 'profile' %}'><img src="/static/images/profile-icon.png" alt="profile-icon" style="width:25px;"></a></li>
-                      <li><a id = "cclightgray" href='{% url 'logout' %}'>Log out</a></li>
-                  {%  else %}
-                      <li><a id = "cclightgray" href='{% url 'login' %}'>Log in</a></li>
-                      <li><a id = "cclightgray" href='{% url 'register' %}'>Register</a></li>
-                  {%  endif %}
+              {%  if user.is_authenticated %}
+                  <li role="presentation" ><a href="{% url 'view-cart' %}"><span id = "cclightgray" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <span class="badge primary" id="cart_count" ></span></a></li>
+                  <li><a id = "cclightgray" href='{% url 'profile' %}'><img src="/static/images/profile-icon.png" alt="profile-icon" style="width:25px;"></a></li>
+                  <li><a id = "cclightgray" href='{% url 'logout' %}'>Log out</a></li>
+              {%  else %}
+                  <li><a id = "cclightgray" href='{% url 'login' %}'>Log in</a></li>
+                  <li><a id = "cclightgray" href='{% url 'register' %}'>Register</a></li>
+              {%  endif %}
             </ul>
 
-            <ul class="nav navbar-nav" >
-                <li><button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'create-product' %}'">Create product</button></li>
-                <li><button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'create_console' %}'">Create console</button></li>
-                <li><button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'create-manufacturer' %}'">Create manufacturer</button></li>
+            <ul class="nav navbar-nav">
+
+                <li><button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'create-product' %}'" id = "cclightgray">Create product</button></li>
+                <li><button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'create_console' %}'" id = "cclightgray">Create console</button></li>
+                <li><button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'create-manufacturer' %}'" id = "cclightgray">Create manufacturer</button></li>
             </ul>
         </div>
     </div><!-- /.container-fluid -->

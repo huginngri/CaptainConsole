@@ -41,14 +41,20 @@
     border:none;
     with:10%;
 }
+.search{
+    width:40%;
+    display: inline;s
+}
 
 .search-btn-main{
-    margin-left:15%;
     margin-top:10px;
+
+
 }
 
 .input{
-    width: 60%;
+    width: 40%;
+    border-radius: 10px;
 }
 
 .block{

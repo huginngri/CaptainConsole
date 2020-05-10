@@ -183,7 +183,7 @@ filler2{
         margin-right: 5%;
         width: 40%;
     }
-    .filler{height: 150px;}
+    .filler{height: 100px;}
 }
 @media screen and (min-width: 1001px) {
     .product_boxes {
