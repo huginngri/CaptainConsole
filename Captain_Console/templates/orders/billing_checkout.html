@@ -5,7 +5,7 @@
         {% csrf_token %}
         {{ form }}
 
-        <input type="submit" class="btn btn-primary" value="Continue" />
-        <button type="button" class="btn" onclick="location.href='{% url 'checkout-save-billing' %}'">Save billing</button>
+        <button type="submit" class="btn" formaction="{% url 'checkout-billing' %}">Continue</button>
+        <button type="submit" class="btn" formaction="{% url 'checkout-save-billing' %}">Save billing</button>
     </form>
 {% endblock %}

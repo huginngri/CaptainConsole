@@ -4,6 +4,7 @@
     <form class="form form-horizontal" method="post">
         {% csrf_token %}
         {{ form }}
-        <input type="submit" class="btn btn-primary" value="Continue" />
+        <button type="submit" class="btn" formaction="{% url 'checkout-payment' %}">Continue</button>
+        <button type="submit" class="btn" formaction="{% url 'checkout-save-payment' %}">Save Payment</button>
     </form>
 {% endblock %}
