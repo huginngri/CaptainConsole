@@ -84,9 +84,4 @@ $("#recent-views").ready(function () {
     })
 })
 
-$(document).ready(function () {
-    $('#next-button').on('click', function (e) {
-        var images = document.getElementById('all-images');
-        console.log(images)
-    });
-});
+
