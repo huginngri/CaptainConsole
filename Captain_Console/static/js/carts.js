@@ -68,15 +68,13 @@ function calculate_cart(user_id) {
     });
 }
 
-function place_order(billing, payment) {
-    console.log('hallo')
+function place_order(order) {
     $.ajax({
         type: "POST",
         method: 'POST',
         url: '/orders/checkout/overview',
         data: {
-            billing: billing,
-            payment: payment
+            order: order
         },
         success: function (response) {
             console.log('virkar')
@@ -93,7 +91,7 @@ function place_order(billing, payment) {
             div.appendChild(a)
         },
         error: function (xhr, status, error) {
-            console.log('eitthvað vilaust')
+            console.log('error')
         }
     });
 }

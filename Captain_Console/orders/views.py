@@ -25,9 +25,9 @@ def checkout(request):
         form_billing = BillingFormOrder(data=request.POST)
         form_payment = PaymentFormOrder(data=request.POST)
         if form_billing.is_valid() and form_payment.is_valid():
-            #new_billing = form_billing.save()
-            #new_payment = form_payment.save()
-            return display_order(request, form_billing, form_payment)
+            new_billing = form_billing.save()
+            new_payment = form_payment.save()
+            return display_order(request, new_billing, new_payment)
     return render(request, "orders/checkout.html", {
         "form_billing": BillingFormOrder(instance=profile.billing),
         "form_payment": PaymentFormOrder(instance=profile.payment)
@@ -65,57 +65,51 @@ def save_payment(request):
     })
 
 @login_required()
-def display_order(request, form_billing, form_payment):
+def display_order(request, billing, payment):
     profile = Customer.objects.filter(user=request.user).first()
     cart = Cart.objects.filter(user=profile.id).first()
     cart_details = CartDetails.objects.filter(cart=cart)
-    products = []
+    order, total = create_order(profile, billing, payment, cart_details)
+    context = {'order': order, 'total_price': total}
+    return render(request, 'orders/order_review.html', context)
+
+def create_order(profile, billing, payment, cart_details):
+    order = Order(customer=profile, billing=billing, payment=payment)
+    order.save()
     total = 0
     for cart_detail in cart_details:
         product = Product.objects.get(id=cart_detail.product_id)
         total += product.price
-        products.append(product)
-    billing = form_billing.save()
-    payment = form_payment.save()
-    context = {'billing': billing, 'payment': payment,
-                        'products': products, 'total_price': total}
-    return render(request, 'orders/order_review.html', context)
+        order_product = OrderProduct(order=order, product=product)
+        order_product.save()
+    return order, total
 
 @login_required()
-def create_order(request):
+def confirm_order(request):
+    order = Order.objects.get(id=request.POST['order'])
+    order.confirmed = True
+
+
+@login_required()
+def update_order(request, order_id):
     profile = Customer.objects.filter(user=request.user).first()
-    if request.method == 'POST':
-        billing = Billing.objects.get(id=request.POST['billing'])
-        payment = Payment.objects.get(id=request.POST['payment'])
-        order = Order(customer=profile, billing=billing, payment=payment)
-        order.save()
-        cart = Cart.objects.filter(user=profile.id).first()
-        cart_details = CartDetails.objects.filter(cart=cart)
-        for cart_detail in cart_details:
-            product = Product.objects.get(id=cart_detail.product_id)
-            order_product = OrderProduct(order=order, product=product)
-            order_product.save()
-        return JsonResponse({'message': 'order created'})
-    return JsonResponse({'message': 'invalid request'})
-
-@login_required()
-def update_order(request, billing_id, payment_id):
-    print('sælar')
-    billing = Billing.objects.get(id=billing_id)
-    payment = Payment.objects.get(id=payment_id)
-    if request.method == "POST":
-        form_billing = BillingUpdateFormOrder(data=request.POST, instance=billing)
-        form_payment = PaymentUpdateFormOrder(data=request.POST, instance=payment)
-        if form_billing.is_valid() and form_payment.is_valid():
-            form_billing.save()
-            form_payment.save()
-            return display_order(request, form_billing, form_payment)
+    order = Order.objects.get(id=order_id)
+    if order.customer == profile:
+        billing = Billing.objects.get(id=order.billing_id)
+        payment = Payment.objects.get(id=order.payment_id)
+        if request.method == "POST":
+            form_billing = BillingUpdateFormOrder(data=request.POST, instance=billing)
+            form_payment = PaymentUpdateFormOrder(data=request.POST, instance=payment)
+            if form_billing.is_valid() and form_payment.is_valid():
+                form_billing.save()
+                form_payment.save()
+                return display_order(request, form_billing, form_payment)
+        else:
+            form_billing = BillingUpdateFormOrder(instance=billing)
+            form_payment = PaymentUpdateFormOrder(instance=payment)
+        return render(request, "orders/checkout.html", {
+            "form_billing": form_billing,
+            "form_payment": form_payment
+             })
     else:
-        form_billing = BillingUpdateFormOrder(instance=billing)
-        form_payment = PaymentUpdateFormOrder(instance=payment)
-    return render(request, "orders/checkout.html", {
-        "form_billing": form_billing,
-        "form_payment": form_payment,
-        "billing_id": billing_id,
-        "payment_id": payment_id
-    })
+        return JsonResponse({'message': 'forbidden'})

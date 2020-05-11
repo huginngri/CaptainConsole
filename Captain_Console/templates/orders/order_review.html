@@ -21,7 +21,7 @@
             </div>
 
             <button type="submit" class="btn" id="edit_order" onclick="location.href='{% url 'checkout-update' billing.id payment.id %}'">Edit</button>
-            <button type="button" id="confirm_order" class="btn" onclick="place_order({{ billing.id }},{{ payment.id }})">Place order</button>
+            <button type="button" id="confirm_order" class="btn" onclick="place_order({{ order.id }})">Place order</button>
 
     </div>
 
