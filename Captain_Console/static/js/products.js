@@ -44,3 +44,8 @@ $(document).ready(function() {
         })
     })
 })
+
+function display_images(product){
+    var arr = product.image
+    console.log(arr)
+}
