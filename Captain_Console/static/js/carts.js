@@ -29,7 +29,6 @@ $.ajaxSetup({
 
 function add_to_cart_js(product) {
 
-
     $.ajax({
         type: "POST",
         method: 'POST',
@@ -67,3 +66,4 @@ function calculate_cart(user_id) {
         }
     });
 }
+
