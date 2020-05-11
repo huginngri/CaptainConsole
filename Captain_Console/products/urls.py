@@ -21,6 +21,7 @@ from . import views
 urlpatterns = [
 
     path('', views.index, name="products"),
+    path('recent', views.recent_view, name="recents"),
     # http://localhost:8000/products/q?=name
     path('<int:id>', views.get_product_by_id, name="products-from-search"),
     path('<int:id>/update', views.update_product, name="update-product"),

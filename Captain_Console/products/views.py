@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, redirect
 
@@ -6,9 +7,7 @@ from manufacturers.models import Manufacturer
 from products.forms.product_form import ProductForm
 from products.forms.image_form import ImageForm
 
-from products.models import Product
-
-from products.models import Product, ProductImage
+from products.models import Product, ProductImage, ProductHistory
 
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
@@ -17,7 +16,6 @@ from django.http import JsonResponse
 def frontpage(request):
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
-
         products = [{
             'id': x.id,
             'name': x.name,
@@ -29,6 +27,23 @@ def frontpage(request):
         return JsonResponse({'data': products})
     context = {'products': Product.objects.all().order_by('name')}
     return render(request, 'products/frontpage.html', context)
+
+@login_required()
+def recent_view(request):
+    if request.user.is_authenticated:
+        x = ProductHistory.objects.filter(user=request.user).order_by("-id")[:5]
+        the_products = []
+        for y in x:
+            the_products.append(get_object_or_404(Product, pk=y.product.id))
+        recent_products = [{
+            'id': x.id,
+            'name': x.name,
+            'description': x.description,
+            'price': x.price,
+            'rating': x.rating,
+            'image': ProductImage.objects.filter(product=x.id).first().image
+        } for x in the_products]
+        return JsonResponse({'data': recent_products})
 
 def index(request):
     if 'search_filter' in request.GET:
@@ -49,11 +64,16 @@ def index(request):
             'image': ProductImage.objects.filter(product=x.id).first().image
         } for x in Product.objects.filter(Q(name__icontains=search_filter) | Q(console_type__in=cons_id )| Q(manufacturer__in=manu_id))]
         return JsonResponse({'data': products})
+
     context = {'products': Product.objects.all().order_by('name')}
     return render(request, 'products/index.html', context)
 
 def get_product_by_id(request, id, consolename=None, name=None):
-    product = {'product': get_object_or_404(Product, pk=id), 'filter': 'none'}
+    the_product = get_object_or_404(Product, pk=id)
+    product = {'product': the_product, 'filter': 'none'}
+    if request.user.is_authenticated:
+        new_item_view = ProductHistory(user=request.user, product=the_product)
+        new_item_view.save()
     return render(request, 'products/product_details.html', product)
 
 def create_product(request):
