@@ -45,7 +45,8 @@ $(document).ready(function() {
     })
 })
 
-function display_images(product){
-    var arr = product.image
-    console.log(arr)
-}
+$(document).ready(function() {
+    $('#next-button').on('click', function (e) {
+        var img = document.getElementById('myImage');
+    });
+});
