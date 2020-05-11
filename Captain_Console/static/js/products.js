@@ -1,10 +1,7 @@
 $(document).ready(function() {
-<<<<<<< HEAD
     $('#search-bt').on('click', function(e) {
-=======
     console.log("in products")
     $('#search-bt').on('click', function (e) {
->>>>>>> 0266f385152cc8a26820d386d05dd5111620fda3
         e.preventDefault();
         var searchText = $('#search').val();
         $.ajax({
@@ -85,7 +82,6 @@ $("#recent-views").ready(function () {
         })
 
     })
-<<<<<<< HEAD
 })
 
 $(document).ready(function () {
@@ -94,5 +90,3 @@ $(document).ready(function () {
         console.log(images)
     });
 });
-=======
->>>>>>> 0266f385152cc8a26820d386d05dd5111620fda3
