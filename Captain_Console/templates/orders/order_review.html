@@ -3,25 +3,24 @@
     <h1 id="order_header" class = cc2phuge>Checkout</h1>
     <div id="order_review_div" class = "popup ccwhite" >
             <h4 class="cc2plarge">Billing info</h4>
-            <p class="ccbluelarge">Full name: {{ billing.full_name }}</p>
-            <p class="ccbluelarge">Street address: {{ billing.street_name }}</p>
-            <p class="ccbluelarge">House number: {{ billing.house_number }}</p>
-            <p class="ccbluelarge">Country: {{ billing.country }}</p>
-            <p class="ccbluelarge">Zip code: {{ billing.zip }}</p>
+            <p class="ccbluelarge">Full name: {{ order.billing.full_name }}</p>
+            <p class="ccbluelarge">Street address: {{ order.billing.street_name }}</p>
+            <p class="ccbluelarge">House number: {{ order.billing.house_number }}</p>
+            <p class="ccbluelarge">Country: {{ order.billing.country }}</p>
+            <p class="ccbluelarge">Zip code: {{ order.billing.zip }}</p>
             <h4 class="cc2plarge">Payment info</h4>
-            <p class="ccbluelarge">Card holder: {{ payment.card_holder }}</p>
-            <p class="ccbluelarge">Card number: {{ payment.card_number }}</p>
-            <p class="ccbluelarge">Exp. date: {{ payment.exp_date }}</p>
-            <p class="ccbluelarge">CVC: {{ payment.cvc }}</p>
-            <p class="ccbluelarge">Zip code: {{ billing.zip }}</p>
+            <p class="ccbluelarge">Card holder: {{ order.payment.card_holder }}</p>
+            <p class="ccbluelarge">Card number: {{ order.payment.card_number }}</p>
+            <p class="ccbluelarge">Exp. date: {{ order.payment.exp_date }}</p>
+            <p class="ccbluelarge">CVC: {{ order.payment.cvc }}</p>
             <div class = " product_container">
-                {% for product in  products%}
+                {% for product in  order.products%}
                     {% include 'products/product_overview.html' with product=product %}
                 {% endfor %}
             </div>
-
+<h4         <h4 class="cc2plarge">{{ total_price }}</h4>
             <button type="submit" class="btn" id="edit_order" onclick="location.href='{% url 'checkout-update' billing.id payment.id %}'">Edit</button>
-            <button type="button" id="confirm_order" class="btn" onclick="place_order({{ billing.id }},{{ payment.id }})">Place order</button>
+            <button type="button" id="confirm_order" class="btn" onclick="place_order({{ order.id }})">Place order</button>
 
     </div>
 
