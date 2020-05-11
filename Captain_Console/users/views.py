@@ -12,6 +12,7 @@ from users.forms.payment_form import PaymentForm
 from users.forms.profile_form import ProfileForm
 from users.forms.billing_form import BillingForm
 from users.forms.user_form import UserForm
+from users.forms.delete_user import RemoveUser
 from users.models import Customer
 
 
@@ -49,7 +50,7 @@ def update_profile(request):
 def update_billing(request):
     profile = Customer.objects.filter(user=request.user).first()
     if request.method == "POST":
-        form = BillingForm(instance=profile.billing, data= request.POST)
+        form = BillingForm(instance=profile.billing, data=request.POST)
         if form.is_valid():
             new_billing = form.save()
             profile.billing = new_billing
@@ -72,8 +73,6 @@ def update_payment(request):
         "form": PaymentForm()
     })
 
-
-
 @login_required()
 def change_password(request):
     if request.method == "POST":
@@ -90,3 +89,20 @@ def change_password(request):
     return render(request, 'users/change_password.html', {
         'form': form
     })
+
+@login_required()
+def delete_user(request):
+    if request.method == 'POST':
+        form = RemoveUser(request.POST)
+        if form.is_valid():
+            rem = User.objects.get(username=form.cleaned_data['id'])
+            if rem is not None:
+                rem.delete()
+                return redirect('users')
+            else:
+                messages.error(request, 'Error')
+    else:
+        form = RemoveUser()
+
+    context = {'form': form}
+    return render(request, 'users/remove_user.html', context)
