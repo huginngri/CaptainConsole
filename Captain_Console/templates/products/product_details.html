@@ -37,8 +37,8 @@
         {#  Here are all the images posted.      #}
         <div class =  "informationbar ccblue">
                 {% for image in product.productimage_set.all %}
-                    <div class = "product_boxes box ccwhite" >
-                        <img class="largeimages" src="{% static   image.image  %}" onclick="document.getElementById('myImage').src='{% static   image.image  %}'">
+                    <div class = "image_box box ccwhite" >
+                        <img class="hugeimages" src="{% static   image.image  %}" onclick="document.getElementById('myImage').src='{% static   image.image  %}'">
                     </div>
                 {% endfor %}
         </div>
@@ -46,13 +46,14 @@
         <div class = "product_container filler2">
             <h1 class="homepagetext cc2phuge">Reviews</h1>
         </div>
+        <div class="product_container" id="comment_section">
+            {% for comment in comments %}
+                {% include 'products/review_details.html' with comment=comment profile=profile%}
+            {% endfor %}
+        </div>
     </div>
 
-    <div id="comment_section">
-        {% for comment in comments %}
-            {% include 'products/review_details.html' with comment=comment profile=profile%}
-        {% endfor %}
-    </div>
+
 
     {# <div class="btn-group buy-button" role="group" aria-label="..."> #}
     {# <button type="button" class="btn btn-default">Buy</button> #}

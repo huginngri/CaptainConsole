@@ -1,4 +1,12 @@
 
+.hugeimages{
+    display: block;
+    margin:auto;
+    width: 80%;
+    object-fit: scale-down;
+    max-height: 250px;
+}
+
 .largeimages{
     display: block;
     margin-left: auto;
@@ -42,4 +50,8 @@
     display:none;
 }
 
+.smallimages{
+    margin: 10px;
+    height: 30px;
+}
 
