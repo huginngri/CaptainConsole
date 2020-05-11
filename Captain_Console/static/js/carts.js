@@ -68,26 +68,10 @@ function calculate_cart(user_id) {
     });
 }
 
-function sort(option) {
-    document.location.href
-    console.log(option)
-    /*$.ajax({
-        type: "GET",
-        url: '/carts',
-        data: {
-            user_id: user_id
-        },
-        success: function (response) {
-            console.log(response.count)
 
-            let cart_number = document.getElementById("cart_count");
-            cart_number.textContent = response.count;
-        },
-        error: function (xhr, status, error) {
-            console.log('Request failed')
-        }
-    });*/
-
-
+function place_order(){
+    form1 = document.getElementById("form1");
+    form2 = document.getElementById("form2");
 
 }
+

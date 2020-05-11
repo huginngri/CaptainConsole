@@ -19,10 +19,12 @@ class Billing(models.Model):
     zip = models.CharField(max_length=255)
 
 
+
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.CharField(default="images/mario-bros-nintendo-nes.jpg", max_length=999)
     payment = models.ForeignKey(Payment, blank=True, null=True, on_delete=models.CASCADE)
     billing = models.ForeignKey(Billing,blank=True, null=True, on_delete=models.CASCADE)
+
 
 

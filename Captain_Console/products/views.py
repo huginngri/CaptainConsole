@@ -6,6 +6,7 @@ from consoles.models import Console
 from manufacturers.models import Manufacturer
 from products.forms.product_form import ProductForm
 from products.forms.image_form import ImageForm
+
 from products.models import Product, ProductImage, ProductHistory
 
 from django.http import HttpResponse
