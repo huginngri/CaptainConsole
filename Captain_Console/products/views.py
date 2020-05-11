@@ -4,14 +4,19 @@ from django.shortcuts import render, redirect
 
 from consoles.models import Console
 from manufacturers.models import Manufacturer
+from orders.models import Order, OrderProduct
 from products.forms.product_form import ProductForm
 from products.forms.image_form import ImageForm
+from products.forms.review_form import ReviewForm
 
-from products.models import Product, ProductImage, ProductHistory
+from products.models import Product, ProductImage, ProductHistory, Review
 
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
+
+from users.models import Customer
+
 
 def frontpage(request):
     if 'search_filter' in request.GET:
@@ -107,3 +112,30 @@ def delete_product(request, id):
     return render(request, 'products/delete_product.html', {
         'form': ProductForm(instance=the_product)
     })
+
+@login_required()
+def review_product(request, id):
+    profile = Customer.objects.filter(user=request.user).first()
+    product = Product.objects.filter(pk=id).first()
+    order = Order.objects.filter(customer=profile)
+    list_of_order_id = []
+    for x in order:
+        list_of_order_id.append(x.id)
+    if len(Review.objects.filter(customer=profile, product=product))==0:
+        if len(OrderProduct.objects.filter(order__in=list_of_order_id, product=product)) > 0:
+            if request.method == "POST":
+                form = ReviewForm(data=request.POST)
+                form.instance.customer = profile
+                form.instance.product = product
+                form.save()
+                print(product.rating)
+                print(form.instance.star)
+                number_of_rev = len(Review.objects.filter(product=product))
+                product.rating = (product.rating*number_of_rev+form.instance.star)/(number_of_rev+1)
+                product.save()
+                return redirect('frontpage')
+            return render(request, 'products/review_product.html', {
+                'form': ReviewForm()
+            })
+    else:
+        return redirect('frontpage')
