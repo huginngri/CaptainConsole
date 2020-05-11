@@ -1,6 +1,6 @@
 from django.forms import ModelForm, widgets
 from django_countries.data import  COUNTRIES
-from users.models import Billing
+from orders.models import Billing
 
 
 class BillingFormOrder(ModelForm):

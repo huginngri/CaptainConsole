@@ -1,5 +1,5 @@
 from django.forms import ModelForm, widgets
-from users.models import Payment
+from orders.models import Payment
 
 
 class PaymentFormOrder(ModelForm):

@@ -14,11 +14,10 @@ from products.models import Product
 
 # Create your views here.
 def checkout(request):
-    print(('vitlaust'))
     profile = Customer.objects.filter(user=request.user).first()
     if request.method == "POST":
-        form_billing = BillingFormOrder(instance=profile.billing, data=request.POST)
-        form_payment = PaymentFormOrder(instance=profile.billing, data=request.POST)
+        form_billing = BillingFormOrder(data=request.POST)
+        form_payment = PaymentFormOrder(data=request.POST)
         if form_billing.is_valid() and form_payment.is_valid():
             new_billing = form_billing.save()
             new_payment = form_payment.save()
@@ -30,28 +29,31 @@ def checkout(request):
 
 def save_billing(request):
     profile = Customer.objects.filter(user=request.user).first()
+    print('rétt')
     if request.method == "POST":
-        form = BillingForm(instance=profile.billing, data=request.POST)
-        if form.is_valid():
-            new_billing = form.save()
+        form_billing = BillingForm(instance=profile.billing, data=request.POST)
+        if form_billing.is_valid():
+            new_billing = form_billing.save()
             profile.billing = new_billing
             profile.save()
-            return redirect('checkout-billing')
-    return render(request, "orders/billing_checkout.html", {
-        "form": BillingForm(instance=profile.billing)
+            return redirect('checkout')
+    return render(request, "orders/checkout.html", {
+        "form_billing": BillingForm(instance=profile.billing),
+        "form_payment": PaymentForm(instance=profile.payment, data=request.POST)
     })
 
 def save_payment(request):
     profile = Customer.objects.filter(user=request.user).first()
     if request.method == "POST":
-        form = PaymentForm(instance=profile.billing, data=request.POST)
-        if form.is_valid():
-            new_payment = form.save()
-            profile.billing = new_payment
+        form_payment = PaymentForm(instance=profile.payment, data=request.POST)
+        if form_payment.is_valid():
+            new_payment = form_payment.save()
+            profile.payment = new_payment
             profile.save()
-            return redirect('checkout-payment')
-    return render(request, "orders/payment_checkout.html", {
-        "form": PaymentForm(instance=profile.billing)
+            return redirect('checkout')
+    return render(request, "orders/checkout.html", {
+        "form_billing": BillingForm(instance=profile.billing, data=request.POST),
+        "form_payment": PaymentForm(instance=profile.payment)
     })
 
 def create_order(request, billing_id, payment_id):
