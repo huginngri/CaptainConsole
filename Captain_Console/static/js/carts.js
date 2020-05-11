@@ -68,4 +68,26 @@ function calculate_cart(user_id) {
     });
 }
 
+function place_order(billing, payment, products) {
+    $.ajax({
+        type: "POST",
+        method: 'POST',
+        url: '/orders/checkout/overview',
+        data: {
+            billing: billing,
+            payment: payment,
+            products: products
+        },
+        success: function (response) {
+            console.log(response.count)
+            console.log('virkar')
+            let cart_number = document.getElementById("cart_count");
+            cart_number.textContent = response.count;
+        },
+        error: function (xhr, status, error) {
+            console.log('eitthvað vilaust')
+        }
+    });
+}
+
 
