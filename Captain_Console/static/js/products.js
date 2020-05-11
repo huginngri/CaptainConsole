@@ -81,4 +81,3 @@ $("#recent-views").ready(function () {
 
     })
 })
-
