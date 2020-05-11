@@ -112,4 +112,4 @@ def update_order(request, order_id):
             "form_payment": form_payment
              })
     else:
-        return JsonResponse({'message': 'forbidden'})
+        return render(request, "products/frontpage.html")
