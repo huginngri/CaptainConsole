@@ -25,6 +25,14 @@
     font-size: medium;
 }
 
+.cc2pmedium_shadow{
+        color: #F1AA19;
+        font-family: 'Press Start 2P', cursive;
+        font-size: medium;
+        text-align: center;
+        text-shadow: 1px 2px rgba(0, 0, 0, 0.4);
+}
+
 .cc2psmall{
     color: #F1AA19;
     font-family: 'Press Start 2P', cursive;

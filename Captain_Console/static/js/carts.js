@@ -29,7 +29,6 @@ $.ajaxSetup({
 
 function add_to_cart_js(product) {
 
-
     $.ajax({
         type: "POST",
         method: 'POST',
@@ -116,3 +115,10 @@ function go_back(billing, payment) {
     });
 }
 
+
+function f(images) {
+    var value = document.getElementById("next-button").value()
+    console.log(value)
+    console.log(images)
+
+}

@@ -22,6 +22,6 @@ def create_manufacturer(request):
         if form1.is_valid():
             form1.save()
             return redirect('frontpage')
-    return render(request, 'products/create_product.html', {
+    return render(request, 'manufacturers/create_manufacturer.html', {
         'form1': ManufacturerForm()
     })

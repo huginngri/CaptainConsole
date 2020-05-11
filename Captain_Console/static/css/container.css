@@ -42,7 +42,7 @@ filler2{
 }
 
 .manufacturer_info {
-    height: 250px;
+    height: 400px;
     text-align:center;
     margin: auto;
     box-shadow:2px 2px;
@@ -184,6 +184,10 @@ filler2{
 
 .information{
     width: 65%;
+}
+
+#recent-views{
+    width:95%;
 }
 
 

@@ -36,7 +36,7 @@ def create_console(request):
         if form1.is_valid():
             form1.save()
             return redirect('frontpage')
-    return render(request, 'products/create_product.html', {
+    return render(request, 'consoles/create_console.html', {
         'form1': ConsoleForm()
     })
 
