@@ -3,7 +3,7 @@
     <h1 class = cc2phuge>Checkout</h1>
     <div class = "popup ccwhite" >
 
-        <form class="form form-horizontal" action="{% url 'checkout' %}" method="post">
+        <form class="form form-horizontal" action="{% url 'checkout-update' billing_id payment_id %}" method="post">
             {% csrf_token %}
             {{ form_billing }}
             <button type="submit" class="btn" formaction="{% url 'checkout-save-billing' %}">Save Billing</button>
@@ -15,4 +15,3 @@
 
 
 {% endblock %}
-\
