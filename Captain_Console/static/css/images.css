@@ -38,4 +38,8 @@
     object-fit: scale-down;
 }
 
+.display-none{
+    display:none;
+}
+
 

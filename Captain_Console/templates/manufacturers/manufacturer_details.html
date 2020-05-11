@@ -28,10 +28,9 @@
             <option>price</option>
             <option>rate</option>
         </select>
-    <div id="product_container">
+    <div class="product_container">
     {% for product in  products%}
         {% include 'products/product_overview.html' with product=product %}
     {% endfor %}
-
     </div>
 {% endblock %}
