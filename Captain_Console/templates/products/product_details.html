@@ -34,7 +34,7 @@
         {#  Here are all the images posted.      #}
         <div class =  "informationbar ccblue">
                 {% for image in product.productimage_set.all %}
-                    <div class = "product_images_container" >
+                    <div class = "product_boxes box ccwhite" >
                         <img class="largeimages" src="{% static   image.image  %}" onclick="document.getElementById('myImage').src='{% static   image.image  %}'">
                     </div>
                 {% endfor %}
