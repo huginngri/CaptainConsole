@@ -79,8 +79,18 @@ function place_order(billing, payment) {
             payment: payment
         },
         success: function (response) {
-            console.log(response.count)
             console.log('virkar')
+            let header = document.getElementById('order_header')
+            header.textContent = 'Order confirmed'
+            let back_button = document.getElementById('edit_order')
+            let confirm_button = document.getElementById('confirm_order')
+            back_button.remove()
+            confirm_button.remove()
+            let a = document.createElement('a')
+            a.setAttribute('href', '/')
+            a.textContent = 'Close'
+            let div = document.getElementById('order_review_div')
+            div.appendChild(a)
         },
         error: function (xhr, status, error) {
             console.log('eitthvað vilaust')

@@ -76,14 +76,10 @@ def display_order(request, form_billing, form_payment):
 
 def create_order(request):
     profile = Customer.objects.filter(user=request.user).first()
-    print('næs')
-    print(request.POST['billing'])
-    print(request.POST['payment'])
     if request.method == 'POST':
-        print('inininni')
         billing = Billing.objects.get(id=request.POST['billing'])
         payment = Payment.objects.get(id=request.POST['payment'])
-        order = Order(customer=profile, billing=billing, payment=payment.id)
+        order = Order(customer=profile, billing=billing, payment=payment)
         order.save()
         cart = Cart.objects.filter(user=profile.id).first()
         cart_details = CartDetails.objects.filter(cart=cart)
@@ -91,4 +87,7 @@ def create_order(request):
             product = Product.objects.get(id=cart_detail.product_id)
             order_product = OrderProduct(order=order, product=product)
             order_product.save()
-    return redirect('frontpage')
+        return JsonResponse({'message': 'order created'})
+    elif request.method == 'DELETE':
+        billing = Billing.objects.get(id=request.POST['billing'])
+        payment = Payment.objects.get(id=request.POST['payment'])
