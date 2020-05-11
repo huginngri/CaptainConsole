@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    console.log("in products")
     $('#search-bt').on('click', function(e) {
         e.preventDefault();
         var searchText = $('#search').val();
@@ -45,8 +44,9 @@ $(document).ready(function() {
     })
 })
 
-$(document).ready(function() {
+$(document).ready(function () {
     $('#next-button').on('click', function (e) {
-        var img = document.getElementById('myImage');
+        var images = document.getElementById('all-images');
+        console.log(images)
     });
 });

@@ -72,3 +72,10 @@ function place_order(){
     form2 = document.getElementById("form2");
 
 }
+
+function f(images) {
+    value = document.getElementById("next-button").value()
+    console.log(value)
+    console.log(images)
+
+}
