@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from orders.forms.payment_form import PaymentFormOrder
 from orders.forms.billing_form import BillingFormOrder
@@ -17,6 +18,7 @@ from products.models import Product, ProductImage
 from django.http import JsonResponse
 
 # Create your views here.
+@login_required()
 def checkout(request):
     profile = Customer.objects.filter(user=request.user).first()
     if request.method == "POST":
@@ -31,6 +33,7 @@ def checkout(request):
         "form_payment": PaymentFormOrder(instance=profile.payment)
     })
 
+@login_required()
 def save_billing(request):
     profile = Customer.objects.filter(user=request.user).first()
     print('rétt')
@@ -46,6 +49,7 @@ def save_billing(request):
         "form_payment": PaymentForm(instance=profile.payment, data=request.POST)
     })
 
+@login_required()
 def save_payment(request):
     profile = Customer.objects.filter(user=request.user).first()
     if request.method == "POST":
@@ -60,6 +64,7 @@ def save_payment(request):
         "form_payment": PaymentForm(instance=profile.payment)
     })
 
+@login_required()
 def display_order(request, form_billing, form_payment):
     profile = Customer.objects.filter(user=request.user).first()
     cart = Cart.objects.filter(user=profile.id).first()
@@ -76,6 +81,7 @@ def display_order(request, form_billing, form_payment):
                         'products': products, 'total_price': total}
     return render(request, 'orders/order_review.html', context)
 
+@login_required()
 def create_order(request):
     profile = Customer.objects.filter(user=request.user).first()
     if request.method == 'POST':
@@ -92,6 +98,7 @@ def create_order(request):
         return JsonResponse({'message': 'order created'})
     return JsonResponse({'message': 'invalid request'})
 
+@login_required()
 def update_order(request, billing_id, payment_id):
     print('sælar')
     billing = Billing.objects.get(id=billing_id)
