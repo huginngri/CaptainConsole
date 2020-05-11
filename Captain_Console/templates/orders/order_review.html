@@ -18,7 +18,7 @@
                     {% include 'products/product_overview.html' with product=product %}
                 {% endfor %}
             </div>
-<h4         <h4 class="cc2plarge">{{ total_price }}</h4>
+            <h4 class="cc2plarge">{{ total_price }}</h4>
             <button type="submit" class="btn" id="edit_order" onclick="location.href='{% url 'checkout-update' billing.id payment.id %}'">Edit</button>
             <button type="button" id="confirm_order" class="btn" onclick="place_order({{ order.id }})">Place order</button>
 
