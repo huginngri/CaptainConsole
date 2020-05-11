@@ -98,4 +98,22 @@ function place_order(billing, payment) {
     });
 }
 
-
+function go_back(billing, payment) {
+    $.ajax({
+        type: "GET",
+        method: 'GET',
+        url: '/orders/checkout/update',
+        data: {
+            billing: billing,
+            payment: payment
+        },
+        success: function (response) {
+            console.log(response)
+            console.log('hallo')
+            window.location = "/"
+        },
+        error: function (xhr, status, error) {
+            console.log('eitthvað vilaust')
+        }
+    });
+}

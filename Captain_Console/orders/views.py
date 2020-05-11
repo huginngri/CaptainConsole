@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from orders.forms.payment_form import PaymentFormOrder
 from orders.forms.billing_form import BillingFormOrder
+from orders.forms.payment_form import PaymentUpdateFormOrder
+from orders.forms.billing_form import BillingUpdateFormOrder
 from users.forms.billing_form import BillingForm
 from users.forms.payment_form import PaymentForm
 from orders.models import Billing
@@ -88,6 +90,25 @@ def create_order(request):
             order_product = OrderProduct(order=order, product=product)
             order_product.save()
         return JsonResponse({'message': 'order created'})
-    elif request.method == 'DELETE':
-        billing = Billing.objects.get(id=request.POST['billing'])
-        payment = Payment.objects.get(id=request.POST['payment'])
+    return JsonResponse({'message': 'invalid request'})
+
+def update_order(request, billing_id, payment_id):
+    print('sælar')
+    billing = Billing.objects.get(id=billing_id)
+    payment = Payment.objects.get(id=payment_id)
+    if request.method == "POST":
+        form_billing = BillingUpdateFormOrder(data=request.POST, instance=billing)
+        form_payment = PaymentUpdateFormOrder(data=request.POST, instance=payment)
+        if form_billing.is_valid() and form_payment.is_valid():
+            form_billing.save()
+            form_payment.save()
+            return display_order(request, form_billing, form_payment)
+    else:
+        form_billing = BillingUpdateFormOrder(instance=billing)
+        form_payment = PaymentUpdateFormOrder(instance=payment)
+    return render(request, "orders/checkout.html", {
+        "form_billing": form_billing,
+        "form_payment": form_payment,
+        "billing_id": billing_id,
+        "payment_id": payment_id
+    })
