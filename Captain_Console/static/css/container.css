@@ -182,6 +182,10 @@ filler2{
     width: 65%;
 }
 
+#recent-views{
+    width:95%;
+}
+
 
 @media screen and (max-width: 1000px) {
     .product_boxes {

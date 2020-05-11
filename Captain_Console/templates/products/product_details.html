@@ -9,8 +9,6 @@
         <div class = "product_container">
             <div class=" imageproductdetails productdetails ccwhite">
                 <img id="myImage" class = "product_details_images" src="{% static   product.productimage_set.first.image  %}">
-                <button type="button" class="remove-cart-btn btn btn-default" id="next-button" value="0" onclick="f({{ product.productimage_set }})">></button>
-                <p>Hello world!</p>
                 <div class="button_and_text">
                     <div class="info">
                         <p class="ccbluelarge">{{ product.console_type }}</p>
@@ -37,7 +35,7 @@
         <div class =  "informationbar ccblue">
                 {% for image in product.productimage_set.all %}
                     <div class = "product_images_container" >
-                        <img class="largeimages" src="{% static   image.image  %}">
+                        <img class="largeimages" src="{% static   image.image  %}" onclick="document.getElementById('myImage').src='{% static   image.image  %}'">
                     </div>
                 {% endfor %}
         </div>
