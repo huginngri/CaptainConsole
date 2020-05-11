@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from users.models import Customer
 from carts.models import Cart
 from carts.models import CartDetails
 from products.models import Product
-from django.http import HttpResponse
 from django.http import JsonResponse
+from users.forms.payment_form import PaymentForm
+from users.forms.billing_form import BillingForm
+
 
 # Create your views here.
 def add_or_count_cart(request):
@@ -31,7 +33,10 @@ def view_cart(request):
     cart = Cart.objects.filter(user=customer.id).first()
     cart_details = CartDetails.objects.filter(cart=cart)
     products = []
+    total = 0
     for cart_detail in cart_details:
-        products.append(Product.objects.filter(id=cart_detail.product.id).first())
-    context = {'cart': cart, 'products': products}
+        product = Product.objects.filter(id=cart_detail.product.id).first()
+        products.append(product)
+        total += product.price
+    context = {'cart': cart, 'products': products, 'total_price': total}
     return render(request, 'carts/cart_details.html', context)

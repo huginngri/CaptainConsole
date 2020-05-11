@@ -67,3 +67,8 @@ function calculate_cart(user_id) {
     });
 }
 
+function place_order(){
+    form1 = document.getElementById("form1");
+    form2 = document.getElementById("form2");
+
+}

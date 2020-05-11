@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1 class = cc2phuge>Checkout</h1>
+    <div class = "popup ccwhite" >
+
+        <form class="form form-horizontal" action="{% url 'checkout' %}" method="post">
+            {% csrf_token %}
+            {{ form_billing }}
+            <button type="submit" class="btn" formaction="{% url 'checkout-save-billing' %}">Save Billing</button>
+            {{ form_payment }}
+            <button type="submit" class="btn" formaction="{% url 'checkout-save-payment' %}">Save Payment</button>
+            <input type="submit" class="btn btn-primary" value="Placce order" />
+        </form>
+    </div>
+
+
+{% endblock %}
+\
