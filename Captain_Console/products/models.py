@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from manufacturers.models import Manufacturer
 from users.models import Customer
@@ -31,4 +32,8 @@ class Review(models.Model):
 
 class Search(models.Model):
     search_content = models.CharField(max_length=255)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)
+
+class ProductHistory(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)

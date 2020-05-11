@@ -68,8 +68,26 @@ function calculate_cart(user_id) {
     });
 }
 
-function sortit(products) {
-    console.log(products.substring(1, products.length-1).split(','))
+function sort(option) {
+    document.location.href
+    console.log(option)
+    /*$.ajax({
+        type: "GET",
+        url: '/carts',
+        data: {
+            user_id: user_id
+        },
+        success: function (response) {
+            console.log(response.count)
+
+            let cart_number = document.getElementById("cart_count");
+            cart_number.textContent = response.count;
+        },
+        error: function (xhr, status, error) {
+            console.log('Request failed')
+        }
+    });*/
+
 
 
 }

@@ -23,8 +23,12 @@
         <h1 class="homepagetext cc2phuge">Scroll down to shop <br>↓</h1>
     </div>
     </div>
-    <div class="product_container">
-    <button type="button" class="btn btn-default navbar-btn" onclick="sortit('{{  products }}')" id = "cclightgray">Order</button>
+
+        <select  id="sort" onchange=sort({{products}})>
+            <option>price</option>
+            <option>rate</option>
+        </select>
+    <div id="product_container">
     {% for product in  products%}
         {% include 'products/product_overview.html' with product=product %}
     {% endfor %}

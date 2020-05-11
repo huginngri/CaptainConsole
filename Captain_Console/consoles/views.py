@@ -39,3 +39,4 @@ def create_console(request):
     return render(request, 'products/create_product.html', {
         'form1': ConsoleForm()
     })
+

@@ -25,7 +25,10 @@
     <div class = "informationbar ccblue">
         <h1 class="homepagetext cc2phuge">Scroll down to shop <br>↓</h1>
     </div>
-
+    <select onchange="sortit()" id="sort">
+        <option>price</option>
+        <option>rate</option>
+    </select>
     <div class="product_container">
 
     {% for product in  products%}
