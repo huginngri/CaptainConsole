@@ -10,14 +10,13 @@ $(document).ready(function() {
             success: function (resp) {
                 var newHtml = resp.data.map(d => {
                     return `
-                                <div class=" product_boxes box ccwhite">
+                                <div class="product_boxes box ccwhite">
                                         <a href="/products/${d.id}"></a>
                                         <img class = "mediumimages" src="${d.image}" style="height:150px;">
                                     
                                     <div class="button_and_text">
                                         <div class="info">
                                             <h4 class="name">${d.name}</h4>
-
                                             <p class="price">${d.price} $</p>
                                         </div>
                                         <div class="btn-group buy-button" role="group" aria-label="...">
@@ -55,24 +54,23 @@ $("#recent-views").ready(function () {
             type: "GET",
             success: function (response) {
                 var recentproducts = response.data.map(d => {
-                    return `                <div class=" product_boxes box ccwhite">
+                    return `
+                                    <div class=" product_boxes box ccwhite">
                                         <a href="/products/${d.id}"></a>
                                         <img class = "mediumimages" src="${d.image}" style="height:150px;">
                                     
                                     <div class="button_and_text">
                                         <div class="info">
                                             <h4 class="name">${d.name}</h4>
-    
                                             <p class="price">${d.price} $</p>
-                                        </div>
-                                        <div class="btn-group buy-button" role="group" aria-label="...">
-                                              <button type="button" class="buy-btn">Buy</button>
-                                              <button type="button" class="cart-btn ccorange" onclick="add_to_cart_js(${d.id})">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
                                         </div>
                                     </div>
                                 </div>
                             `
                 })
+                recentproducts[0] = `<div class=product_container>` + recentproducts[0]
+                recentproducts[-1] += `</div>`
+                console.log(recentproducts)
                 $("#recent-views").html(recentproducts.join(""))
             },
             error: function (xhr, status, error) {
@@ -83,5 +81,3 @@ $("#recent-views").ready(function () {
 
     })
 })
-
-

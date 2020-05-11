@@ -74,7 +74,10 @@ function place_order(){
 
 }
 
-function f(f) {
-    console.log(f)
+
+function f(images) {
+    var value = document.getElementById("next-button").value()
+    console.log(value)
+    console.log(images)
 
 }
