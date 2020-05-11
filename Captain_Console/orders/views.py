@@ -3,6 +3,8 @@ from orders.forms.payment_form import PaymentFormOrder
 from orders.forms.billing_form import BillingFormOrder
 from users.forms.billing_form import BillingForm
 from users.forms.payment_form import PaymentForm
+from orders.models import Billing
+from orders.models import Payment
 from users.models import Customer
 from django.forms.models import model_to_dict
 from orders.models import Order
@@ -66,19 +68,27 @@ def display_order(request, form_billing, form_payment):
         product = Product.objects.get(id=cart_detail.product_id)
         total += product.price
         products.append(product)
-    context = {'billing': form_billing, 'payment': form_payment,
+    billing = form_billing.save()
+    payment = form_payment.save()
+    context = {'billing': billing, 'payment': payment,
                         'products': products, 'total_price': total}
     return render(request, 'orders/order_review.html', context)
 
 def create_order(request):
     profile = Customer.objects.filter(user=request.user).first()
+    print('næs')
+    print(request.POST['billing'])
+    print(request.POST['payment'])
     if request.method == 'POST':
-        billing = request.POST['billing']
-        payment = request.POST['payment']
-        order = Order(customer=profile, billing=billing, payment=payment)
+        print('inininni')
+        billing = Billing.objects.get(id=request.POST['billing'])
+        payment = Payment.objects.get(id=request.POST['payment'])
+        order = Order(customer=profile, billing=billing, payment=payment.id)
         order.save()
-        for product in request.POST['products']:
+        cart = Cart.objects.filter(user=profile.id).first()
+        cart_details = CartDetails.objects.filter(cart=cart)
+        for cart_detail in cart_details:
+            product = Product.objects.get(id=cart_detail.product_id)
             order_product = OrderProduct(order=order, product=product)
             order_product.save()
     return redirect('frontpage')
-    
