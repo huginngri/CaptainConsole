@@ -1,5 +1,9 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 
 
 # Create your views here.
@@ -66,4 +70,23 @@ def update_payment(request):
             return redirect('profile')
     return render(request, "users/payment.html",{
         "form": PaymentForm()
+    })
+
+
+
+@login_required()
+def change_password(request):
+    if request.method == "POST":
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Password changed')
+            return redirect('change_password')
+        else:
+            messages.error(request, 'Error')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'users/change_password.html', {
+        'form': form
     })
