@@ -266,6 +266,8 @@ input[id^='id_'], div[id*=' id_']{
 .intro {
     justify-content: center;
 }
-
+#sort{
+    
+}
 
 
