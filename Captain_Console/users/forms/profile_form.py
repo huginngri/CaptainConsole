@@ -1,5 +1,4 @@
 from django.forms import ModelForm, widgets
-
 from users.models import Customer
 
 

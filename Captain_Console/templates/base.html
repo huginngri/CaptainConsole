@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Captain Console</title>
+    <meta name="author" content="Hilmar Páll Stefánsson, Huginn Sær Grínsson, Kristján Ari Eldjárn and Þóranna Dís Banter">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
@@ -20,7 +21,7 @@
 
 </head>
 {%  if user.is_authenticated %}
-    <body class = "cclightblue" onload="calculate_cart({{ user.id }})" style="background-image: url('https://wallpaperplay.com/walls/full/1/d/d/101186.jpg');
+    <body class = "cclightblue" onload="calculate_cart()" style="background-image: url('https://wallpaperplay.com/walls/full/1/d/d/101186.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;" >

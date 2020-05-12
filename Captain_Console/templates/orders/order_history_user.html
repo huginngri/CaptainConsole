@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+    {% load static %}
+
+    <div id="order_review_div" class = "popup ccwhite" >
+        <h1 id="order_header" class = cc2phuge>Order history</h1>
+        <table>
+        <p>Orders ({{ orders.no }})</p>
+        <tr>
+            <th>Order number</th>
+            <th>Buyer</th>
+            <th>Billing Address</th>
+            <th>Amount</th>
+            <th>Order status</th>
+        </tr>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.payment.card_holder  }}</td>
+                <td>{{ order.address  }}</td>
+                <td>{{ order.total  }}</td>
+                <td>{{ order.status  }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+
+    </div>
+{% endblock %}

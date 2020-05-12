@@ -48,13 +48,10 @@ function add_to_cart_js(product) {
     });
 }
 
-function calculate_cart(user_id) {
+function calculate_cart() {
     $.ajax({
         type: "GET",
         url: '/carts',
-        data: {
-            user_id: user_id
-        },
         success: function (response) {
             console.log(response.count)
 
@@ -83,7 +80,9 @@ function place_order(order) {
             let confirm_button = document.getElementById('confirm_order')
             back_button.remove()
             confirm_button.remove()
+
             let a = document.createElement('a')
+            a.setAttribute("class", "btn btn-danger login-btn");
             a.setAttribute('href', '/')
             a.textContent = 'Close'
             let div = document.getElementById('order_review_div')
@@ -120,12 +119,34 @@ function remove_from_cart(product_id) {
     $.ajax({
         type: "DELETE",
         method: 'DELETE',
-        url: '/carts/remove/' + product_id,
+        url: '/carts/' + product_id,
         success: function (response) {
-            console.log(response)
+            console.log(response);
         },
         error: function (xhr, status, error) {
-            console.log('eitthvað vilaust')
+            console.log('eitthvað vilaust');
+        }
+    });
+}
+
+function change_quantity(product_id) {
+    console.log(product_id)
+    let inp = document.getElementById(product_id)
+    let new_amount = inp.value
+    $.ajax({
+        type: "POST",
+        method: 'POST',
+        url: '/carts/change_amount/' + product_id,
+        data: {
+            new_amount: new_amount
+        },
+        success: function (response) {
+            let price = document.getElementById('cart_total');
+            let total = parseFloat(response['total_price']);
+            price.textContent = 'Total price: ' + total + '$';
+        },
+        error: function (xhr, status, error) {
+            console.log('eitthvað vilaust');
         }
     });
 }
@@ -137,7 +158,12 @@ function sortit(sel) {
     let keep_arr =[]
     let name_or_price = sel.options[sel.selectedIndex].value
     let n_o_p = 0
-    let k = name_or_price.localeCompare("price")
+    let r = 0
+    let reverse_check = name_or_price.localeCompare("name_reverse") * name_or_price.localeCompare("price_reverse")
+    if (reverse_check === 0){
+        r = 1
+    }
+    let k = name_or_price.localeCompare("price") * name_or_price.localeCompare("price_reverse")
     if (k === 0) {
         n_o_p = 1
     }
@@ -160,6 +186,9 @@ function sortit(sel) {
     }
     else {
         new_arr.sort()
+    }
+    if (r === 1){
+        new_arr.reverse()
     }
     let order_arr = []
     while (all_products.firstChild){

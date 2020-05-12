@@ -76,6 +76,7 @@ def display_order(request, billing, payment):
     context = {'order': order,'products': products, 'total_price': total, 'profile': profile}
     return render(request, 'orders/order_review.html', context)
 
+@login_required()
 def create_order(profile, billing, payment, cart_details):
     order = Order(customer=profile, billing=billing, payment=payment)
     order.save()
@@ -83,9 +84,9 @@ def create_order(profile, billing, payment, cart_details):
     products = []
     for cart_detail in cart_details:
         product = Product.objects.get(id=cart_detail.product_id)
-        products.append(product)
-        total += product.price
-        order_product = OrderProduct(order=order, product=product)
+        products.append({'product': product, 'quantity': cart_detail.quantity})
+        total += product.price*cart_detail.quantity
+        order_product = OrderProduct(order=order, product=product, quantity=cart_detail.quantity)
         order_product.save()
     return order, products, total
 
@@ -100,7 +101,6 @@ def confirm_order(request):
         cart_detail.delete()
     order.save()
     return JsonResponse({'message': 'success'})
-
 
 @login_required()
 def update_order(request, order_id):
@@ -125,3 +125,49 @@ def update_order(request, order_id):
              })
     else:
         return render(request, "products/frontpage.html")
+
+def order_history(request):
+
+
+    total = 0
+    no_of_orders = 0
+    total_no_of_orders = 0
+    total_sold = 0
+
+    if not request.user.is_superuser:
+        profile = Customer.objects.filter(user=request.user).first()
+        orders = Order.objects.filter(customer=profile)
+        for order in orders:
+            order_details = OrderProduct.objects.filter(order=order)
+            for order_detail in order_details:
+                product = Product.objects.get(id=order_detail.product_id)
+                total += product.price*order_detail.quantity
+            order.total = str(round(total, 2)) + " $"
+            order.address = order.billing.street_name + " " + order.billing.house_number + ", " + order.billing.zip + ", " + order.billing.country
+            total = 0
+            if order.confirmed == True:
+                order.status = "Done"
+            else:
+                order.status = "Open"
+            no_of_orders += 1
+
+        orders.no = no_of_orders
+        context = {'orders': orders}
+        return render(request, "orders/order_history_user.html", context)
+    else:
+        all_orders = Order.objects.all()
+        for order in all_orders:
+            order_details = OrderProduct.objects.filter(order=order)
+            for order_detail in order_details:
+                product = Product.objects.get(id=order_detail.product_id)
+                total += product.price
+            order.total = str(round(total, 2)) + " $"
+            order.address = order.billing.street_name + " " + order.billing.house_number + ", " + order.billing.zip + ", " + order.billing.country
+            total_sold += total
+            total = 0
+            total_no_of_orders += 1
+
+        all_orders.total_sold = str(round(total_sold, 2))+ " $"
+        all_orders.no = total_no_of_orders
+        context = {'orders': all_orders}
+        return render(request, "orders/order_history_admin.html", context)
