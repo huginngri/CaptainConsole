@@ -168,54 +168,7 @@ a:link{
 
     box-shadow: 2px 4px rgba(0, 0, 0, 0.5);
 }
-
-#id_password{
-    display:block;
-    width: 100%;
-    display: block;
-    width: 100%;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-#id_password1{
-    display:block;
-    width: 100%;
-    display: block;
-    width: 100%;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-#id_password2{
-    display:block;
-    width: 100%;
-    display: block;
-    width: 100%;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-#id_username{
+input[id^='id_'], div[id*=' id_']{
     display:block;
     width: 100%;
     display: block;
