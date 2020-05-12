@@ -64,6 +64,8 @@ def remove_from_cart(request, product_id):
     return JsonResponse({'message': 'invalid request'})
 
 def change_quantity(request, product_id):
+    print('litla veislan')
+    print(request.POST['new_amount'])
     customer = Customer.objects.filter(user=request.user).first()
     if request.method == 'POST':
         cart = Cart.objects.filter(user=customer.id).first()
@@ -74,3 +76,5 @@ def change_quantity(request, product_id):
         else:
             cart_detail.quantity = request.POST['new_amount']
             cart_detail.save()
+        return JsonResponse({'message': 'amount changed'})
+    return JsonResponse({'message': 'invalid request'})
