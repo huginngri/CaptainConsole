@@ -12,13 +12,19 @@
             <div class = "containerimage" onclick="location.href='{% url 'consoles-one' product.manufacturer product.console_type product.id %}'">
         {% endif %}
             <a href="/products/{{ product.id }}"></a>
-            <button type="submit" class="remove-cart-btn btn btn-default" onclick="remove_from_cart({{ product.id }})">x</button>
             <img class = "mediumimages" src="{% static   product.productimage_set.last.image  %}" style="height:150px;">
         </div>
         <div class="button_and_text">
             <div class="info">
                 <h4 class="name ccbluemedium center">{{ product.name }}</h4>
                 <p class="price ccbluesmall center">{{ product.price }} $</p>
+            </div>
+            <div class="btn-group product_container" role="group" aria-label="...">
+
+                <label class = ccbluesmall>Quantity: </label>
+                <input type="number" id='{{ product.id }}' name="quantity" min="0" max="{{ product.stock }}"  value='{{cart.quantity}}' onchange="change_countity({{ product.id }})">
+                <button type="button" class="btn btn-default btn-xs" onclick="remove_from_cart({{ product.id }})">x</button>
+
             </div>
         </div>
     </div>
