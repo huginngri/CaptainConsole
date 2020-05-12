@@ -4,4 +4,9 @@ from django.forms import ModelForm, widgets
 from django import forms
 
 class RemoveUser(forms.Form):
-    username = forms.CharField()
+    b = User.objects.all()
+    k = []
+    for x in b:
+
+        k.append((x.username, x.username))
+    username = forms.ChoiceField(widget=forms.Select, choices=k)
