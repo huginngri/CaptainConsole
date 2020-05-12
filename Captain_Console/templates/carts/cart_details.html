@@ -5,7 +5,7 @@
     <h1 class="homepagetext cc2phuge">Your Cart</h1>
     <div class = "product_container">
 
-        {% for product in  products%}
+        {% for product in  products %}
             {% include 'carts/product_cart.html' with product=product %}
         {% endfor %}
     </div>
