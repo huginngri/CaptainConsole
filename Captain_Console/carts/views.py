@@ -62,3 +62,15 @@ def remove_from_cart(request, product_id):
         cart_detail.delete()
         return JsonResponse({'message': 'Product removed from cart'})
     return JsonResponse({'message': 'invalid request'})
+
+def change_quantity(request, product_id):
+    customer = Customer.objects.filter(user=request.user).first()
+    if request.method == 'POST':
+        cart = Cart.objects.filter(user=customer.id).first()
+        product = Product.objects.get(id=product_id)
+        cart_detail = CartDetails.objects.filter(cart=cart, product=product).first()
+        if request.POST['new_amount'] == 0:
+            remove_from_cart(request, product_id)
+        else:
+            cart_detail.quantity = request.POST['new_amount']
+            cart_detail.save()

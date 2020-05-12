@@ -130,6 +130,26 @@ function remove_from_cart(product_id) {
     });
 }
 
+function change_quantity(product_id) {
+    console.log('hilmar er belja')
+    let inp = document.getElementById(product_id)
+    let new_amount = inp.value
+    $.ajax({
+        type: "POST",
+        method: 'POST',
+        url: '/carts/change_amount/' + product_id,
+        data: {
+            new_amount: new_amount
+        },
+        success: function (response) {
+            console.log(response)
+        },
+        error: function (xhr, status, error) {
+            console.log('eitthvað vilaust')
+        }
+    });
+}
+
 
 function f(images) {
     var value = document.getElementById("next-button").value()
