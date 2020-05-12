@@ -149,6 +149,21 @@ filler2{
     border: 3px solid #F1AA19;
 }
 
+.review_boxes{
+    padding: 10px;
+    height: 200px;
+}
+.image_box{
+    height:300px;
+    margin: 20px;
+    margin-left: 2%;
+    margin-right: 2%;
+    width: 18%;
+    border: 3px solid #F1AA19;
+    padding: 10px;
+
+}
+
 
 /*pop, user ----------------------------------------------*/
 
@@ -191,6 +206,20 @@ filler2{
 }
 
 
+
+/*review -----------------------------------*/
+
+
+.reviewcontainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.review_comment{
+    padding: 20px;
+    padding-top: 10px;
+}
+
 @media screen and (max-width: 1000px) {
 
     .product_boxes {
@@ -200,6 +229,11 @@ filler2{
     }
 
     .console_boxes {
+        margin-left: 5%;
+        margin-right: 5%;
+        width: 40%;
+    }
+    .review_boxes{
         margin-left: 5%;
         margin-right: 5%;
         width: 40%;
@@ -218,6 +252,11 @@ filler2{
     }
 
     .console_boxes {
+        margin-left: 5%;
+        margin-right: 5%;
+        width: 40%;
+    }
+    .review_boxes{
         margin-left: 5%;
         margin-right: 5%;
         width: 40%;
@@ -242,6 +281,11 @@ filler2{
     }
     .information{
         width: 100%;
+    }
+    .review_boxes{
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
     }
 
 }
