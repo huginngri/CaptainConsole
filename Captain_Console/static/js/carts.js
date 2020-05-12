@@ -114,14 +114,26 @@ function go_back(billing, payment) {
     });
 }
 
-function remove_from_cart(product_id) {
+function remove_from_cart(product_id, child) {
     console.log('hilmar er belja')
+    let deletediv = child.parentNode.parentNode.parentNode
     $.ajax({
         type: "DELETE",
         method: 'DELETE',
         url: '/carts/' + product_id,
         success: function (response) {
             console.log(response);
+            let container = document.getElementById("cart_products")
+            for (let x = 0; x < container.children.length; x++){
+                if (container.children[x] === deletediv){
+                    container.removeChild(container.children[x]);
+                    break;
+                }
+            }
+            calculate_cart()
+            let price = document.getElementById('cart_total');
+            let total = parseFloat(response['total_price']);
+            price.textContent = 'Total price: ' + total + '$';
         },
         error: function (xhr, status, error) {
             console.log('eitthvað vilaust');
@@ -144,6 +156,7 @@ function change_quantity(product_id) {
             let price = document.getElementById('cart_total');
             let total = parseFloat(response['total_price']);
             price.textContent = 'Total price: ' + total + '$';
+            calculate_cart()
         },
         error: function (xhr, status, error) {
             console.log('eitthvað vilaust');
