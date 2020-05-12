@@ -48,13 +48,10 @@ function add_to_cart_js(product) {
     });
 }
 
-function calculate_cart(user_id) {
+function calculate_cart() {
     $.ajax({
         type: "GET",
         url: '/carts',
-        data: {
-            user_id: user_id
-        },
         success: function (response) {
             console.log(response.count)
 

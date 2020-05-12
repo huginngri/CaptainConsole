@@ -80,8 +80,8 @@ def create_order(profile, billing, payment, cart_details):
     products = []
     for cart_detail in cart_details:
         product = Product.objects.get(id=cart_detail.product_id)
-        products.append(product)
-        total += product.price
+        products.append({'product': product, 'quantity': cart_detail.quantity})
+        total += product.price*cart_detail.quantity
         order_product = OrderProduct(order=order, product=product)
         order_product.save()
     return order, products, total
