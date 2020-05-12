@@ -162,3 +162,6 @@ def review_product(request, id):
     else:
         #TODO say him to fill in information about himself
         return redirect('frontpage')
+
+def search_no_response(request):
+    return render(request, 'products/product_search_error.html')

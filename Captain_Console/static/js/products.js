@@ -6,6 +6,12 @@ $(document).ready(function() {
             url: '/products?search_filter=' + searchText,
             type: 'GET',
             success: function (resp) {
+
+                if (resp.data.length == 0) {
+                    console.log("in this if statement")
+                    window.location.replace("http://127.0.0.1:8000/products/search_no_response");
+                }
+
                 let newHtml = resp.data.map(d => {
                     return `
                                 <a class=" product_boxes box ccwhite" href="/products/${d.id}">
@@ -30,6 +36,8 @@ $(document).ready(function() {
             <option value="price_reverse">price (descending)</option>
         </select><div class=product_container id="container_for_products">` + newHtml[0]
                 newHtml[-1] += `</div>`
+                console.log("This is the newHtml")
+                console.log(newHtml)
                 $('main').html(newHtml.join(''));
                 $('#search-box').val('');
 
