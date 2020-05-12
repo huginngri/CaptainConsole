@@ -48,7 +48,7 @@ def save_billing(request):
     return render(request, "orders/checkout.html", {
         "form_billing": BillingForm(instance=profile.billing),
         "form_payment": PaymentForm(instance=profile.payment, data=request.POST),
-        'profile': profile
+        'profile': profile,
     })
 
 @login_required()
@@ -64,7 +64,7 @@ def save_payment(request):
     return render(request, "orders/checkout.html", {
         "form_billing": BillingForm(instance=profile.billing, data=request.POST),
         "form_payment": PaymentForm(instance=profile.payment),
-        'profile': profile
+        'profile': profile,
     })
 
 @login_required()
