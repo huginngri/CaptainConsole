@@ -115,10 +115,24 @@ function go_back(billing, payment) {
     });
 }
 
+function remove_from_cart(product_id) {
+    console.log('hilmar er belja')
+    $.ajax({
+        type: "DELETE",
+        method: 'DELETE',
+        url: '/carts/remove/' + product_id,
+        success: function (response) {
+            console.log(response)
+        },
+        error: function (xhr, status, error) {
+            console.log('eitthvað vilaust')
+        }
+    });
+}
 
-function f(images) {
-    var value = document.getElementById("next-button").value()
-    console.log(value)
-    console.log(images)
+
+function sortit(images) {
+    x=5
+    console.log(x)
 
 }
