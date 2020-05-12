@@ -34,13 +34,14 @@ def view_cart(request):
     cart_details = CartDetails.objects.filter(cart=cart)
     products = []
     total = 0
-    print("this is the total")
-    print(cart.total)
+    total_in_cart = 0
 
     for cart_detail in cart_details:
         product = Product.objects.filter(id=cart_detail.product.id).first()
         products.append(product)
         total += product.price
+        total_in_cart += 1
+
     orders = Order.objects.filter(customer=customer)
     for order in orders:
         if order.confirmed == False:
@@ -51,7 +52,7 @@ def view_cart(request):
     context1 = {'cart': cart, 'products': products, 'total_price': total}
     context2 = {'customer': customer}
 
-    if cart.total != 0.0:
+    if total_in_cart != 0:
         return render(request, 'carts/cart_details.html', context1)
     else:
         return render(request, 'carts/cart_details_empty.html', context2)
