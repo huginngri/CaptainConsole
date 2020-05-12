@@ -129,6 +129,7 @@ def order_history(request):
     total = 0
     no_of_orders = 0
     total_no_of_orders = 0
+    total_sold = 0
 
     if not request.user.is_superuser:
         for order in orders:
@@ -147,7 +148,7 @@ def order_history(request):
 
         orders.no = no_of_orders
         context = {'orders': orders}
-        return render(request, "orders/order_history.html", context)
+        return render(request, "orders/order_history_user.html", context)
     else:
         for order in all_orders:
             order_details = OrderProduct.objects.filter(order=order)
@@ -156,13 +157,11 @@ def order_history(request):
                 total += product.price
             order.total = str(round(total, 2)) + " $"
             order.address = order.billing.street_name + " " + order.billing.house_number + ", " + order.billing.zip + ", " + order.billing.country
+            total_sold += total
             total = 0
-            if order.confirmed == True:
-                order.status = "Confirmed"
-            else:
-                order.status = "Unconfirmed"
             total_no_of_orders += 1
 
-        orders.no = total_no_of_orders
-        context = {'orders': orders}
-        return render(request, "orders/order_history.html", context)
+        all_orders.total_sold = str(round(total_sold, 2))+ " $"
+        all_orders.no = total_no_of_orders
+        context = {'orders': all_orders}
+        return render(request, "orders/order_history_admin.html", context)
