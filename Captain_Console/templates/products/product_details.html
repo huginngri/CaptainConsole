@@ -15,10 +15,16 @@
                         <p class="ccbluelarge">{{ product.console_type }}</p>
                         <p class="ccbluemedium">{{ product.price }} $</p>
                     </div>
+                    {% if product.stock > 0 %}
                     <div class="btn-group buy-button" role="group" aria-label="...">
                           <button type="button" class="buy-btn">Buy</button>
                           <button type="button" class="cart-btn ccorange">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
                     </div>
+                    {% else %}
+                    <div class="out_of_stock">
+                        <p>Out of stock</p>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
 

@@ -30,10 +30,15 @@
         <div>
             <h1 class="homepagetext cc2phuge">Scroll down to shop <br>↓</h1>
         </div>
-        <div class = " product_container">
+        <select  id="sort" onchange="sortit(this)">
+            <option value="name">name</option>
+            <option value="price">price</option>
+        </select>
+        <div class = " product_container" id="container_for_products">
+
             {% for product in  products%}
                 {% include 'products/product_overview.html' with product=product %}
             {% endfor %}
-        </div>
+        </div>˜˜
 
     {% endblock %}
