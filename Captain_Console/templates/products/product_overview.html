@@ -20,7 +20,7 @@
                 <p class="price ccbluesmall center" name="{{ product.price }}">{{ product.price }} $</p>
             </div>
             <div class="btn-group buy-button" role="group" aria-label="...">
-                  <button type="button" class="buy-btn">Buy</button>
+                  <button type="button" class="buy-btn" onclick="buy_product({{ product.id }})">Buy</button>
                   <button type="button" class="cart-btn ccorange" onclick="add_to_cart_js({{ product.id }})">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
             </div>
         </div>

@@ -94,25 +94,6 @@ function place_order(order) {
     });
 }
 
-function go_back(billing, payment) {
-    $.ajax({
-        type: "GET",
-        method: 'GET',
-        url: '/orders/checkout/update',
-        data: {
-            billing: billing,
-            payment: payment
-        },
-        success: function (response) {
-            console.log(response)
-            console.log('hallo')
-            window.location = "/"
-        },
-        error: function (xhr, status, error) {
-            console.log('eitthvað vilaust')
-        }
-    });
-}
 
 function remove_from_cart(product_id, child) {
     console.log('hilmar er belja')
@@ -213,6 +194,9 @@ function sortit(sel) {
     for (let x=0; x<order_arr.length;x++){
         all_products.appendChild(keep_arr[order_arr[x]])
     }
+}
 
-
+function buy_product(product_id) {
+    add_to_cart_js(product_id);
+    window.location = '/carts/view'
 }
