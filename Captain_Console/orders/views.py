@@ -73,6 +73,7 @@ def display_order(request, billing, payment):
     context = {'order': order,'products': products, 'total_price': total}
     return render(request, 'orders/order_review.html', context)
 
+@login_required()
 def create_order(profile, billing, payment, cart_details):
     order = Order(customer=profile, billing=billing, payment=payment)
     order.save()
@@ -123,15 +124,16 @@ def update_order(request, order_id):
         return render(request, "products/frontpage.html")
 
 def order_history(request):
-    profile = Customer.objects.filter(user=request.user).first()
-    orders = Order.objects.filter(customer=profile)
-    all_orders = Order.objects.all()
+
+
     total = 0
     no_of_orders = 0
     total_no_of_orders = 0
     total_sold = 0
 
     if not request.user.is_superuser:
+        profile = Customer.objects.filter(user=request.user).first()
+        orders = Order.objects.filter(customer=profile)
         for order in orders:
             order_details = OrderProduct.objects.filter(order=order)
             for order_detail in order_details:
@@ -150,6 +152,7 @@ def order_history(request):
         context = {'orders': orders}
         return render(request, "orders/order_history_user.html", context)
     else:
+        all_orders = Order.objects.all()
         for order in all_orders:
             order_details = OrderProduct.objects.filter(order=order)
             for order_detail in order_details:

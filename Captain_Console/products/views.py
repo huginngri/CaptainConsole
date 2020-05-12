@@ -96,7 +96,9 @@ def get_product_by_id(request, id, consolename=None, name=None):
         new_item_view.save()
     return render(request, 'products/product_details.html', product)
 
+@login_required()
 def create_product(request):
+    #TODO check superuser
     if request.method == "POST":
         form1 = ProductForm(data=request.POST)
         if form1.is_valid():
@@ -111,7 +113,9 @@ def create_product(request):
         'form2': ImageForm()
     })
 
+@login_required()
 def update_product(request, id):
+    #TODO check superuser
     the_product = Product.objects.filter(pk=id).first()
     if request.method == "POST":
         form = ProductForm(data=request.POST,instance=the_product)
@@ -124,7 +128,9 @@ def update_product(request, id):
         'form': ProductForm(instance=the_product)
     })
 
+@login_required()
 def delete_product(request, id):
+    #TODO check superuser
     the_product = Product.objects.filter(pk=id).first()
     the_product.delete()
     return render(request, 'products/delete_product.html', {

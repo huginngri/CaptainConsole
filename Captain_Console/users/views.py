@@ -28,6 +28,7 @@ def register(request):
         'form' : UserCreationForm()
     })
 
+@login_required()
 def update_profile(request):
     profile = Customer.objects.filter(user=request.user).first()
     if request.method == "POST":
@@ -45,6 +46,7 @@ def update_profile(request):
         "form2": UserForm(instance=request.user)
     })
 
+@login_required()
 def update_billing(request):
     profile = Customer.objects.filter(user=request.user).first()
     if request.method == "POST":
@@ -58,6 +60,7 @@ def update_billing(request):
         "form": BillingForm(instance=profile.billing)
     })
 
+@login_required()
 def update_payment(request):
     profile = Customer.objects.filter(user=request.user).first()
     if request.method == "POST":
@@ -90,10 +93,8 @@ def change_password(request):
 
 @login_required()
 def delete_user(request):
-
     if not request.user.is_superuser():
         return messages.error(request, 'Error')
-
     if request.method == 'POST':
         form = RemoveUser(request.POST)
         if form.is_valid():
@@ -105,6 +106,5 @@ def delete_user(request):
                 messages.error(request, 'Error')
     else:
         form = RemoveUser()
-
     context = {'form': form}
     return render(request, 'users/remove_user.html', context)
