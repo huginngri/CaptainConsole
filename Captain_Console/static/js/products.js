@@ -1,6 +1,4 @@
 $(document).ready(function() {
-    $('#search-bt').on('click', function(e) {
-    console.log("in products")
     $('#search-bt').on('click', function (e) {
         e.preventDefault();
         var searchText = $('#search').val();
@@ -78,4 +76,4 @@ $("#recent-views").ready(function () {
         })
 
     })
-})
+

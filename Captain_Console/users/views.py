@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 
@@ -22,9 +23,9 @@ def register(request):
             cart.save()
             return redirect('login')
     return render(request, 'users/register.html', {
-        'form' : UserCreationForm()
+        'form' : UserCreationForm(),
     })
-
+@login_required()
 def update_profile(request):
     profile = Customer.objects.filter(user=request.user).first()
     if request.method == "POST":
@@ -39,9 +40,11 @@ def update_profile(request):
             return redirect('profile')
     return render(request, "users/profile.html",{
         "form1": ProfileForm(instance=profile),
-        "form2": UserForm(instance=request.user)
+        "form2": UserForm(instance=request.user),
+        "profile": profile
     })
 
+@login_required()
 def update_billing(request):
     profile = Customer.objects.filter(user=request.user).first()
     if request.method == "POST":
@@ -52,9 +55,11 @@ def update_billing(request):
             profile.save()
             return redirect('profile')
     return render(request, "users/billing.html",{
-        "form": BillingForm(instance=profile.billing)
+        "form": BillingForm(instance=profile.billing),
+        "profile": profile
     })
 
+@login_required()
 def update_payment(request):
     profile = Customer.objects.filter(user=request.user).first()
     if request.method == "POST":
@@ -65,5 +70,6 @@ def update_payment(request):
             profile.save()
             return redirect('profile')
     return render(request, "users/payment.html",{
-        "form": PaymentForm()
+        "form": PaymentForm(),
+        "profile": profile
     })
