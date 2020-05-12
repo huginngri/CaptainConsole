@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<select onchange="sortit({price:5})" id="sort">
-        <option>price</option>
-        <option>rate</option>
-    </select>
-<div class="products product_container">
+<div class="products product_container" id="container_for_products">
+    <select  id="sort" onchange="sortit(this)">
+            <option value="name">name (ascending)</option>
+            <option value="name_reverse">name (descending)</option>
+            <option value="price">price (ascending)</option>
+            <option value="price_reverse">price (descending)</option>
+        </select>
     {% for product in products%}
         {% include 'products/product_overview.html' with product=product%}
     {% endfor %}
