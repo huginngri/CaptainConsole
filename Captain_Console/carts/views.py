@@ -66,7 +66,7 @@ def remove_from_cart(request, product_id):
         product = Product.objects.get(id=product_id)
         cart_detail = CartDetails.objects.filter(cart=cart, product=product).first()
         cart_detail.delete()
-        return JsonResponse({'message': 'Productd from cart'})
+        return JsonResponse({'message': 'Product removed from cart'})
     return JsonResponse({'message': 'invalid request'})
 
 def change_quantity(request, product_id):

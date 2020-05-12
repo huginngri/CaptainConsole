@@ -119,7 +119,7 @@ function remove_from_cart(product_id) {
     $.ajax({
         type: "DELETE",
         method: 'DELETE',
-        url: '/carts/remove/' + product_id,
+        url: '/carts/' + product_id,
         success: function (response) {
             console.log(response);
         },
