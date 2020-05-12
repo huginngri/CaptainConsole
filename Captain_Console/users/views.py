@@ -92,6 +92,10 @@ def change_password(request):
 
 @login_required()
 def delete_user(request):
+
+    if not request.user.is_superuser():
+        return messages.error(request, 'Error')
+
     if request.method == 'POST':
         form = RemoveUser(request.POST)
         if form.is_valid():
