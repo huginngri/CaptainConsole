@@ -87,6 +87,8 @@ function place_order(order) {
             a.textContent = 'Close'
             let div = document.getElementById('order_review_div')
             div.appendChild(a)
+            window.scrollTo(0, 0);
+            calculate_cart()
         },
         error: function (xhr, status, error) {
             console.log('error')
