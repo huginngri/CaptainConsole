@@ -110,6 +110,7 @@ INSERT INTO products_productimage (image, product_id) VALUES ('images/nintendo-n
 INSERT INTO auth_user (id, password, username, is_superuser, first_name, last_name, email, is_staff, is_active, date_joined) VALUES (10, 'super', 'admin', True, 'super', 'user', 'super@user.com', False, True, '2020-05-12 23:45:51.286803');
 
 TRUNCATE TABLE orders_orderproduct;
+TRUNCATE TABLE orders_orderproduct CASCADE ;
 TRUNCATE TABLE orders_order CASCADE ;
 TRUNCATE TABLE orders_billing CASCADE ;
 TRUNCATE TABLE orders_payment CASCADE ;

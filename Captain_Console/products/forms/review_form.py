@@ -1,5 +1,4 @@
 from django.forms import ModelForm, widgets
-from django import forms
 
 from products.models import Review
 
