@@ -142,7 +142,9 @@ function change_quantity(product_id) {
             new_amount: new_amount
         },
         success: function (response) {
-            console.log(response)
+            console.log(response['total_price'])
+            let price = document.getElementById('cart_total')
+            price.textContent = 'Total price: ' + response['total_price']
         },
         error: function (xhr, status, error) {
             console.log('eitthvað vilaust')

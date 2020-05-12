@@ -71,10 +71,14 @@ def change_quantity(request, product_id):
         cart = Cart.objects.filter(user=customer.id).first()
         product = Product.objects.get(id=product_id)
         cart_detail = CartDetails.objects.filter(cart=cart, product=product).first()
+        cart_details = CartDetails.objects.filter(cart=cart)
+        total = 0
+        for cart_detail in cart_details:
+            total += product.price*cart_detail.quantity
         if request.POST['new_amount'] == 0:
             remove_from_cart(request, product_id)
         else:
             cart_detail.quantity = request.POST['new_amount']
             cart_detail.save()
-        return JsonResponse({'message': 'amount changed'})
+        return JsonResponse({'total_price': total})
     return JsonResponse({'message': 'invalid request'})
