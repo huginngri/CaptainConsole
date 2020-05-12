@@ -19,12 +19,14 @@
     margin-right: 3%;
     width: 14%;
 }
+
 .product_images_container{
     justify-content: center;
     margin-top: 20px;
     margin-bottom: 20px;
     width: 20%
 }
+
 .filler{height: 100px;}
 
 
@@ -44,13 +46,12 @@ filler2{
     text-align:center;
     margin: auto;
     box-shadow:2px 2px;
-    /**margin-top: 50px;
-    margin-bottom: 50px;**/
 }
 
 .console_info{
     height: 100px;
     text-align:center;
+    margin: auto;
     box-shadow:2px 2px;
 }
 
@@ -96,6 +97,7 @@ filler2{
     right: 5%;
 }
 
+
 .containerimage{
     position: absolute;
     top: 0px;
@@ -117,24 +119,14 @@ filler2{
 
 }
 
-.box:hover{
-    display: block;
-    justify-content: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    box-shadow: 6px 10px rgba(0, 0, 0, 0.5);
-    border-radius: 25px;
-    position: relative;
-    border: 3px solid #F1AA19;
-    box-sizing: border-box;
-
-}
 
 .product_boxes{
     height: 300px;
 }
 .product_boxes:hover {
-        transform: scale(1.1);;
+    transform: scale(1.1);;
+    box-shadow: 6px 10px rgba(0, 0, 0, 0.5);
+    border: 3px solid #F1AA19;
 }
 
 .console_boxes{
@@ -142,7 +134,34 @@ filler2{
 }
 
 .console_boxes:hover {
-        transform: scale(1.1);;
+    transform: scale(1.1);;
+    box-shadow: 6px 10px rgba(0, 0, 0, 0.5);
+    border: 3px solid #F1AA19;
+}
+
+.checkout_boxes{
+    height: 300px;
+    margin: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    box-shadow: 0px 0px rgba(0, 0, 0, 0.5);
+    border: 3px solid #F1AA19;
+}
+
+.review_boxes{
+    padding: 10px;
+    height: 200px;
+}
+.image_box{
+    height:300px;
+    margin: 20px;
+    margin-left: 2%;
+    margin-right: 2%;
+    width: 18%;
+    border: 3px solid #F1AA19;
+    padding: 10px;
+
 }
 
 
@@ -187,7 +206,22 @@ filler2{
 }
 
 
+
+/*review -----------------------------------*/
+
+
+.reviewcontainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.review_comment{
+    padding: 20px;
+    padding-top: 10px;
+}
+
 @media screen and (max-width: 1000px) {
+
     .product_boxes {
         margin-left: 5%;
         margin-right: 5%;
@@ -199,9 +233,18 @@ filler2{
         margin-right: 5%;
         width: 40%;
     }
+    .review_boxes{
+        margin-left: 5%;
+        margin-right: 5%;
+        width: 40%;
+    }
 
 }
+
+
+
 @media screen and (min-width: 1001px) {
+
     .product_boxes {
         margin-left: 5%;
         margin-right: 5%;
@@ -213,17 +256,36 @@ filler2{
         margin-right: 5%;
         width: 40%;
     }
+    .review_boxes{
+        margin-left: 5%;
+        margin-right: 5%;
+        width: 40%;
+    }
 
 }
 @media screen and (max-width: 700px) {
+
+    .product_boxes {
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+    }
+
+    .console_boxes {
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+    }
     .footerlogo{
-    width: 1000%;
-}
-
-
-
-.information{
-    width: 100%;
-}
+        width: 1000%;
+    }
+    .information{
+        width: 100%;
+    }
+    .review_boxes{
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+    }
 
 }

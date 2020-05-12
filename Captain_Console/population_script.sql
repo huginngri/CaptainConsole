@@ -24,7 +24,7 @@ INSERT INTO products_productimage (image, product_id) VALUES ('images/TMNT-ninte
 INSERT INTO products_productimage (image, product_id) VALUES ('images/mario-bros-nintendo-nes.jpg', 11);
 INSERT INTO products_productimage (image, product_id) VALUES ('images/nintendo-nes.jpg', 10)
 
-DElETE FROM products_review WHERE id>1;
+DELETE FROM products_review WHERE id>0;
 
 INSERT INTO manufacturers_manufacturer (name, description, image) VALUES('Playstation', 'The best manufacturer', 'images/captain-console.jpg');
 INSERT INTO products_productconsole (name) VALUES('Playstation 2');
@@ -109,3 +109,7 @@ INSERT INTO products_productimage (image, product_id) VALUES ('images/nintendo-n
 
 INSERT INTO auth_user (id, password, username, is_superuser, first_name, last_name, email, is_staff, is_active, date_joined) VALUES (10, 'super', 'admin', True, 'super', 'user', 'super@user.com', False, True, '2020-05-12 23:45:51.286803');
 
+TRUNCATE TABLE orders_orderproduct;
+TRUNCATE TABLE orders_order CASCADE ;
+TRUNCATE TABLE orders_billing CASCADE ;
+TRUNCATE TABLE orders_payment CASCADE ;

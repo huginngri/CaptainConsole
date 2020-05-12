@@ -75,7 +75,8 @@ def index(request):
 
 def get_product_by_id(request, id, consolename=None, name=None):
     the_product = get_object_or_404(Product, pk=id)
-    product = {'product': the_product, 'filter': 'none'}
+    reviews = Review.objects.filter(product=the_product)
+    product = {'product': the_product, 'filter': 'none', 'comments': reviews, 'profile': Customer.objects.get(user=request.user)}
     if request.user.is_authenticated:
         new_item_view = ProductHistory(user=request.user, product=the_product)
         new_item_view.save()
@@ -85,7 +86,8 @@ def create_product(request):
     if request.method == "POST":
         form1 = ProductForm(data=request.POST)
         if form1.is_valid():
-            form1.save()
+            the_cons = Console.objects.get(pk=form1.instance.console_type.id)
+            form1.instance.manufacturer = Manufacturer.objects.get(pk=the_cons.manufacturer.id)
             form2 = ImageForm(data=request.POST)
             form2.instance.product = form1.instance
             form2.save()
@@ -100,6 +102,8 @@ def update_product(request, id):
     if request.method == "POST":
         form = ProductForm(data=request.POST,instance=the_product)
         if form.is_valid():
+            the_cons = Console.objects.get(pk=form.instance.console_type.id)
+            form.instance.manufacturer = Manufacturer.objects.get(pk=the_cons.manufacturer.id)
             form.save()
             return redirect('products')
     return render(request, 'products/update_product.html', {
@@ -121,21 +125,23 @@ def review_product(request, id):
     list_of_order_id = []
     for x in order:
         list_of_order_id.append(x.id)
-    if len(Review.objects.filter(customer=profile, product=product))==0:
-        if len(OrderProduct.objects.filter(order__in=list_of_order_id, product=product)) > 0:
-            if request.method == "POST":
-                form = ReviewForm(data=request.POST)
-                form.instance.customer = profile
-                form.instance.product = product
-                form.save()
-                print(product.rating)
-                print(form.instance.star)
-                number_of_rev = len(Review.objects.filter(product=product))
-                product.rating = (product.rating*number_of_rev+form.instance.star)/(number_of_rev+1)
-                product.save()
-                return redirect('frontpage')
-            return render(request, 'products/review_product.html', {
-                'form': ReviewForm()
-            })
+    if request.user.first_name != '':
+        if len(Review.objects.filter(customer=profile, product=product))==0:
+            if len(OrderProduct.objects.filter(order__in=list_of_order_id, product=product)) > 0:
+                if request.method == "POST":
+                    form = ReviewForm(data=request.POST)
+                    form.instance.customer = profile
+                    form.instance.product = product
+                    form.save()
+                    print(product.rating)
+                    print(form.instance.star)
+                    number_of_rev = len(Review.objects.filter(product=product))
+                    product.rating = (product.rating*(number_of_rev-1)+form.instance.star)/(number_of_rev)
+                    product.save()
+                    return redirect('frontpage')
+                return render(request, 'products/review_product.html', {
+                    'form': ReviewForm()
+                })
     else:
+        #TODO say him to fill in information about himself
         return redirect('frontpage')

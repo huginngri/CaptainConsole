@@ -25,15 +25,26 @@
             </form>
 
             <ul class="nav navbar-nav navbar-right">
-              {%  if user.is_authenticated %}
-                  <li role="presentation" ><a href="{% url 'view-cart' %}"><span id = "cclightgray" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <span class="badge primary" id="cart_count" ></span></a></li>
-                  <li><a id = "cclightgray" href='{% url 'profile' %}'><img src="/static/images/profile-icon.png" alt="profile-icon" style="width:25px;"></a></li>
-                  <li><a id = "cclightgray" href='{% url 'logout' %}'>Log out</a></li>
-              {%  else %}
-                  <li><a id = "cclightgray" href='{% url 'login' %}'>Log in</a></li>
-                  <li><a id = "cclightgray" href='{% url 'register' %}'>Register</a></li>
-              {%  endif %}
+                  {%  if user.is_authenticated %}
+                      <li role="presentation" ><a href="{% url 'view-cart' %}"><span id = "cclightgray" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <span class="badge primary" id="cart_count" ></span></a></li>
+                      {%  if profile.image == none%}
+                            <li><a id="littlepadding"  href='{% url 'profile' %}'><img class = "smalliconimages" src="/static/images/profile-icon.png" alt="profile-icon" ></a></li>
+                      {%  else%}
+                            <li><a  id="littlepadding" href='{% url 'profile' %}'><img class = "smalliconimages" src="{{ profile.image }}" alt="pictureofuser"></a></li>
+
+                      {%  endif %}
+
+                      <li><a id = "cclightgray" href='{% url 'logout' %}'>Log out</a></li>
+                  {%  else %}
+                      <li><a id = "cclightgray" href='{% url 'login' %}'>Log in</a></li>
+                      <li><a id = "cclightgray" href='{% url 'register' %}'>Register</a></li>
+                  {%  endif %}
             </ul>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 5d7e511bf626bcebc700593dbf8a5d595d9ee883
             <ul class="nav navbar-nav">
                 {% if user.is_superuser %}
                 <li><button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'delete_user' %}'" id = "cclightgray">Delete user</button></li>

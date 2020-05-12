@@ -1,0 +1,20 @@
+{% load static %}
+{% block content %}
+
+    <div class="single_comment review_boxes box ccwhite">
+        <div class = "reviewcontainer">
+            <img class = "iconimages" src="{{ profile.image }}" alt="pictureofuser">
+            <h3 class="ccbluelarge">{{ user.username }}</h3>
+        </div>
+        <div class="review_comment">
+
+            <div class="rating">
+            <h4 class="ccbluebold">Rating: {{ comment.star }}</h4>
+            </div>
+            <p class="ccbluebold">{{ comment.comment }}</p>
+
+        </div>
+    </div>
+
+
+{% endblock %}
