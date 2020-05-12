@@ -1,4 +1,6 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -26,9 +28,10 @@ def register(request):
             cart.save()
             return redirect('login')
     return render(request, 'users/register.html', {
-        'form' : UserCreationForm()
+        'form' : UserCreationForm(),
     })
 
+@login_required()
 def update_profile(request):
     profile = Customer.objects.filter(user=request.user).first()
     if request.method == "POST":
@@ -43,9 +46,11 @@ def update_profile(request):
             return redirect('profile')
     return render(request, "users/profile.html",{
         "form1": ProfileForm(instance=profile),
-        "form2": UserForm(instance=request.user)
+        "form2": UserForm(instance=request.user),
+        "profile": profile
     })
 
+@login_required()
 def update_billing(request):
     profile = Customer.objects.filter(user=request.user).first()
     if request.method == "POST":
@@ -56,9 +61,11 @@ def update_billing(request):
             profile.save()
             return redirect('profile')
     return render(request, "users/billing.html",{
-        "form": BillingForm(instance=profile.billing)
+        "form": BillingForm(instance=profile.billing),
+        "profile": profile
     })
 
+@login_required()
 def update_payment(request):
     profile = Customer.objects.filter(user=request.user).first()
     if request.method == "POST":
@@ -69,7 +76,9 @@ def update_payment(request):
             profile.save()
             return redirect('profile')
     return render(request, "users/payment.html",{
-        "form": PaymentForm()
+
+        "form": PaymentForm(),
+        "profile": profile
     })
 
 @login_required()
@@ -86,7 +95,8 @@ def change_password(request):
     else:
         form = PasswordChangeForm(request.user)
     return render(request, 'users/change_password.html', {
-        'form': form
+        'form': form,
+        'profile': Customer.objects.get(user=request.user)
     })
 
 @login_required()
@@ -94,7 +104,6 @@ def delete_user(request):
 
     if not request.user.is_superuser:
         return messages.error(request, 'Error')
-
     if request.method == 'POST':
         form = RemoveUser(request.POST)
         if form.is_valid():
@@ -106,6 +115,6 @@ def delete_user(request):
                 messages.error(request, 'Error')
     else:
         form = RemoveUser()
-
-    context = {'form': form}
+    context = {'form': form, 'profile': Customer.objects.get(user=request.user)}
     return render(request, 'users/remove_user.html', context)
+

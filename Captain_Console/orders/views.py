@@ -30,7 +30,8 @@ def checkout(request):
             return display_order(request, new_billing, new_payment)
     return render(request, "orders/checkout.html", {
         "form_billing": BillingFormOrder(instance=profile.billing),
-        "form_payment": PaymentFormOrder(instance=profile.payment)
+        "form_payment": PaymentFormOrder(instance=profile.payment),
+        'profile': profile
     })
 
 @login_required()
@@ -46,7 +47,8 @@ def save_billing(request):
             return redirect('checkout')
     return render(request, "orders/checkout.html", {
         "form_billing": BillingForm(instance=profile.billing),
-        "form_payment": PaymentForm(instance=profile.payment, data=request.POST)
+        "form_payment": PaymentForm(instance=profile.payment, data=request.POST),
+        'profile': profile
     })
 
 @login_required()
@@ -61,7 +63,8 @@ def save_payment(request):
             return redirect('checkout')
     return render(request, "orders/checkout.html", {
         "form_billing": BillingForm(instance=profile.billing, data=request.POST),
-        "form_payment": PaymentForm(instance=profile.payment)
+        "form_payment": PaymentForm(instance=profile.payment),
+        'profile': profile
     })
 
 @login_required()
@@ -70,9 +73,10 @@ def display_order(request, billing, payment):
     cart = Cart.objects.filter(user=profile.id).first()
     cart_details = CartDetails.objects.filter(cart=cart)
     order, products, total = create_order(profile, billing, payment, cart_details)
-    context = {'order': order,'products': products, 'total_price': total}
+    context = {'order': order,'products': products, 'total_price': total, 'profile': profile}
     return render(request, 'orders/order_review.html', context)
 
+@login_required()
 def create_order(profile, billing, payment, cart_details):
     order = Order(customer=profile, billing=billing, payment=payment)
     order.save()
@@ -80,9 +84,9 @@ def create_order(profile, billing, payment, cart_details):
     products = []
     for cart_detail in cart_details:
         product = Product.objects.get(id=cart_detail.product_id)
-        products.append(product)
-        total += product.price
-        order_product = OrderProduct(order=order, product=product)
+        products.append({'product': product, 'quantity': cart_detail.quantity})
+        total += product.price*cart_detail.quantity
+        order_product = OrderProduct(order=order, product=product, quantity=cart_detail.quantity)
         order_product.save()
     return order, products, total
 
@@ -122,21 +126,23 @@ def update_order(request, order_id):
     else:
         return render(request, "products/frontpage.html")
 
+@login_required()
 def order_history(request):
-    profile = Customer.objects.filter(user=request.user).first()
-    orders = Order.objects.filter(customer=profile)
-    all_orders = Order.objects.all()
     total = 0
     no_of_orders = 0
     total_no_of_orders = 0
     total_sold = 0
-
     if not request.user.is_superuser:
+        profile = Customer.objects.filter(user=request.user).first()
+        orders = Order.objects.filter(customer=profile)
+        final_orders = []
         for order in orders:
+            prods= []
             order_details = OrderProduct.objects.filter(order=order)
             for order_detail in order_details:
                 product = Product.objects.get(id=order_detail.product_id)
-                total += product.price
+                prods.append({'product': product, 'quantity': order_detail.quantity, 'image': ProductImage.objects.filter(product=product).first()})
+                total += product.price*order_detail.quantity
             order.total = str(round(total, 2)) + " $"
             order.address = order.billing.street_name + " " + order.billing.house_number + ", " + order.billing.zip + ", " + order.billing.country
             total = 0
@@ -145,11 +151,11 @@ def order_history(request):
             else:
                 order.status = "Open"
             no_of_orders += 1
-
-        orders.no = no_of_orders
-        context = {'orders': orders}
+            final_orders.append({'order': order, 'products': prods})
+        context = {'orders': final_orders, 'total_orders': no_of_orders, 'profile': profile}
         return render(request, "orders/order_history_user.html", context)
     else:
+        all_orders = Order.objects.all()
         for order in all_orders:
             order_details = OrderProduct.objects.filter(order=order)
             for order_detail in order_details:

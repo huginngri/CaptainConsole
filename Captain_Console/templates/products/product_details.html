@@ -15,11 +15,18 @@
                         <p class="ccbluelarge">{{ product.console_type }}</p>
                         <p class="ccbluemedium">{{ product.price }} $</p>
                     </div>
-                    <div class="btn-group buy-button" role="group" aria-label="...">
-                          <button type="button" class="buy-btn">Buy</button>
-                          <button type="button" class="cart-btn ccorange">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
-                    </div>
+                    {% if product.stock > 0 %}
+                        <div class="below_box">
+                              <button type="button" class="product-btn buy ccbluemedium">Buy</button>
+                              <button type="button" class="product-btn cart ccbluemedium" onclick="add_to_cart_js({{ product.id }})">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
+                        </div>
+                    {% else %}
+                        <div class="below_box">
+                            <p class = "ccbluemedium bold center">Out of stock</p>
+                        </div>>
+                   {% endif %}
                 </div>
+
             </div>
 
             <div class="textproductdetails productdetails ccwhite ">
@@ -31,7 +38,7 @@
         </div>
         <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'update-product' product.id%}'" id="cclightgray">update</button>
         <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'delete-product' product.id%}'" id="cclightgray">delete</button>
-        <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'review-product' product.id%}'" id="cclightgray">review</button>
+
 
 
         {#  Here are all the images posted.      #}
