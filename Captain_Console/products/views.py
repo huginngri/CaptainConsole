@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib import messages
 from django.db.models import Q
 from django.shortcuts import render, redirect
 import operator
@@ -16,6 +17,8 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 
+from users.forms.profile_form import ProfileForm
+from users.forms.user_form import UserForm
 from users.models import Customer
 
 
@@ -145,23 +148,25 @@ def review_product(request, id):
     list_of_order_id = []
     for x in order:
         list_of_order_id.append(x.id)
-    if request.user.first_name != '':
-        if len(Review.objects.filter(customer=profile, product=product))==0:
-            if len(OrderProduct.objects.filter(order__in=list_of_order_id, product=product)) > 0:
-                if request.method == "POST":
-                    form = ReviewForm(data=request.POST)
-                    form.instance.customer = profile
-                    form.instance.product = product
-                    form.save()
-                    print(product.rating)
-                    print(form.instance.star)
-                    number_of_rev = len(Review.objects.filter(product=product))
-                    product.rating = (product.rating*(number_of_rev-1)+form.instance.star)/(number_of_rev)
-                    product.save()
-                    return redirect('frontpage')
-                return render(request, 'products/review_product.html', {
-                    'form': ReviewForm()
-                })
+
+    if len(Review.objects.filter(customer=profile, product=product))==0:
+        if len(OrderProduct.objects.filter(order__in=list_of_order_id, product=product)) > 0:
+            if request.method == "POST":
+                form = ReviewForm(data=request.POST)
+                form.instance.customer = profile
+                form.instance.product = product
+                form.save()
+                print(product.rating)
+                print(form.instance.star)
+                number_of_rev = len(Review.objects.filter(product=product))
+                product.rating = (product.rating*(number_of_rev-1)+form.instance.star)/(number_of_rev)
+                product.save()
+                return redirect('frontpage')
+            return render(request, 'products/review_product.html', {
+                'form': ReviewForm()
+            })
+        else:
+            return render(request, 'products/frontpage.html',
+                          {'profile': profile, 'error': True, 'message': 'You must have ordered the product to review'})
     else:
-        #TODO say him to fill in information about himself
-        return redirect('frontpage')
+        return render(request, 'products/frontpage.html', {'profile': profile, 'error': True, 'message': 'Please fill out user information to send out review'})

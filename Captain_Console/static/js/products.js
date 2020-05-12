@@ -44,18 +44,14 @@ $(document).ready(function() {
             }
         })
     })
-    console.log("flott")
 
-});
 
-$("#recent-views").ready(function () {
-        console.log("hello")
-        $.ajax({
-            url: "/products/recent",
-            type: "GET",
-            success: function (response) {
-                var recentproducts = response.data.map(d => {
-                    return `
+    $("#recent-views").ajax({
+        url: "/products/recent",
+        type: "GET",
+        success: function (response) {
+            var recentproducts = response.data.map(d => {
+                return `
                                     <a class=" product_boxes box ccwhite" href="/products/${d.id}">
                                         <img class = "mediumimages" src="${d.image}" style="height:150px;">
                                     <div class="button_and_text">
@@ -66,17 +62,17 @@ $("#recent-views").ready(function () {
                                     </div>
                                 </a>
                             `
-                })
-                recentproducts[0] = `<div class=product_container>` + recentproducts[0]
-                recentproducts[-1] += `</div>`
-                console.log(recentproducts)
-                $("#recent-views").html(recentproducts.join(""))
-            },
-            error: function (xhr, status, error) {
-                console.log('error')
-                console.error(error)
-            }
-        })
-
+            })
+            recentproducts[0] = `<div class=product_container>` + recentproducts[0]
+            recentproducts[-1] += `</div>`
+            console.log(recentproducts)
+            $("#recent-views").html(recentproducts.join(""))
+        },
+        error: function (xhr, status, error) {
+            console.log('error')
+            console.error(error)
+        }
     })
+})
+
 

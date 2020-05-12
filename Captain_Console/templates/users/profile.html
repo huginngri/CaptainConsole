@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
+    {% if login == True %}
+        <div id="please_fill_in_info" title="Fill in info">
+            <p class="ccbluebold">Fill in info about your self (first name and image) before leaving a review </p>
+        </div>
+    {% endif %}
     <style>
         .helptext{display: none;}
     </style>
