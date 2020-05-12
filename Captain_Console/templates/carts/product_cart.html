@@ -22,7 +22,7 @@
             <div class="btn-group product_container" role="group" aria-label="...">
 
                 <label class = ccbluesmall>Quantity: </label>
-                <input type="number" id='{{ product.id }}' name="quantity" min="0" max="{{ product.stock }}"  value='{{cart.quantity}}' onchange="change_quantity({{ product.id }})">
+                <input type="number" id='{{ product.id }}' name="quantity" min="1" max="{{ product.stock }}"  value='{{cart.quantity}}' onchange="change_quantity({{ product.id }})">
                 <button type="button" class="btn btn-default btn-xs" onclick="remove_from_cart({{ product.id }})">x</button>
 
             </div>
