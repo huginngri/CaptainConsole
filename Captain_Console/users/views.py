@@ -96,18 +96,18 @@ def delete_user(request):
         return messages.error(request, 'Error')
 
     if request.method == 'POST':
-        form = RemoveUser(data=request.POST)
-        if form.is_valid():
-            user = User.objects.get(username=form.cleaned_data['username'])
+        form = RemoveUser(request.POST)
 
-            if user is not None:
-                user.delete()
-                print(user)
-                return redirect('users/user_removed.html')
+        if form.is_valid():
+            rem = User.objects.get(username=form.cleaned_data['username'])
+            if rem is not None:
+                rem.delete()
+                return redirect('main')
             else:
-                messages.error(request, 'Error')
+                pass
+        ## Send some error messgae
     else:
         form = RemoveUser()
-
     context = {'form': form}
     return render(request, 'users/remove_user.html', context)
+
