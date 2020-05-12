@@ -125,24 +125,44 @@ def update_order(request, order_id):
 def order_history(request):
     profile = Customer.objects.filter(user=request.user).first()
     orders = Order.objects.filter(customer=profile)
+    all_orders = Order.objects.all()
     total = 0
     no_of_orders = 0
+    total_no_of_orders = 0
 
-    for order in orders:
-        order_details = OrderProduct.objects.filter(order=order)
-        for order_detail in order_details:
-            product = Product.objects.get(id=order_detail.product_id)
-            total += product.price
-        order.total = str(round(total, 2)) + " $"
-        order.address = order.billing.street_name + " " + order.billing.house_number + ", " + order.billing.zip + ", " + order.billing.country
-        total = 0
-        if order.confirmed == True:
-            order.status = "Done"
-        else:
-            order.status = "Open"
-        no_of_orders += 1
+    if not request.user.is_superuser:
+        for order in orders:
+            order_details = OrderProduct.objects.filter(order=order)
+            for order_detail in order_details:
+                product = Product.objects.get(id=order_detail.product_id)
+                total += product.price
+            order.total = str(round(total, 2)) + " $"
+            order.address = order.billing.street_name + " " + order.billing.house_number + ", " + order.billing.zip + ", " + order.billing.country
+            total = 0
+            if order.confirmed == True:
+                order.status = "Done"
+            else:
+                order.status = "Open"
+            no_of_orders += 1
 
-    orders.no = no_of_orders
+        orders.no = no_of_orders
+        context = {'orders': orders}
+        return render(request, "orders/order_history.html", context)
+    else:
+        for order in all_orders:
+            order_details = OrderProduct.objects.filter(order=order)
+            for order_detail in order_details:
+                product = Product.objects.get(id=order_detail.product_id)
+                total += product.price
+            order.total = str(round(total, 2)) + " $"
+            order.address = order.billing.street_name + " " + order.billing.house_number + ", " + order.billing.zip + ", " + order.billing.country
+            total = 0
+            if order.confirmed == True:
+                order.status = "Confirmed"
+            else:
+                order.status = "Unconfirmed"
+            total_no_of_orders += 1
 
-    context = {'orders': orders}
-    return render(request, "orders/order_history.html", context)
+        orders.no = total_no_of_orders
+        context = {'orders': orders}
+        return render(request, "orders/order_history.html", context)
