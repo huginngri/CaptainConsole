@@ -106,7 +106,11 @@ function remove_from_cart(product_id, child) {
         url: '/carts/' + product_id,
         success: function (response) {
             console.log(response);
-            let container = document.getElementById("cart_products")
+            if (response['total_price'] === null){
+                location.reload()
+            }
+            else{
+                let container = document.getElementById("cart_products")
             for (let x = 0; x < container.children.length; x++){
                 if (container.children[x] === deletediv){
                     container.removeChild(container.children[x]);
@@ -117,6 +121,8 @@ function remove_from_cart(product_id, child) {
             let price = document.getElementById('cart_total');
             let total = parseFloat(response['total_price']);
             price.textContent = 'Total price: ' + total + '$';
+            }
+
         },
         error: function (xhr, status, error) {
             console.log('eitthvað vilaust');
@@ -136,14 +142,10 @@ function change_quantity(product_id) {
             new_amount: new_amount
         },
         success: function (response) {
-            if (response['total_price'].isNaN()){
-                location.reload()
-            }
-            else {
-                let price = document.getElementById('cart_total');
-                let total = parseFloat(response['total_price']);
-                price.textContent = 'Total price: ' + total + '$';
-            }
+            let price = document.getElementById('cart_total');
+            let total = parseFloat(response['total_price']);
+            price.textContent = 'Total price: ' + total + '$';
+
             calculate_cart()
         },
         error: function (xhr, status, error) {
