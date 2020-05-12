@@ -68,10 +68,8 @@ filler2{
     height: 500px;
     border: 5px solid #F1AA19;
     box-shadow: 0px 7px rgba(0, 0, 0, 0.5);
-
 }
 .imageproductdetails{
-    padding:2%;
     width: 30%;
     margin-right: 1%;
     margin-left: 5%;
@@ -79,7 +77,7 @@ filler2{
 }
 
 .textproductdetails{
-    padding:100px;
+    padding-top: 100px;
     position: relative;
     width:53%;
     margin-left: 1%;
@@ -179,7 +177,6 @@ filler2{
     width: 18%;
     border: 3px solid #F1AA19;
     padding: 10px;
-
 }
 
 
@@ -238,26 +235,7 @@ filler2{
     padding-top: 10px;
 }
 
-@media screen and (max-width: 1000px) {
 
-    .product_boxes {
-        margin-left: 5%;
-        margin-right: 5%;
-        width: 40%;
-    }
-
-    .console_boxes {
-        margin-left: 5%;
-        margin-right: 5%;
-        width: 40%;
-    }
-    .review_boxes{
-        margin-left: 5%;
-        margin-right: 5%;
-        width: 40%;
-    }
-
-}
 
 
 
@@ -281,9 +259,42 @@ filler2{
     }
 
 }
+@media screen and (max-width: 1000px) {
+
+    .product_boxes {
+        height:320px;
+        margin-left: 5%;
+        margin-right: 5%;
+        width: 40%;
+    }
+
+    .console_boxes {
+        margin-left: 5%;
+        margin-right: 5%;
+        width: 40%;
+    }
+    .review_boxes{
+        margin-left: 5%;
+        margin-right: 5%;
+        width: 40%;
+    }
+    .productdetails{
+        height: 300px;
+        padding-top: 20px;
+    }
+    .image_box{
+        height:200px;
+    }
+    .below_box{
+        height: 40px;
+
+    }
+
+}
 @media screen and (max-width: 700px) {
 
     .product_boxes {
+        height:320px;
         margin-left: auto;
         margin-right: auto;
         width: 80%;
@@ -304,6 +315,17 @@ filler2{
         margin-left: auto;
         margin-right: auto;
         width: 80%;
+    }
+    .productdetails{
+        height: 250px;
+        padding-top: 20px;
+    }
+    .image_box{
+        height:150px;
+    }
+    .below_box{
+        height: 40px;
+
     }
 
 }
