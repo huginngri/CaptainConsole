@@ -48,12 +48,13 @@ def view_cart(request):
             for order_product in order_products:
                 order_product.delete()
             order.delete()
-    context = {'cart': cart, 'products': products, 'total_price': total}
+    context1 = {'cart': cart, 'products': products, 'total_price': total}
+    context2 = {'customer': customer}
 
     if cart.total != 0.0:
-        return render(request, 'carts/cart_details.html', context)
+        return render(request, 'carts/cart_details.html', context1)
     else:
-        return render(request, 'carts/cart_details_empty.html')
+        return render(request, 'carts/cart_details_empty.html', context2)
 
 def remove_from_cart(request, product_id):
     customer = Customer.objects.filter(user=request.user).first()

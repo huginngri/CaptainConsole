@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class = "popup ccwhite">
-        <h1 class="homepagetext cc2phuge">Your cart is empty!</h1>
+        <h1 class="homepagetext cc2large">{{ customer.user }}, your cart is empty!</h1>
         <button class="profilebuttons btn btn-primary "  onclick="location.href='{% url 'frontpage' %}'">Continue shopping</button>
     </div>
 {% endblock %}
