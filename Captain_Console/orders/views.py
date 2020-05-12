@@ -127,11 +127,15 @@ def order_history(request):
     orders = Order.objects.filter(customer=profile)
     order = Order.objects.filter(customer=profile.id).first()
     order_details = OrderProduct.objects.filter(order=order)
+    total = 0
 
-    products = []
-    for order_detail in order_details:
-        product = Product.objects.get(id=order_detail.product_id)
-        products.append(product)
+    for order in orders:
+        order_details = OrderProduct.objects.filter(order=order)
+        for order_detail in order_details:
+            product = Product.objects.get(id=order_detail.product_id)
+            total += product.price
+        order.total = total
+        total = 0
 
-    context = {'orders': orders, 'products': products}
+    context = {'orders': orders}
     return render(request, "orders/order_history.html", context)

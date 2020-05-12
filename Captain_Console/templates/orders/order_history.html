@@ -5,15 +5,24 @@
     <div id="order_review_div" class = "popup ccwhite" >
         <h1 id="order_header" class = cc2phuge>Order history</h1>
 
-        {% for product in products %}
-            <img class = "mediumimages" src="{% static   product.productimage_set.last.image  %}" style="height:150px;">
-            <p>{{ product.name }}</p>
-            <p>{{ product.description }}</p>
-        {% endfor %}
-
+        <table>
+        <tr>
+            <th>Order number</th>
+            <th>Buyer</th>
+            <th>Billing Address</th>
+            <th>Amount</th>
+            <th>Order confirmed</th>
+        </tr>
         {% for order in orders %}
-            <p>{{ order.id }}</p>
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.payment.card_holder  }}</td>
+                <td>{{ order.billing.street_name  }}</td>
+                <td>{{ order.total  }}</td>
+                <td>{{ order.confirmed  }}</td>
+            </tr>
         {% endfor %}
+        </table>
 
     </div>
 {% endblock %}
