@@ -17,7 +17,7 @@
                     </div>
                     {% if product.stock > 0 %}
                         <div class="below_box">
-                              <button type="button" class="product-btn buy ccbluemedium">Buy</button>
+                              <button type="button" class="product-btn buy ccbluemedium" onclick="buy_product({{ product.id }})">Buy</button>
                               <button type="button" class="product-btn cart ccbluemedium" onclick="add_to_cart_js({{ product.id }})">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
                         </div>
                     {% else %}

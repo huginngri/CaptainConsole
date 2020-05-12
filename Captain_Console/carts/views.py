@@ -9,7 +9,6 @@ from django.http import JsonResponse
 from users.forms.payment_form import PaymentForm
 from users.forms.billing_form import BillingForm
 
-
 # Create your views here.
 @login_required()
 def add_or_count_cart(request):
@@ -50,8 +49,12 @@ def view_cart(request):
     cart_details = CartDetails.objects.filter(cart=cart)
     products = []
     total = 0
+    total_in_cart = 0
+
     for cart_detail in cart_details:
         product = Product.objects.filter(id=cart_detail.product.id).first()
+        total_in_cart += 1
+
         products.append({'product': product, 'quantity': cart_detail.quantity})
         total += (product.price * cart_detail.quantity)
     orders = Order.objects.filter(customer=customer)
@@ -61,8 +64,13 @@ def view_cart(request):
             for order_product in order_products:
                 order_product.delete()
             order.delete()
-    context = {'products': products, 'total_price': total,  'profile': customer}
-    return render(request, 'carts/cart_details.html', context)
+    context1 = {'profile': customer, 'products': products, 'total_price': total}
+    context2 = {'customer': customer}
+
+    if total_in_cart != 0:
+        return render(request, 'carts/cart_details.html', context1)
+    else:
+        return render(request, 'carts/cart_details_empty.html', context2)
 
 @login_required()
 def remove_from_cart(request, product_id):
@@ -72,8 +80,15 @@ def remove_from_cart(request, product_id):
         product = Product.objects.get(id=product_id)
         cart_detail = CartDetails.objects.filter(cart=cart, product=product).first()
         cart_detail.delete()
-        return JsonResponse({'message': 'Product removed from cart'})
+        return JsonResponse({'total_price': calc_price(cart)})
     return JsonResponse({'message': 'invalid request'})
+
+def calc_price(cart):
+    total = 0
+    cart_details = CartDetails.objects.filter(cart=cart)
+    for cart_detail in cart_details:
+        product = Product.objects.filter(id=cart_detail.product.id).first()
+        total += (product.price * cart_detail.quantity)
 
 @login_required()
 def change_quantity(request, product_id):
@@ -84,14 +99,15 @@ def change_quantity(request, product_id):
         cart = Cart.objects.filter(user=customer.id).first()
         product = Product.objects.get(id=product_id)
         cart_detail = CartDetails.objects.filter(cart=cart, product=product).first()
-        cart_details = CartDetails.objects.filter(cart=cart)
-        total = 0
         if request.POST['new_amount'] == 0:
             remove_from_cart(request, product_id)
         else:
             cart_detail.quantity = request.POST['new_amount']
             cart_detail.save()
+        cart_details = CartDetails.objects.filter(cart=cart)
+        total = 0
         for cart_detail in cart_details:
+            product = Product.objects.filter(id=cart_detail.product.id).first()
             total += product.price*cart_detail.quantity
         return JsonResponse({'total_price': total})
     return JsonResponse({'message': 'invalid request'})
