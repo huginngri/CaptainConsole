@@ -9,7 +9,6 @@ from django.http import JsonResponse
 from users.forms.payment_form import PaymentForm
 from users.forms.billing_form import BillingForm
 
-
 # Create your views here.
 @login_required()
 def add_or_count_cart(request):
@@ -50,8 +49,12 @@ def view_cart(request):
     cart_details = CartDetails.objects.filter(cart=cart)
     products = []
     total = 0
+    total_in_cart = 0
+
     for cart_detail in cart_details:
         product = Product.objects.filter(id=cart_detail.product.id).first()
+        total_in_cart += 1
+
         products.append({'product': product, 'quantity': cart_detail.quantity})
         total += (product.price * cart_detail.quantity)
     orders = Order.objects.filter(customer=customer)
@@ -61,8 +64,13 @@ def view_cart(request):
             for order_product in order_products:
                 order_product.delete()
             order.delete()
-    context = {'products': products, 'total_price': total,  'profile': customer}
-    return render(request, 'carts/cart_details.html', context)
+    context1 = {'profile': customer, 'products': products, 'total_price': total}
+    context2 = {'customer': customer}
+
+    if total_in_cart != 0:
+        return render(request, 'carts/cart_details.html', context1)
+    else:
+        return render(request, 'carts/cart_details_empty.html', context2)
 
 @login_required()
 def remove_from_cart(request, product_id):
