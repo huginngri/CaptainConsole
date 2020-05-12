@@ -116,9 +116,8 @@ function go_back(billing, payment) {
 }
 
 
-function f(images) {
-    var value = document.getElementById("next-button").value()
-    console.log(value)
-    console.log(images)
+function sortit(images) {
+    x=5
+    console.log(x)
 
 }
