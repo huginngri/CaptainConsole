@@ -133,5 +133,5 @@ def order_history(request):
         product = Product.objects.get(id=order_detail.product_id)
         products.append(product)
 
-    context = {'order': orders, 'products': products}
+    context = {'orders': orders, 'products': products}
     return render(request, "orders/order_history.html", context)

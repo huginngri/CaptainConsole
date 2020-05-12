@@ -1,15 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
+    {% load static %}
+
     <div id="order_review_div" class = "popup ccwhite" >
         <h1 id="order_header" class = cc2phuge>Order history</h1>
 
         {% for product in products %}
-            <p>{{ product.image }}</p>
+            <img class = "mediumimages" src="{% static   product.productimage_set.last.image  %}" style="height:150px;">
+            <p>{{ product.name }}</p>
             <p>{{ product.description }}</p>
         {% endfor %}
 
         {% for order in orders %}
-            <p>{{ order }}</p>
+            <p>{{ order.id }}</p>
         {% endfor %}
 
     </div>
