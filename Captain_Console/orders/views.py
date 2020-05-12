@@ -125,8 +125,6 @@ def update_order(request, order_id):
 def order_history(request):
     profile = Customer.objects.filter(user=request.user).first()
     orders = Order.objects.filter(customer=profile)
-    order = Order.objects.filter(customer=profile.id).first()
-    order_details = OrderProduct.objects.filter(order=order)
     total = 0
     no_of_orders = 0
 
