@@ -152,9 +152,54 @@ function change_quantity(product_id) {
 }
 
 
-function f(images) {
-    var value = document.getElementById("next-button").value()
-    console.log(value)
-    console.log(images)
+function sortit(sel) {
+    let all_products = document.getElementById("container_for_products")
+    let the_arr = []
+    let keep_arr =[]
+    let name_or_price = sel.options[sel.selectedIndex].value
+    let n_o_p = 0
+    let r = 0
+    let reverse_check = name_or_price.localeCompare("name_reverse") * name_or_price.localeCompare("price_reverse")
+    if (reverse_check === 0){
+        r = 1
+    }
+    let k = name_or_price.localeCompare("price") * name_or_price.localeCompare("price_reverse")
+    if (k === 0) {
+        n_o_p = 1
+    }
+    for (let x = 0; x<all_products.children.length; x++){
+        keep_arr.push(all_products.children[x])
+        let j = all_products.children[x].children[1].children[0].children[n_o_p].getAttribute("name")
+        if (n_o_p ===1){
+            j = parseFloat(j)
+        }
+        the_arr.push(j)
+    }
+    let new_arr = []
+    for (let x = 0; x<the_arr.length; x++){
+        new_arr.push(the_arr[x])
+    }
+    if (n_o_p === 1) {
+        new_arr.sort(function (a, b) {
+            return a - b;
+        });
+    }
+    else {
+        new_arr.sort()
+    }
+    if (r === 1){
+        new_arr.reverse()
+    }
+    let order_arr = []
+    while (all_products.firstChild){
+        all_products.removeChild(all_products.lastChild)
+    }
+    for (let x=0; x<new_arr.length; x++){
+        order_arr.push(the_arr.indexOf(new_arr[x]))
+    }
+    for (let x=0; x<order_arr.length;x++){
+        all_products.appendChild(keep_arr[order_arr[x]])
+    }
+
 
 }

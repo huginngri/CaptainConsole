@@ -1,9 +1,6 @@
 from django.contrib.auth.models import User
 from django.forms import ModelForm, widgets
 
-
-
-
 class UserForm(ModelForm):
     class Meta:
         model = User

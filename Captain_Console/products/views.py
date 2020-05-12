@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.db.models import Q
 from django.shortcuts import render, redirect
-
+import operator
 from consoles.models import Console
 from manufacturers.models import Manufacturer
 from orders.models import Order, OrderProduct
@@ -30,13 +31,17 @@ def frontpage(request):
             'image': ProductImage.objects.filter(product=x.id).first().image
         } for x in Product.objects.filter(name__icontains=search_filter)]
         return JsonResponse({'data': products})
-    context = {'products': Product.objects.all().order_by('name')}
+    profile = None
+    if request.user.is_authenticated:
+        profile = Customer.objects.get(user=request.user)
+    context = {'products': Product.objects.all().order_by('name'), 'profile': profile}
     return render(request, 'products/frontpage.html', context)
 
 @login_required()
 def recent_view(request):
     if request.user.is_authenticated:
-        x = ProductHistory.objects.filter(user=request.user).order_by("-id")[:5]
+        x = ProductHistory.objects.order_by('product','-id').distinct('product')
+        x = ProductHistory.objects.filter(user=request.user, id__in=x).order_by('-id')[:5]
         the_products = []
         for y in x:
             the_products.append(get_object_or_404(Product, pk=y.product.id))
@@ -76,13 +81,24 @@ def index(request):
 def get_product_by_id(request, id, consolename=None, name=None):
     the_product = get_object_or_404(Product, pk=id)
     reviews = Review.objects.filter(product=the_product)
-    product = {'product': the_product, 'filter': 'none', 'comments': reviews, 'profile': Customer.objects.get(user=request.user)}
+    full_reviews = [{
+        'star': x.star,
+        'comment': x.comment,
+        'image': get_object_or_404(Customer, pk=x.customer_id).image,
+        'name': get_object_or_404(Customer, pk=x.customer_id).user.username
+    }for x in reviews]
+    profile = None
+    if request.user.is_authenticated:
+        profile = Customer.objects.get(user=request.user)
+    product = {'product': the_product, 'filter': 'none', 'comments': full_reviews, 'profile': profile}
     if request.user.is_authenticated:
         new_item_view = ProductHistory(user=request.user, product=the_product)
         new_item_view.save()
     return render(request, 'products/product_details.html', product)
 
+@login_required()
 def create_product(request):
+    #TODO check superuser
     if request.method == "POST":
         form1 = ProductForm(data=request.POST)
         if form1.is_valid():
@@ -97,7 +113,9 @@ def create_product(request):
         'form2': ImageForm()
     })
 
+@login_required()
 def update_product(request, id):
+    #TODO check superuser
     the_product = Product.objects.filter(pk=id).first()
     if request.method == "POST":
         form = ProductForm(data=request.POST,instance=the_product)
@@ -110,7 +128,9 @@ def update_product(request, id):
         'form': ProductForm(instance=the_product)
     })
 
+@login_required()
 def delete_product(request, id):
+    #TODO check superuser
     the_product = Product.objects.filter(pk=id).first()
     the_product.delete()
     return render(request, 'products/delete_product.html', {
