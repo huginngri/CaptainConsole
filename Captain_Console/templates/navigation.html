@@ -31,7 +31,6 @@
                             <li><a id="littlepadding"  href='{% url 'profile' %}'><img class = "smalliconimages" src="/static/images/profile-icon.png" alt="profile-icon" ></a></li>
                       {%  else%}
                             <li><a  id="littlepadding" href='{% url 'profile' %}'><img class = "smalliconimages" src="{{ profile.image }}" alt="pictureofuser"></a></li>
-
                       {%  endif %}
 
                       <li><a id = "cclightgray" href='{% url 'logout' %}'>Log out</a></li>

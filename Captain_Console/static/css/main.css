@@ -115,12 +115,28 @@ a:link{
     border-radius:25px;
     width:80px;
     color:black;
+
 }
 
 .cart-btn{
     border-radius:25px;
     width:80px;
     color:black;
+}
+
+.product-btn{
+    width: 50%;
+    margin:auto;
+    background: none;
+    height: 60px;
+    border: 2px solid #C4C4C4;
+
+}
+.buy:hover{
+    background-color: #C4C4C4;
+}
+.cart:hover{
+    background-color: #F1AA19;
 }
 
 .intro {

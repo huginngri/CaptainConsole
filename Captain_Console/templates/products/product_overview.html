@@ -1,7 +1,7 @@
 {% load static %}
 {% block content %}
     <div class=" product_boxes box ccwhite">
-        <a  href="/products/{{ product.id }}">
+        <a class="product_boxes_inside box_inside" href="/products/{{ product.id }}">
             {% if filter == 'Consoles' %}
                 <div class = "containerimage" onclick="location.href='{% url 'consoles-one-console' product.manufacturer product.console_type product.id %}'">
             {% elif filter == 'Games' %}
@@ -23,13 +23,9 @@
             </div>
         </a>
         {% if product.stock > 0 %}
-            <div class="btn-group buy-button" role="group" aria-label="...">
-                  <button type="button" class="buy-btn">Buy</button>
-<<<<<<< HEAD
-                  <button type="button" class="cart-btn ccorange" onclick="add_to_cart_js({{ product.id }})">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
-=======
-                  <button type="button" class="cart-btn ccorange">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
->>>>>>> searchbar
+            <div class="below_box">
+                  <button type="button" class="product-btn buy ccbluemedium">Buy</button>
+                  <button type="button" class="product-btn cart ccbluemedium" onclick="add_to_cart_js({{ product.id }})">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
             </div>
             {% else %}
             <div class="out_of_stock">
