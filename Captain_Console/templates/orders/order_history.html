@@ -2,9 +2,15 @@
 {% block content %}
     <div id="order_review_div" class = "popup ccwhite" >
         <h1 id="order_header" class = cc2phuge>Order history</h1>
-        {% for order in orders %}
-            <p>ORDER!</p>
-            <p>{{ order.id }}</p>
+
+        {% for product in products %}
+            <p>{{ product.image }}</p>
+            <p>{{ product.description }}</p>
         {% endfor %}
+
+        {% for order in orders %}
+            <p>{{ order }}</p>
+        {% endfor %}
+
     </div>
 {% endblock %}

@@ -98,7 +98,6 @@ def confirm_order(request):
     order.save()
     return JsonResponse({'message': 'success'})
 
-
 @login_required()
 def update_order(request, order_id):
     profile = Customer.objects.filter(user=request.user).first()
@@ -126,5 +125,13 @@ def update_order(request, order_id):
 def order_history(request):
     profile = Customer.objects.filter(user=request.user).first()
     orders = Order.objects.filter(customer=profile)
-    context = {'orders': orders}
+    order = Order.objects.filter(customer=profile.id).first()
+    order_details = OrderProduct.objects.filter(order=order)
+
+    products = []
+    for order_detail in order_details:
+        product = Product.objects.get(id=order_detail.product_id)
+        products.append(product)
+
+    context = {'order': orders, 'products': products}
     return render(request, "orders/order_history.html", context)
