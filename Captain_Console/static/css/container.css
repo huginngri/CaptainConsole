@@ -260,6 +260,9 @@ filler2{
 
 }
 @media screen and (max-width: 1000px) {
+    .popup{
+        width: 70%;
+    }
 
     .product_boxes {
         height:320px;
@@ -292,6 +295,9 @@ filler2{
 
 }
 @media screen and (max-width: 700px) {
+    .popup{
+        width: 100%;
+    }
 
     .product_boxes {
         height:320px;

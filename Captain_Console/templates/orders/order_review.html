@@ -26,7 +26,7 @@
 
             <button type="submit" class="btn btn-default login-btn" id="edit_order" onclick="location.href='{% url 'checkout-update' order.id %}'">Edit</button>
 
-        <button type="button" class="ccorange proceed-to-checkout-btn btn" id="confirm_order" onclick="place_order({{ order.id }})"><p id="ccwhite"> Place order</p></button>
+        <button type="button" class="ccorange proceed-to-checkout-btn btn" id="confirm_order" onclick="place_order({{ order.id }})"><p class="ccbluebold" id="ccwhite"> Place order</p></button>
 
     </div>
 
