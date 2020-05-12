@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="order_review_div" class = "popup ccwhite" >
+            <h1 id="order_header" class = cc2phuge>Checkout Overview</h1>
+            <br>
+            <h4 class="cc2pmedium center">Billing info:</h4>
+            <p class="ccbluebold center">Full name: {{ order.billing.full_name }}</p>
+            <p class="ccbluebold center">Street address: {{ order.billing.street_name }}</p>
+            <p class="ccbluebold center">House number: {{ order.billing.house_number }}</p>
+            <p class="ccbluebold center">Country: {{ order.billing.country }}</p>
+            <p class="ccbluebold center">Zip code: {{ order.billing.zip }}</p>
+            <br>
+            <h4 class="cc2pmedium center">Payment info:</h4>
+            <p class="ccbluebold center">Card holder: {{ order.payment.card_holder }}</p>
+            <p class="ccbluebold center">Card number: {{ order.payment.card_number }}</p>
+            <p class="ccbluebold center">Exp. date: {{ order.payment.exp_date }}</p>
+            <p class="ccbluebold center">CVC: {{ order.payment.cvc }}</p>
+            <br>
+            <h4 class="cc2pmedium center">Your Products:</h4>
+            <div class = "product_container">
+                {% for product in  products%}
+                    {% include 'products/products_overview_checkout.html' with product=product %}
+                {% endfor %}
+            </div>
+            <h4 class="ccbluelarge">Total price: {{ total_price }}$</h4>
+
+            <button type="submit" class="btn btn-default login-btn" id="edit_order" onclick="location.href='{% url 'checkout-update' order.id %}'">Edit</button>
+
+        <button type="button" class="ccorange proceed-to-checkout-btn btn" id="confirm_order" onclick="place_order({{ order.id }})"><p id="ccwhite"> Place order</p></button>
+
+    </div>
+
+
+{% endblock %}

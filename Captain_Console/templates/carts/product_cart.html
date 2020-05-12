@@ -12,13 +12,13 @@
             <div class = "containerimage" onclick="location.href='{% url 'consoles-one' product.manufacturer product.console_type product.id %}'">
         {% endif %}
             <a href="/products/{{ product.id }}"></a>
-            <button type="submit" class="remove-cart-btn btn btn-default ">x</button>
+            <button type="submit" class="remove-cart-btn btn btn-default" onclick="remove_from_cart({{ product.id }})">x</button>
             <img class = "mediumimages" src="{% static   product.productimage_set.last.image  %}" style="height:150px;">
         </div>
         <div class="button_and_text">
             <div class="info">
-                <h4 class="name">{{ product.name }}</h4>
-                <p class="price">{{ product.price }} $</p>
+                <h4 class="name ccbluemedium center">{{ product.name }}</h4>
+                <p class="price ccbluesmall center">{{ product.price }} $</p>
             </div>
         </div>
     </div>

@@ -67,17 +67,72 @@ function calculate_cart(user_id) {
     });
 }
 
+function place_order(order) {
+    $.ajax({
+        type: "POST",
+        method: 'POST',
+        url: '/orders/checkout/overview',
+        data: {
+            order: order
+        },
+        success: function (response) {
+            console.log('virkar')
+            let header = document.getElementById('order_header')
+            header.textContent = 'Order confirmed'
+            let back_button = document.getElementById('edit_order')
+            let confirm_button = document.getElementById('confirm_order')
+            back_button.remove()
+            confirm_button.remove()
+            let a = document.createElement('a')
+            a.setAttribute('href', '/')
+            a.textContent = 'Close'
+            let div = document.getElementById('order_review_div')
+            div.appendChild(a)
+        },
+        error: function (xhr, status, error) {
+            console.log('error')
+        }
+    });
+}
 
-function place_order(){
-    form1 = document.getElementById("form1");
-    form2 = document.getElementById("form2");
+function go_back(billing, payment) {
+    $.ajax({
+        type: "GET",
+        method: 'GET',
+        url: '/orders/checkout/update',
+        data: {
+            billing: billing,
+            payment: payment
+        },
+        success: function (response) {
+            console.log(response)
+            console.log('hallo')
+            window.location = "/"
+        },
+        error: function (xhr, status, error) {
+            console.log('eitthvað vilaust')
+        }
+    });
+}
 
+function remove_from_cart(product_id) {
+    console.log('hilmar er belja')
+    $.ajax({
+        type: "DELETE",
+        method: 'DELETE',
+        url: '/carts/remove/' + product_id,
+        success: function (response) {
+            console.log(response)
+        },
+        error: function (xhr, status, error) {
+            console.log('eitthvað vilaust')
+        }
+    });
 }
 
 
-function f(images) {
-    var value = document.getElementById("next-button").value()
-    console.log(value)
-    console.log(images)
+function sortit(images) {
+    x=5
+    console.log(x)
 
 }

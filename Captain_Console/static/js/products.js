@@ -55,17 +55,15 @@ $("#recent-views").ready(function () {
             success: function (response) {
                 var recentproducts = response.data.map(d => {
                     return `
-                                    <div class=" product_boxes box ccwhite">
-                                        <a href="/products/${d.id}"></a>
+                                    <a class=" product_boxes box ccwhite" href="/products/${d.id}">
                                         <img class = "mediumimages" src="${d.image}" style="height:150px;">
-                                    
                                     <div class="button_and_text">
                                         <div class="info">
                                             <h4 class="name">${d.name}</h4>
                                             <p class="price">${d.price} $</p>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             `
                 })
                 recentproducts[0] = `<div class=product_container>` + recentproducts[0]

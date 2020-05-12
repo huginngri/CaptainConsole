@@ -1,16 +1,18 @@
 {% load static %}
 {% block content %}
 
-    <div class="single_comment">
-        <div class="name_image">
-            <img src="{{ profile.image }}" alt="pictureofuser">
-            <h3>{{ user.firstname }}</h3>
+    <div class="single_comment review_boxes box ccwhite">
+        <div class = "reviewcontainer">
+            <img class = "iconimages" src="{{ comment.image }}" alt="pictureofuser">
+            <h3 class="ccbluelarge">{{ comment.name }}</h3>
         </div>
-        <div class="rating">
-            <h4>{{ comment.star }}</h4>
-        </div>
-        <div class="btn-group buy-button" role="group" aria-label="...">
-              <p>{{ comment.comment }}</p>
+        <div class="review_comment">
+
+            <div class="rating">
+            <h4 class="ccbluebold">Rating: {{ comment.star }}</h4>
+            </div>
+            <p class="ccbluebold">{{ comment.comment }}</p>
+
         </div>
     </div>
 

@@ -1,6 +1,4 @@
 from django.forms import ModelForm, widgets
-from django import forms
-from django_starfield import Stars
 
 from products.models import Review
 
