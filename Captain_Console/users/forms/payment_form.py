@@ -8,8 +8,8 @@ class PaymentForm(ModelForm):
         exclude = ['id']
         widgets = {
             'card_holder': widgets.TextInput(attrs={'class': 'form-control'}),
-            'card_number': widgets.NumberInput(attrs={'class': 'form-control'}),
+            'card_number': widgets.TextInput(attrs={'class': 'form-control', 'maxlength': '16','minlength':'16','size':'16'}),
             'exp_date': widgets.TextInput(attrs={'class': 'form-control'}),
-            'cvc': widgets.NumberInput(attrs={'class': 'form-control'}),
+            'cvc': widgets.TextInput(attrs={'class': 'form-control', 'maxlength': '4', 'minlength': '3', 'size': '3'}),
         }
 

@@ -4,9 +4,9 @@ from django.db import models
 
 class Payment(models.Model):
     card_holder = models.CharField(max_length=255)
-    card_number = models.CharField(max_length=255)
+    card_number = models.CharField(max_length=16)
     exp_date = models.CharField(max_length=255)
-    cvc = models.CharField(max_length=255)
+    cvc = models.CharField(max_length=4)
 
 class Billing(models.Model):
     full_name = models.CharField(max_length=255)

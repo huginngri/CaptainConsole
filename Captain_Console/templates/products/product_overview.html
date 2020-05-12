@@ -1,29 +1,38 @@
 {% load static %}
 {% block content %}
+    <div class=" product_boxes box ccwhite">
+        <a class="product_boxes_inside box_inside" href="/products/{{ product.id }}">
+            {% if filter == 'Consoles' %}
+                <div class = "containerimage" onclick="location.href='{% url 'consoles-one-console' product.manufacturer product.console_type product.id %}'">
+            {% elif filter == 'Games' %}
+                <div class = "containerimage" onclick="location.href='{% url 'consoles-one-game' product.manufacturer product.console_type product.id %}'">
+            {% elif filter == 'Accessories' %}
+                <div class = "containerimage" onclick="location.href='{% url 'consoles-one-accessory' product.manufacturer product.console_type product.id %}'">
+            {% else %}
+                <div class = "containerimage" onclick="location.href='{% url 'consoles-one' product.manufacturer product.console_type product.id %}'">
+            {% endif %}
 
-    <a class=" product_boxes box ccwhite" href="/products/{{ product.id }}">
-        {% if filter == 'Consoles' %}
-            <div class = "containerimage" onclick="location.href='{% url 'consoles-one-console' product.manufacturer product.console_type product.id %}'">
-        {% elif filter == 'Games' %}
-            <div class = "containerimage" onclick="location.href='{% url 'consoles-one-game' product.manufacturer product.console_type product.id %}'">
-        {% elif filter == 'Accessories' %}
-            <div class = "containerimage" onclick="location.href='{% url 'consoles-one-accessory' product.manufacturer product.console_type product.id %}'">
-        {% else %}
-            <div class = "containerimage" onclick="location.href='{% url 'consoles-one' product.manufacturer product.console_type product.id %}'">
-        {% endif %}
+                <img class = "mediumimages" src="{% static   product.productimage_set.first.image  %}" style="height:150px;">
+                </div>
+            <div class="button_and_text">
+                <div class="info">
+                    <h4 class="name ccbluemedium center" name="{{ product.name }}">{{ product.name }}</h4>
+                    <p class="price ccbluesmall center" name="{{ product.price }}">{{ product.price }} $</p>
+                </div>
 
-            <img class = "mediumimages" src="{% static   product.productimage_set.first.image  %}" style="height:150px;">
             </div>
-        <div class="button_and_text">
-            <div class="info">
-                <h4 class="name ccbluemedium center" name="{{ product.name }}">{{ product.name }}</h4>
-                <p class="price ccbluesmall center" name="{{ product.price }}">{{ product.price }} $</p>
+        </a>
+        {% if product.stock > 0 %}
+            <div class="below_box">
+                  <button type="button" class="product-btn buy ccbluemedium" onclick="buy_product({{ product.id }})">Buy</button>
+                  <button type="button" class="product-btn cart ccbluemedium" onclick="add_to_cart_js({{ product.id }})">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
             </div>
-            <div class="btn-group buy-button" role="group" aria-label="...">
-                  <button type="button" class="buy-btn" onclick="buy_product({{ product.id }})">Buy</button>
-                  <button type="button" class="cart-btn ccorange" onclick="add_to_cart_js({{ product.id }})">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
-            </div>
-        </div>
-    </a>
+
+            {% else %}
+            <div class="out_of_stock">
+                <p class = "ccbluemedium bold center">Out of stock</p>
+            </div>>
+       {% endif %}
+    </div>
 
 {% endblock %}

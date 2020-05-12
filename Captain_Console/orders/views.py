@@ -35,7 +35,8 @@ def checkout(request, save=False):
         })
     return render(request, "orders/checkout.html", {
         "form_billing": BillingFormOrder(instance=profile.billing),
-        "form_payment": PaymentFormOrder(instance=profile.payment)
+        "form_payment": PaymentFormOrder(instance=profile.payment),
+        'profile': profile
     })
 
 @login_required()
@@ -51,7 +52,8 @@ def save_billing(request):
             return checkout(request, True)
     return render(request, "orders/checkout.html", {
         "form_billing": BillingForm(instance=profile.billing),
-        "form_payment": PaymentForm(instance=profile.payment, data=request.POST)
+        "form_payment": PaymentForm(instance=profile.payment, data=request.POST),
+        'profile': profile
     })
 
 @login_required()
@@ -66,7 +68,8 @@ def save_payment(request):
             return checkout(request, True)
     return render(request, "orders/checkout.html", {
         "form_billing": BillingForm(instance=profile.billing, data=request.POST),
-        "form_payment": PaymentForm(instance=profile.payment)
+        "form_payment": PaymentForm(instance=profile.payment),
+        'profile': profile
     })
 
 @login_required()
@@ -75,7 +78,7 @@ def display_order(request, billing, payment):
     cart = Cart.objects.filter(user=profile.id).first()
     cart_details = CartDetails.objects.filter(cart=cart)
     order, products, total = create_order(profile, billing, payment, cart_details)
-    context = {'order': order,'products': products, 'total_price': total}
+    context = {'order': order,'products': products, 'total_price': total, 'profile': profile}
     return render(request, 'orders/order_review.html', context)
 
 @login_required()

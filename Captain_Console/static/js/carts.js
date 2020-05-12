@@ -134,9 +134,14 @@ function change_quantity(product_id) {
             new_amount: new_amount
         },
         success: function (response) {
-            let price = document.getElementById('cart_total');
-            let total = parseFloat(response['total_price']);
-            price.textContent = 'Total price: ' + total + '$';
+            if (response['total_price'].isNaN()){
+                location.reload()
+            }
+            else {
+                let price = document.getElementById('cart_total');
+                let total = parseFloat(response['total_price']);
+                price.textContent = 'Total price: ' + total + '$';
+            }
             calculate_cart()
         },
         error: function (xhr, status, error) {
@@ -198,5 +203,5 @@ function sortit(sel) {
 
 function buy_product(product_id) {
     add_to_cart_js(product_id);
-    window.location = '/carts/view'
+    setTimeout(function(){ window.location = '/carts/view'; }, 1000);
 }
