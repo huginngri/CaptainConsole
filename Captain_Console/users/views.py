@@ -102,7 +102,7 @@ def delete_user(request):
             rem = User.objects.get(username=form.cleaned_data['username'])
             if rem is not None:
                 rem.delete()
-                return redirect('main')
+                return render(request,'users/user_removed.html')
             else:
                 pass
         ## Send some error messgae
