@@ -1,8 +1,9 @@
 <footer class = "footer ccblue">
-        <p class="cc2psmall">Recently viewed</p>
+    {%  if user.is_authenticated %}
+        <p class="cc2plarge">Recently viewed</p>
         <div id="recent-views" class="recent-views-container">
         </div>
-
+    {%  endif %}
     <div class="information cc2psmall">
         <p>Contact us</p>
         <div class = "infromationfont cclightgray">
