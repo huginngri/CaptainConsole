@@ -88,6 +88,8 @@ def create_order(profile, billing, payment, cart_details):
 def confirm_order(request):
     order = Order.objects.get(id=request.POST['order'])
     order.confirmed = True
+    order.save()
+    return JsonResponse({'message': 'success'})
 
 
 @login_required()
