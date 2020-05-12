@@ -50,7 +50,7 @@ def view_cart(request):
             for order_product in order_products:
                 order_product.delete()
             order.delete()
-    context = {'cart': cart_detail, 'products': products, 'total_price': total}
+    context = {'cart': cart_details, 'products': products, 'total_price': total}
     return render(request, 'carts/cart_details.html', context)
 
 def remove_from_cart(request, product_id):
