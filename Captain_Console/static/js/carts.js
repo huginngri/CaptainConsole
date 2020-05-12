@@ -137,7 +137,12 @@ function sortit(sel) {
     let keep_arr =[]
     let name_or_price = sel.options[sel.selectedIndex].value
     let n_o_p = 0
-    let k = name_or_price.localeCompare("price")
+    let r = 0
+    let reverse_check = name_or_price.localeCompare("name_reverse") * name_or_price.localeCompare("price_reverse")
+    if (reverse_check === 0){
+        r = 1
+    }
+    let k = name_or_price.localeCompare("price") * name_or_price.localeCompare("price_reverse")
     if (k === 0) {
         n_o_p = 1
     }
@@ -160,6 +165,9 @@ function sortit(sel) {
     }
     else {
         new_arr.sort()
+    }
+    if (r === 1){
+        new_arr.reverse()
     }
     let order_arr = []
     while (all_products.firstChild){
