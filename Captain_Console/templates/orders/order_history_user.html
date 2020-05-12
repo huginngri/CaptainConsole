@@ -5,7 +5,7 @@
     <div id="order_review_div" class = "popup ccwhite" >
         <h1 id="order_header" class = cc2phuge>Order history</h1>
         <table>
-        <p>Orders ({{ orders.no }})</p>
+        <p>Orders ({{ total_orders }})</p>
         <tr>
             <th>Order number</th>
             <th>Buyer</th>
@@ -15,12 +15,20 @@
         </tr>
         {% for order in orders %}
             <tr>
-                <td>{{ order.id }}</td>
-                <td>{{ order.payment.card_holder  }}</td>
-                <td>{{ order.address  }}</td>
-                <td>{{ order.total  }}</td>
-                <td>{{ order.status  }}</td>
+                <td>{{ order.order.id }}</td>
+                <td>{{ order.order.payment.card_holder  }}</td>
+                <td>{{ order.order.address  }}</td>
+                <td>{{ order.order.total  }}</td>
+                <td>{{ order.order.status  }}</td>
+                <td> <button onclick="viewOrderDetail({{ order.order.id }})">View order detail</button> </td>
             </tr>
+
+            <ul id="list_for_{{ order.order.id }}">
+                {% for product in order.products %}
+                <li> <img src="{{ product.image.image}}"> {{ product.product.name }} {{ product.quantity }} <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'review-product' product.product.id%}'" id="cclightgray">Review product</button></li>
+                {% endfor %}
+            </ul>
+
         {% endfor %}
         </table>
 

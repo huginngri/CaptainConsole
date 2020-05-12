@@ -203,3 +203,7 @@ function sortit(sel) {
 
 
 }
+
+function viewOrderDetail(orderNumber){
+    the_product_list_element = document.getElementById("list_for_"+orderNumber)
+}
