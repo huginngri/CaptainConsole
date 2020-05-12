@@ -34,6 +34,7 @@ def view_cart(request):
     cart_details = CartDetails.objects.filter(cart=cart)
     products = []
     total = 0
+
     for cart_detail in cart_details:
         product = Product.objects.filter(id=cart_detail.product.id).first()
         products.append(product)
