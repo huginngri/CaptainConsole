@@ -205,5 +205,16 @@ function sortit(sel) {
 }
 
 function viewOrderDetail(orderNumber){
+    background = document.getElementById("background_"+orderNumber)
     the_product_list_element = document.getElementById("list_for_"+orderNumber)
+    the_product_list_element.classList.add("popupsmall","absolute","ccwhite")
+    background.classList.add("cover")
+}
+
+function closeDiv(orderNumber){
+    background = document.getElementById("background_"+orderNumber)
+    the_product_list_element = document.getElementById("list_for_"+orderNumber)
+    the_product_list_element.classList.remove("popupsmall", "absolute","ccwhite")
+    background.classList.remove("cover")
+
 }
