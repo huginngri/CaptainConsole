@@ -138,7 +138,7 @@ def order_history(request):
             order_details = OrderProduct.objects.filter(order=order)
             for order_detail in order_details:
                 product = Product.objects.get(id=order_detail.product_id)
-                total += product.price
+                total += product.price*order_detail.quantity
             order.total = str(round(total, 2)) + " $"
             order.address = order.billing.street_name + " " + order.billing.house_number + ", " + order.billing.zip + ", " + order.billing.country
             total = 0
