@@ -6,7 +6,7 @@
     <div class = "product_container">
 
         {% for product in  products%}
-            {% include 'products/product_cart.html' with product=product %}
+            {% include 'carts/product_cart.html' with product=product %}
         {% endfor %}
     </div>
     <button type="button" class="ccorange proceed-to-checkout-btn btn " id="ccwhite" onclick="location.href='{% url 'checkout' %}'">CHECKOUT</button>
