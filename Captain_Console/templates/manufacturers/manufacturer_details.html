@@ -24,11 +24,13 @@
     </div>
     </div>
 
-        <select  id="sort" onchange="sortit({images:'{{products}}'})">
-            <option>price</option>
-            <option>rate</option>
+        <select  id="sort" onchange="sortit(this)">
+            <option value="name">name (ascending)</option>
+            <option value="name_reverse">name (descending)</option>
+            <option value="price">price (ascending)</option>
+            <option value="price_reverse">price (descending)</option>
         </select>
-    <div class="product_container">
+    <div class="product_container" id="container_for_products">
     {% for product in  products%}
         {% include 'products/product_overview.html' with product=product %}
     {% endfor %}

@@ -68,10 +68,8 @@ filler2{
     height: 500px;
     border: 5px solid #F1AA19;
     box-shadow: 0px 7px rgba(0, 0, 0, 0.5);
-
 }
 .imageproductdetails{
-    padding:2%;
     width: 30%;
     margin-right: 1%;
     margin-left: 5%;
@@ -79,7 +77,7 @@ filler2{
 }
 
 .textproductdetails{
-    padding:100px;
+    padding-top: 100px;
     position: relative;
     width:53%;
     margin-left: 1%;
@@ -119,14 +117,32 @@ filler2{
 
 }
 
-
+.box_inside{
+    position: relative;
+    display: block;
+    justify-content: center;
+    box-sizing: border-box;
+}
+.below_box{
+    height: 60px;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+.product_boxes_inside{
+    width: 100%;
+    height: 280px;
+}
 .product_boxes{
-    height: 300px;
+    height: 340px;
+    overflow: hidden;
+
 }
 .product_boxes:hover {
     transform: scale(1.1);;
     box-shadow: 6px 10px rgba(0, 0, 0, 0.5);
     border: 3px solid #F1AA19;
+
 }
 
 .console_boxes{
@@ -161,7 +177,6 @@ filler2{
     width: 18%;
     border: 3px solid #F1AA19;
     padding: 10px;
-
 }
 
 
@@ -220,26 +235,7 @@ filler2{
     padding-top: 10px;
 }
 
-@media screen and (max-width: 1000px) {
 
-    .product_boxes {
-        margin-left: 5%;
-        margin-right: 5%;
-        width: 40%;
-    }
-
-    .console_boxes {
-        margin-left: 5%;
-        margin-right: 5%;
-        width: 40%;
-    }
-    .review_boxes{
-        margin-left: 5%;
-        margin-right: 5%;
-        width: 40%;
-    }
-
-}
 
 
 
@@ -263,9 +259,48 @@ filler2{
     }
 
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1000px) {
+    .popup{
+        width: 70%;
+    }
 
     .product_boxes {
+        height:320px;
+        margin-left: 5%;
+        margin-right: 5%;
+        width: 40%;
+    }
+
+    .console_boxes {
+        margin-left: 5%;
+        margin-right: 5%;
+        width: 40%;
+    }
+    .review_boxes{
+        margin-left: 5%;
+        margin-right: 5%;
+        width: 40%;
+    }
+    .productdetails{
+        height: 300px;
+        padding-top: 20px;
+    }
+    .image_box{
+        height:200px;
+    }
+    .below_box{
+        height: 40px;
+
+    }
+
+}
+@media screen and (max-width: 700px) {
+    .popup{
+        width: 100%;
+    }
+
+    .product_boxes {
+        height:320px;
         margin-left: auto;
         margin-right: auto;
         width: 80%;
@@ -286,6 +321,17 @@ filler2{
         margin-left: auto;
         margin-right: auto;
         width: 80%;
+    }
+    .productdetails{
+        height: 250px;
+        padding-top: 20px;
+    }
+    .image_box{
+        height:150px;
+    }
+    .below_box{
+        height: 40px;
+
     }
 
 }

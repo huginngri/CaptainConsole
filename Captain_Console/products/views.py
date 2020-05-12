@@ -90,6 +90,7 @@ def get_product_by_id(request, id, consolename=None, name=None):
         new_item_view.save()
     return render(request, 'products/product_details.html', product)
 
+@login_required()
 def create_product(request):
 
     if request.user.is_superuser:
@@ -107,6 +108,7 @@ def create_product(request):
             'form2': ImageForm()
         })
 
+@login_required()
 def update_product(request, id):
 
     if request.user.is_superuser:
@@ -122,6 +124,7 @@ def update_product(request, id):
             'form': ProductForm(instance=the_product)
         })
 
+@login_required()
 def delete_product(request, id):
 
     if request.user.is_superuser:

@@ -3,13 +3,14 @@
 
     <div class="checkout_boxes box ccwhite">
         <div class = "containerimage">
-            <a href="/products/{{ product.id }}"></a>
-            <img class = "mediumimages" src="{% static   product.productimage_set.last.image  %}" style="height:150px;">
+            <a href="/products/{{ product.product.id }}"></a>
+            <img class = "mediumimages" src="{% static   product.product.productimage_set.last.image  %}" style="height:150px;">
         </div>
         <div class="button_and_text">
             <div class="info">
-                <h4 class="name ccbluemedium center">{{ product.name }}</h4>
-                <p class="price ccbluesmall center">{{ product.price }} $</p>
+                <h4 class="name ccbluemedium center">{{ product.product.name }}</h4>
+                <p class="price ccbluesmall center">{{ product.product.price }} $</p>
+                <p class="price ccbluesmall center">Quantity: {{ product.quantity }}</p>
             </div>
         </div>
     </div>
