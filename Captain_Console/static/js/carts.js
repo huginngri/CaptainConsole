@@ -80,7 +80,9 @@ function place_order(order) {
             let confirm_button = document.getElementById('confirm_order')
             back_button.remove()
             confirm_button.remove()
+
             let a = document.createElement('a')
+            a.setAttribute("class", "btn btn-danger login-btn");
             a.setAttribute('href', '/')
             a.textContent = 'Close'
             let div = document.getElementById('order_review_div')
