@@ -5,11 +5,21 @@
     <h1 class="homepagetext cc2phuge">Your Cart</h1>
     <div class = "product_container">
 
-        {% for product in  products%}
+        {% for product in  products %}
             {% include 'carts/product_cart.html' with product=product %}
         {% endfor %}
     </div>
-    <button type="button" class="ccorange proceed-to-checkout-btn btn " id="ccwhite" onclick="location.href='{% url 'checkout' %}'">CHECKOUT</button>
+    <div class = "product_container">
+        <div class = "review_boxes box ccwhite">
+            <h4 class="ccbluelarge center bold" id = "cart_total">Total price: {{ total_price }}$</h4>
+            {%  if totla_price > 0%}
+                <button type="button" class="ccorange proceed-to-checkout-btn btn " id="ccwhite" onclick="location.href='{% url 'checkout' %}'">CHECKOUT</button>
+            {%  endif%}
+
+        </div>
+    </div>
+
+
 
 {% endblock %}
 

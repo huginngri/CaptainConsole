@@ -83,7 +83,9 @@ function place_order(order) {
             let confirm_button = document.getElementById('confirm_order')
             back_button.remove()
             confirm_button.remove()
+
             let a = document.createElement('a')
+            a.setAttribute("class", "btn btn-danger login-btn");
             a.setAttribute('href', '/')
             a.textContent = 'Close'
             let div = document.getElementById('order_review_div')
@@ -111,6 +113,43 @@ function go_back(billing, payment) {
         },
         error: function (xhr, status, error) {
             console.log('eitthvað vilaust')
+        }
+    });
+}
+
+function remove_from_cart(product_id) {
+    console.log('hilmar er belja')
+    $.ajax({
+        type: "DELETE",
+        method: 'DELETE',
+        url: '/carts/remove/' + product_id,
+        success: function (response) {
+            console.log(response);
+        },
+        error: function (xhr, status, error) {
+            console.log('eitthvað vilaust');
+        }
+    });
+}
+
+function change_quantity(product_id) {
+    console.log(product_id)
+    let inp = document.getElementById(product_id)
+    let new_amount = inp.value
+    $.ajax({
+        type: "POST",
+        method: 'POST',
+        url: '/carts/change_amount/' + product_id,
+        data: {
+            new_amount: new_amount
+        },
+        success: function (response) {
+            let price = document.getElementById('cart_total');
+            let total = parseFloat(response['total_price']);
+            price.textContent = 'Total price: ' + total + '$';
+        },
+        error: function (xhr, status, error) {
+            console.log('eitthvað vilaust');
         }
     });
 }

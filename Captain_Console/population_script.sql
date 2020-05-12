@@ -111,3 +111,5 @@ TRUNCATE TABLE orders_orderproduct CASCADE ;
 TRUNCATE TABLE orders_order CASCADE ;
 TRUNCATE TABLE orders_billing CASCADE ;
 TRUNCATE TABLE orders_payment CASCADE ;
+
+UPDATE  products_product SET stock=10 WHERE id>0;

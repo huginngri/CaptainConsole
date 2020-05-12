@@ -3,22 +3,28 @@
 
     <div class=" product_boxes box ccwhite">
         {% if filter == 'Consoles' %}
-            <div class = "containerimage" onclick="location.href='{% url 'consoles-one-console' product.manufacturer product.console_type product.id %}'">
+            <div class = "containerimage" onclick="location.href='{% url 'consoles-one-console' product.product.manufacturer product.product.console_type product.product.id %}'">
         {% elif filter == 'Games' %}
-            <div class = "containerimage" onclick="location.href='{% url 'consoles-one-game' product.manufacturer product.console_type product.id %}'">
+            <div class = "containerimage" onclick="location.href='{% url 'consoles-one-game' product.product.manufacturer product.product.console_type product.product.id  %}'">
         {% elif filter == 'Accessories' %}
-            <div class = "containerimage" onclick="location.href='{% url 'consoles-one-accessory' product.manufacturer product.console_type product.id %}'">
+            <div class = "containerimage" onclick="location.href='{% url 'consoles-one-accessory' product.product.manufacturer product.product.console_type product.product.id  %}'">
         {% else %}
-            <div class = "containerimage" onclick="location.href='{% url 'consoles-one' product.manufacturer product.console_type product.id %}'">
+            <div class = "containerimage" onclick="location.href='{% url 'consoles-one' product.product.manufacturer product.product.console_type product.product.id  %}'">
         {% endif %}
-            <a href="/products/{{ product.id }}"></a>
-            <button type="submit" class="remove-cart-btn btn btn-default ">x</button>
-            <img class = "mediumimages" src="{% static   product.productimage_set.last.image  %}" style="height:150px;">
+            <a href="/products/{{ product.product.id }}"></a>
+            <img class = "mediumimages" src="{% static   product.product.productimage_set.last.image  %}" style="height:150px;">
         </div>
         <div class="button_and_text">
             <div class="info">
-                <h4 class="name ccbluemedium center">{{ product.name }}</h4>
-                <p class="price ccbluesmall center">{{ product.price }} $</p>
+                <h4 class="name ccbluemedium center">{{ product.product.name }}</h4>
+                <p class="price ccbluesmall center">{{ product.product.price }} $</p>
+            </div>
+            <div class="btn-group product_container" role="group" aria-label="...">
+
+                <label class = ccbluesmall>Quantity: </label>
+                <input type="number" id='{{ product.product.id }}' name="quantity" min="1" max="{{ product.product.stock }}"  value='{{product.quantity}}' onchange="change_quantity({{ product.product.id }})">
+                <button type="button" class="btn btn-default btn-xs" onclick="remove_from_cart({{ product.product.id }})">x</button>
+
             </div>
         </div>
     </div>
