@@ -55,12 +55,12 @@ $("#recent-views").ready(function () {
             success: function (response) {
                 var recentproducts = response.data.map(d => {
                     return `
-                                    <a class=" product_boxes box ccwhite" href="/products/${d.id}">
+                                    <a class=" product_boxes box ccwhite" href="/products/${d.id}" name="${d.name}" price="${d.price}">
                                         <img class = "mediumimages" src="${d.image}" style="height:150px;">
                                     <div class="button_and_text">
                                         <div class="info">
-                                            <h4 class="name">${d.name}</h4>
-                                            <p class="price">${d.price} $</p>
+                                            <h4 class="name" name="${d.name}">${d.name}</h4>
+                                            <p class="price" name="${d.name}">${d.price} $</p>
                                         </div>
                                     </div>
                                 </a>

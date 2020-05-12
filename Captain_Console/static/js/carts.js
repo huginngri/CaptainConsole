@@ -131,8 +131,36 @@ function remove_from_cart(product_id) {
 }
 
 
-function sortit(images) {
-    x=5
-    console.log(x)
+function sortit(sel) {
+    let all_products = document.getElementById("container_for_products")
+    let the_arr = []
+    let keep_arr =[]
+    let name_or_price = sel.options[sel.selectedIndex].value
+    let n_o_p = 0
+    let k = name_or_price.localeCompare("price")
+    if (k === 0) {
+        n_o_p = 1
+    }
+    for (let x = 0; x<all_products.children.length; x++){
+        keep_arr.push(all_products.children[x])
+        let j = all_products.children[x].children[1].children[0].children[n_o_p].getAttribute("name")
+        the_arr.push(j)
+    }
+    let new_arr = []
+    for (let x = 0; x<the_arr.length; x++){
+        new_arr.push(the_arr[x])
+    }
+    new_arr.sort()
+    let order_arr = []
+    while (all_products.firstChild){
+        all_products.removeChild(all_products.lastChild)
+    }
+    for (let x=0; x<new_arr.length; x++){
+        order_arr.push(new_arr.indexOf(the_arr[x]))
+    }
+    for (let x=0; x<order_arr.length;x++){
+        all_products.appendChild(keep_arr[order_arr[x]])
+    }
+
 
 }
