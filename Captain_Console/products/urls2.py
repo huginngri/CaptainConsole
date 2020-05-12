@@ -3,7 +3,8 @@ from . import views
 
 urlpatterns = [
     # http://localhost:8000/products
-    path('', views.frontpage, name="frontpage")
+    path('', views.frontpage, name="frontpage"),
+
 
 
 ]

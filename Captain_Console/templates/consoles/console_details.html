@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
     <div class="console_info cc2phuge">
         <h4 class = "homepagetext bold" onclick="location.href='{% url 'consoles-product' console.manufacturer console.name %}'">{{ console.name }}</h4>
     </div>
@@ -11,22 +12,28 @@
         {% else %}
             <div class="product_boxes box ccwhite centered-text">
                 <h3 onclick="location.href='{% url 'consoles-consoles' console.manufacturer console.name %}'">Consoles</h3>
+                <img class="product_details_images" src="/static/images/console.jpeg" alt="console_img">
             </div>
             <div class="product_boxes box ccwhite centered-text">
                 <h3 onclick="location.href='{% url 'consoles-games' console.manufacturer console.name %}'">Games</h3>
+                <img class="product_details_images" src="/static/images/game.jpeg" alt="console_img">
             </div>
             <div class="product_boxes box ccwhite centered-text">
                 <h3 onclick="location.href='{% url 'consoles-accessories' console.manufacturer console.name %}'">Accessories</h3>
+                <img class="product_details_images" src="/static/images/accessories.png" alt="console_img">
             </div>
-
         {% endif %}
     </div>
 
     <div class = "informationbar ccblue">
         <h1 class="homepagetext cc2phuge">Scroll down to shop <br>↓</h1>
     </div>
-
+    <select onchange="sortit()" id="sort">
+        <option>price</option>
+        <option>rate</option>
+    </select>
     <div class="product_container">
+
     {% for product in  products%}
         {% include 'products/product_overview.html' with product=product filter=filter %}
     {% endfor %}

@@ -1,4 +1,12 @@
 
+.hugeimages{
+    display: block;
+    margin:auto;
+    width: 80%;
+    object-fit: scale-down;
+    max-height: 250px;
+}
+
 .largeimages{
     display: block;
     margin-left: auto;
@@ -15,7 +23,6 @@
     object-fit: scale-down;
 }
 
-
 .smallimages{
     with:150px;
 }
@@ -30,4 +37,29 @@
     object-fit: scale-down;
 }
 
+.manufacturer_images{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    max-height: 50%;
+    object-fit: scale-down;
+}
+
+.display-none{
+    display:none;
+}
+
+.iconimages{
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 10px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.smalliconimages{
+    height: 35px;
+    border-radius: 50%;
+}
 

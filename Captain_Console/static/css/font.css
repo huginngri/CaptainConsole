@@ -1,31 +1,43 @@
 
 /*font*/
+.center{
+    text-align: center;
+}
+
 .cc2phuge{
     color: #F1AA19;
     font-family: 'Press Start 2P', cursive;
-    font-size: 5rem;
+    font-size: 4rem;
     text-align: center;
-    text-shadow: 1px 7px rgba(0, 0, 0, 0.5);;
+    text-shadow: 1px 3px rgba(0, 0, 0, 0.5);;
 }
 
 .cc2plarge{
-        color: #F1AA19;
-        font-family: 'Press Start 2P', cursive;
-        font-size: xx-large;
-        text-align: center;
+    color: #F1AA19;
+    font-family: 'Press Start 2P', cursive;
+    font-size: xx-large;
+    text-align: center;
 }
 
 .cc2pmedium{
+    color: #F1AA19;
+    font-family: 'Press Start 2P', cursive;
+    font-size: medium;
+}
+
+.cc2pmedium_shadow{
         color: #F1AA19;
         font-family: 'Press Start 2P', cursive;
         font-size: medium;
+        text-align: center;
+        text-shadow: 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 .cc2psmall{
-        color: #F1AA19;
-        font-family: 'Press Start 2P', cursive;
-        font-size: small;
-        padding: 10px
+    color: #F1AA19;
+    font-family: 'Press Start 2P', cursive;
+    font-size: small;
+    padding: 10px
 }
 
 
@@ -37,19 +49,24 @@
 }
 
 .ccbluelarge{
-        color: #51647D;
-        font-size: xx-large;
-        text-align: center;
+    color: #51647D;
+    font-size: xx-large;
+    text-align: center;
 }
 .ccbluemedium{
-        color: #51647D;
-        font-size: large;
-        text-align: center;
+    color: #51647D;
+    font-size: large;
+    text-align: center;
 }
 .ccbluesmall{
-        color: #51647D;
-        font-size: medium;
-        text-align: center;
+    color: #51647D;
+    font-size: medium;
+    text-align: center;
+}
+.ccbluebold{
+    color: #51647D;
+    font-size: medium;
+    font-weight: bold;
 }
 
 .infromationfont{
@@ -65,4 +82,10 @@
 
 .centered-text{
     text-align:center;
+}
+
+@media screen and (max-width: 700px) {
+    .cc2phuge{
+        font-size: x-large;
+    }
 }

@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
     <div    style=" background-image: url({% static   product.productimage_set.first.image  %});
                     background-repeat: no-repeat;
                     background-attachment: fixed;
                     background-size: cover;">
         <div class = "product_container">
             <div class=" imageproductdetails productdetails ccwhite">
-                <img class = "product_details_images" src="{% static   product.productimage_set.first.image  %}">
+                <img id="myImage" class = "product_details_images" src="{% static   product.productimage_set.first.image  %}">
+
                 <div class="button_and_text">
                     <div class="info">
                         <p class="ccbluelarge">{{ product.console_type }}</p>
@@ -29,12 +31,14 @@
         </div>
         <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'update-product' product.id%}'" id="cclightgray">update</button>
         <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'delete-product' product.id%}'" id="cclightgray">delete</button>
+        <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'review-product' product.id%}'" id="cclightgray">review</button>
+
 
         {#  Here are all the images posted.      #}
         <div class =  "informationbar ccblue">
                 {% for image in product.productimage_set.all %}
-                    <div class = "product_images_container" >
-                        <img class="largeimages" src="{% static   image.image  %}">
+                    <div class = "image_box box ccwhite" >
+                        <img class="hugeimages" src="{% static   image.image  %}" onclick="document.getElementById('myImage').src='{% static   image.image  %}'">
                     </div>
                 {% endfor %}
         </div>
@@ -42,7 +46,14 @@
         <div class = "product_container filler2">
             <h1 class="homepagetext cc2phuge">Reviews</h1>
         </div>
+        <div class="product_container" id="comment_section">
+            {% for comment in comments %}
+                {% include 'products/review_details.html' with comment=comment profile=profile%}
+            {% endfor %}
+        </div>
     </div>
+
+
 
     {# <div class="btn-group buy-button" role="group" aria-label="..."> #}
     {# <button type="button" class="btn btn-default">Buy</button> #}

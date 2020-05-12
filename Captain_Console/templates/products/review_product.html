@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="popup ccwhite">
-    <h1 class="cc2plarge">Update product</h1>
+    <h1>Update product</h1>
     <form class="form form-horizontal" method="post">
         {% csrf_token %}
         {{ form }}
-        <input type="submit" class="btn btn-primary" value="Create" />
+        <input type="submit" class="btn btn-primary" value="Review" />
     </form>
-    </div>
 
 {% endblock %}

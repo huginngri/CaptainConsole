@@ -12,9 +12,8 @@ def index(request):
     return render(request, 'manufacturers/index.html', context)
 
 def get_manufacturer_by_name(request, name):
-
     manufacturer = Manufacturer.objects.get(name=name)
-    context = {'manufacturer': manufacturer, 'products': Product.objects.filter(manufacturer=manufacturer.id), 'consoles': Console.objects.filter(manufacturer=manufacturer.id)}
+    context = {'manufacturer': manufacturer, 'products': list(Product.objects.filter(manufacturer=manufacturer.id)), 'consoles': Console.objects.filter(manufacturer=manufacturer.id)}
     return render(request, 'manufacturers/manufacturer_details.html', context)
 
 def create_manufacturer(request):
@@ -23,6 +22,6 @@ def create_manufacturer(request):
         if form1.is_valid():
             form1.save()
             return redirect('frontpage')
-    return render(request, 'products/create_product.html', {
+    return render(request, 'manufacturers/create_manufacturer.html', {
         'form1': ManufacturerForm()
     })

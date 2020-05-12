@@ -69,20 +69,22 @@ def display_order(request, billing, payment):
     profile = Customer.objects.filter(user=request.user).first()
     cart = Cart.objects.filter(user=profile.id).first()
     cart_details = CartDetails.objects.filter(cart=cart)
-    order, total = create_order(profile, billing, payment, cart_details)
-    context = {'order': order, 'total_price': total}
+    order, products, total = create_order(profile, billing, payment, cart_details)
+    context = {'order': order,'products': products, 'total_price': total}
     return render(request, 'orders/order_review.html', context)
 
 def create_order(profile, billing, payment, cart_details):
     order = Order(customer=profile, billing=billing, payment=payment)
     order.save()
     total = 0
+    products = []
     for cart_detail in cart_details:
         product = Product.objects.get(id=cart_detail.product_id)
+        products.append(product)
         total += product.price
         order_product = OrderProduct(order=order, product=product)
         order_product.save()
-    return order, total
+    return order, products, total
 
 @login_required()
 def confirm_order(request):
