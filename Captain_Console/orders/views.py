@@ -131,21 +131,22 @@ def update_order(request, order_id):
     else:
         return render(request, "products/frontpage.html")
 
+@login_required()
 def order_history(request):
-
-
     total = 0
     no_of_orders = 0
     total_no_of_orders = 0
     total_sold = 0
-
     if not request.user.is_superuser:
         profile = Customer.objects.filter(user=request.user).first()
         orders = Order.objects.filter(customer=profile)
+        final_orders = []
         for order in orders:
+            prods= []
             order_details = OrderProduct.objects.filter(order=order)
             for order_detail in order_details:
                 product = Product.objects.get(id=order_detail.product_id)
+                prods.append({'product': product, 'quantity': order_detail.quantity, 'image': ProductImage.objects.filter(product=product).first()})
                 total += product.price*order_detail.quantity
             order.total = str(round(total, 2)) + " $"
             order.address = order.billing.street_name + " " + order.billing.house_number + ", " + order.billing.zip + ", " + order.billing.country
@@ -155,9 +156,8 @@ def order_history(request):
             else:
                 order.status = "Open"
             no_of_orders += 1
-
-        orders.no = no_of_orders
-        context = {'orders': orders}
+            final_orders.append({'order': order, 'products': prods})
+        context = {'orders': final_orders, 'total_orders': no_of_orders, 'profile': profile}
         return render(request, "orders/order_history_user.html", context)
     else:
         all_orders = Order.objects.all()
@@ -165,7 +165,7 @@ def order_history(request):
             order_details = OrderProduct.objects.filter(order=order)
             for order_detail in order_details:
                 product = Product.objects.get(id=order_detail.product_id)
-                total += product.price
+                total += product.price*order_detail.quantity
             order.total = str(round(total, 2)) + " $"
             order.address = order.billing.street_name + " " + order.billing.house_number + ", " + order.billing.zip + ", " + order.billing.country
             total_sold += total

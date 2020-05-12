@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.models import User
 
 # Create your views here.
 from carts.models import Cart
@@ -100,19 +101,23 @@ def change_password(request):
 
 @login_required()
 def delete_user(request):
-    if not request.user.is_superuser():
+
+    if not request.user.is_superuser:
         return messages.error(request, 'Error')
     if request.method == 'POST':
         form = RemoveUser(request.POST)
+
         if form.is_valid():
-            rem = User.objects.get(username=form.cleaned_data['id'])
+            rem = User.objects.get(username=form.cleaned_data['username'])
             if rem is not None:
                 rem.delete()
-                return redirect('users')
+                return render(request,'users/user_removed.html')
             else:
-                messages.error(request, 'Error')
+                pass
+        ## Send some error messgae
     else:
         form = RemoveUser()
+    
     context = {'form': form, 'profile': Customer.objects.get(user=request.user)}
     return render(request, 'users/remove_user.html', context)
 

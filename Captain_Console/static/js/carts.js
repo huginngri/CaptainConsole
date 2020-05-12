@@ -205,3 +205,8 @@ function buy_product(product_id) {
     add_to_cart_js(product_id);
     setTimeout(function(){ window.location = '/carts/view'; }, 1000);
 }
+
+function viewOrderDetail(orderNumber){
+    the_product_list_element = document.getElementById("list_for_"+orderNumber)
+
+}
