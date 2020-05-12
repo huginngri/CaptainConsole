@@ -107,7 +107,7 @@ INSERT INTO products_productimage (image, product_id) VALUES ('images/TMNT-ninte
 INSERT INTO products_productimage (image, product_id) VALUES ('images/mario-bros-nintendo-nes.jpg', 7);
 INSERT INTO products_productimage (image, product_id) VALUES ('images/nintendo-nes.jpg', 8);
 
-TRUNCATE TABLE orders_orderproduct;
+TRUNCATE TABLE orders_orderproduct CASCADE ;
 TRUNCATE TABLE orders_order CASCADE ;
 TRUNCATE TABLE orders_billing CASCADE ;
 TRUNCATE TABLE orders_payment CASCADE ;
