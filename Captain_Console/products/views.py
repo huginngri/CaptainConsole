@@ -16,17 +16,6 @@ from django.http import JsonResponse
 from users.models import Customer
 
 def frontpage(request):
-    if 'search_filter' in request.GET:
-        search_filter = request.GET['search_filter']
-        products = [{
-            'id': x.id,
-            'name': x.name,
-            'description': x.description,
-            'price': x.price,
-            'rating': x.rating,
-            'image': ProductImage.objects.filter(product=x.id).first().image
-        } for x in Product.objects.filter(name__icontains=search_filter)]
-        return JsonResponse({'data': products})
 
     profile = None
     if request.user.is_authenticated:
@@ -53,7 +42,9 @@ def recent_view(request):
         return JsonResponse({'data': recent_products})
 
 def index(request):
+
     if 'search_filter' in request.GET:
+        print("in this if statement")
         search_filter = request.GET['search_filter']
         list_of_manu = Manufacturer.objects.filter(name__icontains=search_filter)
         list_of_cons = Console.objects.filter(name__icontains=search_filter)
@@ -70,6 +61,12 @@ def index(request):
             'price': x.price,
             'image': ProductImage.objects.filter(product=x.id).first().image
         } for x in Product.objects.filter(Q(name__icontains=search_filter) | Q(console_type__in=cons_id )| Q(manufacturer__in=manu_id))]
+
+        # if len(products)==0:
+            # print("in this fun")
+            # response = redirect('order_history')
+            # return response
+        
         return JsonResponse({'data': products})
 
     context = {'products': Product.objects.all().order_by('name')}

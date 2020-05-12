@@ -6,7 +6,7 @@ $(document).ready(function() {
             url: '/products?search_filter=' + searchText,
             type: 'GET',
             success: function (resp) {
-                var newHtml = resp.data.map(d => {
+                let newHtml = resp.data.map(d => {
                     return `
                                 <div class="product_boxes box ccwhite">
                                         <a href="/products/${d.id}"></a>
@@ -18,10 +18,8 @@ $(document).ready(function() {
                                             <p class="price">${d.price} $</p>
                                         </div>
                                         <div class="btn-group buy-button" role="group" aria-label="...">
-                            
                                               <button type="button" class="buy-btn">Buy</button>
                                               <button type="button" class="cart-btn ccorange" onclick="add_to_cart_js(${d.id})">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
-    
                                         </div>
                                     </div>
                                 </div>
@@ -29,7 +27,6 @@ $(document).ready(function() {
                 });
                 newHtml[0] = `<div class=product_container>` + newHtml[0]
                 newHtml[-1] += `</div>`
-                console.log(newHtml)
                 $('main').html(newHtml.join(''));
                 $('#search-box').val('');
 
