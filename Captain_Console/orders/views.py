@@ -19,15 +19,20 @@ from django.http import JsonResponse
 
 # Create your views here.
 @login_required()
-def checkout(request):
+def checkout(request, save=False):
     profile = Customer.objects.filter(user=request.user).first()
-    if request.method == "POST":
+    if request.method == "POST" and save != True:
         form_billing = BillingFormOrder(data=request.POST)
         form_payment = PaymentFormOrder(data=request.POST)
         if form_billing.is_valid() and form_payment.is_valid():
             new_billing = form_billing.save()
             new_payment = form_payment.save()
             return display_order(request, new_billing, new_payment)
+    elif save == True:
+        render(request, "orders/checkout.html", {
+            "form_billing": BillingFormOrder(instance=profile.billing, data=request.POST),
+            "form_payment": PaymentFormOrder(instance=profile.payment, data=request.POST)
+        })
     return render(request, "orders/checkout.html", {
         "form_billing": BillingFormOrder(instance=profile.billing),
         "form_payment": PaymentFormOrder(instance=profile.payment),
@@ -44,7 +49,7 @@ def save_billing(request):
             new_billing = form_billing.save()
             profile.billing = new_billing
             profile.save()
-            return redirect('checkout')
+            return checkout(request, True)
     return render(request, "orders/checkout.html", {
         "form_billing": BillingForm(instance=profile.billing),
         "form_payment": PaymentForm(instance=profile.payment, data=request.POST),
@@ -60,7 +65,7 @@ def save_payment(request):
             new_payment = form_payment.save()
             profile.payment = new_payment
             profile.save()
-            return redirect('checkout')
+            return checkout(request, True)
     return render(request, "orders/checkout.html", {
         "form_billing": BillingForm(instance=profile.billing, data=request.POST),
         "form_payment": PaymentForm(instance=profile.payment),
@@ -160,7 +165,7 @@ def order_history(request):
             order_details = OrderProduct.objects.filter(order=order)
             for order_detail in order_details:
                 product = Product.objects.get(id=order_detail.product_id)
-                total += product.price
+                total += product.price*order_detail.quantity
             order.total = str(round(total, 2)) + " $"
             order.address = order.billing.street_name + " " + order.billing.house_number + ", " + order.billing.zip + ", " + order.billing.country
             total_sold += total

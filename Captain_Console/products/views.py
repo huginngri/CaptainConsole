@@ -10,30 +10,15 @@ from orders.models import Order, OrderProduct
 from products.forms.product_form import ProductForm
 from products.forms.image_form import ImageForm
 from products.forms.review_form import ReviewForm
-
 from products.models import Product, ProductImage, ProductHistory, Review
-
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 
-from users.forms.profile_form import ProfileForm
-from users.forms.user_form import UserForm
 from users.models import Customer
 
-
 def frontpage(request):
-    if 'search_filter' in request.GET:
-        search_filter = request.GET['search_filter']
-        products = [{
-            'id': x.id,
-            'name': x.name,
-            'description': x.description,
-            'price': x.price,
-            'rating': x.rating,
-            'image': ProductImage.objects.filter(product=x.id).first().image
-        } for x in Product.objects.filter(name__icontains=search_filter)]
-        return JsonResponse({'data': products})
+
     profile = None
     if request.user.is_authenticated:
         profile = Customer.objects.get(user=request.user)
@@ -59,7 +44,9 @@ def recent_view(request):
         return JsonResponse({'data': recent_products})
 
 def index(request):
+
     if 'search_filter' in request.GET:
+        print("in this if statement")
         search_filter = request.GET['search_filter']
         list_of_manu = Manufacturer.objects.filter(name__icontains=search_filter)
         list_of_cons = Console.objects.filter(name__icontains=search_filter)
@@ -76,6 +63,12 @@ def index(request):
             'price': x.price,
             'image': ProductImage.objects.filter(product=x.id).first().image
         } for x in Product.objects.filter(Q(name__icontains=search_filter) | Q(console_type__in=cons_id )| Q(manufacturer__in=manu_id))]
+
+        # if len(products)==0:
+            # print("in this fun")
+            # response = redirect('order_history')
+            # return response
+        
         return JsonResponse({'data': products})
 
     context = {'products': Product.objects.all().order_by('name')}
@@ -101,44 +94,47 @@ def get_product_by_id(request, id, consolename=None, name=None):
 
 @login_required()
 def create_product(request):
-    #TODO check superuser
-    if request.method == "POST":
-        form1 = ProductForm(data=request.POST)
-        if form1.is_valid():
-            the_cons = Console.objects.get(pk=form1.instance.console_type.id)
-            form1.instance.manufacturer = Manufacturer.objects.get(pk=the_cons.manufacturer.id)
-            form2 = ImageForm(data=request.POST)
-            form2.instance.product = form1.instance
-            form2.save()
-            return redirect('products')
-    return render(request, 'products/create_product.html', {
-        'form1': ProductForm(),
-        'form2': ImageForm()
-    })
+
+    if request.user.is_superuser:
+        if request.method == "POST":
+            form1 = ProductForm(data=request.POST)
+            if form1.is_valid():
+                the_cons = Console.objects.get(pk=form1.instance.console_type.id)
+                form1.instance.manufacturer = Manufacturer.objects.get(pk=the_cons.manufacturer.id)
+                form2 = ImageForm(data=request.POST)
+                form2.instance.product = form1.instance
+                form2.save()
+                return redirect('products')
+        return render(request, 'products/create_product.html', {
+            'form1': ProductForm(),
+            'form2': ImageForm()
+        })
 
 @login_required()
 def update_product(request, id):
-    #TODO check superuser
-    the_product = Product.objects.filter(pk=id).first()
-    if request.method == "POST":
-        form = ProductForm(data=request.POST,instance=the_product)
-        if form.is_valid():
-            the_cons = Console.objects.get(pk=form.instance.console_type.id)
-            form.instance.manufacturer = Manufacturer.objects.get(pk=the_cons.manufacturer.id)
-            form.save()
-            return redirect('products')
-    return render(request, 'products/update_product.html', {
-        'form': ProductForm(instance=the_product)
-    })
+
+    if request.user.is_superuser:
+        the_product = Product.objects.filter(pk=id).first()
+        if request.method == "POST":
+            form = ProductForm(data=request.POST,instance=the_product)
+            if form.is_valid():
+                the_cons = Console.objects.get(pk=form.instance.console_type.id)
+                form.instance.manufacturer = Manufacturer.objects.get(pk=the_cons.manufacturer.id)
+                form.save()
+                return redirect('products')
+        return render(request, 'products/update_product.html', {
+            'form': ProductForm(instance=the_product)
+        })
 
 @login_required()
 def delete_product(request, id):
-    #TODO check superuser
-    the_product = Product.objects.filter(pk=id).first()
-    the_product.delete()
-    return render(request, 'products/delete_product.html', {
-        'form': ProductForm(instance=the_product)
-    })
+
+    if request.user.is_superuser:
+        the_product = Product.objects.filter(pk=id).first()
+        the_product.delete()
+        return render(request, 'products/delete_product.html', {
+            'form': ProductForm(instance=the_product)
+        })
 
 @login_required()
 def review_product(request, id):
