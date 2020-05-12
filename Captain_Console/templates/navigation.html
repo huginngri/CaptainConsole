@@ -40,11 +40,7 @@
                       <li><a id = "cclightgray" href='{% url 'register' %}'>Register</a></li>
                   {%  endif %}
             </ul>
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 5d7e511bf626bcebc700593dbf8a5d595d9ee883
             <ul class="nav navbar-nav">
                 {% if user.is_superuser %}
                 <li><button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'delete_user' %}'" id = "cclightgray">Delete user</button></li>
