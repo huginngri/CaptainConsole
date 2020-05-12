@@ -124,16 +124,16 @@ function remove_from_cart(product_id) {
         method: 'DELETE',
         url: '/carts/remove/' + product_id,
         success: function (response) {
-            console.log(response)
+            console.log(response);
         },
         error: function (xhr, status, error) {
-            console.log('eitthvað vilaust')
+            console.log('eitthvað vilaust');
         }
     });
 }
 
 function change_quantity(product_id) {
-    console.log('hilmar er belja')
+    console.log(product_id)
     let inp = document.getElementById(product_id)
     let new_amount = inp.value
     $.ajax({
@@ -144,10 +144,12 @@ function change_quantity(product_id) {
             new_amount: new_amount
         },
         success: function (response) {
-            console.log(response)
+            let price = document.getElementById('cart_total');
+            let total = parseFloat(response['total_price']);
+            price.textContent = 'Total price: ' + total + '$';
         },
         error: function (xhr, status, error) {
-            console.log('eitthvað vilaust')
+            console.log('eitthvað vilaust');
         }
     });
 }
