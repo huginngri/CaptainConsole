@@ -144,19 +144,29 @@ function sortit(sel) {
     for (let x = 0; x<all_products.children.length; x++){
         keep_arr.push(all_products.children[x])
         let j = all_products.children[x].children[1].children[0].children[n_o_p].getAttribute("name")
+        if (n_o_p ===1){
+            j = parseFloat(j)
+        }
         the_arr.push(j)
     }
     let new_arr = []
     for (let x = 0; x<the_arr.length; x++){
         new_arr.push(the_arr[x])
     }
-    new_arr.sort()
+    if (n_o_p === 1) {
+        new_arr.sort(function (a, b) {
+            return a - b;
+        });
+    }
+    else {
+        new_arr.sort()
+    }
     let order_arr = []
     while (all_products.firstChild){
         all_products.removeChild(all_products.lastChild)
     }
     for (let x=0; x<new_arr.length; x++){
-        order_arr.push(new_arr.indexOf(the_arr[x]))
+        order_arr.push(the_arr.indexOf(new_arr[x]))
     }
     for (let x=0; x<order_arr.length;x++){
         all_products.appendChild(keep_arr[order_arr[x]])
