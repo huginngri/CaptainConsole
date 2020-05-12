@@ -12,7 +12,7 @@
     <div class = "product_container">
         <div class = "review_boxes box ccwhite">
             <h4 class="ccbluelarge center bold" id = "cart_total">Total price: {{ total_price }}$</h4>
-            {%  if totla_price > 0%}
+            {%  if total_price > 0%}
                 <button type="button" class="ccorange proceed-to-checkout-btn btn " id="ccwhite" onclick="location.href='{% url 'checkout' %}'">CHECKOUT</button>
             {%  endif%}
 
