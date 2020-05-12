@@ -18,7 +18,7 @@ def add_or_count_cart(request):
         customer = Customer.objects.filter(user=request.user).first()
         cart = Cart.objects.filter(user=customer.id).first()
         product = Product.objects.get(id=request.POST['product_id'])
-        cart_detail = CartDetails(cart = cart, product=product)
+        cart_detail = CartDetails(cart=cart, product=product)
         cart_detail.save()
         return JsonResponse({'count': len(CartDetails.objects.filter(cart=cart.id))})
     elif request.method == 'GET':
