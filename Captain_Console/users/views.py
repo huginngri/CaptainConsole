@@ -5,7 +5,6 @@ from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 
-
 # Create your views here.
 from carts.models import Cart
 from users.forms.payment_form import PaymentForm
@@ -14,7 +13,6 @@ from users.forms.billing_form import BillingForm
 from users.forms.user_form import UserForm
 from users.forms.delete_user import RemoveUser
 from users.models import Customer
-
 
 def register(request):
     if request.method == "POST":
