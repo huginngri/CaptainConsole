@@ -122,3 +122,9 @@ def update_order(request, order_id):
              })
     else:
         return render(request, "products/frontpage.html")
+
+def order_history(request):
+    profile = Customer.objects.filter(user=request.user).first()
+    orders = Order.objects.filter(customer=profile)
+    context = {'orders': orders}
+    return render(request, "orders/order_history.html", context)

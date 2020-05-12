@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="order_review_div" class = "popup ccwhite" >
+        <h1 id="order_header" class = cc2phuge>Order history</h1>
+        {% for order in orders %}
+            <p>ORDER!</p>
+            <p>{{ order.id }}</p>
+        {% endfor %}
+    </div>
+{% endblock %}
