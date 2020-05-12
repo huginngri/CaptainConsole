@@ -50,8 +50,16 @@
     display:none;
 }
 
-.smallimages{
-    margin: 10px;
-    height: 30px;
+.iconimages{
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 10px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.smalliconimages{
+    height: 35px;
+    border-radius: 50%;
 }
 
