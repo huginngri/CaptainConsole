@@ -85,6 +85,10 @@
     text-align:center;
 }
 
+.medium{
+    font-size:medium;
+}
+
 @media screen and (max-width: 700px) {
     .cc2phuge{
         font-size: x-large;

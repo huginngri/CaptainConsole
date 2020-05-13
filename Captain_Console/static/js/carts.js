@@ -106,17 +106,25 @@ function remove_from_cart(product_id, child) {
         url: '/carts/' + product_id,
         success: function (response) {
             console.log(response);
-            let container = document.getElementById("cart_products")
-            for (let x = 0; x < container.children.length; x++){
-                if (container.children[x] === deletediv){
-                    container.removeChild(container.children[x]);
-                    break;
-                }
+
+            if (response['total_price'] === null) {
+                location.reload()
             }
-            calculate_cart()
-            let price = document.getElementById('cart_total');
-            let total = parseFloat(response['total_price']);
-            price.textContent = 'Total price: ' + total + '$';
+            else {
+
+                let container = document.getElementById("cart_products")
+                for (let x = 0; x < container.children.length; x++){
+                    if (container.children[x] === deletediv){
+                        container.removeChild(container.children[x]);
+                        break;
+                    }
+                }
+                calculate_cart()
+                let price = document.getElementById('cart_total');
+                let total = parseFloat(response['total_price']);
+                price.textContent = 'Total price: ' + total + '$';
+
+            }
         },
         error: function (xhr, status, error) {
             console.log('eitthvað vilaust');

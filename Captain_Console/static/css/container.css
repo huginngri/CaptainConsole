@@ -170,7 +170,7 @@ filler2{
 
 .review_boxes{
     padding: 10px;
-    min-height: 250px;
+    /*min-height: 250px;*/
     overflow: hidden;
 
 }
