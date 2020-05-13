@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from manufacturers.models import Manufacturer
 from users.models import Customer
@@ -15,6 +16,9 @@ class Product(models.Model):
     type = models.CharField(max_length=255, null=True)
     rating = models.FloatField(default=0)
     stock = models.IntegerField(default=1)
+    on_sale = models.BooleanField(default=False)
+    discount = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(99)])
+    discount_price = models.FloatField(default=0)
     def __str__(self):
         return self.name
 

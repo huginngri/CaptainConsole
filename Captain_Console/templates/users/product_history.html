@@ -9,7 +9,12 @@
                                 <div class="button_and_text">
                                     <div class="info">
                                         <h4 class="name" name="{{product.name}}">{{product.name}}</h4>
-                                        <p class="price" name="{{product.price}}">{{product.price}} $</p>
+                                        {% if product.on_sale == True %}
+                                          <p class="price" name="{{product.discount_price}}">{{product.discount_price}} $</p>
+                                        {% else %}
+                                       <p class="price" name="{{product.price}}">{{product.price}} $</p>
+                                        {% endif %}
+
                                     </div>
                                 </div>
                             </a>

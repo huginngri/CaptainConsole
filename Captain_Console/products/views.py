@@ -21,7 +21,22 @@ def frontpage(request):
     profile = None
     if request.user.is_authenticated:
         profile = Customer.objects.get(user=request.user)
-    context = {'products': Product.objects.all().order_by('name'), 'profile': profile}
+    recent_orders = Order.objects.all().order_by('-id')[:20]
+    kk = []
+    for order in recent_orders:
+        kk.append(OrderProduct.objects.filter(order=order))
+    s = dict()
+    for h in kk:
+        for g in h:
+            if g.product in s.keys():
+                s[g.product] += g.quantity
+            else:
+                s[g.product] = g.quantity
+    final_list = sorted(s, key=s.get, reverse=True)[:3]
+    final_final_list = []
+    for prod in final_list:
+        final_final_list.append(prod.id)
+    context = {'products_new': Product.objects.all().order_by('-id')[:3] , 'products_hot': Product.objects.filter(id__in=final_final_list), 'products_deal': Product.objects.filter(on_sale=True).order_by('-discount')[:3],profile: 'profile'}
     return render(request, 'products/frontpage.html', context)
 
 @login_required()
@@ -37,6 +52,9 @@ def recent_view(request):
             'name': x.name,
             'description': x.description,
             'price': x.price,
+            'on_sale': x.on_sale,
+            'discount': x.discount,
+            'dicount_price': x.discount_price,
             'rating': x.rating,
             'image': ProductImage.objects.filter(product=x.id).first().image
         } for x in the_products]
@@ -60,6 +78,9 @@ def index(request):
             'name': x.name,
             'description': x.description,
             'price': x.price,
+            'on_sale': x.on_sale,
+            'discount': x.discount,
+            'dicount_price': x.discount_price,
             'image': ProductImage.objects.filter(product=x.id).first().image
         } for x in Product.objects.filter(Q(name__icontains=search_filter) | Q(console_type__in=cons_id )| Q(manufacturer__in=manu_id))]
 
@@ -100,6 +121,8 @@ def create_product(request):
             if form1.is_valid() and form2.is_valid():
                 the_cons = Console.objects.get(pk=form1.instance.console_type.id)
                 form1.instance.manufacturer = Manufacturer.objects.get(pk=the_cons.manufacturer.id)
+                if form1.instance.on_sale == True:
+                    form1.instance.discount_price = form1.instance.price*(1-form1.instance.discount/100)
                 form1.save()
                 form2.instance.product = form1.instance
                 form2.save()
@@ -119,6 +142,8 @@ def update_product(request, id):
             if form.is_valid():
                 the_cons = Console.objects.get(pk=form.instance.console_type.id)
                 form.instance.manufacturer = Manufacturer.objects.get(pk=the_cons.manufacturer.id)
+                if form.instance.on_sale == True:
+                    form.instance.discount_price = form.instance.price*(1-form.instance.discount/100)
                 form.save()
                 return redirect('products')
         return render(request, 'products/update_product.html', {
