@@ -97,7 +97,7 @@ def create_product(request):
         if request.method == "POST":
             form1 = ProductForm(data=request.POST)
             form2 = ImageForm(data=request.POST)
-            if form1.is_valid() && form2.is_valid():
+            if form1.is_valid() and form2.is_valid():
                 the_cons = Console.objects.get(pk=form1.instance.console_type.id)
                 form1.instance.manufacturer = Manufacturer.objects.get(pk=the_cons.manufacturer.id)
                 form1.save()
