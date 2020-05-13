@@ -93,14 +93,14 @@ def get_product_by_id(request, id, consolename=None, name=None):
 
 @login_required()
 def create_product(request):
-
     if request.user.is_superuser:
         if request.method == "POST":
             form1 = ProductForm(data=request.POST)
-            if form1.is_valid():
+            form2 = ImageForm(data=request.POST)
+            if form1.is_valid() and form2.is_valid():
                 the_cons = Console.objects.get(pk=form1.instance.console_type.id)
                 form1.instance.manufacturer = Manufacturer.objects.get(pk=the_cons.manufacturer.id)
-                form2 = ImageForm(data=request.POST)
+                form1.save()
                 form2.instance.product = form1.instance
                 form2.save()
                 return redirect('products')
