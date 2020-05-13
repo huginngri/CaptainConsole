@@ -49,6 +49,7 @@ def recent_view(request):
             the_products.append(get_object_or_404(Product, pk=y.product.id))
         recent_products = [{
             'id': x.id,
+            'stock': x.stock,
             'name': x.name,
             'description': x.description,
             'price': x.price,
@@ -77,6 +78,7 @@ def index(request):
             'id': x.id,
             'name': x.name,
             'description': x.description,
+            'stock': x.stock,
             'price': x.price,
             'on_sale': x.on_sale,
             'discount': x.discount,
@@ -100,6 +102,7 @@ def get_product_by_id(request, id, consolename=None, name=None):
     full_reviews = [{
         'star': x.star,
         'comment': x.comment,
+        'id': x.id,
         'image': get_object_or_404(Customer, pk=x.customer_id).image,
         'name': get_object_or_404(Customer, pk=x.customer_id).user.username
     }for x in reviews]

@@ -223,26 +223,26 @@ function closeDiv(orderNumber) {
 }
 
 
-function calculateRating(id) {
-    console.log("what");
-    star_div = document.getElementById("star_" + id);
-    rating = star_div.name
-    let star = document.createElement("span");
-    star.setAttribute("class", "glyphicon glyphicon-star");
-    let empty_star = document.createElement("span");
-    empty_star.setAttribute("class", "glyphicon glyphicon-star-empty");
-     // <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-    let total_rating = 5;
-    while (rating > 0){
-        star_div.appendChild(star);
-        total_rating -= 1;
-        rating -= 1;
-    }
-    while(total_rating > 0){
-        star_div.appendChild(empty_star);
-        total_rating -= 1;
+function calculateRating(id, rating) {
+        console.log("here1")
+        star_div = document.getElementById("star_" + id);
 
-    }
+        // <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+        let total_rating = 5;
+        while (rating > 0) {
+            let star = document.createElement("span");
+             star.setAttribute("class", "glyphicon glyphicon-star");
+            star_div.appendChild(star);
+            total_rating -= 1;
+            rating -= 1;
+        }
+        while (total_rating > 0) {
+            let empty_star = document.createElement("span");
+            empty_star.setAttribute("class", "glyphicon glyphicon-star-empty");
+            star_div.appendChild(empty_star);
+            total_rating -= 1;
+            console.log("here 3")
+        }
 }
 
 function closeErrorDiv() {

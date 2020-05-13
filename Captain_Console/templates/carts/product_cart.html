@@ -12,7 +12,7 @@
             <div class = "containerimage" onclick="location.href='{% url 'consoles-one' product.product.manufacturer product.product.console_type product.product.id  %}'">
         {% endif %}
             <a href="/products/{{ product.product.id }}"></a>
-            <img class = "mediumimages" src="{% static   product.product.productimage_set.last.image  %}" style="height:150px;">
+            <img class = "mediumimages" src="{{ product.product.productimage_set.last.image  }}" style="height:150px;">
         </div>
         <div class="button_and_text">
             <div class="info">
