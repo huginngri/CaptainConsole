@@ -142,5 +142,5 @@ def product_history(request):
             'rating': x.rating,
             'image': ProductImage.objects.filter(product=x.id).first().image
         } for x in the_products]
-        return render(request, 'users/product_history.html', {'products': recent_products})
+        return render(request, 'users/product_history.html', {'products': recent_products, 'profile': Customer.objects.get(user=request.user)})
 

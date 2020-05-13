@@ -129,7 +129,8 @@ def update_order(request, order_id):
             form_payment = PaymentUpdateFormOrder(instance=payment)
         return render(request, "orders/checkout.html", {
             "form_billing": form_billing,
-            "form_payment": form_payment
+            "form_payment": form_payment,
+            'profile': profile
              })
     else:
         return render(request, 'products/frontpage.html',
@@ -184,5 +185,5 @@ def order_history(request):
 
         all_orders.total_sold = str(round(total_sold, 2))+ " $"
         all_orders.no = total_no_of_orders
-        context = {'orders': all_orders}
+        context = {'orders': all_orders, 'profile': Customer.objects.get(user=request.user)}
         return render(request, "orders/order_history_admin.html", context)

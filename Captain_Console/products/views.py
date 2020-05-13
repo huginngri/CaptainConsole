@@ -92,8 +92,10 @@ def index(request):
             # return response
         
         return JsonResponse({'data': products})
-
-    context = {'products': Product.objects.all().order_by('name')}
+    profile = None
+    if request.user.is_authenticated:
+        profile = Customer.objects.get(user=request.user)
+    context = {'products': Product.objects.all().order_by('name'), 'profile': profile}
     return render(request, 'products/index.html', context)
 
 def get_product_by_id(request, id, consolename=None, name=None):
@@ -132,7 +134,8 @@ def create_product(request):
                 return redirect('products')
         return render(request, 'products/create_product.html', {
             'form1': ProductForm(),
-            'form2': ImageForm()
+            'form2': ImageForm(),
+            'profile': Customer.objects.get(user=request.user)
         })
 
 @login_required()
@@ -150,7 +153,8 @@ def update_product(request, id):
                 form.save()
                 return redirect('products')
         return render(request, 'products/update_product.html', {
-            'form': ProductForm(instance=the_product)
+            'form': ProductForm(instance=the_product),
+            'profile': Customer.objects.get(user=request.user)
         })
 
 @login_required()
@@ -160,7 +164,8 @@ def delete_product(request, id):
         the_product = Product.objects.filter(pk=id).first()
         the_product.delete()
         return render(request, 'products/delete_product.html', {
-            'form': ProductForm(instance=the_product)
+            'form': ProductForm(instance=the_product),
+            'profile': Customer.objects.get(user=request.user)
         })
 
 @login_required()
@@ -186,7 +191,8 @@ def review_product(request, id):
                 product.save()
                 return redirect('frontpage')
             return render(request, 'products/review_product.html', {
-                'form': ReviewForm()
+                'form': ReviewForm(),
+                'profile': profile
             })
         else:
             return render(request, 'products/frontpage.html',
@@ -196,4 +202,4 @@ def review_product(request, id):
         return render(request, 'products/frontpage.html', {'profile': profile, 'error': True, 'message': 'You can only review each product once'})
 
 def search_no_response(request):
-    return render(request, 'products/product_search_error.html')
+    return render(request, 'products/product_search_error.html', {'profile': Customer.objects.get(user=request.user)})
