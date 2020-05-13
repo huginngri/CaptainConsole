@@ -251,3 +251,4 @@ function closeErrorDiv() {
     the_product_list_element.classList.remove("popupsmall", "absolute", "ccwhite")
     background.classList.remove("cover")
 }
+

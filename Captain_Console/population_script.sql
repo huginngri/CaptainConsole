@@ -94,7 +94,7 @@ DELETE FROM products_product WHERE id=26;
 
 INSERT INTO manufacturers_manufacturer(name, description, image) VALUES('Nintendo', 'Epic manufacturer', 'images/nintendo-logo.jpg');
 INSERT INTO consoles_console (name, manufacturer_id) VALUES('Nintendo NES', 3);
-INSERT INTO products_product (name, description, price, rating, console_type_id, manufacturer_id, type) VALUES ('Teenage mutant ninja turtles', 'A very cool game', 10.1, 4.5, 3, 3, 'game');
+INSERT INTO products_product (name, description, price, rating, console_type_id, manufacturer_id, type, stock, discount, on_sale,discount_price) VALUES ('Teenage mutant ninja turtles', 'A very cool game', 10.1, 4.5, 10, 10, 'game', 10, 10, True, 10);
 
 
 INSERT INTO products_product (name, description, price, rating, console_type_id, manufacturer_id, type) VALUES ('Mario bros', 'A classic game', 12, 4, 3, 3, 'game');

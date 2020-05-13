@@ -131,10 +131,18 @@ def delete_product(request, id):
 
     if request.user.is_superuser:
         the_product = Product.objects.filter(pk=id).first()
-        the_product.delete()
+        #the_product.delete()
         return render(request, 'products/delete_product.html', {
-            'form': ProductForm(instance=the_product)
+            'form': ProductForm(instance=the_product),
+            'product': the_product
         })
+
+@login_required()
+def delete_confirm(request, id):
+    the_product = Product.objects.filter(pk=id).first()
+    the_product.delete()
+    return redirect('products')
+
 
 @login_required()
 def review_product(request, id):
