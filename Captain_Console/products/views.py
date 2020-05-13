@@ -170,3 +170,6 @@ def review_product(request, id):
 
 def search_no_response(request):
     return render(request, 'products/product_search_error.html')
+
+def about(request):
+    return render(request, 'products/about_us.html')
