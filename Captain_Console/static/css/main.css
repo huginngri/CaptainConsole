@@ -277,6 +277,10 @@ input[id^='id_'], div[id*=' id_']{
     margin-top:10%;
 }
 
+.manufacturer_description{
+    margin-top:2%;
+}
+
 /*footer------*/
 * {
     margin: 0;
