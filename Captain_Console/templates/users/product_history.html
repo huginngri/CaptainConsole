@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+    <div class = " product_container" id="container_for_products">
+        {% for product in  products %}
+
+            <a class=" product_boxes box ccwhite" href="/products/{{product.id}}">
+                                    <img class = "mediumimages" src="{{product.image}}" style="height:150px;">
+                                <div class="button_and_text">
+                                    <div class="info">
+                                        <h4 class="name" name="{{product.name}}">{{product.name}}</h4>
+                                        <p class="price" name="{{product.price}}">{{product.price}} $</p>
+                                    </div>
+                                </div>
+                            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

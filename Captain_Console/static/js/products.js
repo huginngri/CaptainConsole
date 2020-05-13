@@ -57,7 +57,7 @@ if ($("#recent-views").length) {
             url: "/products/recent",
             type: "GET",
             success: function (response) {
-                if (response.length > 0) {
+                if (response.data.length > 0) {
                     var recentproducts = response.data.map(d => {
                         return `
                                 <a class=" product_boxes box ccwhite" href="/products/${d.id}">

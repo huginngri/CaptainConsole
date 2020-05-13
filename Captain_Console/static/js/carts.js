@@ -170,7 +170,7 @@ function sortit(sel) {
     }
     for (let x = 0; x<all_products.children.length; x++){
         keep_arr.push(all_products.children[x])
-        let j = all_products.children[x].children[1].children[0].children[n_o_p].getAttribute("name")
+        let j = all_products.children[x].children[0].children[1].children[0].children[n_o_p].getAttribute("name")
         if (n_o_p ===1){
             j = parseFloat(j)
         }
@@ -248,6 +248,6 @@ function calculateRating(id) {
 function closeErrorDiv() {
     background = document.getElementById("error_background")
     the_product_list_element = document.getElementById("error_div")
-    the_product_list_element.classList.remove("popupsmall", "absolute", "ccwhite")
+    the_product_list_element.style = "display:none"
     background.classList.remove("cover")
 }
