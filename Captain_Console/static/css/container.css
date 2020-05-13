@@ -42,9 +42,9 @@ filler2{
 }
 
 .manufacturer_info {
-    height: 400px;
+    height: 300px;
     text-align:center;
-    margin-bottom:10%;
+    margin-bottom:5%;
     box-shadow:2px 2px;
 }
 
@@ -328,6 +328,10 @@ filler2{
     opacity:0.4;
 }
 
+/*recently viewed-----*/
+.recently_viewed{
+    padding:5%;
+}
 
 
 
@@ -340,9 +344,9 @@ filler2{
     }
 
     .console_boxes {
-        margin-left: 5%;
+        /*margin-left: 5%;*/
         margin-right: 5%;
-        width: 40%;
+        /*width: 40%;*/
     }
     .review_boxes{
         margin-left: 5%;
