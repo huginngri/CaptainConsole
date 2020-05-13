@@ -10,16 +10,16 @@
         {% if  filter != 'none' %}
             <h3>{{ filter }}</h3>
         {% else %}
-            <div class="product_boxes box ccwhite centered-text">
-                <h3 onclick="location.href='{% url 'consoles-consoles' console.manufacturer console.name %}'">Consoles</h3>
+            <div class="product_boxes box ccwhite centered-text" onclick="location.href='{% url 'consoles-consoles' console.manufacturer console.name %}'">
+                <h3>Consoles</h3>
                 <img class="product_details_images" src="/static/images/console.jpeg" alt="console_img">
             </div>
-            <div class="product_boxes box ccwhite centered-text">
-                <h3 onclick="location.href='{% url 'consoles-games' console.manufacturer console.name %}'">Games</h3>
+            <div class="product_boxes box ccwhite centered-text" onclick="location.href='{% url 'consoles-games' console.manufacturer console.name %}'">
+                <h3>Games</h3>
                 <img class="product_details_images" src="/static/images/game.jpeg" alt="console_img">
             </div>
-            <div class="product_boxes box ccwhite centered-text">
-                <h3 onclick="location.href='{% url 'consoles-accessories' console.manufacturer console.name %}'">Accessories</h3>
+            <div class="product_boxes box ccwhite centered-text" onclick="location.href='{% url 'consoles-accessories' console.manufacturer console.name %}'">
+                <h3>Accessories</h3>
                 <img class="product_details_images" src="/static/images/accessories.png" alt="console_img">
             </div>
         {% endif %}
