@@ -214,7 +214,7 @@ function viewOrderDetail(orderNumber){
     the_product_list_element = document.getElementById("list_for_"+orderNumber)
 }
 
-function display_review_button() {
+/**function display_review_button() {
     let review_button = document.getElementById('give_review_button');
     let product_id = review_button.name
     $.ajax({
@@ -231,4 +231,4 @@ function display_review_button() {
             console.log('eitthvað vilaust');
         }
     });
-}
+}*/
