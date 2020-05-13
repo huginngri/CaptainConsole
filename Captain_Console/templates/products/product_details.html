@@ -43,16 +43,7 @@
         <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'update-product' product.id%}'" id="cclightgray">update</button>
         <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'delete-product' product.id%}'" id="cclightgray">delete</button>
         <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'review-product' product.id%}'" id="cclightgray">review</button>
-
-
-        {#  Here are all the images posted.      #}
-        <div class =  "informationbar ccblue">
-                {% for image in product.productimage_set.all %}
-                    <div class = "image_box box ccwhite" >
-                        <img class="hugeimages" src="{% static   image.image  %}" onclick="document.getElementById('myImage').src='{% static   image.image  %}'">
-                    </div>
-                {% endfor %}
-        </div>
+    
         {# for comments on the products #}
         <div class = "product_container filler2">
             <h1 class="homepagetext cc2phuge">Reviews</h1>
