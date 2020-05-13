@@ -12,16 +12,16 @@
             <th>User</th>
             <th>Billing Address</th>
             <th>Amount</th>
-            <th>Order confirmed</th>
         </tr>
         {% for order in orders %}
-            <tr>
-                <td>{{ order.id }}</td>
-                <td>{{ order.customer.user  }}</td>
-                <td>{{ order.address  }}</td>
-                <td>{{ order.total  }}</td>
-                <td>{{ order.confirmed  }}</td>
-            </tr>
+            {% if order.confirmed %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.customer.user  }}</td>
+                    <td>{{ order.address  }}</td>
+                    <td>{{ order.total  }}</td>
+                </tr>
+            {% endif %}
         {% endfor %}
         </table>
         <button class="profilebuttons btn btn-primary" onclick="location.href='{% url 'frontpage' %}'">Close</button>
