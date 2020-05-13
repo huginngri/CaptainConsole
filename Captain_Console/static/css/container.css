@@ -106,8 +106,8 @@ filler2{
 
 
 .box{
-    display: block;
-    justify-content: center;
+    /*display: block;*/
+    /*justify-content: center;*/
     margin-top: 50px;
     margin-bottom: 50px;
     box-shadow: 3px 5px rgba(0, 0, 0, 0.5);
@@ -146,6 +146,8 @@ filler2{
 }
 
 .console_boxes{
+    margin: 2%;
+    width: 25%;
     height: 200px;
 }
 
@@ -261,6 +263,9 @@ filler2{
 }
 
 .footer{
+    /*height needs to equal the margin top so that its sticky*/
+    height:50%;
+    margin-top:10%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -296,8 +301,9 @@ filler2{
     text-align:center;
 }
 
-#id_username{
+#id_username {
     margin: 0 auto;
+}
 /*review -----------------------------------*/
 
 
