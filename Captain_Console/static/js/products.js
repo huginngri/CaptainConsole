@@ -41,36 +41,40 @@ $(document).ready(function() {
             }
         })
     })
-
-
-    $("#recent-views").ajax({
-        url: "/products/recent",
-        type: "GET",
-        success: function (response) {
-            var recentproducts = response.data.map(d => {
-                return `
-                                    <a class=" product_boxes box ccwhite" href="/products/${d.id}">
-                                        <img class = "mediumimages" src="${d.image}" style="height:150px;">
-                                    <div class="button_and_text">
-                                        <div class="info">
-                                            <h4 class="name" name="${d.name}">${d.name}</h4>
-                                            <p class="price" >${d.price} $</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            `
-            })
-            recentproducts[0] = `<div class=product_container>` + recentproducts[0]
-            recentproducts[-1] += `</div>`
-            console.log(recentproducts)
-            $("#recent-views").html(recentproducts.join(""))
-        },
-        error: function (xhr, status, error) {
-            console.log('error')
-            console.error(error)
-        }
-    })
-
 })
+if ($("#recent-views").length) {
+    $("#recent-views").ready(function () {
+
+        $.ajax({
+            url: "/products/recent",
+            type: "GET",
+            success: function (response) {
+                var recentproducts = response.data.map(d => {
+                    return `
+                                <a class=" product_boxes box ccwhite" href="/products/${d.id}">
+                                    <img class = "mediumimages" src="${d.image}" style="height:150px;">
+                                <div class="button_and_text">
+                                    <div class="info">
+                                        <h4 class="name" name="${d.name}">${d.name}</h4>
+                                        <p class="price" >${d.price} $</p>
+                                    </div>
+                                </div>
+                            </a>
+                        `
+                })
+                recentproducts[0] = `<div class=product_container>` + recentproducts[0]
+                recentproducts[-1] += `</div>`
+                console.log(recentproducts)
+                $("#recent-views").html(recentproducts.join(""))
+            },
+            error: function (xhr, status, error) {
+                console.log('error')
+                console.error(error)
+            }
+        })
+    })
+}
+
+
 
 

@@ -18,7 +18,6 @@ from django.http import JsonResponse
 from users.models import Customer
 
 def frontpage(request):
-
     profile = None
     if request.user.is_authenticated:
         profile = Customer.objects.get(user=request.user)
@@ -165,4 +164,4 @@ def review_product(request, id):
             return render(request, 'products/frontpage.html',
                           {'profile': profile, 'error': True, 'message': 'You must have ordered the product to review'})
     else:
-        return render(request, 'products/frontpage.html', {'profile': profile, 'error': True, 'message': 'Please fill out user information to send out review'})
+        return render(request, 'products/frontpage.html', {'profile': profile, 'error': True, 'message': 'You can only review each product once'})

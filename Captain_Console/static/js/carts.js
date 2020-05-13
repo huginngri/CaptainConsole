@@ -221,3 +221,9 @@ function closeDiv(orderNumber) {
     the_product_list_element.classList.remove("popupsmall", "absolute", "ccwhite")
     background.classList.remove("cover")
 }
+function closeErrorDiv() {
+    background = document.getElementById("error_background")
+    the_product_list_element = document.getElementById("error_div")
+    the_product_list_element.classList.remove("popupsmall", "absolute", "ccwhite")
+    background.classList.remove("cover")
+}
