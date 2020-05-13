@@ -129,7 +129,8 @@ def update_order(request, order_id):
             "form_payment": form_payment
              })
     else:
-        return render(request, "products/frontpage.html")
+        return render(request, 'products/frontpage.html',
+                      {'profile': profile, 'error': True, 'message': 'You shall not pass'})
 
 @login_required()
 def order_history(request):

@@ -70,6 +70,9 @@
 
 .smalliconimages{
     height: 35px;
+    width: 35px;
+    object-fit: fill;
+    overflow: hidden;
     border-radius: 50%;
 }
 

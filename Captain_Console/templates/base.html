@@ -12,36 +12,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
         integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/main.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
     <link rel="stylesheet" href="{% static 'css/images.css' %}" />
     <link rel="stylesheet" href="{% static 'css/color.css' %}" />
     <link rel="stylesheet" href="{% static 'css/font.css' %}" />
     <link rel="stylesheet" href="{% static 'css/container.css' %}" />
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <style>
-    ::-webkit-scrollbar {
-        width: 20px;
-        opacity: 0;
-    }
 
-    /* Track */
-    ::-webkit-scrollbar-track {
-        opacity: 0;
-    }
-
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-        opacity: 1;
-        background: #F1AA19;
-        border-radius: 10px;
-    }
-
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-        opacity: 1;
-        background: #C4C4C4;
-    }
-    </style>
 </head>
 {%  if user.is_authenticated %}
     <body class = "cclightblue" onload="calculate_cart()" style="background-image: url('https://wallpaperplay.com/walls/full/1/d/d/101186.jpg');

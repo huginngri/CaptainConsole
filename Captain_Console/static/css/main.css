@@ -173,9 +173,7 @@ a:link{
     justify-content: center;
     width: 300px;
 }
-.helptext{
-    display:none;
-}
+
 
 .login-btn{
     display: block;
@@ -230,7 +228,7 @@ input[id^='id_'], div[id*=' id_']{
     width:100%;
 }
 .helptext{
-    display:block;
+    background-color: gray;
 }
 
 
