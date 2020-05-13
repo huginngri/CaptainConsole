@@ -57,8 +57,9 @@ if ($("#recent-views").length) {
             url: "/products/recent",
             type: "GET",
             success: function (response) {
-                var recentproducts = response.data.map(d => {
-                    return `
+                if (response.length > 0) {
+                    var recentproducts = response.data.map(d => {
+                        return `
                                 <a class=" product_boxes box ccwhite" href="/products/${d.id}">
                                     <img class = "mediumimages" src="${d.image}" style="height:150px;">
                                 <div class="button_and_text">
@@ -69,10 +70,13 @@ if ($("#recent-views").length) {
                                 </div>
                             </a>
                         `
-                })
-                recentproducts[0] = `<div class=product_container>` + recentproducts[0]
-                recentproducts[-1] += `</div>`
-                $("#recent-views").html(recentproducts.join(""))
+
+                    })
+                    recentproducts[0] = `<div class=product_container>` + recentproducts[0]
+                    recentproducts[-1] += `</div>`
+                    $("#recent-views").html(recentproducts.join(""))
+
+                }
             },
             error: function (xhr, status, error) {
                 console.log('error')
