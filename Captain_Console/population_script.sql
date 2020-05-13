@@ -78,9 +78,9 @@ INSERT INTO products_productimage (image, product_id) VALUES ('images/gta-san-an
 
 INSERT INTO products_productimage (image, product_id) VALUES ('images/madagascar1.jpeg', 3);
 INSERT INTO products_productimage (image, product_id) VALUES ('images/gta1jpeg', 4);
-INSERT INTO products_productimage (image, product_id) VALUES ('images/gta2jpeg', 4);
+INSERT INTO products_productimage (image, product_id) VALUES ('images/gta2jpeg', 8);
 INSERT INTO products_productimage (image, product_id) VALUES ('images/mariobros.jpeg', 7);
-INSERT INTO products_productimage (image, product_id) VALUES ('images/mariobros2.jpeg', 7);
+INSERT INTO products_productimage (image, product_id) VALUES ('images/mariobros2.jpeg', 8);
 INSERT INTO products_productimage (image, product_id) VALUES ('images/nintendo_nes.jpeg', 8);
 INSERT INTO products_productimage (image, product_id) VALUES ('images/nintendo_nes.png', 8);
 
