@@ -12,17 +12,17 @@
             <th>Buyer</th>
             <th>Billing Address</th>
             <th>Amount</th>
-            <th>Order status</th>
         </tr>
         {% for order in orders %}
-            <tr >
-                <td>{{ order.order.id }}</td>
-                <td>{{ order.order.payment.card_holder  }}</td>
-                <td>{{ order.order.address  }}</td>
-                <td>{{ order.order.total  }}</td>
-                <td>{{ order.order.status  }}</td>
-                <td> <button class="btn btn-primary" onclick="viewOrderDetail({{ order.order.id }})">View order detail</button> </td>
-            </tr>
+            {% if order.confirmed %}
+                <tr >
+                    <td>{{ order.order.id }}</td>
+                    <td>{{ order.order.payment.card_holder  }}</td>
+                    <td>{{ order.order.address  }}</td>
+                    <td>{{ order.order.total  }}</td>
+                    <td> <button class="btn btn-primary" onclick="viewOrderDetail({{ order.order.id }})">View order detail</button> </td>
+                </tr>
+            {% endif %}
             <div class="display-none" id="background_{{ order.order.id }}">
             </div>
             <div class="display-none" id="list_for_{{ order.order.id }}">
