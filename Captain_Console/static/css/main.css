@@ -269,6 +269,10 @@ input[id^='id_'], div[id*=' id_']{
     box-shadow: 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+/*manufacturers----*/
+.manufacturer_header{
+    margin-top:10%;
+}
 
 
 
