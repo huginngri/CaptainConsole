@@ -167,7 +167,9 @@ filler2{
 
 .review_boxes{
     padding: 10px;
-    height: 200px;
+    min-height: 250px;
+    overflow: hidden;
+
 }
 .image_box{
     height:300px;

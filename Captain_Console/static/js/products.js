@@ -72,7 +72,6 @@ if ($("#recent-views").length) {
                 })
                 recentproducts[0] = `<div class=product_container>` + recentproducts[0]
                 recentproducts[-1] += `</div>`
-                console.log(recentproducts)
                 $("#recent-views").html(recentproducts.join(""))
             },
             error: function (xhr, status, error) {
@@ -81,6 +80,7 @@ if ($("#recent-views").length) {
             }
         })
     })
+
 }
 
 
