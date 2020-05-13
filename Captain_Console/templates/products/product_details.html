@@ -34,6 +34,8 @@
             </div>
 
             <div class="textproductdetails productdetails ccwhite ">
+                <button type="button" class="btn btn-primary login-btn" onclick="location.href='{% url 'update-product' product.id%}'" id="cclightgray">update</button>
+                <button type="button" class="btn btn-primary login-btn" onclick="location.href='{% url 'delete-product' product.id%}'" id="cclightgray">delete</button>
                 <h4 class="cc2plarge">{{ product.name }}</h4>
                 <p class="ccbluelarge">{{ product.manufacturer }}</p>
                 <p class="ccbluemedium">{{ product.description }}</p>
@@ -43,9 +45,6 @@
 
             </div>
         </div>
-        <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'update-product' product.id%}'" id="cclightgray">update</button>
-        <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'delete-product' product.id%}'" id="cclightgray">delete</button>
-
 
         {# for comments on the products #}
         <div class = "product_container filler2">
