@@ -49,28 +49,26 @@ $(document).ready(function() {
             }
         })
     })
-    console.log("flott")
+})
+if ($("#recent-views").length) {
+    $("#recent-views").ready(function () {
 
-});
-
-$("#recent-views").ready(function () {
-        console.log("hello")
         $.ajax({
             url: "/products/recent",
             type: "GET",
             success: function (response) {
                 var recentproducts = response.data.map(d => {
                     return `
-                                    <a class=" product_boxes box ccwhite" href="/products/${d.id}">
-                                        <img class = "mediumimages" src="${d.image}" style="height:150px;">
-                                    <div class="button_and_text">
-                                        <div class="info">
-                                            <h4 class="name" name="${d.name}">${d.name}</h4>
-                                            <p class="price" >${d.price} $</p>
-                                        </div>
+                                <a class=" product_boxes box ccwhite" href="/products/${d.id}">
+                                    <img class = "mediumimages" src="${d.image}" style="height:150px;">
+                                <div class="button_and_text">
+                                    <div class="info">
+                                        <h4 class="name" name="${d.name}">${d.name}</h4>
+                                        <p class="price" >${d.price} $</p>
                                     </div>
-                                </a>
-                            `
+                                </div>
+                            </a>
+                        `
                 })
                 recentproducts[0] = `<div class=product_container>` + recentproducts[0]
                 recentproducts[-1] += `</div>`
@@ -82,5 +80,9 @@ $("#recent-views").ready(function () {
                 console.error(error)
             }
         })
-
     })
+}
+
+
+
+

@@ -4,8 +4,9 @@
 
     <div id="order_review_div" class = "popup ccwhite" >
         <h1 id="order_header" class = cc2phuge>Order history</h1>
+
         <table class="table">
-        <p>Orders ({{ orders.no }})</p>
+        <p class="ccbluebold">Orders ({{ total_orders }})</p>
         <tr>
             <th>Order number</th>
             <th>Buyer</th>
@@ -14,13 +15,26 @@
             <th>Order status</th>
         </tr>
         {% for order in orders %}
-            <tr>
-                <td>{{ order.id }}</td>
-                <td>{{ order.payment.card_holder  }}</td>
-                <td>{{ order.address  }}</td>
-                <td>{{ order.total  }}</td>
-                <td>{{ order.status  }}</td>
+            <tr >
+                <td>{{ order.order.id }}</td>
+                <td>{{ order.order.payment.card_holder  }}</td>
+                <td>{{ order.order.address  }}</td>
+                <td>{{ order.order.total  }}</td>
+                <td>{{ order.order.status  }}</td>
+                <td> <button class="btn btn-primary" onclick="viewOrderDetail({{ order.order.id }})">View order detail</button> </td>
             </tr>
+            <div class="display-none" id="background_{{ order.order.id }}">
+            </div>
+            <div class="display-none" id="list_for_{{ order.order.id }}">
+                <button type="submit" class="btn btn-default remove-btn cc2plarge" onclick="closeDiv({{ order.order.id }})">x</button>
+                <p class="ccbluelarge bold center">Your order number: {{ order.order.id }}</p>
+                {% for product in order.products %}
+                    {% include 'products/products_overview_checkout.html' with product=product %}
+                    <button type="button" class="btn btn-primary login-btn" onclick="location.href='{% url 'review-product' product.product.id%}'" id="ccwhite">Review product</button>
+                {% endfor %}
+            </div>
+
+
         {% endfor %}
         </table>
         <button class="profilebuttons btn btn-primary" onclick="location.href='{% url 'frontpage' %}'">Close</button>

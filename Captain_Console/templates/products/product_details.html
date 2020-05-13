@@ -22,7 +22,7 @@
                     </div>
                     {% if product.stock > 0 %}
                         <div class="below_box">
-                              <button type="button" class="product-btn buy ccbluemedium">Buy</button>
+                              <button type="button" class="product-btn buy ccbluemedium" onclick="buy_product({{ product.id }})">Buy</button>
                               <button type="button" class="product-btn cart ccbluemedium" onclick="add_to_cart_js({{ product.id }})">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
                         </div>
                     {% else %}
@@ -42,7 +42,7 @@
         </div>
         <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'update-product' product.id%}'" id="cclightgray">update</button>
         <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'delete-product' product.id%}'" id="cclightgray">delete</button>
-        <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'review-product' product.id%}'" id="cclightgray">review</button>
+
 
         {# for comments on the products #}
         <div class = "product_container filler2">

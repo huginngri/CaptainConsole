@@ -19,15 +19,20 @@ from django.http import JsonResponse
 
 # Create your views here.
 @login_required()
-def checkout(request):
+def checkout(request, save=False):
     profile = Customer.objects.filter(user=request.user).first()
-    if request.method == "POST":
+    if request.method == "POST" and save != True:
         form_billing = BillingFormOrder(data=request.POST)
         form_payment = PaymentFormOrder(data=request.POST)
         if form_billing.is_valid() and form_payment.is_valid():
             new_billing = form_billing.save()
             new_payment = form_payment.save()
             return display_order(request, new_billing, new_payment)
+    elif save == True:
+        render(request, "orders/checkout.html", {
+            "form_billing": BillingFormOrder(instance=profile.billing, data=request.POST),
+            "form_payment": PaymentFormOrder(instance=profile.payment, data=request.POST)
+        })
     return render(request, "orders/checkout.html", {
         "form_billing": BillingFormOrder(instance=profile.billing),
         "form_payment": PaymentFormOrder(instance=profile.payment),
@@ -44,11 +49,11 @@ def save_billing(request):
             new_billing = form_billing.save()
             profile.billing = new_billing
             profile.save()
-            return redirect('checkout')
+            return checkout(request, True)
     return render(request, "orders/checkout.html", {
         "form_billing": BillingForm(instance=profile.billing),
         "form_payment": PaymentForm(instance=profile.payment, data=request.POST),
-        'profile': profile
+        'profile': profile,
     })
 
 @login_required()
@@ -60,11 +65,11 @@ def save_payment(request):
             new_payment = form_payment.save()
             profile.payment = new_payment
             profile.save()
-            return redirect('checkout')
+            return checkout(request, True)
     return render(request, "orders/checkout.html", {
         "form_billing": BillingForm(instance=profile.billing, data=request.POST),
         "form_payment": PaymentForm(instance=profile.payment),
-        'profile': profile
+        'profile': profile,
     })
 
 @login_required()
@@ -124,23 +129,25 @@ def update_order(request, order_id):
             "form_payment": form_payment
              })
     else:
-        return render(request, "products/frontpage.html")
+        return render(request, 'products/frontpage.html',
+                      {'profile': profile, 'error': True, 'message': 'You shall not pass'})
 
+@login_required()
 def order_history(request):
-
-
     total = 0
     no_of_orders = 0
     total_no_of_orders = 0
     total_sold = 0
-
     if not request.user.is_superuser:
         profile = Customer.objects.filter(user=request.user).first()
         orders = Order.objects.filter(customer=profile)
+        final_orders = []
         for order in orders:
+            prods= []
             order_details = OrderProduct.objects.filter(order=order)
             for order_detail in order_details:
                 product = Product.objects.get(id=order_detail.product_id)
+                prods.append({'product': product, 'quantity': order_detail.quantity, 'image': ProductImage.objects.filter(product=product).first()})
                 total += product.price*order_detail.quantity
             order.total = str(round(total, 2)) + " $"
             order.address = order.billing.street_name + " " + order.billing.house_number + ", " + order.billing.zip + ", " + order.billing.country
@@ -150,9 +157,8 @@ def order_history(request):
             else:
                 order.status = "Open"
             no_of_orders += 1
-
-        orders.no = no_of_orders
-        context = {'orders': orders}
+            final_orders.append({'order': order, 'products': prods})
+        context = {'orders': final_orders, 'total_orders': no_of_orders, 'profile': profile}
         return render(request, "orders/order_history_user.html", context)
     else:
         all_orders = Order.objects.all()

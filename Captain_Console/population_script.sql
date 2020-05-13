@@ -24,7 +24,7 @@ INSERT INTO products_productimage (image, product_id) VALUES ('images/TMNT-ninte
 INSERT INTO products_productimage (image, product_id) VALUES ('images/mario-bros-nintendo-nes.jpg', 11);
 INSERT INTO products_productimage (image, product_id) VALUES ('images/nintendo-nes.jpg', 10)
 
-DELETE FROM products_producthistory WHERE id>0;
+DELETE FROM auth_user WHERE id>0 ;
 
 INSERT INTO manufacturers_manufacturer (name, description, image) VALUES('Playstation', 'The best manufacturer', 'images/captain-console.jpg');
 INSERT INTO products_productconsole (name) VALUES('Playstation 2');
@@ -78,9 +78,9 @@ INSERT INTO products_productimage (image, product_id) VALUES ('images/gta-san-an
 
 INSERT INTO products_productimage (image, product_id) VALUES ('images/madagascar1.jpeg', 3);
 INSERT INTO products_productimage (image, product_id) VALUES ('images/gta1jpeg', 4);
-INSERT INTO products_productimage (image, product_id) VALUES ('images/gta2jpeg', 4);
+INSERT INTO products_productimage (image, product_id) VALUES ('images/gta2jpeg', 8);
 INSERT INTO products_productimage (image, product_id) VALUES ('images/mariobros.jpeg', 7);
-INSERT INTO products_productimage (image, product_id) VALUES ('images/mariobros2.jpeg', 7);
+INSERT INTO products_productimage (image, product_id) VALUES ('images/mariobros2.jpeg', 8);
 INSERT INTO products_productimage (image, product_id) VALUES ('images/nintendo_nes.jpeg', 8);
 INSERT INTO products_productimage (image, product_id) VALUES ('images/nintendo_nes.png', 8);
 
