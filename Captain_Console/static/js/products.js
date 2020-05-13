@@ -78,7 +78,28 @@ $(document).ready(function() {
             console.error(error)
         }
     })
-
+    // if ($("#star*")) {
+    //     $("#star*").ready(function () {
+    //         console.log("what");
+    //         star_div = document.getElementById("star_" + orderNumber);
+    //         let star = document.createElement("span");
+    //         star.setAttribute("class", "glyphicon glyphicon-star");
+    //         let empty_star = document.createElement("span");
+    //         empty_star.setAttribute("class", "glyphicon glyphicon-star-empty");
+    //         // <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+    //         let total_rating = 5;
+    //         while (rating > 0) {
+    //             star_div.appendChild(star);
+    //             total_rating -= 1;
+    //             rating -= 1;
+    //         }
+    //         while (total_rating > 0) {
+    //             star_div.appendChild(empty_star);
+    //             total_rating -= 1;
+    //
+    //         }
+    //     })
+    // }
 })
 
 
