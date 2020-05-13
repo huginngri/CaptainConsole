@@ -8,7 +8,7 @@
                     background-size: cover;">
         <div class = "product_container">
             <div class=" imageproductdetails productdetails ccwhite">
-                <img id="myImage" class = "product_details_images" src="{{   product.productimage_set.first.image  }}" onclick="document.getElementById('myImage').src='{{   image.image  }}'">
+                <img id="myImage" class = "product_details_images" src="{{   product.productimage_set.first.image  }}" onclick="document.getElementById('myImage').src='{{   image.image  }}'" onload="calculateRating({{ product.id }}, {{ product.rating }})">
                 <div class = "image_box_detailed box_detailed" >
                     {% for image in product.productimage_set.all %}
                             <img class="scrollimages" src="{{   image.image  }}" onclick="document.getElementById('myImage').src='{% static   image.image  %}'">
@@ -36,8 +36,11 @@
             <div class="textproductdetails productdetails ccwhite ">
                 <h4 class="cc2plarge">{{ product.name }}</h4>
                 <p class="ccbluelarge">{{ product.manufacturer }}</p>
-    {#            <p>{{ product.rating }}</p>#}
                 <p class="ccbluemedium">{{ product.description }}</p>
+                <div class="button_and_text">
+                    <h4 class="cc2plarge homepagetext" id="star_{{ product.id }}"></h4>
+                </div>
+
             </div>
         </div>
         <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'update-product' product.id%}'" id="cclightgray">update</button>
