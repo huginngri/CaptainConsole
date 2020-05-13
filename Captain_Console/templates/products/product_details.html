@@ -46,7 +46,7 @@
                     <h4 class="cc2plarge homepagetext" id="star_{{ product.id }}"></h4>
                     {% if user.is_superuser %}
                         <div class="adminbuttons_container">
-                            <button type="button" class="btn btn-primary  onclick="location.href='{% url 'update-product' product.id%}'">update</button>
+                            <button type="button" class="btn btn-primary"  onclick="location.href='{% url 'update-product' product.id%}'">update</button>
                             <button type="button" class="btn btn-primary"  onclick="location.href='{% url 'delete-product' product.id%}'">delete</button>
                         </div>
                     {% endif %}
