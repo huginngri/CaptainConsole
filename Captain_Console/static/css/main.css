@@ -57,15 +57,13 @@ a:link{
 .search{
     display: flex;
     flex-wrap: wrap;
-    padding-left: 0px;
-    padding-right: 0px;
-    width:40%;
+    width:25%;
     display: inline;
 }
 
 .input{
     padding-left:10px;
-    width: 80%;
+    width: 60%;
     border-radius: 10px;
 }
 
@@ -173,9 +171,7 @@ a:link{
     justify-content: center;
     width: 300px;
 }
-.helptext{
-    display:none;
-}
+
 
 .login-btn{
     display: block;
@@ -230,7 +226,7 @@ input[id^='id_'], div[id*=' id_']{
     width:100%;
 }
 .helptext{
-    display:block;
+    background-color: gray;
 }
 
 
@@ -276,6 +272,10 @@ input[id^='id_'], div[id*=' id_']{
     box-shadow: 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+/*manufacturers----*/
+.manufacturer_header{
+    margin-top:10%;
+}
 
 
 

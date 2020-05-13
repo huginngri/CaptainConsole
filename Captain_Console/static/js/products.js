@@ -57,7 +57,7 @@ if ($("#recent-views").length) {
             url: "/products/recent",
             type: "GET",
             success: function (response) {
-                if (response.length>0) {
+                if (response.length > 0) {
                     var recentproducts = response.data.map(d => {
                         return `
                                 <a class=" product_boxes box ccwhite" href="/products/${d.id}">
@@ -70,12 +70,12 @@ if ($("#recent-views").length) {
                                 </div>
                             </a>
                         `
-                    })
 
+                    })
                     recentproducts[0] = `<div class=product_container>` + recentproducts[0]
                     recentproducts[-1] += `</div>`
-                    console.log(recentproducts)
                     $("#recent-views").html(recentproducts.join(""))
+
                 }
             },
             error: function (xhr, status, error) {
@@ -84,6 +84,7 @@ if ($("#recent-views").length) {
             }
         })
     })
+
 }
 
 
