@@ -1,7 +1,7 @@
 {% load static %}
 {% block content %}
 
-    <div class="single_comment review_boxes box ccwhite" id="star_{{ comment.id }}">
+    <div class="single_comment review_boxes box ccwhite" >
         <div class = "reviewcontainer">
             <img class = "iconimages" src="{{ comment.image }}" alt="pictureofuser" onload="calculateRating({{ comment.id }}, {{ comment.star }})">
             <h3 class="ccbluelarge bold">{{ comment.name }}</h3>
@@ -9,10 +9,8 @@
         <div class="review_comment">
 
             <div class="rating">
-            <h4 class="ccbluebold" >Rating:
-                <div   name="{{ comment.star }}">
+            <h4 class="ccbluebold" id="star_{{ comment.id }}">Rating:
 
-                </div>
             </h4>
             </div>
             <p class="ccbluebold">{{ comment.comment }}</p>

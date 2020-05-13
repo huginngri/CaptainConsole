@@ -79,6 +79,7 @@ def get_product_by_id(request, id, consolename=None, name=None):
     full_reviews = [{
         'star': x.star,
         'comment': x.comment,
+        'id': x.id,
         'image': get_object_or_404(Customer, pk=x.customer_id).image,
         'name': get_object_or_404(Customer, pk=x.customer_id).user.username
     }for x in reviews]
