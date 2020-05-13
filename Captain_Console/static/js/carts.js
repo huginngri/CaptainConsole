@@ -212,5 +212,23 @@ function buy_product(product_id) {
 
 function viewOrderDetail(orderNumber){
     the_product_list_element = document.getElementById("list_for_"+orderNumber)
+}
 
+function display_review_button() {
+    let review_button = document.getElementById('give_review_button');
+    let product_id = review_button.name
+    $.ajax({
+        type: 'GET',
+        method: 'GET',
+        url: '/orders/can_review/'+ product_id,
+        success: function (response) {
+            console.log(response['can_review'])
+            if (response['can_review'] == true){
+                review_button.style= 'display: inline-block';
+            }
+        },
+        error: function (xhr, status, error) {
+            console.log('eitthvað vilaust');
+        }
+    });
 }

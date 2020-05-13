@@ -43,9 +43,8 @@ $(document).ready(function() {
     })
     console.log("flott")
 
-});
 
-$("#recent-views").ready(function () {
+    $("#recent-views").ready(function () {
         console.log("hello")
         $.ajax({
             url: "/products/recent",
@@ -76,3 +75,6 @@ $("#recent-views").ready(function () {
         })
 
     })
+})
+
+

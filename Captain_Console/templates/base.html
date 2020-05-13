@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="{% static 'css/font.css' %}" />
     <link rel="stylesheet" href="{% static 'css/container.css' %}" />
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="{% static 'js/carts.js' %}"></script>
 </head>
 {%  if user.is_authenticated %}
     <body class = "cclightblue" onload="calculate_cart()" style="background-image: url('https://wallpaperplay.com/walls/full/1/d/d/101186.jpg');
@@ -42,13 +43,13 @@
     </main>
     {% include "footer.html" %}
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
     <script scr="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.js"></script>
     <script src="{% static 'js/products.js' %}"></script>
-    <script src="{% static 'js/carts.js' %}"></script>
+
 
 
 </body>

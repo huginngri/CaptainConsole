@@ -176,3 +176,15 @@ def order_history(request):
         all_orders.no = total_no_of_orders
         context = {'orders': all_orders}
         return render(request, "orders/order_history_admin.html", context)
+
+@login_required()
+def can_review(request, product_id):
+    profile = Customer.objects.filter(user=request.user).first()
+    orders = Order.objects.filter(customer=profile)
+    product = Product.objects.get(id=product_id)
+    for order in orders:
+        order_products = OrderProduct.objects.filter(order=order)
+        for order_product in order_products:
+            if order_product.product == product:
+                return JsonResponse({'can_review': True})
+    return JsonResponse({'can_review': False})
