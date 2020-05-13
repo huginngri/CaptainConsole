@@ -111,16 +111,16 @@ function remove_from_cart(product_id, child) {
             }
             else{
                 let container = document.getElementById("cart_products")
-            for (let x = 0; x < container.children.length; x++){
-                if (container.children[x] === deletediv){
-                    container.removeChild(container.children[x]);
-                    break;
+                for (let x = 0; x < container.children.length; x++){
+                    if (container.children[x] === deletediv){
+                        container.removeChild(container.children[x]);
+                        break;
+                    }
                 }
-            }
-            calculate_cart()
-            let price = document.getElementById('cart_total');
-            let total = parseFloat(response['total_price']);
-            price.textContent = 'Total price: ' + total + '$';
+                calculate_cart()
+                let price = document.getElementById('cart_total');
+                let total = parseFloat(response['total_price']);
+                price.textContent = 'Total price: ' + total + '$';
             }
 
         },
@@ -211,24 +211,47 @@ function buy_product(product_id) {
 }
 
 function viewOrderDetail(orderNumber){
+    background = document.getElementById("background_"+orderNumber)
     the_product_list_element = document.getElementById("list_for_"+orderNumber)
+
+    the_product_list_element.classList.add("popupsmall","absolute","ccwhite")
+    background.classList.add("cover")
 }
 
-/**function display_review_button() {
-    let review_button = document.getElementById('give_review_button');
-    let product_id = review_button.name
-    $.ajax({
-        type: 'GET',
-        method: 'GET',
-        url: '/orders/can_review/'+ product_id,
-        success: function (response) {
-            console.log(response['can_review'])
-            if (response['can_review'] == true){
-                review_button.style= 'display: inline-block';
-            }
-        },
-        error: function (xhr, status, error) {
-            console.log('eitthvað vilaust');
-        }
-    });
-}*/
+function closeDiv(orderNumber) {
+    background = document.getElementById("background_" + orderNumber)
+    the_product_list_element = document.getElementById("list_for_" + orderNumber)
+    the_product_list_element.classList.remove("popupsmall", "absolute", "ccwhite")
+    background.classList.remove("cover")
+}
+
+
+function calculateRating(id) {
+    console.log("what");
+    star_div = document.getElementById("star_" + id);
+    rating = star_div.name
+    let star = document.createElement("span");
+    star.setAttribute("class", "glyphicon glyphicon-star");
+    let empty_star = document.createElement("span");
+    empty_star.setAttribute("class", "glyphicon glyphicon-star-empty");
+     // <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+    let total_rating = 5;
+    while (rating > 0){
+        star_div.appendChild(star);
+        total_rating -= 1;
+        rating -= 1;
+    }
+    while(total_rating > 0){
+        star_div.appendChild(empty_star);
+        total_rating -= 1;
+
+    }
+}
+
+function closeErrorDiv() {
+    background = document.getElementById("error_background")
+    the_product_list_element = document.getElementById("error_div")
+    the_product_list_element.classList.remove("popupsmall", "absolute", "ccwhite")
+    background.classList.remove("cover")
+}
+

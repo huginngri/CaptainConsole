@@ -77,7 +77,7 @@ def update_payment(request):
             return redirect('profile')
     return render(request, "users/payment.html",{
 
-        "form": PaymentForm(),
+        "form": PaymentForm(instance=profile.payment),
         "profile": profile
     })
 

@@ -6,6 +6,12 @@ $(document).ready(function() {
             url: '/products?search_filter=' + searchText,
             type: 'GET',
             success: function (resp) {
+
+                if (resp.data.length == 0) {
+                    console.log("in this if statement")
+                    window.location.replace("http://127.0.0.1:8000/products/search_no_response");
+                }
+
                 let newHtml = resp.data.map(d => {
                     return `
                                 <a class=" product_boxes box ccwhite" href="/products/${d.id}">
@@ -30,6 +36,8 @@ $(document).ready(function() {
             <option value="price_reverse">price (descending)</option>
         </select><div class=product_container id="container_for_products">` + newHtml[0]
                 newHtml[-1] += `</div>`
+                console.log("This is the newHtml")
+                console.log(newHtml)
                 $('main').html(newHtml.join(''));
                 $('#search-box').val('');
 
@@ -41,17 +49,17 @@ $(document).ready(function() {
             }
         })
     })
-    console.log("flott")
 
+if ($("#recent-views").length) {
+        $("#recent-views").ready(function () {
 
-    $("#recent-views").ready(function () {
-        console.log("hello")
-        $.ajax({
-            url: "/products/recent",
-            type: "GET",
-            success: function (response) {
-                var recentproducts = response.data.map(d => {
-                    return `
+            $.ajax({
+                url: "/products/recent",
+                type: "GET",
+                success: function (response) {
+                    if (response.length > 0) {
+                        var recentproducts = response.data.map(d => {
+                            return `
                                     <a class=" product_boxes box ccwhite" href="/products/${d.id}">
                                         <img class = "mediumimages" src="${d.image}" style="height:150px;">
                                     <div class="button_and_text">
@@ -62,19 +70,21 @@ $(document).ready(function() {
                                     </div>
                                 </a>
                             `
-                })
-                recentproducts[0] = `<div class=product_container>` + recentproducts[0]
-                recentproducts[-1] += `</div>`
-                console.log(recentproducts)
-                $("#recent-views").html(recentproducts.join(""))
-            },
-            error: function (xhr, status, error) {
-                console.log('error')
-                console.error(error)
-            }
-        })
 
-    })
+                        })
+                        recentproducts[0] = `<div class=product_container>` + recentproducts[0]
+                        recentproducts[-1] += `</div>`
+                        $("#recent-views").html(recentproducts.join(""))
+
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.log('error')
+                    console.error(error)
+                }
+            })
+        })
+    }
 
     if ($("#give_review_button")) {
         $("#give_review_button").ready(function () {
@@ -97,5 +107,10 @@ $(document).ready(function() {
         })
     }
 })
+
+
+
+
+
 
 

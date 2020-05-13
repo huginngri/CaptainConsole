@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <div class = "popup ccwhite" >
-        <h1 class = cc2phuge>Remove User</h1>
-        <form method="post">
+    <div class="popup ccwhite" >
+        <h1 class=cc2phuge>Remove User</h1>
+        <form id="centered" method="post" style="text-align:center;margin-top:10%;">
               {% csrf_token %}
               {{ form }}
-          <button class="profilebuttons btn btn-primary " type="submit">Confirm</button>
+          <button class="login-btn btn btn-primary" type="submit">Confirm</button>
         </form>
     </div>
 

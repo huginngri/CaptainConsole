@@ -1,9 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from orders.forms.payment_form import PaymentFormOrder
-from orders.forms.billing_form import BillingFormOrder
-from orders.forms.payment_form import PaymentUpdateFormOrder
-from orders.forms.billing_form import BillingUpdateFormOrder
+from orders.forms.payment_form import PaymentFormOrder, PaymentUpdateFormOrder, TemporaryPaymentForm
+from orders.forms.billing_form import BillingFormOrder, BillingUpdateFormOrder, TemporaryBillingForm
 from users.forms.billing_form import BillingForm
 from users.forms.payment_form import PaymentForm
 from orders.models import Billing
@@ -17,9 +15,11 @@ from carts.models import CartDetails
 from products.models import Product, ProductImage
 from django.http import JsonResponse
 
+
+
 # Create your views here.
 @login_required()
-def checkout(request, save=False):
+def checkout(request, save=False, billing_saved=False, payment_saved=False):
     profile = Customer.objects.filter(user=request.user).first()
     if request.method == "POST" and save != True:
         form_billing = BillingFormOrder(data=request.POST)
@@ -29,13 +29,19 @@ def checkout(request, save=False):
             new_payment = form_payment.save()
             return display_order(request, new_billing, new_payment)
     elif save == True:
-        render(request, "orders/checkout.html", {
-            "form_billing": BillingFormOrder(instance=profile.billing, data=request.POST),
-            "form_payment": PaymentFormOrder(instance=profile.payment, data=request.POST)
-        })
+        context = {
+            "form_billing": TemporaryBillingForm(instance=profile.billing, data=request.POST),
+            "form_payment": TemporaryPaymentForm(instance=profile.payment, data=request.POST)
+        }
+        if billing_saved:
+            context["billing_saved"] = 'True'
+        if payment_saved:
+            context["payment_saved"] = 'True'
+        print(context)
+        return render(request, "orders/checkout.html", context)
     return render(request, "orders/checkout.html", {
-        "form_billing": BillingFormOrder(instance=profile.billing),
-        "form_payment": PaymentFormOrder(instance=profile.payment),
+        "form_billing": TemporaryBillingForm(instance=profile.billing),
+        "form_payment": TemporaryPaymentForm(instance=profile.payment),
         'profile': profile
     })
 
@@ -49,10 +55,10 @@ def save_billing(request):
             new_billing = form_billing.save()
             profile.billing = new_billing
             profile.save()
-            return checkout(request, True)
+            return checkout(request, save=True, billing_saved=True)
     return render(request, "orders/checkout.html", {
-        "form_billing": BillingForm(instance=profile.billing),
-        "form_payment": PaymentForm(instance=profile.payment, data=request.POST),
+        "form_billing": TemporaryBillingForm(instance=profile.billing),
+        "form_payment": TemporaryPaymentForm(instance=profile.payment, data=request.POST),
         'profile': profile
     })
 
@@ -65,10 +71,10 @@ def save_payment(request):
             new_payment = form_payment.save()
             profile.payment = new_payment
             profile.save()
-            return checkout(request, True)
+            return checkout(request, save=True, payment_saved=True)
     return render(request, "orders/checkout.html", {
-        "form_billing": BillingForm(instance=profile.billing, data=request.POST),
-        "form_payment": PaymentForm(instance=profile.payment),
+        "form_billing": TemporaryBillingForm(instance=profile.billing, data=request.POST),
+        "form_payment": TemporaryPaymentForm(instance=profile.payment),
         'profile': profile
     })
 
@@ -129,7 +135,8 @@ def update_order(request, order_id):
             "form_payment": form_payment
              })
     else:
-        return render(request, "products/frontpage.html")
+        return render(request, 'products/frontpage.html',
+                      {'profile': profile, 'error': True, 'message': 'You shall not pass'})
 
 @login_required()
 def order_history(request):

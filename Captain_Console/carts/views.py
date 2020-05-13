@@ -89,6 +89,7 @@ def calc_price(cart):
     for cart_detail in cart_details:
         product = Product.objects.filter(id=cart_detail.product.id).first()
         total += (product.price * cart_detail.quantity)
+    return total
 
 @login_required()
 def change_quantity(request, product_id):

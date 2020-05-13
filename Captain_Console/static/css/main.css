@@ -57,15 +57,13 @@ a:link{
 .search{
     display: flex;
     flex-wrap: wrap;
-    padding-left: 0px;
-    padding-right: 0px;
-    width:40%;
+    width:25%;
     display: inline;
 }
 
 .input{
     padding-left:10px;
-    width: 80%;
+    width: 60%;
     border-radius: 10px;
 }
 
@@ -75,6 +73,11 @@ a:link{
     border-top: 1px solid #C4C4C4;
     display: flex;
     padding-left: 10%;
+}
+.remove-btn{
+    margin-left: 90%;
+    margin-right: 5%;
+    border: none;
 }
 
 
@@ -168,9 +171,7 @@ a:link{
     justify-content: center;
     width: 300px;
 }
-.helptext{
-    display:none;
-}
+
 
 .login-btn{
     display: block;
@@ -225,7 +226,7 @@ input[id^='id_'], div[id*=' id_']{
     width:100%;
 }
 .helptext{
-    display:block;
+    background-color: gray;
 }
 
 
@@ -256,19 +257,25 @@ input[id^='id_'], div[id*=' id_']{
     margin-right: 10%;
     margin-left: auto;
     display:block;
-    width: 20%;
-    height: 50px;
+    width: 15%;
+    height: 35px;
     padding: 6px 12px;
     font-size: 14px;
-    line-height: 1.42857143;
-    background-color: #51647D;
-    border-radius: 4px;
-    font-size: x-large;
-    color: white;
+    /*line-height: 1.42857143;*/
+    /*background-color: #51647D;*/
+    background-color: white;
+    border-radius: 2px;
+    font-size: medium;
+    /*color: white;*/
+    color: black;
     text-align: center;
     box-shadow: 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+/*manufacturers----*/
+.manufacturer_header{
+    margin-top:10%;
+}
 
 
 
