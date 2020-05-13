@@ -2,16 +2,16 @@
 {% load static %}
 {% block content %}
 
-    <div    style=" background-image: url({% static   product.productimage_set.first.image  %});
+    <div    style=" background-image: url({{    product.productimage_set.first.image  }});
                     background-repeat: no-repeat;
                     background-attachment: fixed;
                     background-size: cover;">
         <div class = "product_container">
             <div class=" imageproductdetails productdetails ccwhite">
-                <img id="myImage" class = "product_details_images" src="{% static   product.productimage_set.first.image  %}" onclick="document.getElementById('myImage').src='{% static   image.image  %}'">
+                <img id="myImage" class = "product_details_images" src="{{   product.productimage_set.first.image  }}" onclick="document.getElementById('myImage').src='{{   image.image  }}'">
                 <div class = "image_box_detailed box_detailed" >
                     {% for image in product.productimage_set.all %}
-                            <img class="scrollimages" src="{% static   image.image  %}" onclick="document.getElementById('myImage').src='{% static   image.image  %}'">
+                            <img class="scrollimages" src="{{   image.image  }}" onclick="document.getElementById('myImage').src='{% static   image.image  %}'">
                     {% endfor %}
                 </div>
 
