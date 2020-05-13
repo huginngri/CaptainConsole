@@ -92,7 +92,6 @@ def get_product_by_id(request, id, consolename=None, name=None):
 
 @login_required()
 def create_product(request):
-
     if request.user.is_superuser:
         if request.method == "POST":
             form1 = ProductForm(data=request.POST)
