@@ -164,4 +164,8 @@ def review_product(request, id):
             return render(request, 'products/frontpage.html',
                           {'profile': profile, 'error': True, 'message': 'You must have ordered the product to review'})
     else:
+
         return render(request, 'products/frontpage.html', {'profile': profile, 'error': True, 'message': 'You can only review each product once'})
+
+def search_no_response(request):
+    return render(request, 'products/product_search_error.html')

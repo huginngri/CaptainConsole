@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <p>You are here</p>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
+    <div class = "popup ccwhite" >
+        <h1 class="cc2plarge">Nothing mathces your search</h1>
+        <p class="below_box">Check the spelling or try less specific search items</p>
+        <button class="profilebuttons btn btn-primary "  onclick="location.href='{% url 'frontpage' %}'">Keep browsing</button>
+    </div>
 
-</body>
-</html>
+{% endblock %}

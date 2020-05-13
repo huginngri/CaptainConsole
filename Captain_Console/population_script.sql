@@ -78,9 +78,9 @@ INSERT INTO products_productimage (image, product_id) VALUES ('images/gta-san-an
 
 INSERT INTO products_productimage (image, product_id) VALUES ('images/madagascar1.jpeg', 3);
 INSERT INTO products_productimage (image, product_id) VALUES ('images/gta1jpeg', 4);
-INSERT INTO products_productimage (image, product_id) VALUES ('images/gta2jpeg', 4);
+INSERT INTO products_productimage (image, product_id) VALUES ('images/gta2jpeg', 8);
 INSERT INTO products_productimage (image, product_id) VALUES ('images/mariobros.jpeg', 7);
-INSERT INTO products_productimage (image, product_id) VALUES ('images/mariobros2.jpeg', 7);
+INSERT INTO products_productimage (image, product_id) VALUES ('images/mariobros2.jpeg', 8);
 INSERT INTO products_productimage (image, product_id) VALUES ('images/nintendo_nes.jpeg', 8);
 INSERT INTO products_productimage (image, product_id) VALUES ('images/nintendo_nes.png', 8);
 
@@ -103,8 +103,8 @@ INSERT INTO products_product (name, description, price, rating, console_type_id,
 INSERT INTO products_product (name, description, price, rating, console_type_id, manufacturer_id, type) VALUES ('Nintendo NES console', 'An average console', 11, 3, 3, 3, 'console');
 
 
-INSERT INTO products_productimage (image, product_id) VALUES ('images/TMNT-nintendo-nes.jpg', 6);
-INSERT INTO products_productimage (image, product_id) VALUES ('images/mario-bros-nintendo-nes.jpg', 7);
+INSERT INTO products_productimage (image, product_id) VALUES ('images/TMNT-nintendo-nes.jpg', 8);
+INSERT INTO products_productimage (image, product_id) VALUES ('images/mario-bros-nintendo-nes.jpg', 8);
 INSERT INTO products_productimage (image, product_id) VALUES ('images/nintendo-nes.jpg', 8);
 
 INSERT INTO auth_user (id, password, username, is_superuser, first_name, last_name, email, is_staff, is_active, date_joined) VALUES (10, 'super', 'admin', True, 'super', 'user', 'super@user.com', False, True, '2020-05-12 23:45:51.286803');
