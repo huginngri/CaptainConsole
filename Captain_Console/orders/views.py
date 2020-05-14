@@ -22,8 +22,8 @@ from manufacturers.views import get_manufactorers_and_consoles_for_navbar
 def checkout(request, save=False, billing_saved=False, payment_saved=False):
     profile = Customer.objects.filter(user=request.user).first()
     if request.method == "POST" and save != True:
-        form_billing = BillingFormOrder(data=request.POST)
-        form_payment = PaymentFormOrder(data=request.POST)
+        form_billing = BillingFormOrder(instance=profile.billing, data=request.POST)
+        form_payment = PaymentFormOrder(instance=profile.billing, data=request.POST)
         if form_billing.is_valid() and form_payment.is_valid():
             new_billing = form_billing.save()
             new_payment = form_payment.save()
