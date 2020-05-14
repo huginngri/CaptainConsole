@@ -131,7 +131,13 @@ def create_product(request):
                 form1.save()
                 form2.instance.product = form1.instance
                 form2.save()
-                return redirect('products')
+                return render(request, 'products/create_product.html', {
+            'form1': ProductForm(),
+            'form2': ImageForm(),
+            'success': True,
+            'message': "Successfully updated product " + form1.instance.name,
+            'profile': Customer.objects.get(user=request.user)
+        })
         return render(request, 'products/create_product.html', {
             'form1': ProductForm(),
             'form2': ImageForm(),
@@ -151,7 +157,13 @@ def update_product(request, id):
                 if form.instance.on_sale == True:
                     form.instance.discount_price = form.instance.price*(1-form.instance.discount/100)
                 form.save()
-                return redirect('products')
+                return render(request, 'products/update_product.html', {
+            'form': ProductForm(instance=the_product),
+            'success': True,
+            'message': "Successfully updated product " + the_product.name,
+            'profile': Customer.objects.get(user=request.user),
+            'product_id': id
+        })
         return render(request, 'products/update_product.html', {
             'form': ProductForm(instance=the_product),
             'profile': Customer.objects.get(user=request.user),
@@ -183,7 +195,6 @@ def update_product_photo(request, id):
 
 @login_required()
 def delete_product(request, id):
-
     if request.user.is_superuser:
         the_product = Product.objects.filter(pk=id).first()
         the_product.delete()
@@ -214,10 +225,12 @@ def review_product(request, id):
                 product.rating = (product.rating*(number_of_rev-1)+form.instance.star)/(number_of_rev)
                 product.save()
                 return redirect('frontpage')
-            return render(request, 'products/review_product.html', {
-                'form': ReviewForm(),
-                'profile': profile
-            })
+            return render(request, 'products/product_details.html', {
+            'product': product,
+            'profile': Customer.objects.get(user=request.user),
+            'success': True,
+            'message': "Successfully added a review to the product "+ product.name
+        })
         else:
             return render(request, 'products/frontpage.html',
                           {'profile': profile, 'error': True, 'message': 'You must have ordered the product to review'})
