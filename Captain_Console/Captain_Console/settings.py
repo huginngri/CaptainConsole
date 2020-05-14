@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.utils.formats import get_format
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -42,7 +44,9 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'orders.apps.OrdersConfig',
     'carts.apps.CartsConfig',
-    'consoles.apps.ConsolesConfig'
+    'consoles.apps.ConsolesConfig',
+    'django_static_jquery3',
+    'django_yearmonth_widget'
 
 ]
 
@@ -137,3 +141,4 @@ STATICFILES_DIRS = [
 
 LOGIN_URL = '/users/login'
 LOGIN_REDIRECT_URL = '/users/login'
+

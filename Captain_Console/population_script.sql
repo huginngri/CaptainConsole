@@ -115,7 +115,9 @@ TRUNCATE TABLE orders_order CASCADE ;
 TRUNCATE TABLE orders_billing CASCADE ;
 TRUNCATE TABLE orders_payment CASCADE ;
 
-
-UPDATE  products_product SET stock=10 WHERE id>0;
+UPDATE  users_payment SET card_number='1234123443214321' WHERE id<1000;
+UPDATE  users_payment SET exp_date='12/24' WHERE id<1000;
+UPDATE  users_payment SET cvc='123' WHERE id<1000;
 
 DELETE FROM manufacturers_manufacturer WHERE id=13 or id =14;
+
