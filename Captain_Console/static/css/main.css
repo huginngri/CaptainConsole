@@ -248,6 +248,21 @@ input[id^='id_'], div[id*=' id_']{
 
 
 /* junk ------------------------------------------------*/
+.padding-small{
+    padding-left:25px;
+
+}
+.padding-medium{
+    padding-left:50px;
+
+}
+dt{
+    padding-left:5px;
+}
+dd{
+    padding-left:5px;
+
+}
 
 .intro {
     justify-content: center;

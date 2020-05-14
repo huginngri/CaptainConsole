@@ -422,12 +422,8 @@ filler2{
     .image_box{
         height:200px;
     }
-    .below_box{
+    .below_box {
         height: 40px;
-
-    }
-    .filler {
-        height: 130px;
     }
 
 }
