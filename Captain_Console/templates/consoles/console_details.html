@@ -14,8 +14,8 @@
 
         {% else %}
             <div class="product_boxes box ccwhite">
-                <div class="product_boxes_inside box_inside" >
-                    <div class = "containerimage" onclick="location.href='{% url 'consoles-consoles' console.manufacturer console.name %}'">
+                <div class="product_boxes_inside box_inside" onclick="location.href='{% url 'consoles-consoles' console.manufacturer console.name %}'">
+                    <div class = "containerimage" >
                         <img class="mediumimages" src="/static/images/console.jpeg" alt="console_img">
                     </div>
                     <div class="button_and_text">
@@ -24,10 +24,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="below_box" onclick="location.href='{% url 'consoles-consoles' console.manufacturer console.name %}'"></div>
             </div>
             <div class="product_boxes box ccwhite">
-                <div class="product_boxes_inside box_inside" >
-                    <div class = "containerimage" onclick="location.href='{% url 'consoles-games' console.manufacturer console.name %}'">
+                <div class="product_boxes_inside box_inside" onclick="location.href='{% url 'consoles-games' console.manufacturer console.name %}'">
+                    <div class = "containerimage" >
                         <img class="mediumimages" src="/static/images/game.jpeg" alt="game_img">
                     </div>
                     <div class="button_and_text">
@@ -36,10 +37,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="below_box" onclick="location.href='{% url 'consoles-games' console.manufacturer console.name %}'"></div>
             </div>
             <div class="product_boxes box ccwhite">
-                <div class="product_boxes_inside box_inside" >
-                    <div class = "containerimage" onclick="location.href='{% url 'consoles-accessories' console.manufacturer console.name %}'">
+                <div class="product_boxes_inside box_inside" onclick="location.href='{% url 'consoles-accessories' console.manufacturer console.name %}'">
+                    <div class = "containerimage" >
                         <img class="mediumimages" src="/static/images/accessories.png" alt="accessories_img">
                     </div>
                     <div class="button_and_text">
@@ -48,6 +50,7 @@
                         </div>
                     </div>
                 </div>
+                <div class="below_box" onclick="location.href='{% url 'consoles-accessories' console.manufacturer console.name %}'"></div>
             </div>
         {% endif %}
     </div>
