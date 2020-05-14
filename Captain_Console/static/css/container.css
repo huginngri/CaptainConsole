@@ -191,7 +191,6 @@ filler2{
 
 .review_boxes{
     padding: 10px;
-    /*min-height: 250px;*/
     overflow: hidden;
 
 }
@@ -207,6 +206,7 @@ filler2{
 
 .image_box_detailed{
     margin-top:5%;
+    margin-left: 5%;
     display: flex;
     flex-direction: column;
     height:25%;
@@ -214,7 +214,6 @@ filler2{
     width: 15%;
     overflow: auto;
     white-space:nowrap;
-    /*margin: 0px;*/
     position: absolute;
     top: 45%;
     left: 50%;
