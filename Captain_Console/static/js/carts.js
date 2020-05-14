@@ -76,21 +76,41 @@ function place_order(order) {
         },
         success: function (response) {
             console.log('sucess')
-            let header = document.getElementById('order_header')
-            header.textContent = 'Order confirmed'
-            let back_button = document.getElementById('edit_order')
-            let confirm_button = document.getElementById('confirm_order')
-            back_button.remove()
-            confirm_button.remove()
+            if (response['message'] == 'out of stock'){
+                let header = document.getElementById('order_header')
+                header.textContent = 'Order denied.\nItem: "' + response['product'] + '" out of stock, only ' + response['items_left'] + ' items left.'
+                header.setAttribute('class', 'alert alert-danger')
+                let back_button = document.getElementById('edit_order')
+                let confirm_button = document.getElementById('confirm_order')
+                back_button.remove()
+                confirm_button.remove()
 
-            let a = document.createElement('a')
-            a.setAttribute("class", "btn btn-danger login-btn");
-            a.setAttribute('href', '/')
-            a.textContent = 'Close'
-            let div = document.getElementById('order_review_div')
-            div.appendChild(a)
-            window.scrollTo(0, 0);
-            calculate_cart()
+                let a = document.createElement('a')
+                a.setAttribute("class", "btn btn-danger login-btn");
+                a.setAttribute('href', '/')
+                a.textContent = 'Close'
+                let div = document.getElementById('order_review_div')
+                div.appendChild(a)
+                window.scrollTo(0, 0);
+                calculate_cart()
+            }
+            else {
+                let header = document.getElementById('order_header')
+                header.textContent = 'Order confirmed'
+                let back_button = document.getElementById('edit_order')
+                let confirm_button = document.getElementById('confirm_order')
+                back_button.remove()
+                confirm_button.remove()
+
+                let a = document.createElement('a')
+                a.setAttribute("class", "btn btn-danger login-btn");
+                a.setAttribute('href', '/')
+                a.textContent = 'Close'
+                let div = document.getElementById('order_review_div')
+                div.appendChild(a)
+                window.scrollTo(0, 0);
+                calculate_cart()
+            }
         },
         error: function (xhr, status, error) {
             console.log('error')

@@ -126,6 +126,16 @@ def confirm_order(request):
     cart = Cart.objects.filter(user=profile.id).first()
     cart_details = CartDetails.objects.filter(cart=cart)
     for cart_detail in cart_details:
+        product = Product.objects.get(id=cart_detail.product_id)
+        quantity = cart_detail.quantity
+        if quantity >= product.stock:
+            order.delete()
+            return JsonResponse({'message': 'out of stock', 'product': product.name, 'items_left': product.stock})
+    for cart_detail in cart_details:
+        product = Product.objects.get(id=cart_detail.product_id)
+        quantity = cart_detail.quantity
+        product.stock -= quantity
+        product.save()
         cart_detail.delete()
     order.save()
     return JsonResponse({'message': 'success'})
