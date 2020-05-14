@@ -157,7 +157,31 @@ def update_product(request, id):
         return render(request, 'products/update_product.html', {
             'form': ProductForm(instance=the_product),
             'profile': Customer.objects.get(user=request.user),
-            'nav': get_manufactorers_and_consoles_for_navbar()
+            'nav': get_manufactorers_and_consoles_for_navbar(),
+            'product_id': id
+        })
+
+@login_required()
+def update_product_photo(request, id):
+    if request.user.is_superuser:
+        the_product = Product.objects.filter(pk=id).first()
+        if request.method == "POST":
+            form = ImageForm(data=request.POST)
+            if form.is_valid():
+                form.instance.product = the_product
+                form.save()
+                return render(request, 'products/update_product_image.html', {
+            'form': ImageForm(),
+            'profile': Customer.objects.get(user=request.user),
+            'product_id': id,
+            'success': True,
+            'message': "Successfully added a image to the product "+ the_product.name
+        })
+
+        return render(request, 'products/update_product_image.html', {
+            'form': ImageForm(),
+            'product_id': id,
+            'profile': Customer.objects.get(user=request.user)
         })
 
 @login_required()
@@ -165,12 +189,20 @@ def delete_product(request, id):
 
     if request.user.is_superuser:
         the_product = Product.objects.filter(pk=id).first()
-        the_product.delete()
+        #the_product.delete()
         return render(request, 'products/delete_product.html', {
             'form': ProductForm(instance=the_product),
+            'product': the_product,
             'profile': Customer.objects.get(user=request.user),
             'nav': get_manufactorers_and_consoles_for_navbar()
         })
+
+@login_required()
+def delete_confirm(request, id):
+    the_product = Product.objects.filter(pk=id).first()
+    the_product.delete()
+    return redirect('products')
+
 
 @login_required()
 def review_product(request, id):
@@ -209,5 +241,4 @@ def review_product(request, id):
 def search_no_response(request):
     return render(request, 'products/product_search_error.html', {'profile': Customer.objects.get(user=request.user), 'nav': get_manufactorers_and_consoles_for_navbar()})
 
-def about(request):
-    return render(request, 'products/about_us.html')
+

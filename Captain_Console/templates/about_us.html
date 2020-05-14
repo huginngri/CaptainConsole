@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="popup ccwhite ccbluebold">
+        <h1 class="cc2plarge">About us</h1>
+        <p> This website is a school project for the course Verklegt námskeið 2 in University of Reykjavík.
+            The authors of the site are students in group 5, Hilmar Páll Stefánsson, Huginn Sær Grímsson,
+            Kristján Ari Tómasson and Þóranna Dís Benter. to read more about the site's requirements, see the project description below</p>
+        <h2 class="cc2pmedium ">Console</h2>
+        <p class="left-text">A new retro gaming shop has emerged called Captain Console. The shop has one goal to
+        become the greatest, biggest and most recognized retro gaming shop out there! They sell
+        everything from ZX Spectrum to Gameboy but there is one problem.. they only have brick
+        and mortar stores and no online presence whatsoever. This is where you and your group
+        come in! Your job is to provide Captain Console a robust web application using
+        state-of-the-art technologies such as Django, Python and PostgreSQL. They have already
+        sent you the fax containing the assignment description - read carefully!</p>
+        <h2 class="cc2pmedium">Assignment description</h2>
+        <p class="left-text">The demands for the assignment are categorized in two: structural demands and featural
+        demands. Structural demands focus on how the application is structured, e.g. code
+        structure, database setup, etc. Featural demands focus on what a user can do within the
+        application, e.g. a user can view a gaming console, etc.
+        Here below are lists of featural- and structural demands and if those are implemented fully
+        you and your group can receive a grade of 8,0. If you want to go the extra mile and receive
+        a full score of 10,0, you and your group will need to add some features which are not
+        specified below.</p>
+        <h2 class="cc2pmedium">Featural demands</h2>
+        <p class="left-text">Here below is a list of featural demands:</p>
+        <dl class="padding-small">
+            <dt>● Layout site</dt>
+            <dd class="padding-small">○ Navigation bar</dd>
+            <dd class="padding-small">○ Footer</dd>
+            <dt>● Edit profile</dt>
+            <dd class="padding-small">○ Name</dd>
+            <dd class="padding-small">○ Image</dd>
+            <dt>● Catalogue site - lists available products in the store, e.g. consoles, games, etc.</dt>
+            <dd class="padding-small">○ Filter by type, e.g. NES, Sega, Gameboy</dd>
+            <dd class="padding-small">○ Order by</dd>
+            <dd class="padding-medium">      ■ Price</dd>
+            <dd class="padding-medium">      ■ Name</dd>
+            <dt>● Search history</dt>
+            <dt>● Product detail site - shows more information about a certain product</dt>
+            <dd class="padding-small">○ Name of product</dd>
+            <dd class="padding-small">○ Images</dd>
+            <dd class="padding-small">○ Long description</dd>
+            <dt>● Buy a product - should work similar to a checkout phase in most online stores</dt>
+            <dd class="padding-small">○ Contact information</dd>
+            <dd class="padding-medium">      ■ Full name</dd>
+            <dd class="padding-medium">      ■ Street name</dd>
+            <dd class="padding-medium">      ■ House number</dd>
+            <dd class="padding-medium">      ■ City</dd>
+            <dd class="padding-medium">      ■ Country (displayed as a select HTML element)</dd>
+            <dd class="padding-medium">      ■ Postal code</dd>
+            <dd class="padding-small">○ Payment step</dd>
+            <dd class="padding-medium"> ■ Name of cardholder</dd>
+            <dd class="padding-medium"> ■ Card number</dd>
+            <dd class="padding-medium">■ Expiration date</dd>
+            <dd class="padding-medium">■ CVC</dd>
+            <dd class="padding-small">○ Review step - this is a read-only site where a user can review what he is
+            buying and what information he has already typed in</dd>
+            <dd class="padding-small">○ Review step - this is a read-only site where a user can review what he is
+            buying and what information he has already typed in</dd>
+            <dd class="padding-small">○ Confirmation - this is the final step where a user gets a confirmation that
+            everything is successful</dd>
+            <dd class="padding-small">○ Easy navigation between steps - it should be easy to navigate between the
+            steps in the checkout phase</dd>
+        </dl>
+        <h2 class="cc2pmedium">Structural demands</h2>
+        <p class="left-text">Here below is a list of structural demands:</p>
+        <dl class="padding-small">
+            <dt>● The application must use a database to store the data</dt>
+            <dt>● Django Model API must be used</dt>
+            <dt>● The MTV pattern must be used</dt>
+            <dt>● Git is mandatory for version control and GitHub for repository</dt>
+            <dt>● All exceptions should be handled in a proper manner, which means that the
+            application should not crash when an exception is thrown</dt>
+        </dl>
+    </div>
+{% endblock %}

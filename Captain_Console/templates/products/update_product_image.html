@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="popup ccwhite">
+    <h1 class="cc2plarge">Update product</h1>
+        {% if success %}
+            {% include 'success_msg.html' with message=message %}
+        {% endif %}
+    <form class="form form-horizontal" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" class="btn btn-primary" value="Add image" />
+    </form>
+    </div>
+
+{% endblock %}

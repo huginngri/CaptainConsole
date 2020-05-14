@@ -84,6 +84,13 @@
 .centered-text{
     text-align:center;
 }
+.left-text{
+    text-align: left;
+}
+
+.medium{
+    font-size:medium;
+}
 
 @media screen and (max-width: 700px) {
     .cc2phuge{

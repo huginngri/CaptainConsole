@@ -102,7 +102,7 @@ def create_order(profile, billing, payment, cart_details):
         product = Product.objects.get(id=cart_detail.product_id)
         products.append({'product': product, 'quantity': cart_detail.quantity})
         if product.on_sale == True:
-            total += (product.discount_price * cart_details.quantity)
+            total += (product.discount_price * cart_detail.quantity)
         else:
             total += (product.price * cart_detail.quantity)
         order_product = OrderProduct(order=order, product=product, quantity=cart_detail.quantity)
