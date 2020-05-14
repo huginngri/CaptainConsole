@@ -47,65 +47,17 @@
     </div><!-- /.container-fluid -->
     <div class="block">
         <ul class='ccnavbuttons'>
-            <li class="ccdropdown">
-                <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'manufacturers-product' 'Atari' %}'" id = "cclightgray">Atari</button>
+            {% for manufacturer, consoles in nav.items %}
+                <li class="ccdropdown">
+                <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'manufacturers-product' manufacturer %}'" id = "cclightgray">
+                    {{ manufacturer }}</button>
                 <ul class="ccdropdown-content ccblue">
-                      <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Atari' 'Atari 2600'  %}">Atari 2600</a></li>
-                      <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Atari' 'Atari 5200'  %}">Atari 5200</a></li>
-                      <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Atari' 'Atari 7200'  %}">Atari 7200</a></li>
-                </ul>
-            </li>
-
-            <li class="ccdropdown">
-                <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'manufacturers-product' 'Nintendo' %}'"id = "cclightgray">Nintendo</button>
-                <ul class="ccdropdown-content ccblue">
-                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Nintendo' 'Nintendo 64'  %}">Nintendo 64</a></li>
-                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Nintendo' 'Nintendo NES'  %}">Nintendo NES</a></li>
-                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Nintendo' 'Super Nintendo'  %}">Super Nintendo</a></li>
-                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Nintendo' 'Wii'  %}">Wii</a></li>
-                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Nintendo' 'GameCube'  %}">GameCube</a></li>
-                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Nintendo' 'Game Boy Advance'  %}">Game Boy Advance</a></li>
-                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Nintendo' 'Nintendo DS'  %}">Nintendo DS</a></li>
-                </ul>
-            </li>
-
-            <li class="ccdropdown">
-                <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'manufacturers-product' 'Playstation'  %}'"id = "cclightgray">Playstation</button>
-                <ul class="ccdropdown-content ccblue">
-                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Playstation' 'Playstation 1'  %}">Playstation 1</a></li>
-                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Playstation' 'Playstation 2'  %}">Playstation 2</a></li>
-                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Playstation' 'Playstation 3'  %}">Playstation 3</a></li>
-                    <li><a class = "navlink" id="cclightgray" href="#">PSP</a></li>
-                </ul>
-            </li>
-
-            <li class="ccdropdown">
-                <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'manufacturers-product' 'Sega'  %}'" id="cclightgray">Sega</button>
-                <ul class="ccdropdown-content ccblue">
-                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Sega' 'Genesis'  %}">Genesis</a></li>
-                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Sega' 'Dreamcast'  %}">Dreamcast</a></li>
-                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Sega' 'Game Gear'  %}">Game Gear</a></li>
-                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Sega' 'Saturn'  %}">Saturn</a></li>
-                </ul>
-            </li>
-
-            <li class="ccdropdown">
-                <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'manufacturers-product' 'Xbox'  %}'" id="cclightgray">Xbox</button>
-                <ul class="ccdropdown-content ccblue">
-                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Xbox' 'Xbox original'  %}">Xbox original</a></li>
-                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Xbox' 'Xbox 360'  %}">Xbox 360</a></li>
-                </ul>
-            </li>
-
-            <li class="ccdropdown">
-                <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'products' %}'" id="cclightgray">Other</button>
-                <ul class="ccdropdown-content ccblue">
-                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Xbox' 'Xbox original'  %}">I</a></li>
-                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Xbox' 'Xbox 360'  %}">Done</a></li>
-                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Xbox' 'Xbox 360'  %}">CARE</a></li>
-
-                </ul>
-            </li>
+                {% for console in consoles %}
+                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' manufacturer console  %}">{{ console }}</a></li>
+                {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
 
             <li class="ccdropdown"><button type="button" class="btn btn-default navbar-btn" id="cclightgray">Deals</button></li>
             <li class="ccdropdown"><button type="button" class="btn btn-default navbar-btn" id="cclightgray" href="{% url 'about' %}">About us</button></li>
