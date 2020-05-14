@@ -172,7 +172,7 @@ function sortit(sel) {
     }
     for (let x = 0; x<all_products.children.length; x++){
         keep_arr.push(all_products.children[x])
-        let j = all_products.children[x].children[1].children[0].children[n_o_p].getAttribute("name")
+        let j = all_products.children[x].children[0].children[1].children[0].children[n_o_p].getAttribute("name")
         if (n_o_p ===1){
             j = parseFloat(j)
         }
@@ -226,32 +226,32 @@ function closeDiv(orderNumber) {
 }
 
 
-function calculateRating(id) {
-    console.log("what");
-    star_div = document.getElementById("star_" + id);
-    rating = star_div.name
-    let star = document.createElement("span");
-    star.setAttribute("class", "glyphicon glyphicon-star");
-    let empty_star = document.createElement("span");
-    empty_star.setAttribute("class", "glyphicon glyphicon-star-empty");
-     // <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-    let total_rating = 5;
-    while (rating > 0){
-        star_div.appendChild(star);
-        total_rating -= 1;
-        rating -= 1;
-    }
-    while(total_rating > 0){
-        star_div.appendChild(empty_star);
-        total_rating -= 1;
+function calculateRating(id, rating) {
+        console.log("here1")
+        star_div = document.getElementById("star_" + id);
 
-    }
+        // <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+        let total_rating = 5;
+        while (rating > 0) {
+            let star = document.createElement("span");
+             star.setAttribute("class", "glyphicon glyphicon-star");
+            star_div.appendChild(star);
+            total_rating -= 1;
+            rating -= 1;
+        }
+        while (total_rating > 0) {
+            let empty_star = document.createElement("span");
+            empty_star.setAttribute("class", "glyphicon glyphicon-star-empty");
+            star_div.appendChild(empty_star);
+            total_rating -= 1;
+            console.log("here 3")
+        }
 }
 
 function closeErrorDiv() {
     background = document.getElementById("error_background")
     the_product_list_element = document.getElementById("error_div")
-    the_product_list_element.classList.remove("popupsmall", "absolute", "ccwhite")
+    the_product_list_element.style = "display:none"
     background.classList.remove("cover")
 }
 

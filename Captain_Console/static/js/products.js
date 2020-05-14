@@ -13,22 +13,66 @@ $(document).ready(function() {
                 }
 
                 let newHtml = resp.data.map(d => {
-                    return `
-                                <a class=" product_boxes box ccwhite" href="/products/${d.id}">
+                    if (d.on_sale === true) {
+
+                        x= `
+                            <div class=" product_boxes box ccwhite">
+                                <a class=" product_boxes_inside box_inside" href="/products/${d.id}">
+                                    <div class="containerimage">
                                         <img class = "mediumimages" src="${d.image}" style="height:150px;">
+                                    </div>
                                     <div class="button_and_text">
                                         <div class="info">
-                                            <h4 class="name" name="${d.name}">${d.name}</h4>
-                                            <p class="price" name="${d.price}">${d.price} $</p>
-                                        </div>
-                                        <div class="btn-group buy-button" role="group" aria-label="...">
-                                              <button type="button" class="buy-btn">Buy</button>
-                                              <button type="button" class="cart-btn ccorange" onclick="add_to_cart_js(${d.id})">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
+                                            <h4 class="name ccbluemedium center" name="${d.name}">${d.name}</h4>
+                                            <p class="price ccbluesmall center" name="${d.discount_price}">${d.discount_price} $</p>
                                         </div>
                                     </div>
                                 </a>
+                        `
+                    } else {
+                        x = `
+                            <div class=" product_boxes box ccwhite">
+                                <a class=" product_boxes_inside box_inside" href="/products/${d.id}">
+                                         <div class="containerimage">
+                                        <img class = "mediumimages" src="${d.image}" style="height:150px;">
+                                    </div>
+                                    <div class="button_and_text">
+                                        <div class="info">
+                                            <h4 class="name ccbluemedium center" name="${d.name}">${d.name}</h4>
+                                            <p class="price ccbluesmall center" name="${d.price}">${d.price} $</p>
+                                        </div>
+                                       
+                                    </div>
+                                </a>
+                        `
+                    }
+                    var j = d.stock
+                    if (d.stock > 0) {
+
+                            return x +`<div class="below_box">
+                                          <button type="button" class="product-btn buy ccbluemedium" onclick="buy_product(${d.id })">Buy</button>
+                                          <button type="button" class="product-btn cart ccbluemedium" onclick="add_to_cart_js(${d.id })">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
+                                    </div>
+                                     </div>`
+                        }
+                        else {
+                            return x +`
+                        
+                            <div class="out_of_stock">
+                                        <p class = "ccbluemedium bold center">Out of stock</p>
+                            </div>
+
+                            </div>
+                           
                             `
-                });
+                        }
+                })
+
+
+
+
+
+
                 newHtml[0] = `<select  id="sort" onchange="sortit(this)">
             <option value="name">name (ascending)</option>
             <option value="name_reverse">name (descending)</option>
@@ -53,20 +97,21 @@ $(document).ready(function() {
 if ($("#recent-views").length) {
         $("#recent-views").ready(function () {
 
-            $.ajax({
-                url: "/products/recent",
-                type: "GET",
-                success: function (response) {
-                    if (response.length > 0) {
-                        var recentproducts = response.data.map(d => {
-                            return `
-                                    <a class=" product_boxes box ccwhite" href="/products/${d.id}">
-                                        <img class = "mediumimages" src="${d.image}" style="height:150px;">
-                                    <div class="button_and_text">
-                                        <div class="info">
-                                            <h4 class="name" name="${d.name}">${d.name}</h4>
-                                            <p class="price" >${d.price} $</p>
-                                        </div>
+
+        $.ajax({
+            url: "/products/recent",
+            type: "GET",
+            success: function (response) {
+                if (response.data.length > 0) {
+                    var recentproducts = response.data.map(d => {
+                        return `
+                                <a class=" product_boxes box ccwhite" href="/products/${d.id}">
+                                    <img class = "mediumimages" src="${d.image}" style="height:150px;">
+                                <div class="button_and_text">
+                                    <div class="info">
+                                        <h4 class="name" name="${d.name}">${d.name}</h4>
+                                        <p class="price" >${d.price} $</p>
+
                                     </div>
                                 </a>
                             `

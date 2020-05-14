@@ -24,6 +24,7 @@ class PaymentUpdateFormOrder(ModelForm):
             'cvc': widgets.NumberInput(attrs={'class': 'form-control'}),
         }
 
+
 class TemporaryPaymentForm(ModelForm):
     class Meta:
         model = TemporaryPayment

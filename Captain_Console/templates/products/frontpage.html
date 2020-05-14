@@ -34,17 +34,26 @@
         <div>
             <h1 class="homepagetext cc2phuge">Scroll down to shop <br>↓</h1>
         </div>
-        <select  id="sort" onchange="sortit(this)">
-            <option value="name">name (ascending)</option>
-            <option value="name_reverse">name (descending)</option>
-            <option value="price">price (ascending)</option>
-            <option value="price_reverse">price (descending)</option>
-        </select>
-        <div class = " product_container" id="container_for_products">
 
-            {% for product in  products%}
-                {% include 'products/product_overview.html' with product=product %}
-            {% endfor %}
+        <div class = "product_container" id="container_for_products">
+            <div class="single_container_front">
+                <h2 class="cc2plarge center">NEWEST</h2>
+                {% for product in  products_new%}
+                    {% include 'products/product_overview.html' with product=product %}
+                {% endfor %}
+            </div>
+            <div class="single_container_front">
+                <h2 class="cc2plarge center">HOT</h2>
+                {% for product in products_hot %}
+                    {% include 'products/product_overview.html' with product=product %}
+                {% endfor %}
+            </div>
+            <div class="single_container_front">
+                <h2 class="cc2plarge center">DEALS</h2>
+                {% for product in products_deal %}
+                    {% include 'products/product_overview.html' with product=product %}
+                {% endfor %}
+            </div>
         </div>
 
     {% endblock %}

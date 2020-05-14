@@ -12,4 +12,5 @@ urlpatterns = [
     path('checkout/overview', views.confirm_order, name="checkout-overview"),
     path('order_history', views.order_history, name="order-history"),
     path('can_review/<int:product_id>', views.can_review, name="order-history")
+
 ]

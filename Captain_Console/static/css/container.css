@@ -26,6 +26,10 @@
     margin-bottom: 20px;
     width: 20%
 }
+.single_container_front{
+    width: 33%;
+
+}
 
 .filler{height: 100px;}
 
@@ -42,9 +46,9 @@ filler2{
 }
 
 .manufacturer_info {
-    height: 400px;
+    height: 300px;
     text-align:center;
-    margin-bottom:10%;
+    margin-bottom:5%;
     box-shadow:2px 2px;
 }
 
@@ -76,12 +80,20 @@ filler2{
     height: 500px;
 }
 
-.textproductdetails{
+.textproductdetails {
+    padding: 20px;
     padding-top: 100px;
     position: relative;
-    width:53%;
-    margin-left: 1%;
+    width: 40%;
+    margin-left: 10%;
     margin-right: 5%;
+}
+.adminbuttons_container{
+    display:flex;
+    flex-wrap: wrap;
+    padding-left:80%;
+    padding-right: 2%;
+
 }
 
 /*product overview ------------------------------------------*/
@@ -106,8 +118,8 @@ filler2{
 
 
 .box{
-    display: block;
-    justify-content: center;
+    /*display: block;*/
+    /*justify-content: center;*/
     margin-top: 50px;
     margin-bottom: 50px;
     box-shadow: 3px 5px rgba(0, 0, 0, 0.5);
@@ -133,6 +145,12 @@ filler2{
     width: 100%;
     height: 280px;
 }
+.single_container_front .product_boxes {
+    height: 340px;
+    margin-top: 50px;
+    overflow: hidden;
+}
+
 .product_boxes{
     height: 340px;
     overflow: hidden;
@@ -146,6 +164,8 @@ filler2{
 }
 
 .console_boxes{
+    margin: 2%;
+    width: 25%;
     height: 200px;
 }
 
@@ -182,10 +202,10 @@ filler2{
 }
 
 .image_box_detailed{
-    margin-top:20%;
+    margin-top:5%;
     display: flex;
     flex-direction: column;
-    height:20%;
+    height:25%;
     max-height: 20%;
     width: 15%;
     overflow: auto;
@@ -263,6 +283,9 @@ filler2{
 }
 
 .footer{
+    /*height needs to equal the margin top so that its sticky*/
+    height:50%;
+    margin-top:10%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -298,7 +321,7 @@ filler2{
     text-align:center;
 }
 
-#id_username{
+#id_username {
     margin: 0 auto;
 }
 /*review -----------------------------------*/
@@ -322,10 +345,19 @@ filler2{
     opacity:0.4;
 }
 
+/*recently viewed-----*/
+.recently_viewed{
+    padding:5%;
+}
 
 
 
 @media screen and (min-width: 1001px) {
+    .single_container_front .product_boxes {
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
     .product_boxes {
         margin-left: 5%;
@@ -334,9 +366,9 @@ filler2{
     }
 
     .console_boxes {
-        margin-left: 5%;
+        /*margin-left: 5%;*/
         margin-right: 5%;
-        width: 40%;
+        /*width: 40%;*/
     }
     .review_boxes{
         margin-left: 5%;
@@ -353,6 +385,12 @@ filler2{
     .popupsmall{
         width: 70%;
         padding: 50px;
+    }
+    .single_container_front .product_boxes {
+        height: 320px;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
     }
     .product_boxes {
         height:320px;
@@ -392,6 +430,13 @@ filler2{
     .popupsmall{
         width: 100%;
         padding: 50px;
+    }
+    .single_container_front .product_boxes {
+        height: 320px;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+
     }
     .product_boxes {
         height:320px;

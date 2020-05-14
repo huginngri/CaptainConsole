@@ -2,23 +2,28 @@
 {% load static %}
 {% block content %}
 
-    <div    style=" background-image: url({% static   product.productimage_set.first.image  %});
+    <div    style=" background-image: url({{    product.productimage_set.first.image  }});
                     background-repeat: no-repeat;
                     background-attachment: fixed;
                     background-size: cover;" >
         <div class = "product_container">
             <div class=" imageproductdetails productdetails ccwhite">
-                <img id="myImage" class = "product_details_images" src="{% static   product.productimage_set.first.image  %}" onclick="document.getElementById('myImage').src='{% static   image.image  %}'">
+                <img id="myImage" class = "product_details_images" src="{{   product.productimage_set.first.image  }}" onclick="document.getElementById('myImage').src='{{   image.image  }}'" onload="calculateRating({{ product.id }}, {{ product.rating }})">
                 <div class = "image_box_detailed box_detailed" >
                     {% for image in product.productimage_set.all %}
-                            <img class="scrollimages" src="{% static   image.image  %}" onclick="document.getElementById('myImage').src='{% static   image.image  %}'">
+                            <img class="scrollimages" src="{{   image.image  }}" onclick="document.getElementById('myImage').src='{{   image.image  }}'">
                     {% endfor %}
                 </div>
 
                 <div class="button_and_text">
                     <div class="info">
                         <p class="ccbluelarge">{{ product.console_type }}</p>
+                        {% if product.on_sale == True %}
+                        <p class="ccbluemedium">{{ product.discount_price }} $</p>
+                        {% else %}
                         <p class="ccbluemedium">{{ product.price }} $</p>
+                        {% endif %}
+
                     </div>
                     {% if product.stock > 0 %}
                         <div class="below_box">
@@ -36,12 +41,20 @@
             <div class="textproductdetails productdetails ccwhite ">
                 <h4 class="cc2plarge">{{ product.name }}</h4>
                 <p class="ccbluelarge">{{ product.manufacturer }}</p>
-    {#            <p>{{ product.rating }}</p>#}
                 <p class="ccbluemedium">{{ product.description }}</p>
+                <div class="button_and_text">
+                    <h4 class="cc2plarge homepagetext" id="star_{{ product.id }}"></h4>
+                    {% if user.is_superuser %}
+                        <div class="adminbuttons_container">
+                            <button type="button" class="btn btn-primary"  onclick="location.href='{% url 'update-product' product.id%}'">update</button>
+                            <button type="button" class="btn btn-primary"  onclick="location.href='{% url 'delete-product' product.id%}'">delete</button>
+                        </div>
+                    {% endif %}
+                </div>
+
             </div>
         </div>
-        <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'update-product' product.id%}'" id="cclightgray">update</button>
-        <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'delete-product' product.id%}'" id="cclightgray">delete</button>
+
 
         <button type="button" id="give_review_button" class="btn btn-default navbar-btn" style="display: none" name="{{ product.id }}"  onclick="location.href='{% url 'review-product' product.id%}'" id="cclightgray">Review product</button>
 

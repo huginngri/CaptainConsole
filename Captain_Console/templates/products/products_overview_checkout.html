@@ -4,12 +4,17 @@
     <div class="checkout_boxes box ccwhite">
         <div class = "containerimage">
             <a href="/products/{{ product.product.id }}"></a>
-            <img class = "mediumimages" src="{% static   product.product.productimage_set.last.image  %}" style="height:150px;">
+            <img class = "mediumimages" src="{{ product.product.productimage_set.last.image  }}" style="height:150px;">
         </div>
         <div class="button_and_text">
             <div class="info">
-                <h4 class="name ccbluemedium center">{{ product.product.name }}</h4>
-                <p class="price ccbluesmall center">{{ product.product.price }} $</p>
+                <h4 class="name ccbluemedium center" name="{{ product.product.name }}">{{ product.product.name }}</h4>
+                {% if product.on_sale == True %}
+                        <p class="price ccbluesmall center" name="{{ product.discount_price }}">{{ product.discount_price }} $</p>
+                    {% else %}
+                    <p class="price ccbluesmall center" name="{{ product.price }}">{{ product.price }} $</p>
+                    {% endif %}
+
                 <p class="price ccbluesmall center">Quantity: {{ product.quantity }}</p>
             </div>
         </div>
