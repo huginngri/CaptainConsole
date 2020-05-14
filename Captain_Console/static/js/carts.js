@@ -212,21 +212,22 @@ function buy_product(product_id) {
 }
 
 function viewOrderDetail(orderNumber){
-    background = document.getElementById("background_"+orderNumber)
-    the_product_list_element = document.getElementById("list_for_"+orderNumber)
+    background = document.getElementById("background_"+orderNumber);
+    the_product_list_element = document.getElementById("list_for_"+orderNumber);
 
-    the_product_list_element.classList.add("popupsmall","absolute","ccwhite")
-    background.classList.add("cover")
+    the_product_list_element.classList.add("popupsmall","absolute","ccwhite");
+    background.classList.add("cover");
 }
 
+//this function closes a window that pops up when user has done somthingwrong.
 function closeDiv(orderNumber) {
-    background = document.getElementById("background_" + orderNumber)
-    the_product_list_element = document.getElementById("list_for_" + orderNumber)
-    the_product_list_element.classList.remove("popupsmall", "absolute", "ccwhite")
-    background.classList.remove("cover")
+    background = document.getElementById("background_" + orderNumber);
+    the_product_list_element = document.getElementById("list_for_" + orderNumber);
+    the_product_list_element.classList.remove("popupsmall", "absolute", "ccwhite");
+    background.classList.remove("cover");
 }
 
-
+//this function calculates how many full and empty star should be displayed.
 function calculateRating(id, rating) {
         star_div = document.getElementById("star_" + id);
         while (star_div.hasChildNodes()) {
@@ -250,7 +251,7 @@ function calculateRating(id, rating) {
 
 
 }
-
+//this function calculates how many full and empty star should be displayed but takes in the item that the star should be placed into as an argument.
 function calculateRatingHome(star_div, rating, count) {
         while (star_div.hasChildNodes()) {
             star_div.removeChild(star_div.firstChild);
@@ -277,11 +278,23 @@ function calculateRatingHome(star_div, rating, count) {
         star_div.appendChild(text);
 }
 
-
+//this function closes a window that pops up when user has done some error..
 function closeErrorDiv() {
-    background = document.getElementById("error_background")
-    the_product_list_element = document.getElementById("error_div")
-    the_product_list_element.style = "display:none"
-    background.classList.remove("cover")
+    background = document.getElementById("error_background");
+    the_product_list_element = document.getElementById("error_div");
+    the_product_list_element.style = "display:none";
+    background.classList.remove("cover");
 }
 
+function display_checkout(todisplay, toclose){
+    itemtodisplay1 = document.getElementById(todisplay+"1");
+    itemtodisplay2 = document.getElementById(todisplay+"2");
+    itemtoclose1 = document.getElementById(toclose+"1");
+    itemtoclose2 = document.getElementById(toclose+"2");
+    itemtodisplay1.classList.remove("display-none");
+    itemtodisplay2.classList.remove("display-none");
+    itemtoclose1.classList.add("class", "display-none" );
+    itemtoclose2.classList.add("class", "display-none" );
+
+
+}

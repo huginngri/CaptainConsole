@@ -11,23 +11,35 @@
         {% endif %}
 
         <form class="form form-horizontal" action="{% url 'checkout' %}" method="post">
-            <h1 class="medium underliner">Billing Info</h1>
-            {% csrf_token %}
-            {{ form_billing }}
-            {%  if billing_saved %}
-                 <button type="submit" class="btn btn-success login-btn" formaction="{% url 'checkout-save-billing' %}">Save Billing</button>
-            {% else %}
-                <button type="submit" class="btn btn-default login-btn" formaction="{% url 'checkout-save-billing' %}">Save Billing</button>
-            {% endif %}
-            <h1 class="medium underliner">Payment Info</h1>
-            {% csrf_token %}
-            {{ form_payment }}
-            {%  if payment_saved %}
-                <button type="submit" class="btn btn-success login-btn" formaction="{% url 'checkout-save-payment' %}">Save Payment</button>
-            {% else %}
-                <button type="submit" class="btn btn-default login-btn" formaction="{% url 'checkout-save-payment' %}">Save Payment</button>
-            {% endif %}
-            <input type="submit" class="btn btn-primary login-btn" value="Continue" />
+            <div id="billing1" >
+                <h1 class="ccbluebold underliner">Billing Info</h1>
+                {% csrf_token %}
+                {{ form_billing }}
+                {%  if billing_saved %}
+                     <button type="submit" class="btn btn-success login-btn" formaction="{% url 'checkout-save-billing' %}">Save Billing</button>
+                {% else %}
+                    <button type="submit" class="btn btn-default login-btn" formaction="{% url 'checkout-save-billing' %}">Save Billing</button>
+                {% endif %}
+                <div class="btn btn-primary login-btn" onclick="display_checkout('payment', 'billing')">Continue</div>
+            </div>
+            <div id = "payment2" class ="display-none border_checkout" onclick="display_checkout('billing', 'payment')">
+                <h1 class="ccbluelarge center bold">Billing Info</h1>
+            </div>
+            <div id="payment1" class="display-none">
+                <h1 class="ccbluebold underliner">Payment Info</h1>
+                {% csrf_token %}
+                {{ form_payment }}
+                {%  if payment_saved %}
+                    <button type="submit" class="btn btn-success login-btn" formaction="{% url 'checkout-save-payment' %}">Save Payment</button>
+                {% else %}
+                    <button type="submit" class="btn btn-default login-btn" formaction="{% url 'checkout-save-payment' %}">Save Payment</button>
+                {% endif %}
+                <div class="btn btn-primary login-btn" onclick="display_checkout('billing', 'payment')">Back</div>
+                <input type="submit" class="ccorange proceed-to-checkout-btn btn" value="Continue" id="ccwhite"/>
+            </div>
+            <div id="billing2" class ="border_checkout" onclick="display_checkout('payment', 'billing')">
+                <h1 class="ccbluelarge center bold">Payment Info</h1>
+            </div>
         </form>
     </div>
 
