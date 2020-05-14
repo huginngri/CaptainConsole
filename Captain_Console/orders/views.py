@@ -42,8 +42,8 @@ def checkout(request, save=False, billing_saved=False, payment_saved=False):
         print(context)
         return render(request, "orders/checkout.html", context)
     return render(request, "orders/checkout.html", {
-        "form_billing": TemporaryBillingForm(instance=profile.billing, data=request.POST),
-        "form_payment": TemporaryPaymentForm(instance=profile.payment, data=request.POST),
+        "form_billing": TemporaryBillingForm(instance=profile.billing),
+        "form_payment": TemporaryPaymentForm(instance=profile.payment),
         'profile': profile,
         'nav': get_manufactorers_and_consoles_for_navbar()
     })

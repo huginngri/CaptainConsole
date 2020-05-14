@@ -106,8 +106,8 @@ function remove_from_cart(product_id, child) {
         url: '/carts/' + product_id,
         success: function (response) {
             console.log(response);
-
-            if (response['total_price'] === null) {
+            console.log(response['total_price'])
+            if (response['total_price'] === 0) {
                 location.reload()
             }
             else {
@@ -127,7 +127,8 @@ function remove_from_cart(product_id, child) {
             }
         },
         error: function (xhr, status, error) {
-            console.log('eitthvað vilaust');
+            console.log('eitthvað bla');
+
         }
     });
 }
