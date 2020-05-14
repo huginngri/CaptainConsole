@@ -25,15 +25,18 @@ def checkout(request, save=False, billing_saved=False, payment_saved=False):
     profile = Customer.objects.filter(user=request.user).first()
     context = dict()
     if request.method == "POST" and save != True:
-        form_billing = BillingFormOrder(instance=profile.billing, data=request.POST)
-        form_payment = PaymentFormOrder(instance=profile.billing, data=request.POST)
+        form_billing = BillingFormOrder(data=request.POST)
+        form_payment = PaymentFormOrder(data=request.POST)
         if form_billing.is_valid() and form_payment.is_valid():
             new_billing = form_billing.save()
             new_payment = form_payment.save()
             return display_order(request, new_billing, new_payment)
         else:
             context = cases.error(context, 'Please make sure that billing and payment is valid')
-
+            context['form_billing'] = TemporaryBillingForm(data=request.POST)
+            context['form_payment'] = TemporaryPaymentForm(data=request.POST)
+            context = cases.get_profile(context, request)
+            return render(request, "orders/checkout.html", context)
     elif save == True:
         context = {
             "form_billing": TemporaryBillingForm(instance=profile.billing, data=request.POST),
@@ -51,9 +54,7 @@ def checkout(request, save=False, billing_saved=False, payment_saved=False):
     context['form_billing'] = TemporaryBillingForm(instance=profile.billing)
     context['form_payment'] = TemporaryPaymentForm(instance=profile.payment)
     context = cases.get_profile(context, request)
-    return render(request, "orders/checkout.html",
-        context
-    )
+    return render(request, "orders/checkout.html", context)
 
 
 @login_required()
@@ -99,6 +100,7 @@ def display_order(request, billing, payment):
 
 @login_required()
 def create_order(profile, billing, payment, cart_details):
+
     order = Order(customer=profile, billing=billing, payment=payment)
     order.save()
     total = 0
