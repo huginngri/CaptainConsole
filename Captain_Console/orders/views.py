@@ -144,8 +144,8 @@ def update_order(request, order_id):
                 form_payment.save()
                 return display_order(request, form_billing, form_payment)
         else:
-            form_billing = BillingUpdateFormOrder(instance=billing)
-            form_payment = PaymentUpdateFormOrder(instance=payment)
+            form_billing = TemporaryBillingForm(instance=billing)
+            form_payment = TemporaryPaymentForm(instance=payment)
         context = {
             "form_billing": form_billing,
             "form_payment": form_payment}
