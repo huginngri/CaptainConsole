@@ -232,9 +232,7 @@ function closeDiv(orderNumber) {
 }
 
 
-function calculateRating(id, rating) {
-        console.log("here1")
-        star_div = document.getElementById("star_" + id);
+function calculateRating(star_div, rating) {
         while (star_div.hasChildNodes()) {
             star_div.removeChild(star_div.firstChild);
         }
