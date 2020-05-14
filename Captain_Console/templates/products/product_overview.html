@@ -11,12 +11,11 @@
             {% else %}
                 <div class = "containerimage" onclick="location.href='{% url 'consoles-one' product.manufacturer product.console_type product.id %}'">
             {% endif %}
-
-                <img class = "mediumimages" src="{{product.productimage_set.first.image  }}" style="height:150px;" onload="calculateRating({{ product.id }}, {{ product.rating }})">
+                <img class = "mediumimages" src="{{product.productimage_set.first.image  }}" style="height:150px;" onload="calculateRatingHome(this.parentNode.parentNode.children[1].children[0].children[0], {{ product.rating }}, {{ product.review_count }})">
                 </div>
             <div class="button_and_text">
                 <div class="info">
-                    <h4 class="cc2psmall no-margin" id="star_{{ product.id }}"></h4>
+                    <h4 class="cc2psmall no-margin rating"></h4>
                     <h4 class="name ccbluemedium center no-margin" name="{{ product.name }}">{{ product.name }}</h4>
                     {% if product.on_sale == True %}
                         <p class="price ccbluesmall center no-margin" name="{{ product.discount_price }}">{{ product.discount_price }} $</p>

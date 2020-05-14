@@ -224,8 +224,8 @@ def review_product(request, id):
                 form.save()
                 print(product.rating)
                 print(form.instance.star)
-                number_of_rev = len(Review.objects.filter(product=product))
-                product.rating = (product.rating*(number_of_rev-1)+form.instance.star)/(number_of_rev)
+                product.review_count = product.review_count + 1
+                product.rating = (product.rating*(product.review_count-1)+form.instance.star)/(product.review_count)
                 product.save()
                 context = cases.success(context, 'Review successfull')
                 return render(request, 'products/review_product.html', context)
