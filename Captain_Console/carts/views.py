@@ -50,11 +50,9 @@ def view_cart(request):
     products = []
     total = 0
     total_in_cart = 0
-
     for cart_detail in cart_details:
         product = Product.objects.filter(id=cart_detail.product.id).first()
         total_in_cart += 1
-
         products.append({'product': product, 'quantity': cart_detail.quantity})
         if product.on_sale == True:
             total += (product.discount_price * cart_detail.quantity)
@@ -68,7 +66,7 @@ def view_cart(request):
                 order_product.delete()
             order.delete()
 
-    context1 = {'products': products, 'total_price': total}
+    context1 = {'products': products, 'total_price': round(total,2)}
     context1 = cases.get_profile(context1, request)
     context2 = cases.get_profile(dict(), request)
 
@@ -98,7 +96,7 @@ def calc_price(cart):
             total += (product.discount_price * cart_details.quantity)
         else:
             total += (product.price * cart_detail.quantity)
-    return total
+    return round(total,2)
 
 @login_required()
 def change_quantity(request, product_id):
@@ -114,13 +112,5 @@ def change_quantity(request, product_id):
         else:
             cart_detail.quantity = request.POST['new_amount']
             cart_detail.save()
-        cart_details = CartDetails.objects.filter(cart=cart)
-        total = 0
-        for cart_detail in cart_details:
-            product = Product.objects.filter(id=cart_detail.product.id).first()
-            if product.on_sale == True:
-                total += (product.discount_price * cart_details.quantity)
-            else:
-                total += (product.price * cart_detail.quantity)
-        return JsonResponse({'total_price': total})
+        return JsonResponse({'total_price': calc_price(cart)})
     return JsonResponse({'message': 'invalid request'})

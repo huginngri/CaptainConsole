@@ -19,10 +19,11 @@ $(document).ready(function() {
                             <div class=" product_boxes box ccwhite">
                                 <a class=" product_boxes_inside box_inside" href="/products/${d.id}">
                                     <div class="containerimage">
-                                        <img class = "mediumimages" src="${d.image}" style="height:150px;">
+                                        <img class = "mediumimages" src="${d.image}" style="height:150px;" onload="calculateRatingHome(this.parentNode.parentNode.children[1].children[0].children[0], ${d.rating}, ${d.review_count})">
                                     </div>
                                     <div class="button_and_text">
                                         <div class="info">
+                                            <h4 class="cc2psmall no-margin rating"></h4>
                                             <h4 class="name ccbluemedium center" name="${d.name}">${d.name}</h4>
                                             <p class="price ccbluesmall center" name="${d.discount_price}">${d.discount_price} $ (-${d.discount}%)</p>
                                         </div>
@@ -34,10 +35,11 @@ $(document).ready(function() {
                             <div class=" product_boxes box ccwhite">
                                 <a class=" product_boxes_inside box_inside" href="/products/${d.id}">
                                          <div class="containerimage">
-                                        <img class = "mediumimages" src="${d.image}" style="height:150px;">
+                                        <img class = "mediumimages" src="${d.image}" style="height:150px;" onload="calculateRatingHome(this.parentNode.parentNode.children[1].children[0].children[0], ${d.rating}, ${d.review_count})">
                                     </div>
                                     <div class="button_and_text">
                                         <div class="info">
+                                            <h4 class="cc2psmall no-margin rating"></h4>
                                             <h4 class="name ccbluemedium center" name="${d.name}">${d.name}</h4>
                                             <p class="price ccbluesmall center" name="${d.price}">${d.price} $</p>
                                         </div>
