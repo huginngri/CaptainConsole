@@ -165,7 +165,7 @@ def delete_product(request, id):
         #the_product.delete()
         return render(request, 'products/delete_product.html', {
             'form': ProductForm(instance=the_product),
-            'product': the_product
+            'product': the_product,
             'profile': Customer.objects.get(user=request.user)
         })
 
