@@ -106,8 +106,8 @@ function remove_from_cart(product_id, child) {
         url: '/carts/' + product_id,
         success: function (response) {
             console.log(response);
-
-            if (response['total_price'] === null) {
+            console.log(response['total_price'])
+            if (response['total_price'] === 0) {
                 location.reload()
             }
             else {
@@ -127,7 +127,8 @@ function remove_from_cart(product_id, child) {
             }
         },
         error: function (xhr, status, error) {
-            console.log('eitthvað vilaust');
+            console.log('eitthvað bla');
+
         }
     });
 }
@@ -178,7 +179,7 @@ function sortit(sel) {
         if (n_o_p ===1){
             j = parseFloat(j)
         }
-        the_arr.push(j)
+        the_arr.push(j.toUpperCase())
     }
     let new_arr = []
     for (let x = 0; x<the_arr.length; x++){
