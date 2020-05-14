@@ -94,7 +94,7 @@ $(document).ready(function() {
         })
     })
 
-if ($("#recent-views").length) {
+if ($("#recent-views")) {
         $("#recent-views").ready(function () {
 
 
@@ -112,6 +112,7 @@ if ($("#recent-views").length) {
                                         <h4 class="name" name="${d.name}">${d.name}</h4>
                                         <p class="price" >${d.price} $</p>
 
+                                    </div>
                                     </div>
                                 </a>
                             `
