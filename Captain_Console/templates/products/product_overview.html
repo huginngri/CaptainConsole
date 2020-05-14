@@ -12,7 +12,7 @@
                 <div class = "containerimage" onclick="location.href='{% url 'consoles-one' product.manufacturer product.console_type product.id %}'">
             {% endif %}
 
-                <img class = "mediumimages" src="{{product.productimage_set.first.image  }}" style="height:150px;" onload="calculateRatgitng }})">
+                <img class = "mediumimages" src="{{product.productimage_set.first.image  }}" style="height:150px;" onload="calculateRating({{ product.id }}, {{ product.rating }})">
                 </div>
             <div class="button_and_text">
                 <div class="info">
