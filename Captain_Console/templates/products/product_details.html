@@ -54,15 +54,17 @@
                         <div class="adminbuttons_container">
                             <button type="button" class="btn btn-primary login-btn"  onclick="location.href='{% url 'update-product' product.id%}'">update</button>
                             <button type="button" class="btn btn-primary login-btn"  onclick="location.href='{% url 'delete-product' product.id%}'">delete</button>
+
                         </div>
                     {% endif %}
+                    <button type="button" id="give_review_button" class="btn btn-primary login-btn" style="display: none" name="{{ product.id }}"  onclick="location.href='{% url 'review-product' product.id%}'">Review product</button>
+
                 </div>
 
             </div>
         </div>
 
 
-        <button type="button" id="give_review_button" class="btn btn-default navbar-btn" style="display: none" name="{{ product.id }}"  onclick="location.href='{% url 'review-product' product.id%}'" id="cclightgray">Review product</button>
 
 
         {# for comments on the products #}

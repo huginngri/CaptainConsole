@@ -2,13 +2,14 @@
 {% load static %}
 
     {% block content %}
+
         {% if error == True %}
             {% include 'error.html' with message=message %}
         {% endif %}
         {% if success == True %}
             {% include 'success_msg.html' with message=message %}
         {% endif %}
-        <div>
+        <div class="openingtext">
             <h1 class="homepagetext cc2phuge"> Welcome to the largest retro gaming shop</h1>
         </div>
         <div class =  "informationbar ccblue">
@@ -57,5 +58,8 @@
                 {% endfor %}
             </div>
         </div>
+        {% if error == True %}
 
+            {% include 'error.html' with message=message %}
+        {% endif %}
     {% endblock %}
