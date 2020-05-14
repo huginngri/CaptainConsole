@@ -14,7 +14,7 @@ def index(request):
     profile = None
     if request.user.is_authenticated:
         profile = Customer.objects.get(user=request.user)
-    context = {'manufacturers': Manufacturer.objects.all().order_by('name'), 'profile': profile}
+    context = {'manufacturers': Manufacturer.objects.all().order_by('name'), 'profile': profile, 'nav': get_manufactorers_and_consoles_for_navbar()}
     return render(request, 'manufacturers/index.html', context)
 
 def get_manufacturer_by_name(request, name):
@@ -22,7 +22,7 @@ def get_manufacturer_by_name(request, name):
     profile = None
     if request.user.is_authenticated:
         profile = Customer.objects.get(user=request.user)
-    context = {'manufacturer': manufacturer, 'products': list(Product.objects.filter(manufacturer=manufacturer.id)), 'consoles': Console.objects.filter(manufacturer=manufacturer.id), 'profile': profile}
+    context = {'manufacturer': manufacturer, 'products': list(Product.objects.filter(manufacturer=manufacturer.id)), 'consoles': Console.objects.filter(manufacturer=manufacturer.id), 'profile': profile, 'nav': get_manufactorers_and_consoles_for_navbar()}
     return render(request, 'manufacturers/manufacturer_details.html', context)
 
 @login_required()
@@ -34,5 +34,14 @@ def create_manufacturer(request):
             return redirect('frontpage')
     return render(request, 'manufacturers/create_manufacturer.html', {
         'form1': ManufacturerForm(),
-        'profile': Customer.objects.get(user=request.user)
+        'profile': Customer.objects.get(user=request.user),
+        'nav': get_manufactorers_and_consoles_for_navbar()
     })
+
+def get_manufactorers_and_consoles_for_navbar():
+    manufacturers = Manufacturer.objects.all()
+    nav_context = {}
+    for manufacturer in manufacturers:
+        consoles = Console.objects.filter(manufacturer=manufacturer)
+        nav_context[manufacturer.name] = [console.name for console in consoles]
+    return nav_context

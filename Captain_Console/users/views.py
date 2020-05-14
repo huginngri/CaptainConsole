@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import User
-
+from manufacturers.views import get_manufactorers_and_consoles_for_navbar
 # Create your views here.
 from carts.models import Cart
 from products.models import ProductHistory, Product, ProductImage
@@ -31,6 +31,7 @@ def register(request):
             return redirect('login')
     return render(request, 'users/register.html', {
         'form' : UserCreationForm(),
+        'nav': get_manufactorers_and_consoles_for_navbar()
     })
 
 @login_required()
@@ -49,7 +50,8 @@ def update_profile(request):
     return render(request, "users/profile.html",{
         "form1": ProfileForm(instance=profile),
         "form2": UserForm(instance=request.user),
-        "profile": profile
+        "profile": profile,
+        'nav': get_manufactorers_and_consoles_for_navbar()
     })
 
 @login_required()
@@ -64,7 +66,8 @@ def update_billing(request):
             return redirect('profile')
     return render(request, "users/billing.html",{
         "form": BillingForm(instance=profile.billing),
-        "profile": profile
+        "profile": profile,
+        'nav': get_manufactorers_and_consoles_for_navbar()
     })
 
 @login_required()
@@ -80,7 +83,8 @@ def update_payment(request):
     return render(request, "users/payment.html",{
 
         "form": PaymentForm(instance=profile.payment),
-        "profile": profile
+        "profile": profile,
+        'nav': get_manufactorers_and_consoles_for_navbar()
     })
 
 @login_required()
@@ -98,7 +102,8 @@ def change_password(request):
         form = PasswordChangeForm(request.user)
     return render(request, 'users/change_password.html', {
         'form': form,
-        'profile': Customer.objects.get(user=request.user)
+        'profile': Customer.objects.get(user=request.user),
+        'nav': get_manufactorers_and_consoles_for_navbar()
     })
 
 @login_required()
@@ -120,7 +125,7 @@ def delete_user(request):
     else:
         form = RemoveUser()
     
-    context = {'form': form, 'profile': Customer.objects.get(user=request.user)}
+    context = {'form': form, 'profile': Customer.objects.get(user=request.user), 'nav': get_manufactorers_and_consoles_for_navbar()}
     return render(request, 'users/remove_user.html', context)
 
 @login_required()
@@ -142,5 +147,5 @@ def product_history(request):
             'rating': x.rating,
             'image': ProductImage.objects.filter(product=x.id).first().image
         } for x in the_products]
-        return render(request, 'users/product_history.html', {'products': recent_products, 'profile': Customer.objects.get(user=request.user)})
+        return render(request, 'users/product_history.html', {'products': recent_products, 'profile': Customer.objects.get(user=request.user), 'nav': get_manufactorers_and_consoles_for_navbar()})
 

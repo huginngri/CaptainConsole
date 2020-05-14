@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 import operator
 from consoles.models import Console
 from manufacturers.models import Manufacturer
+from manufacturers.views import get_manufactorers_and_consoles_for_navbar
 from orders.models import Order, OrderProduct
 from products.forms.product_form import ProductForm
 from products.forms.image_form import ImageForm
@@ -36,7 +37,7 @@ def frontpage(request):
     final_final_list = []
     for prod in final_list:
         final_final_list.append(prod.id)
-    context = {'products_new': Product.objects.all().order_by('-id')[:3], 'products_hot': Product.objects.filter(id__in=final_final_list), 'products_deal': Product.objects.filter(on_sale=True).order_by('-discount')[:3], 'profile': profile}
+    context = {'products_new': Product.objects.all().order_by('-id')[:3], 'products_hot': Product.objects.filter(id__in=final_final_list), 'products_deal': Product.objects.filter(on_sale=True).order_by('-discount')[:3], 'profile': profile, 'nav': get_manufactorers_and_consoles_for_navbar()}
     return render(request, 'products/frontpage.html', context)
 
 @login_required()
@@ -95,7 +96,7 @@ def index(request):
     profile = None
     if request.user.is_authenticated:
         profile = Customer.objects.get(user=request.user)
-    context = {'products': Product.objects.all().order_by('name'), 'profile': profile}
+    context = {'products': Product.objects.all().order_by('name'), 'profile': profile, 'nav': get_manufactorers_and_consoles_for_navbar()}
     return render(request, 'products/index.html', context)
 
 def get_product_by_id(request, id, consolename=None, name=None):
@@ -111,7 +112,7 @@ def get_product_by_id(request, id, consolename=None, name=None):
     profile = None
     if request.user.is_authenticated:
         profile = Customer.objects.get(user=request.user)
-    product = {'product': the_product, 'filter': 'none', 'comments': full_reviews, 'profile': profile}
+    product = {'product': the_product, 'filter': 'none', 'comments': full_reviews, 'profile': profile, 'nav': get_manufactorers_and_consoles_for_navbar()}
     if request.user.is_authenticated:
         new_item_view = ProductHistory(user=request.user, product=the_product)
         new_item_view.save()
@@ -135,7 +136,8 @@ def create_product(request):
         return render(request, 'products/create_product.html', {
             'form1': ProductForm(),
             'form2': ImageForm(),
-            'profile': Customer.objects.get(user=request.user)
+            'profile': Customer.objects.get(user=request.user),
+            'nav': get_manufactorers_and_consoles_for_navbar()
         })
 
 @login_required()
@@ -154,7 +156,8 @@ def update_product(request, id):
                 return redirect('products')
         return render(request, 'products/update_product.html', {
             'form': ProductForm(instance=the_product),
-            'profile': Customer.objects.get(user=request.user)
+            'profile': Customer.objects.get(user=request.user),
+            'nav': get_manufactorers_and_consoles_for_navbar()
         })
 
 @login_required()
@@ -165,7 +168,8 @@ def delete_product(request, id):
         the_product.delete()
         return render(request, 'products/delete_product.html', {
             'form': ProductForm(instance=the_product),
-            'profile': Customer.objects.get(user=request.user)
+            'profile': Customer.objects.get(user=request.user),
+            'nav': get_manufactorers_and_consoles_for_navbar()
         })
 
 @login_required()
@@ -192,17 +196,18 @@ def review_product(request, id):
                 return redirect('frontpage')
             return render(request, 'products/review_product.html', {
                 'form': ReviewForm(),
-                'profile': profile
+                'profile': profile,
+                'nav': get_manufactorers_and_consoles_for_navbar()
             })
         else:
             return render(request, 'products/frontpage.html',
-                          {'profile': profile, 'error': True, 'message': 'You must have ordered the product to review'})
+                          {'profile': profile, 'error': True, 'message': 'You must have ordered the product to review', 'nav': get_manufactorers_and_consoles_for_navbar()})
     else:
 
-        return render(request, 'products/frontpage.html', {'profile': profile, 'error': True, 'message': 'You can only review each product once'})
+        return render(request, 'products/frontpage.html', {'profile': profile, 'error': True, 'message': 'You can only review each product once', 'nav': get_manufactorers_and_consoles_for_navbar()})
 
 def search_no_response(request):
-    return render(request, 'products/product_search_error.html', {'profile': Customer.objects.get(user=request.user)})
+    return render(request, 'products/product_search_error.html', {'profile': Customer.objects.get(user=request.user), 'nav': get_manufactorers_and_consoles_for_navbar()})
 
 def about(request):
     return render(request, 'products/about_us.html')
