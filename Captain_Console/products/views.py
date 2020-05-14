@@ -230,7 +230,7 @@ def review_product(request, id):
                 print(product.rating)
                 print(form.instance.star)
                 product.review_count = product.review_count + 1
-                product.rating = (product.rating*(product.review_count-1)+form.instance.star)/(product.review_count)
+                product.rating = round((product.rating*(product.review_count-1)+form.instance.star)/(product.review_count))
                 product.save()
                 context = cases.success(context, 'Review successfull')
 
