@@ -256,7 +256,7 @@ function calculateRating(id, rating) {
         }
 }
 
-function calculateRatingHome(star_div, rating) {
+function calculateRatingHome(star_div, rating, reviewcount) {
         while (star_div.hasChildNodes()) {
             star_div.removeChild(star_div.firstChild);
         }
