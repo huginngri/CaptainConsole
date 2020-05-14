@@ -34,7 +34,7 @@ def checkout(request, save=False, billing_saved=False, payment_saved=False):
             new_payment = form_payment.save()
             return display_order(request, new_billing, new_payment)
         else:
-            context = cases.error(context, 'Please make sure that billing and payment is valid')
+            context = cases.error(context, 'Please make sure that every field is filled out')
             context['form_billing'] = TemporaryBillingForm(data=request.POST)
             context['form_payment'] = TemporaryPaymentForm(data=request.POST)
             context = cases.get_profile(context, request)
@@ -96,7 +96,7 @@ def display_order(request, billing, payment):
     cart = Cart.objects.filter(user=profile.id).first()
     cart_details = CartDetails.objects.filter(cart=cart)
     order, products, total = create_order(profile, billing, payment, cart_details)
-    context = {'order': order,'products': products, 'total_price': total}
+    context = {'order': order,'products': products, 'total_price': round(total,2)}
     context = cases.get_profile(context, request)
     return render(request, 'orders/order_review.html', context)
 
@@ -116,7 +116,7 @@ def create_order(profile, billing, payment, cart_details):
             total += (product.price * cart_detail.quantity)
         order_product = OrderProduct(order=order, product=product, quantity=cart_detail.quantity)
         order_product.save()
-    return order, products, total
+    return order, products, round(total,2)
 
 @login_required()
 def confirm_order(request):

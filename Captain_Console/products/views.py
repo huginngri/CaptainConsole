@@ -61,6 +61,8 @@ def index(request):
             'id': x.id,
             'name': x.name,
             'description': x.description,
+            'rating': x.rating,
+            'review_count': x.review_count,
             'stock': x.stock,
             'price': x.price,
             'on_sale': x.on_sale,
@@ -81,7 +83,7 @@ def index(request):
 
     return render(request, 'products/index.html', context)
 
-def get_product_by_id(request, id, consolename=None, name=None):
+def get_product_by_id(request, id, consolename=None, name=None, context={}):
     the_product = get_object_or_404(Product, pk=id)
     reviews = Review.objects.filter(product=the_product)
     full_reviews = [{
@@ -91,8 +93,11 @@ def get_product_by_id(request, id, consolename=None, name=None):
         'image': get_object_or_404(Customer, pk=x.customer_id).image,
         'name': get_object_or_404(Customer, pk=x.customer_id).user.username
     }for x in reviews]
-    context = {'product': the_product, 'filter': 'none', 'comments': full_reviews}
-    context = cases.get_profile(context, request)
+    if len(context) == 0:
+        context = cases.get_profile(context, request)
+    context['product'] = the_product
+    context['filter'] = 'none'
+    context['comments'] = full_reviews
     if request.user.is_authenticated:
         new_item_view = ProductHistory(user=request.user, product=the_product)
         new_item_view.save()
@@ -225,10 +230,11 @@ def review_product(request, id):
                 print(product.rating)
                 print(form.instance.star)
                 product.review_count = product.review_count + 1
-                product.rating = (product.rating*(product.review_count-1)+form.instance.star)/(product.review_count)
+                product.rating = round((product.rating*(product.review_count-1)+form.instance.star)/(product.review_count))
                 product.save()
                 context = cases.success(context, 'Review successfull')
-                return render(request, 'products/review_product.html', context)
+
+                return get_product_by_id(request, product.id, context=context)
             return render(request, 'products/review_product.html', context)
         else:
             context = cases.error(context, 'You must have ordered the product to review')

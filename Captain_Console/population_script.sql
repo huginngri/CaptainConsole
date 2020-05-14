@@ -16,7 +16,7 @@ INSERT INTO products_product (name, description, price, rating, console_type_id,
 
 INSERT INTO products_product (name, description, price, rating, console_type_id, manufacturer_id) VALUES ('Mario bros', 'A classic game', 12, 4, 5, 5);
 
-
+UPDATE products_product SET rating = 5, review_count = 2 WHERE id = 44 ;
 INSERT INTO products_product (name, description, price, rating, console_type_id, manufacturer_id) VALUES ('Nintendo NES console', 'An average console', 11, 3, 5, 5);
 
 
