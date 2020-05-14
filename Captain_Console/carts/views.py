@@ -1,13 +1,15 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+
+from error_and_success import cases
 from users.models import Customer
 from carts.models import Cart
 from carts.models import CartDetails
 from orders.models import Order, OrderProduct
 from products.models import Product
 from django.http import JsonResponse
-from users.forms.payment_form import PaymentForm
-from users.forms.billing_form import BillingForm
+
+
 
 # Create your views here.
 @login_required()
@@ -64,8 +66,9 @@ def view_cart(request):
             for order_product in order_products:
                 order_product.delete()
             order.delete()
-    context1 = {'profile': customer, 'products': products, 'total_price': total}
-    context2 = {'profile': customer}
+    context1 = {'products': products, 'total_price': total}
+    context1 = cases.get_profile(context1, request)
+    context2 = cases.get_profile(dict(), request)
 
     if total_in_cart != 0:
         return render(request, 'carts/cart_details.html', context1)

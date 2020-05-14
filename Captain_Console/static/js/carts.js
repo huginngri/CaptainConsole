@@ -106,10 +106,12 @@ function remove_from_cart(product_id, child) {
         url: '/carts/' + product_id,
         success: function (response) {
             console.log(response);
-            if (response['total_price'] === null){
+
+            if (response['total_price'] === null) {
                 location.reload()
             }
-            else{
+            else {
+
                 let container = document.getElementById("cart_products")
                 for (let x = 0; x < container.children.length; x++){
                     if (container.children[x] === deletediv){
@@ -121,8 +123,8 @@ function remove_from_cart(product_id, child) {
                 let price = document.getElementById('cart_total');
                 let total = parseFloat(response['total_price']);
                 price.textContent = 'Total price: ' + total + '$';
-            }
 
+            }
         },
         error: function (xhr, status, error) {
             console.log('eitthvað vilaust');
@@ -176,7 +178,7 @@ function sortit(sel) {
         if (n_o_p ===1){
             j = parseFloat(j)
         }
-        the_arr.push(j)
+        the_arr.push(j.toUpperCase())
     }
     let new_arr = []
     for (let x = 0; x<the_arr.length; x++){
@@ -229,7 +231,9 @@ function closeDiv(orderNumber) {
 function calculateRating(id, rating) {
         console.log("here1")
         star_div = document.getElementById("star_" + id);
-
+        while (star_div.hasChildNodes()) {
+            star_div.removeChild(star_div.firstChild);
+        }
         // <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
         let total_rating = 5;
         while (rating > 0) {

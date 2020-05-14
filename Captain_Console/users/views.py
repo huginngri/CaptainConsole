@@ -1,7 +1,6 @@
-from django.contrib.auth.decorators import login_required
+
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
-from django.http import JsonResponse
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -32,9 +31,9 @@ def register(request):
             context = dict()
             context = cases.error(context, 'User created')
             return redirect('login')
-    return render(request, 'users/register.html', {
-        'form' : UserCreationForm(),
-    })
+    context = {'form': UserCreationForm()}
+    context = cases.get_profile(context, request)
+    return render(request, 'users/register.html', context)
 
 @login_required()
 def update_profile(request):
@@ -42,8 +41,8 @@ def update_profile(request):
     context = {
         "form1": ProfileForm(instance=profile),
         "form2": UserForm(instance=request.user),
-        "profile": profile
     }
+    context = cases.get_profile(context, request)
     if request.method == "POST":
         form1 = ProfileForm(instance=profile, data= request.POST)
         form2 = UserForm(instance=request.user, data= request.POST)
@@ -57,30 +56,33 @@ def update_profile(request):
             return render(request, "users/profile.html",context)
     return render(request, "users/profile.html", context)
 
+
 @login_required()
 def update_billing(request):
     profile = Customer.objects.filter(user=request.user).first()
     context = {
         "form": BillingForm(instance=profile.billing),
-        'profile': profile
     }
+    context = cases.get_profile(context, request)
     if request.method == "POST":
         form = BillingForm(instance=profile.billing, data=request.POST)
         if form.is_valid():
             new_billing = form.save()
             profile.billing = new_billing
             profile.save()
+
             context = cases.success(context, 'Updated billing')
             return render(request,'users/billing.html', context)
     return render(request, "users/billing.html", context)
+
 
 @login_required()
 def update_payment(request):
     profile = Customer.objects.filter(user=request.user).first()
     context = {
         "form": PaymentForm(instance=profile.payment),
-        "profile": profile
     }
+    context = cases.get_profile(context, request)
     if request.method == "POST":
         form = PaymentForm(data= request.POST)
         if form.is_valid():
@@ -91,12 +93,13 @@ def update_payment(request):
             return render(request, 'users/payment.html', context)
     return render(request, "users/payment.html", context)
 
+
 @login_required()
 def change_password(request):
     context = {
         'form': PasswordChangeForm(request.user),
-        'profile': Customer.objects.get(user=request.user)
     }
+    context = cases.get_profile(context, request)
     if request.method == "POST":
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
@@ -107,6 +110,7 @@ def change_password(request):
         else:
             messages.error(request, 'Error')
     return render(request, 'users/change_password.html', context)
+
 
 @login_required()
 def delete_user(request):
@@ -123,6 +127,7 @@ def delete_user(request):
                 context = cases.success(context, 'User removed')
                 return render(request,'users/user_removed.html', context)
             else:
+
                 context = cases.error(context, "Something went wrong")
         else:
             context = cases.error(context, "Something went wrong")
@@ -147,6 +152,7 @@ def product_history(request):
             'rating': x.rating,
             'image': ProductImage.objects.filter(product=x.id).first().image
         } for x in the_products]
+
         context = cases.get_profile(dict(), request)
         context['products'] = recent_products
         return render(request, 'users/product_history.html', context)

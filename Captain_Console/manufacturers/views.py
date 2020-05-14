@@ -1,18 +1,15 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 from error_and_success import cases
 from manufacturers.forms.manufacturers_form import ManufacturerForm
 from manufacturers.models import Manufacturer
 from products.models import Product
 from consoles.models import Console
-from django.http import HttpResponse
 
-from users.models import Customer
 
 
 def index(request):
-
     context = {'manufacturers': Manufacturer.objects.all().order_by('name'), }
     context = cases.get_profile(context, request)
     return render(request, 'manufacturers/index.html', context)
@@ -41,5 +38,9 @@ def create_manufacturer(request):
         return render(request, 'manufacturers/create_manufacturer.html', context)
     else:
         context = cases.get_profile(dict(), request)
+        context = cases.front_page(context)
         context = cases.error(context, "You shall not pass")
         return render(request, 'products/frontpage.html', context)
+
+
+

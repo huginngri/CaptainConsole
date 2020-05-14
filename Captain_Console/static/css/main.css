@@ -11,7 +11,6 @@ a:link{
 
 }
 
-
 /* nav bar --------------------------------------------*/
 #littlepadding{
     padding:10px;
@@ -242,12 +241,27 @@ input[id^='id_'], div[id*=' id_']{
 
 /* checkout ------------------------------------------------*/
 .underliner{
-    border-bottom: 3px solid #F1AA19;
+    border-bottom: 3px solid;
 }
 
 
 
 /* junk ------------------------------------------------*/
+.padding-small{
+    padding-left:25px;
+
+}
+.padding-medium{
+    padding-left:50px;
+
+}
+dt{
+    padding-left:5px;
+}
+dd{
+    padding-left:5px;
+
+}
 
 .intro {
     justify-content: center;
@@ -275,6 +289,10 @@ input[id^='id_'], div[id*=' id_']{
 /*manufacturers----*/
 .manufacturer_header{
     margin-top:10%;
+}
+
+.manufacturer_description{
+    margin-top:2%;
 }
 
 /*footer------*/

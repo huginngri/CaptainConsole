@@ -12,8 +12,13 @@
         {% csrf_token %}
         {{ form }}
         <input type="submit" class="btn btn-primary" value="Update" />
+        <div id="centered" style="margin-top:10%;">
+            <input type="submit" class="btn btn-primary" value="Create" />
+        </div>
     </form>
-    <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'update-product-photos' product_id %}'" id = "cclightgray">Add images</button>
+        <div class="center">
+            <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'update-product-photos' product_id %}'" id = "cclightgray">Add images</button>
+        </div>
     </div>
 
 {% endblock %}

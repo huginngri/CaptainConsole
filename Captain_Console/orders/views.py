@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 from error_and_success import cases
 from orders.forms.payment_form import PaymentFormOrder, PaymentUpdateFormOrder, TemporaryPaymentForm
@@ -9,7 +9,7 @@ from users.forms.payment_form import PaymentForm
 from orders.models import Billing
 from orders.models import Payment
 from users.models import Customer
-from django.forms.models import model_to_dict
+
 from orders.models import Order
 from orders.models import OrderProduct
 from carts.models import Cart
@@ -37,8 +37,9 @@ def checkout(request, save=False, billing_saved=False, payment_saved=False):
     elif save == True:
         context = {
             "form_billing": TemporaryBillingForm(instance=profile.billing, data=request.POST),
-            "form_payment": TemporaryPaymentForm(instance=profile.payment, data=request.POST)
+            "form_payment": TemporaryPaymentForm(instance=profile.payment, data=request.POST),
         }
+        context = cases.get_profile(context, request)
         if billing_saved:
             context["billing_saved"] = 'True'
             context['message'] = 'Billing information saved'
@@ -46,12 +47,14 @@ def checkout(request, save=False, billing_saved=False, payment_saved=False):
             context["payment_saved"] = 'True'
             context['message'] = 'Payment information saved'
         return render(request, "orders/checkout.html", context)
+
     context['form_billing'] = TemporaryBillingForm(instance=profile.billing, data=request.POST)
     context['form_payment'] = TemporaryPaymentForm(instance=profile.payment, data=request.POST)
-    context['profile'] = profile
+    context = cases.get_profile(context, request)
     return render(request, "orders/checkout.html",
         context
     )
+
 
 @login_required()
 def save_billing(request):
@@ -64,11 +67,10 @@ def save_billing(request):
             profile.billing = new_billing
             profile.save()
             return checkout(request, save=True, billing_saved=True)
-    return render(request, "orders/checkout.html", {
-        "form_billing": TemporaryBillingForm(instance=profile.billing, data=request.POST),
-        "form_payment": TemporaryPaymentForm(instance=profile.payment, data=request.POST),
-        'profile': profile
-    })
+    context =  {"form_billing": TemporaryBillingForm(instance=profile.billing, data=request.POST),
+        "form_payment": TemporaryPaymentForm(instance=profile.payment, data=request.POST)}
+    context = cases.get_profile(context, request)
+    return render(request, "orders/checkout.html", context)
 
 @login_required()
 def save_payment(request):
@@ -80,11 +82,10 @@ def save_payment(request):
             profile.payment = new_payment
             profile.save()
             return checkout(request, save=True, payment_saved=True)
-    return render(request, "orders/checkout.html", {
-        "form_billing": TemporaryBillingForm(instance=profile.billing, data=request.POST),
-        "form_payment": TemporaryPaymentForm(instance=profile.payment, data=request.POST),
-        'profile': profile
-    })
+    context = { "form_billing": TemporaryBillingForm(instance=profile.billing, data=request.POST),
+        "form_payment": TemporaryPaymentForm(instance=profile.payment, data=request.POST),}
+    context = cases.get_profile(context, request)
+    return render(request, "orders/checkout.html", context)
 
 @login_required()
 def display_order(request, billing, payment):
@@ -92,7 +93,8 @@ def display_order(request, billing, payment):
     cart = Cart.objects.filter(user=profile.id).first()
     cart_details = CartDetails.objects.filter(cart=cart)
     order, products, total = create_order(profile, billing, payment, cart_details)
-    context = {'order': order,'products': products, 'total_price': total, 'profile': profile}
+    context = {'order': order,'products': products, 'total_price': total}
+    context = cases.get_profile(context, request)
     return render(request, 'orders/order_review.html', context)
 
 @login_required()
@@ -128,6 +130,7 @@ def confirm_order(request):
 def update_order(request, order_id):
     profile = Customer.objects.filter(user=request.user).first()
     order = Order.objects.get(id=order_id)
+
     if order.customer == profile:
         billing = Billing.objects.get(id=order.billing_id)
         payment = Payment.objects.get(id=order.payment_id)
@@ -141,14 +144,17 @@ def update_order(request, order_id):
         else:
             form_billing = BillingUpdateFormOrder(instance=billing)
             form_payment = PaymentUpdateFormOrder(instance=payment)
-        return render(request, "orders/checkout.html", {
+        context = {
             "form_billing": form_billing,
-            "form_payment": form_payment,
-            'profile': profile
-             })
+            "form_payment": form_payment}
+        context = cases.get_profile(context, request)
+        return render(request, "orders/checkout.html", context)
     else:
-        return render(request, 'products/frontpage.html',
-                      {'profile': profile, 'error': True, 'message': 'You shall not pass'})
+        context = cases.front_page(dict())
+        context = cases.error(context, 'You shall not pass')
+        context = cases.get_profile(context, request)
+        return render(request, 'products/frontpage.html', context)
+
 
 @login_required()
 def order_history(request):
@@ -179,7 +185,8 @@ def order_history(request):
                 order.status = "Open"
             no_of_orders += 1
             final_orders.append({'order': order, 'products': prods})
-        context = {'orders': final_orders, 'total_orders': no_of_orders, 'profile': profile}
+        context = {'orders': final_orders, 'total_orders': no_of_orders}
+        context = cases.get_profile(context, request)
         return render(request, "orders/order_history_user.html", context)
     else:
         all_orders = Order.objects.all()
@@ -199,7 +206,8 @@ def order_history(request):
 
         all_orders.total_sold = str(round(total_sold, 2))+ " $"
         all_orders.no = total_no_of_orders
-        context = {'orders': all_orders, 'profile': Customer.objects.get(user=request.user)}
+        context = {'orders': all_orders}
+        context = cases.get_profile(context, request)
         return render(request, "orders/order_history_admin.html", context)
 
 @login_required()

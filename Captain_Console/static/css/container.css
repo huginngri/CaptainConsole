@@ -56,6 +56,7 @@ filler2{
     height: 100px;
     text-align:center;
     margin: auto;
+    /*padding:5%*/
     box-shadow:2px 2px;
 }
 
@@ -190,7 +191,7 @@ filler2{
 
 .review_boxes{
     padding: 10px;
-    min-height: 250px;
+    /*min-height: 250px;*/
     overflow: hidden;
 
 }
@@ -422,12 +423,8 @@ filler2{
     .image_box{
         height:200px;
     }
-    .below_box{
+    .below_box {
         height: 40px;
-
-    }
-    .filler {
-        height: 130px;
     }
 
 }

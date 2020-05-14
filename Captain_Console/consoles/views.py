@@ -1,13 +1,10 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 from consoles.forms.console_form import ConsoleForm
 from consoles.models import Console
 from error_and_success import cases
 from products.models import Product
-from django.http import HttpResponse
-
-from users.models import Customer
 
 
 def index(request):
@@ -35,9 +32,11 @@ def get_games_by_name_console_names(request, consolename, name=None):
 
 def get_accessories_by_name(request, consolename, name=None):
     console = Console.objects.get(name=consolename)
+
     context = {'console': console, 'products': Product.objects.filter(console_type=console.id, type='accessory'),
                'filter': 'Accessory'}
     context = cases.get_profile(context, request)
+
     return render(request, 'consoles/console_details.html', context)
 
 @login_required()
@@ -56,5 +55,7 @@ def create_console(request):
         return render(request, 'consoles/create_console.html', context)
     else:
         context = cases.get_profile(dict(), request)
+        context = cases.front_page(context)
         context = cases.error(context, "You shall not pass")
         return render(request, 'products/frontpage.html', context)
+
