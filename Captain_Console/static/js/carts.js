@@ -229,7 +229,9 @@ function closeDiv(orderNumber) {
 function calculateRating(id, rating) {
         console.log("here1")
         star_div = document.getElementById("star_" + id);
-
+        while (star_div.hasChildNodes()) {
+            star_div.removeChild(star_div.firstChild);
+        }
         // <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
         let total_rating = 5;
         while (rating > 0) {
