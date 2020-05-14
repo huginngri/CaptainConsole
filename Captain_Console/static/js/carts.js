@@ -46,7 +46,7 @@ function add_to_cart_js(product) {
             }
         },
         error: function (xhr, status, error) {
-            console.log('eitthvað vilaust')
+            console.log('error')
         }
     });
 }
@@ -56,7 +56,6 @@ function calculate_cart() {
         type: "GET",
         url: '/carts',
         success: function (response) {
-            console.log(response.count)
 
             let cart_number = document.getElementById("cart_count");
             cart_number.textContent = response.count;
@@ -76,7 +75,7 @@ function place_order(order) {
             order: order
         },
         success: function (response) {
-            console.log('virkar')
+            console.log('sucess')
             let header = document.getElementById('order_header')
             header.textContent = 'Order confirmed'
             let back_button = document.getElementById('edit_order')
@@ -101,15 +100,12 @@ function place_order(order) {
 
 
 function remove_from_cart(product_id, child) {
-    console.log('hilmar er belja')
     let deletediv = child.parentNode.parentNode.parentNode
     $.ajax({
         type: "DELETE",
         method: 'DELETE',
         url: '/carts/' + product_id,
         success: function (response) {
-            console.log(response);
-            console.log(response['total_price'])
             if (response['total_price'] === 0) {
                 location.reload()
             }
@@ -130,14 +126,13 @@ function remove_from_cart(product_id, child) {
             }
         },
         error: function (xhr, status, error) {
-            console.log('eitthvað bla');
+            console.log('error');
 
         }
     });
 }
 
 function change_quantity(product_id) {
-    console.log(product_id)
     let inp = document.getElementById(product_id)
     let new_amount = inp.value
     $.ajax({
@@ -155,7 +150,7 @@ function change_quantity(product_id) {
             calculate_cart()
         },
         error: function (xhr, status, error) {
-            console.log('eitthvað vilaust');
+            console.log('error');
         }
     });
 }
@@ -233,7 +228,6 @@ function closeDiv(orderNumber) {
 
 
 function calculateRating(id, rating) {
-        console.log("here1")
         star_div = document.getElementById("star_" + id);
         while (star_div.hasChildNodes()) {
             star_div.removeChild(star_div.firstChild);
@@ -252,11 +246,12 @@ function calculateRating(id, rating) {
             empty_star.setAttribute("class", "glyphicon glyphicon-star-empty");
             star_div.appendChild(empty_star);
             total_rating -= 1;
-            console.log("here 3")
         }
+
+
 }
 
-function calculateRatingHome(star_div, rating, reviewcount) {
+function calculateRatingHome(star_div, rating, count) {
         while (star_div.hasChildNodes()) {
             star_div.removeChild(star_div.firstChild);
         }
@@ -274,8 +269,12 @@ function calculateRatingHome(star_div, rating, reviewcount) {
             empty_star.setAttribute("class", "glyphicon glyphicon-star-empty");
             star_div.appendChild(empty_star);
             total_rating -= 1;
-            console.log("here 3")
         }
+        let text = document.createElement("p");
+        text.setAttribute("class", "inline ccbluesmall");
+        text.setAttribute("id", "padding-xsmall");
+        text.textContent ="  " + count
+        star_div.appendChild(text);
 }
 
 
