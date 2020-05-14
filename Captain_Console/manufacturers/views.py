@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from manufacturers.forms.manufacturers_form import ManufacturerForm
@@ -10,7 +11,10 @@ from users.models import Customer
 
 
 def index(request):
-    context = {'manufacturers': Manufacturer.objects.all().order_by('name')}
+    profile = None
+    if request.user.is_authenticated:
+        profile = Customer.objects.get(user=request.user)
+    context = {'manufacturers': Manufacturer.objects.all().order_by('name'), 'profile': profile}
     return render(request, 'manufacturers/index.html', context)
 
 def get_manufacturer_by_name(request, name):
@@ -21,6 +25,7 @@ def get_manufacturer_by_name(request, name):
     context = {'manufacturer': manufacturer, 'products': list(Product.objects.filter(manufacturer=manufacturer.id)), 'consoles': Console.objects.filter(manufacturer=manufacturer.id), 'profile': profile}
     return render(request, 'manufacturers/manufacturer_details.html', context)
 
+@login_required()
 def create_manufacturer(request):
     if request.method == "POST":
         form1 = ManufacturerForm(data=request.POST)
@@ -28,5 +33,6 @@ def create_manufacturer(request):
             form1.save()
             return redirect('frontpage')
     return render(request, 'manufacturers/create_manufacturer.html', {
-        'form1': ManufacturerForm()
+        'form1': ManufacturerForm(),
+        'profile': Customer.objects.get(user=request.user)
     })
