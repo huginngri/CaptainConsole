@@ -4,7 +4,7 @@
 {% block content %}
     <div class = "popup ccwhite center">
         <!--<span id = "ccblue" class="glyphicon glyphicon-shopping-cart centered-text" aria-hidden="true"></span>-->
-        <h1 class="homepagetext cc2plarge">{{ customer.user }}, your cart is empty!</h1>
-        <button class="profilebuttons btn btn-primary "  onclick="location.href='{% url 'frontpage' %}'">Continue shopping</button>
+        <h1 class="homepagetext cc2plarge">{{ profile.user }}, your cart is empty!</h1>
+        <button class="btn btn-primary login-btn"  onclick="location.href='{% url 'frontpage' %}'">Continue shopping</button>
     </div>
 {% endblock %}

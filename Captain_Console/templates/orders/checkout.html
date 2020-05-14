@@ -21,7 +21,6 @@
             {% endif %}
             <h1 class="medium underliner">Payment Info</h1>
             {% csrf_token %}
-
             {{ form_payment }}
             {%  if payment_saved %}
                 <button type="submit" class="btn btn-success login-btn" formaction="{% url 'checkout-save-payment' %}">Save Payment</button>
