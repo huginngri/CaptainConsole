@@ -37,10 +37,13 @@ function add_to_cart_js(product) {
             product_id: product
         },
         success: function (response) {
-            console.log(response.count)
-            console.log('virkar')
-            let cart_number = document.getElementById("cart_count");
-            cart_number.textContent = response.count;
+            if (response.count === undefined) {
+                window.location = '/carts/view';
+            }
+            else {
+                let cart_number = document.getElementById("cart_count");
+                cart_number.textContent = response.count;
+            }
         },
         error: function (xhr, status, error) {
             console.log('eitthvað vilaust')
@@ -106,8 +109,8 @@ function remove_from_cart(product_id, child) {
         url: '/carts/' + product_id,
         success: function (response) {
             console.log(response);
-
-            if (response['total_price'] === null) {
+            console.log(response['total_price'])
+            if (response['total_price'] === 0) {
                 location.reload()
             }
             else {
@@ -127,7 +130,8 @@ function remove_from_cart(product_id, child) {
             }
         },
         error: function (xhr, status, error) {
-            console.log('eitthvað vilaust');
+            console.log('eitthvað bla');
+
         }
     });
 }

@@ -77,6 +77,7 @@ def update_billing(request):
             profile.save()
 
             context = cases.success(context, 'Updated billing')
+            context['form'] = BillingForm(instance=profile.billing)
             return render(request,'users/billing.html', context)
     return render(request, "users/billing.html", context)
 
@@ -95,6 +96,7 @@ def update_payment(request):
             profile.payment = new_payment
             profile.save()
             context = cases.success(context, "Updated payment")
+            context['form'] = PaymentForm(instance=profile.payment)
             return render(request, 'users/payment.html', context)
     return render(request, "users/payment.html", context)
 

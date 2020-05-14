@@ -118,4 +118,4 @@ TRUNCATE TABLE orders_payment CASCADE ;
 
 UPDATE  products_product SET stock=10 WHERE id>0;
 
-DELETE FROM manufacturers_manufacturer WHERE id=12;
+DELETE FROM manufacturers_manufacturer WHERE id=13 or id =14;

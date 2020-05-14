@@ -32,7 +32,7 @@ def add_or_count_cart(request):
         cart = Cart.objects.filter(user=customer.id).first()
         return JsonResponse({'count': count_cart(customer, cart)})
     else:
-        return JsonResponse({'error': 'Request failed'})
+        return JsonResponse({'error': 'invalid request'})
 
 
 @login_required()
@@ -67,9 +67,11 @@ def view_cart(request):
             for order_product in order_products:
                 order_product.delete()
             order.delete()
+
     context1 = {'products': products, 'total_price': total}
     context1 = cases.get_profile(context1, request)
     context2 = cases.get_profile(dict(), request)
+
 
     if total_in_cart != 0:
         return render(request, 'carts/cart_details.html', context1)
