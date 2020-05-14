@@ -43,11 +43,11 @@
                 <p class="ccbluelarge">{{ product.manufacturer }}</p>
                 <p class="ccbluemedium">{{ product.description }}</p>
                 <div class="button_and_text">
-                    <h4 class="cc2plarge homepagetext" id="star_{{ product.id }}"></h4>
+                    <h4 class="cc2plarge" id="star_{{ product.id }}"></h4>
                     {% if user.is_superuser %}
                         <div class="adminbuttons_container">
-                            <button type="button" class="btn btn-primary  onclick="location.href='{% url 'update-product' product.id%}'">update</button>
-                            <button type="button" class="btn btn-primary"  onclick="location.href='{% url 'delete-product' product.id%}'">delete</button>
+                            <button type="button" class="btn btn-primary login-btn"  onclick="location.href='{% url 'update-product' product.id%}'">update</button>
+                            <button type="button" class="btn btn-primary login-btn"  onclick="location.href='{% url 'delete-product' product.id%}'">delete</button>
                         </div>
                     {% endif %}
                 </div>
