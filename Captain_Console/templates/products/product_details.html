@@ -5,7 +5,13 @@
     <div    style=" background-image: url({{    product.productimage_set.first.image  }});
                     background-repeat: no-repeat;
                     background-attachment: fixed;
-                    background-size: cover;" >
+                    background-size: cover;">
+    {% if error == True %}
+            {% include 'error.html' with message=message %}
+        {% endif %}
+        {% if success == True %}
+            {% include 'success_msg.html' with message=message %}
+        {% endif %}
         <div class = "product_container">
             <div class=" imageproductdetails productdetails ccwhite">
                 <img id="myImage" class = "product_details_images" src="{{   product.productimage_set.first.image  }}" onclick="document.getElementById('myImage').src='{{   image.image  }}'" onload="calculateRating({{ product.id }}, {{ product.rating }})">
@@ -48,15 +54,17 @@
                         <div class="adminbuttons_container">
                             <button type="button" class="btn btn-primary login-btn"  onclick="location.href='{% url 'update-product' product.id%}'">update</button>
                             <button type="button" class="btn btn-primary login-btn"  onclick="location.href='{% url 'delete-product' product.id%}'">delete</button>
+
                         </div>
                     {% endif %}
+                    <button type="button" id="give_review_button" class="btn btn-primary login-btn" style="display: none" name="{{ product.id }}"  onclick="location.href='{% url 'review-product' product.id%}'">Review product</button>
+
                 </div>
 
             </div>
         </div>
 
 
-        <button type="button" id="give_review_button" class="btn btn-default navbar-btn" style="display: none" name="{{ product.id }}"  onclick="location.href='{% url 'review-product' product.id%}'" id="cclightgray">Review product</button>
 
 
         {# for comments on the products #}

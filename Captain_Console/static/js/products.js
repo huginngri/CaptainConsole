@@ -24,7 +24,7 @@ $(document).ready(function() {
                                     <div class="button_and_text">
                                         <div class="info">
                                             <h4 class="name ccbluemedium center" name="${d.name}">${d.name}</h4>
-                                            <p class="price ccbluesmall center" name="${d.discount_price}">${d.discount_price} $</p>
+                                            <p class="price ccbluesmall center" name="${d.discount_price}">${d.discount_price} $ (-${d.discount}%)</p>
                                         </div>
                                     </div>
                                 </a>
@@ -46,7 +46,6 @@ $(document).ready(function() {
                                 </a>
                         `
                     }
-                    var j = d.stock
                     if (d.stock > 0) {
 
                             return x +`<div class="below_box">

@@ -1,43 +1,25 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from django.contrib import messages
 from django.db.models import Q
 from django.shortcuts import render, redirect
-import operator
+
 from consoles.models import Console
+from error_and_success import cases
 from manufacturers.models import Manufacturer
-from manufacturers.views import get_manufactorers_and_consoles_for_navbar
+
 from orders.models import Order, OrderProduct
 from products.forms.product_form import ProductForm
 from products.forms.image_form import ImageForm
 from products.forms.review_form import ReviewForm
 from products.models import Product, ProductImage, ProductHistory, Review
-from django.http import HttpResponse
+
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 
 from users.models import Customer
 
 def frontpage(request):
-    profile = None
-    if request.user.is_authenticated:
-        profile = Customer.objects.get(user=request.user)
-    recent_orders = Order.objects.all().order_by('-id')[:20]
-    kk = []
-    for order in recent_orders:
-        kk.append(OrderProduct.objects.filter(order=order))
-    s = dict()
-    for h in kk:
-        for g in h:
-            if g.product in s.keys():
-                s[g.product] += g.quantity
-            else:
-                s[g.product] = g.quantity
-    final_list = sorted(s, key=s.get, reverse=True)[:3]
-    final_final_list = []
-    for prod in final_list:
-        final_final_list.append(prod.id)
-    context = {'products_new': Product.objects.all().order_by('-id')[:3], 'products_hot': Product.objects.filter(id__in=final_final_list), 'products_deal': Product.objects.filter(on_sale=True).order_by('-discount')[:3], 'profile': profile, 'nav': get_manufactorers_and_consoles_for_navbar()}
+    context = cases.front_page(dict())
+    context = cases.get_profile(context, request)
     return render(request, 'products/frontpage.html', context)
 
 @login_required()
@@ -83,7 +65,7 @@ def index(request):
             'price': x.price,
             'on_sale': x.on_sale,
             'discount': x.discount,
-            'dicount_price': x.discount_price,
+            'discount_price': x.discount_price,
             'image': ProductImage.objects.filter(product=x.id).first().image
         } for x in Product.objects.filter(Q(name__icontains=search_filter) | Q(console_type__in=cons_id )| Q(manufacturer__in=manu_id))]
 
@@ -93,10 +75,10 @@ def index(request):
             # return response
         
         return JsonResponse({'data': products})
-    profile = None
-    if request.user.is_authenticated:
-        profile = Customer.objects.get(user=request.user)
-    context = {'products': Product.objects.all().order_by('name'), 'profile': profile, 'nav': get_manufactorers_and_consoles_for_navbar()}
+
+    context = {'products': Product.objects.all().order_by('name')}
+    context = cases.get_profile(context, request)
+
     return render(request, 'products/index.html', context)
 
 def get_product_by_id(request, id, consolename=None, name=None):
@@ -109,18 +91,21 @@ def get_product_by_id(request, id, consolename=None, name=None):
         'image': get_object_or_404(Customer, pk=x.customer_id).image,
         'name': get_object_or_404(Customer, pk=x.customer_id).user.username
     }for x in reviews]
-    profile = None
-    if request.user.is_authenticated:
-        profile = Customer.objects.get(user=request.user)
-    product = {'product': the_product, 'filter': 'none', 'comments': full_reviews, 'profile': profile, 'nav': get_manufactorers_and_consoles_for_navbar()}
+    context = {'product': the_product, 'filter': 'none', 'comments': full_reviews}
+    context = cases.get_profile(context, request)
     if request.user.is_authenticated:
         new_item_view = ProductHistory(user=request.user, product=the_product)
         new_item_view.save()
-    return render(request, 'products/product_details.html', product)
+    return render(request, 'products/product_details.html', context)
 
 @login_required()
 def create_product(request):
     if request.user.is_superuser:
+        context ={
+            'form1': ProductForm(),
+            'form2': ImageForm()
+        }
+        context = cases.get_profile(context, request)
         if request.method == "POST":
             form1 = ProductForm(data=request.POST)
             form2 = ImageForm(data=request.POST)
@@ -132,19 +117,25 @@ def create_product(request):
                 form1.save()
                 form2.instance.product = form1.instance
                 form2.save()
-                return redirect('products')
-        return render(request, 'products/create_product.html', {
-            'form1': ProductForm(),
-            'form2': ImageForm(),
-            'profile': Customer.objects.get(user=request.user),
-            'nav': get_manufactorers_and_consoles_for_navbar()
-        })
+
+                context = cases.success(context, 'Successfully updated product ' + form1.instance.name)
+                return render(request, 'products/create_product.html', context)
+        return render(request, 'products/create_product.html', context)
+    else:
+        context = cases.get_profile(dict(), request)
+        context = cases.front_page(context)
+        context = cases.error(context, "You shall not pass")
+        return render(request, 'products/frontpage.html', context)
 
 @login_required()
 def update_product(request, id):
-
     if request.user.is_superuser:
         the_product = Product.objects.filter(pk=id).first()
+        context = {
+            'form': ProductForm(instance=the_product),
+            'product_id': id
+        }
+        context = cases.get_profile(context, request)
         if request.method == "POST":
             form = ProductForm(data=request.POST,instance=the_product)
             if form.is_valid():
@@ -153,49 +144,58 @@ def update_product(request, id):
                 if form.instance.on_sale == True:
                     form.instance.discount_price = form.instance.price*(1-form.instance.discount/100)
                 form.save()
-                return redirect('products')
-        return render(request, 'products/update_product.html', {
-            'form': ProductForm(instance=the_product),
-            'profile': Customer.objects.get(user=request.user),
-            'nav': get_manufactorers_and_consoles_for_navbar(),
-            'product_id': id
-        })
+                context = cases.success(context, "Successfully updated product " + the_product.name)
+                return render(request, 'products/update_product.html', context)
+            else:
+                context = cases.error(context, "Something went wrong")
+        return render(request, 'products/update_product.html',context)
+    else:
+        context = cases.get_profile(dict(), request)
+        context = cases.front_page(context)
+        context = cases.error(context, "You shall not pass")
+        return render(request, 'products/frontpage.html', context)
 
 @login_required()
 def update_product_photo(request, id):
     if request.user.is_superuser:
+        context = {
+            'form': ImageForm(),
+            'product_id': id
+        }
+        context = cases.get_profile(context, request)
         the_product = Product.objects.filter(pk=id).first()
         if request.method == "POST":
             form = ImageForm(data=request.POST)
             if form.is_valid():
                 form.instance.product = the_product
                 form.save()
-                return render(request, 'products/update_product_image.html', {
-            'form': ImageForm(),
-            'profile': Customer.objects.get(user=request.user),
-            'product_id': id,
-            'success': True,
-            'message': "Successfully added a image to the product "+ the_product.name
-        })
+                context = cases.success(context, "Successfully added a image to the product "+ the_product.name)
+                return render(request, 'products/update_product_image.html', context)
+            else:
+                context = cases.error(context, 'Something went wrong')
 
-        return render(request, 'products/update_product_image.html', {
-            'form': ImageForm(),
-            'product_id': id,
-            'profile': Customer.objects.get(user=request.user)
-        })
+        return render(request, 'products/update_product_image.html', context)
+    else:
+        context = cases.get_profile(dict(), request)
+        context = cases.error(context, "You shall not pass")
+        context = cases.front_page(context)
+        return render(request, 'products/frontpage.html', context)
 
 @login_required()
 def delete_product(request, id):
-
     if request.user.is_superuser:
         the_product = Product.objects.filter(pk=id).first()
-        #the_product.delete()
-        return render(request, 'products/delete_product.html', {
-            'form': ProductForm(instance=the_product),
-            'product': the_product,
-            'profile': Customer.objects.get(user=request.user),
-            'nav': get_manufactorers_and_consoles_for_navbar()
-        })
+
+        the_product.delete()
+        context = cases.get_profile(dict(), request)
+        context = cases.success(context, 'Product deleted')
+        return render(request, 'products/delete_product.html', context)
+    else:
+        context = cases.get_profile(dict(), request)
+        context = cases.error(context, "You shall not pass")
+        context = cases.front_page(context)
+        return render(request, 'products/frontpage.html', context)
+
 
 @login_required()
 def delete_confirm(request, id):
@@ -206,7 +206,8 @@ def delete_confirm(request, id):
 
 @login_required()
 def review_product(request, id):
-    profile = Customer.objects.filter(user=request.user).first()
+    context = cases.get_profile(dict(), request)
+    profile = context['profile']
     product = Product.objects.filter(pk=id).first()
     order = Order.objects.filter(customer=profile)
     list_of_order_id = []
@@ -215,6 +216,7 @@ def review_product(request, id):
 
     if len(Review.objects.filter(customer=profile, product=product))==0:
         if len(OrderProduct.objects.filter(order__in=list_of_order_id, product=product)) > 0:
+            context['form'] = ReviewForm()
             if request.method == "POST":
                 form = ReviewForm(data=request.POST)
                 form.instance.customer = profile
@@ -225,20 +227,18 @@ def review_product(request, id):
                 number_of_rev = len(Review.objects.filter(product=product))
                 product.rating = (product.rating*(number_of_rev-1)+form.instance.star)/(number_of_rev)
                 product.save()
-                return redirect('frontpage')
-            return render(request, 'products/review_product.html', {
-                'form': ReviewForm(),
-                'profile': profile,
-                'nav': get_manufactorers_and_consoles_for_navbar()
-            })
+                context = cases.success(context, 'Review successfull')
+                return render(request, 'products/review_product.html', context)
+            return render(request, 'products/review_product.html', context)
         else:
-            return render(request, 'products/frontpage.html',
-                          {'profile': profile, 'error': True, 'message': 'You must have ordered the product to review', 'nav': get_manufactorers_and_consoles_for_navbar()})
+            context = cases.error(context, 'You must have ordered the product to review')
+            context = cases.front_page(context)
+            return render(request, 'products/frontpage.html', context)
     else:
-
-        return render(request, 'products/frontpage.html', {'profile': profile, 'error': True, 'message': 'You can only review each product once', 'nav': get_manufactorers_and_consoles_for_navbar()})
+        context = cases.front_page(context)
+        context = cases.error(context, 'You can only review each products once')
+        return render(request, 'products/frontpage.html', context)
 
 def search_no_response(request):
-    return render(request, 'products/product_search_error.html', {'profile': Customer.objects.get(user=request.user), 'nav': get_manufactorers_and_consoles_for_navbar()})
-
+    return render(request, 'products/product_search_error.html', cases.get_profile(dict(), request))
 

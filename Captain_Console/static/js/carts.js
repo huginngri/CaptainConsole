@@ -179,7 +179,7 @@ function sortit(sel) {
         if (n_o_p ===1){
             j = parseFloat(j)
         }
-        the_arr.push(j)
+        the_arr.push(j.toUpperCase())
     }
     let new_arr = []
     for (let x = 0; x<the_arr.length; x++){

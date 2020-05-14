@@ -2,6 +2,12 @@
 {% block content %}
     <div class="login popup ccwhite">
         <h1 class = "cc2plarge">Sign in now!</h1>
+        {% if error == True %}
+            {% include 'error.html' with message=message %}
+        {% endif %}
+        {% if success == True %}
+            {% include 'success_msg.html' with message=message %}
+        {% endif %}
         <form method="post" class="form form-horizontal">
             {% csrf_token %}
             {{ form }}
