@@ -69,6 +69,7 @@ def view_cart(request):
             order.delete()
     context1 = {'profile': customer, 'products': products, 'total_price': total}
     context2 = {'profile': customer}
+    print(customer.user)
 
     if total_in_cart != 0:
         return render(request, 'carts/cart_details.html', context1)
