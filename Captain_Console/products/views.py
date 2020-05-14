@@ -36,7 +36,7 @@ def frontpage(request):
     final_final_list = []
     for prod in final_list:
         final_final_list.append(prod.id)
-    context = {'products_new': Product.objects.all().order_by('-id')[:3] , 'products_hot': Product.objects.filter(id__in=final_final_list), 'products_deal': Product.objects.filter(on_sale=True).order_by('-discount')[:3],profile: 'profile'}
+    context = {'products_new': Product.objects.all().order_by('-id')[:3], 'products_hot': Product.objects.filter(id__in=final_final_list), 'products_deal': Product.objects.filter(on_sale=True).order_by('-discount')[:3], 'profile': profile}
     return render(request, 'products/frontpage.html', context)
 
 @login_required()
