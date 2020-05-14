@@ -31,7 +31,7 @@ def add_or_count_cart(request):
         cart = Cart.objects.filter(user=customer.id).first()
         return JsonResponse({'count': count_cart(customer, cart)})
     else:
-        return JsonResponse({'error': 'Request failed'})
+        return JsonResponse({'error': 'invalid request'})
 
 
 @login_required()

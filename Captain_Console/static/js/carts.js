@@ -37,10 +37,13 @@ function add_to_cart_js(product) {
             product_id: product
         },
         success: function (response) {
-            console.log(response.count)
-            console.log('virkar')
-            let cart_number = document.getElementById("cart_count");
-            cart_number.textContent = response.count;
+            if (response.count === undefined) {
+                window.location = '/carts/view';
+            }
+            else {
+                let cart_number = document.getElementById("cart_count");
+                cart_number.textContent = response.count;
+            }
         },
         error: function (xhr, status, error) {
             console.log('eitthvað vilaust')
