@@ -90,7 +90,10 @@ def create_order(profile, billing, payment, cart_details):
     for cart_detail in cart_details:
         product = Product.objects.get(id=cart_detail.product_id)
         products.append({'product': product, 'quantity': cart_detail.quantity})
-        total += product.price*cart_detail.quantity
+        if product.on_sale == True:
+            total += (product.discount_price * cart_details.quantity)
+        else:
+            total += (product.price * cart_detail.quantity)
         order_product = OrderProduct(order=order, product=product, quantity=cart_detail.quantity)
         order_product.save()
     return order, products, total
@@ -126,7 +129,8 @@ def update_order(request, order_id):
             form_payment = PaymentUpdateFormOrder(instance=payment)
         return render(request, "orders/checkout.html", {
             "form_billing": form_billing,
-            "form_payment": form_payment
+            "form_payment": form_payment,
+            'profile': profile
              })
     else:
         return render(request, 'products/frontpage.html',
@@ -148,7 +152,10 @@ def order_history(request):
             for order_detail in order_details:
                 product = Product.objects.get(id=order_detail.product_id)
                 prods.append({'product': product, 'quantity': order_detail.quantity, 'image': ProductImage.objects.filter(product=product).first()})
-                total += product.price*order_detail.quantity
+                if product.on_sale == True:
+                    total += (product.discount_price * order_detail.quantity)
+                else:
+                    total += (product.price * order_detail.quantity)
             order.total = str(round(total, 2)) + " $"
             order.address = order.billing.street_name + " " + order.billing.house_number + ", " + order.billing.zip + ", " + order.billing.country
             total = 0
@@ -166,7 +173,10 @@ def order_history(request):
             order_details = OrderProduct.objects.filter(order=order)
             for order_detail in order_details:
                 product = Product.objects.get(id=order_detail.product_id)
-                total += product.price*order_detail.quantity
+                if product.on_sale == True:
+                    total += (product.discount_price * order_detail.quantity)
+                else:
+                    total += (product.price * order_detail.quantity)
             order.total = str(round(total, 2)) + " $"
             order.address = order.billing.street_name + " " + order.billing.house_number + ", " + order.billing.zip + ", " + order.billing.country
             total_sold += total
@@ -175,5 +185,5 @@ def order_history(request):
 
         all_orders.total_sold = str(round(total_sold, 2))+ " $"
         all_orders.no = total_no_of_orders
-        context = {'orders': all_orders}
+        context = {'orders': all_orders, 'profile': Customer.objects.get(user=request.user)}
         return render(request, "orders/order_history_admin.html", context)

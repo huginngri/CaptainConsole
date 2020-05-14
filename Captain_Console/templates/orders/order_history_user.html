@@ -12,9 +12,9 @@
             <th>Buyer</th>
             <th>Billing Address</th>
             <th>Amount</th>
-        </tr>
+
         {% for order in orders %}
-            {% if order.confirmed %}
+            {% if order.order.confirmed %}
                 <tr >
                     <td>{{ order.order.id }}</td>
                     <td>{{ order.order.payment.card_holder  }}</td>

@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
@@ -10,6 +11,7 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 from carts.models import Cart
+from products.models import ProductHistory, Product, ProductImage
 from users.forms.payment_form import PaymentForm
 from users.forms.profile_form import ProfileForm
 from users.forms.billing_form import BillingForm
@@ -120,4 +122,25 @@ def delete_user(request):
     
     context = {'form': form, 'profile': Customer.objects.get(user=request.user)}
     return render(request, 'users/remove_user.html', context)
+
+@login_required()
+def product_history(request):
+    if request.user.is_authenticated:
+        x = ProductHistory.objects.order_by('product','-id').distinct('product')
+        x = ProductHistory.objects.filter(user=request.user, id__in=x).order_by('-id')
+        the_products = []
+        for y in x:
+            the_products.append(get_object_or_404(Product, pk=y.product.id))
+        recent_products = [{
+            'id': x.id,
+            'name': x.name,
+            'description': x.description,
+            'price': x.price,
+            'on_sale': x.on_sale,
+            'discount': x.discount,
+            'dicount_price': x.discount_price,
+            'rating': x.rating,
+            'image': ProductImage.objects.filter(product=x.id).first().image
+        } for x in the_products]
+        return render(request, 'users/product_history.html', {'products': recent_products, 'profile': Customer.objects.get(user=request.user)})
 

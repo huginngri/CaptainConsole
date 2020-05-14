@@ -56,7 +56,10 @@ def view_cart(request):
         total_in_cart += 1
 
         products.append({'product': product, 'quantity': cart_detail.quantity})
-        total += (product.price * cart_detail.quantity)
+        if product.on_sale == True:
+            total += (product.discount_price * cart_detail.quantity)
+        else:
+            total += (product.price * cart_detail.quantity)
     orders = Order.objects.filter(customer=customer)
     for order in orders:
         if order.confirmed == False:
@@ -65,7 +68,7 @@ def view_cart(request):
                 order_product.delete()
             order.delete()
     context1 = {'profile': customer, 'products': products, 'total_price': total}
-    context2 = {'customer': customer}
+    context2 = {'profile': customer}
 
     if total_in_cart != 0:
         return render(request, 'carts/cart_details.html', context1)
@@ -88,7 +91,11 @@ def calc_price(cart):
     cart_details = CartDetails.objects.filter(cart=cart)
     for cart_detail in cart_details:
         product = Product.objects.filter(id=cart_detail.product.id).first()
-        total += (product.price * cart_detail.quantity)
+        if product.on_sale == True:
+            total += (product.discount_price * cart_details.quantity)
+        else:
+            total += (product.price * cart_detail.quantity)
+    return total
 
 @login_required()
 def change_quantity(request, product_id):
@@ -108,6 +115,9 @@ def change_quantity(request, product_id):
         total = 0
         for cart_detail in cart_details:
             product = Product.objects.filter(id=cart_detail.product.id).first()
-            total += product.price*cart_detail.quantity
+            if product.on_sale == True:
+                total += (product.discount_price * cart_details.quantity)
+            else:
+                total += (product.price * cart_detail.quantity)
         return JsonResponse({'total_price': total})
     return JsonResponse({'message': 'invalid request'})
