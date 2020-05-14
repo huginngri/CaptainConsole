@@ -7,9 +7,9 @@ from products.models import Product
 
 class TemporaryPayment(models.Model):
     card_holder = models.CharField(max_length=255,null=True, blank=True)
-    card_number = models.CharField(max_length=255,null=True, blank=True)
-    exp_date = models.CharField(max_length=255,null=True, blank=True)
-    cvc = models.CharField(max_length=255,null=True, blank=True)
+    card_number = models.CharField(max_length=16,null=True, blank=True)
+    exp_date = models.CharField(max_length=5,null=True, blank=True)
+    cvc = models.CharField(max_length=4,null=True, blank=True)
 
 class TemporaryBilling(models.Model):
     full_name = models.CharField(max_length=255,null=True, blank=True)
@@ -22,9 +22,9 @@ class TemporaryBilling(models.Model):
 
 class Payment(models.Model):
     card_holder = models.CharField(max_length=255)
-    card_number = models.CharField(max_length=255)
-    exp_date = models.CharField(max_length=255)
-    cvc = models.CharField(max_length=255)
+    card_number = models.CharField(max_length=16)
+    exp_date = models.CharField(max_length=5)
+    cvc = models.CharField(max_length=4)
 
 class Billing(models.Model):
     full_name = models.CharField(max_length=255)

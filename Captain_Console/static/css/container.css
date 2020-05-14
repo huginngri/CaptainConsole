@@ -117,6 +117,7 @@ filler2{
     top: 0px;
     left: 5%;
     right: 5%;
+    min-height: 150px;
     max-height: 150px;
     margin-right: auto;
     margin-left: auto ;
@@ -167,17 +168,7 @@ filler2{
 
 }
 
-.console_boxes{
-    margin: 2%;
-    width: 25%;
-    height: 200px;
-}
 
-.console_boxes:hover {
-    transform: scale(1.1);;
-    box-shadow: 6px 10px rgba(0, 0, 0, 0.5);
-    border: 3px solid #F1AA19;
-}
 
 .checkout_boxes{
     height: 300px;
@@ -361,16 +352,12 @@ filler2{
         width: 20%;
     }
 
-    .console_boxes {
-        /*margin-left: 5%;*/
-        margin-right: 5%;
-        /*width: 40%;*/
-    }
     .review_boxes{
         margin-left: 5%;
         margin-right: 5%;
         width: 40%;
     }
+
 
 }
 @media screen and (max-width: 1000px) {
@@ -395,11 +382,6 @@ filler2{
         width: 40%;
     }
 
-    .console_boxes {
-        margin-left: 5%;
-        margin-right: 5%;
-        width: 40%;
-    }
     .review_boxes{
         margin-left: 5%;
         margin-right: 5%;
@@ -448,11 +430,7 @@ filler2{
         width: 80%;
     }
 
-    .console_boxes {
-        margin-left: auto;
-        margin-right: auto;
-        width: 80%;
-    }
+
     .footerlogo{
         width: 1000%;
     }

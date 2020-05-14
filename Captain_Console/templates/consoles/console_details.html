@@ -10,17 +10,41 @@
         {% if  filter != 'none' %}
             <h3>{{ filter }}</h3>
         {% else %}
-            <div class="product_boxes box ccwhite centered-text" onclick="location.href='{% url 'consoles-consoles' console.manufacturer console.name %}'">
-                <h3>Consoles</h3>
-                <img class="product_details_images" src="/static/images/console.jpeg" alt="console_img">
+            <div class="product_boxes box ccwhite">
+                <div class="product_boxes_inside box_inside" >
+                    <div class = "containerimage" onclick="location.href='{% url 'consoles-consoles' console.manufacturer console.name %}'">
+                        <img class="mediumimages" src="/static/images/console.jpeg" alt="console_img">
+                    </div>
+                    <div class="button_and_text">
+                        <div class="info">
+                            <h4 class="cc2pmedium">Consoles</h4>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="product_boxes box ccwhite centered-text" onclick="location.href='{% url 'consoles-games' console.manufacturer console.name %}'">
-                <h3>Games</h3>
-                <img class="product_details_images" src="/static/images/game.jpeg" alt="console_img">
+            <div class="product_boxes box ccwhite">
+                <div class="product_boxes_inside box_inside" >
+                    <div class = "containerimage" onclick="location.href='{% url 'consoles-games' console.manufacturer console.name %}'">
+                        <img class="mediumimages" src="/static/images/game.jpeg" alt="game_img">
+                    </div>
+                    <div class="button_and_text">
+                        <div class="info">
+                            <h4 class="cc2pmedium">Games</h4>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="product_boxes box ccwhite centered-text" onclick="location.href='{% url 'consoles-accessories' console.manufacturer console.name %}'">
-                <h3>Accessories</h3>
-                <img class="product_details_images" src="/static/images/accessories.png" alt="console_img">
+            <div class="product_boxes box ccwhite">
+                <div class="product_boxes_inside box_inside" >
+                    <div class = "containerimage" onclick="location.href='{% url 'consoles-accessories' console.manufacturer console.name %}'">
+                        <img class="mediumimages" src="/static/images/accessories.png" alt="accessories_img">
+                    </div>
+                    <div class="button_and_text">
+                        <div class="info">
+                            <h4 class="cc2pmedium">Accessories</h4>
+                        </div>
+                    </div>
+                </div>
             </div>
         {% endif %}
     </div>
