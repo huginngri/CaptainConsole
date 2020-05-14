@@ -52,7 +52,12 @@ def update_profile(request):
             if form2.is_valid():
                 request.user = form2.save(commit=False)
                 request.user.save()
-            context = cases.success(context, 'Successfully updated profile', Customer.objects.get(user=request.user))
+            context = {
+                    "form1": ProfileForm(instance=profile),
+                    "form2": UserForm(instance=request.user),
+                }
+            context = cases.success(context, 'Successfully updated profile')
+            context = cases.get_profile(context, request)
             return render(request, "users/profile.html",context)
     return render(request, "users/profile.html", context)
 

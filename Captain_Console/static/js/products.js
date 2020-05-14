@@ -93,7 +93,7 @@ $(document).ready(function() {
         })
     })
 
-if ($("#recent-views")) {
+if ($("#recent-views").length>0) {
         $("#recent-views").ready(function () {
 
 
@@ -131,7 +131,7 @@ if ($("#recent-views")) {
         })
     }
 
-    if ($("#give_review_button")) {
+    if ($("#give_review_button").length > 0) {
         $("#give_review_button").ready(function () {
         let review_button = document.getElementById('give_review_button');
         let product_id = review_button.name

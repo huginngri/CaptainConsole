@@ -23,12 +23,12 @@ def get_manufacturer_by_name(request, name):
 @login_required()
 def create_manufacturer(request):
     if request.user.is_superuser:
-        context = {
-            'form1': ManufacturerForm(),
-        }
-        context = cases.get_profile(context, request)
         if request.method == "POST":
             form1 = ManufacturerForm(data=request.POST)
+            context = {
+                'form1': form1,
+            }
+            context = cases.get_profile(context, request)
             if form1.is_valid():
                 form1.save()
                 context = cases.success(context,'Created manufacturer')
