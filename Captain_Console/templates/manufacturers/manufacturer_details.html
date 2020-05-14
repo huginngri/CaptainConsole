@@ -12,7 +12,7 @@
     <div class="product_container">
     {% for console in  consoles%}
         <div class="console_boxes box ccwhite">
-            <div class="centered-text">
+            <div class="centered-text" onclick="location.href='{% url 'consoles-product' 'Other' console.name %}'">
                 <img class="product_images_container" src="{{ console.image }}" style="width:35%;">
                 <h4>{{ console.name }}</h4>
             </div>

@@ -6,6 +6,7 @@ from carts.models import CartDetails
 from orders.models import Order, OrderProduct
 from products.models import Product
 from django.http import JsonResponse
+from manufacturers.views import get_manufactorers_and_consoles_for_navbar
 from users.forms.payment_form import PaymentForm
 from users.forms.billing_form import BillingForm
 
@@ -67,8 +68,8 @@ def view_cart(request):
             for order_product in order_products:
                 order_product.delete()
             order.delete()
-    context1 = {'profile': customer, 'products': products, 'total_price': total}
-    context2 = {'profile': customer}
+    context1 = {'profile': customer, 'products': products, 'total_price': total, 'nav': get_manufactorers_and_consoles_for_navbar()}
+    context2 = {'profile': customer, 'nav': get_manufactorers_and_consoles_for_navbar()}
 
     if total_in_cart != 0:
         return render(request, 'carts/cart_details.html', context1)

@@ -14,7 +14,7 @@ from carts.models import Cart
 from carts.models import CartDetails
 from products.models import Product, ProductImage
 from django.http import JsonResponse
-
+from manufacturers.views import get_manufactorers_and_consoles_for_navbar
 
 
 # Create your views here.
@@ -31,7 +31,9 @@ def checkout(request, save=False, billing_saved=False, payment_saved=False):
     elif save == True:
         context = {
             "form_billing": TemporaryBillingForm(instance=profile.billing, data=request.POST),
-            "form_payment": TemporaryPaymentForm(instance=profile.payment, data=request.POST)
+            "form_payment": TemporaryPaymentForm(instance=profile.payment, data=request.POST),
+            'profile': profile,
+            'nav': get_manufactorers_and_consoles_for_navbar()
         }
         if billing_saved:
             context["billing_saved"] = 'True'
@@ -42,7 +44,8 @@ def checkout(request, save=False, billing_saved=False, payment_saved=False):
     return render(request, "orders/checkout.html", {
         "form_billing": TemporaryBillingForm(instance=profile.billing, data=request.POST),
         "form_payment": TemporaryPaymentForm(instance=profile.payment, data=request.POST),
-        'profile': profile
+        'profile': profile,
+        'nav': get_manufactorers_and_consoles_for_navbar()
     })
 
 @login_required()
@@ -59,7 +62,8 @@ def save_billing(request):
     return render(request, "orders/checkout.html", {
         "form_billing": TemporaryBillingForm(instance=profile.billing, data=request.POST),
         "form_payment": TemporaryPaymentForm(instance=profile.payment, data=request.POST),
-        'profile': profile
+        'profile': profile,
+        'nav': get_manufactorers_and_consoles_for_navbar()
     })
 
 @login_required()
@@ -75,7 +79,8 @@ def save_payment(request):
     return render(request, "orders/checkout.html", {
         "form_billing": TemporaryBillingForm(instance=profile.billing, data=request.POST),
         "form_payment": TemporaryPaymentForm(instance=profile.payment, data=request.POST),
-        'profile': profile
+        'profile': profile,
+        'nav': get_manufactorers_and_consoles_for_navbar()
     })
 
 @login_required()
@@ -84,7 +89,7 @@ def display_order(request, billing, payment):
     cart = Cart.objects.filter(user=profile.id).first()
     cart_details = CartDetails.objects.filter(cart=cart)
     order, products, total = create_order(profile, billing, payment, cart_details)
-    context = {'order': order,'products': products, 'total_price': total, 'profile': profile}
+    context = {'order': order,'products': products, 'total_price': total, 'profile': profile, 'nav': get_manufactorers_and_consoles_for_navbar()}
     return render(request, 'orders/order_review.html', context)
 
 @login_required()
@@ -136,11 +141,12 @@ def update_order(request, order_id):
         return render(request, "orders/checkout.html", {
             "form_billing": form_billing,
             "form_payment": form_payment,
-            'profile': profile
+            'profile': profile,
+            'nav': get_manufactorers_and_consoles_for_navbar()
              })
     else:
         return render(request, 'products/frontpage.html',
-                      {'profile': profile, 'error': True, 'message': 'You shall not pass'})
+                      {'profile': profile, 'error': True, 'message': 'You shall not pass', 'nav': get_manufactorers_and_consoles_for_navbar()})
 
 @login_required()
 def order_history(request):
@@ -171,7 +177,7 @@ def order_history(request):
                 order.status = "Open"
             no_of_orders += 1
             final_orders.append({'order': order, 'products': prods})
-        context = {'orders': final_orders, 'total_orders': no_of_orders, 'profile': profile}
+        context = {'orders': final_orders, 'total_orders': no_of_orders, 'profile': profile, 'nav': get_manufactorers_and_consoles_for_navbar()}
         return render(request, "orders/order_history_user.html", context)
     else:
         all_orders = Order.objects.all()
@@ -191,7 +197,7 @@ def order_history(request):
 
         all_orders.total_sold = str(round(total_sold, 2))+ " $"
         all_orders.no = total_no_of_orders
-        context = {'orders': all_orders, 'profile': Customer.objects.get(user=request.user)}
+        context = {'orders': all_orders, 'profile': Customer.objects.get(user=request.user), 'nav': get_manufactorers_and_consoles_for_navbar()}
         return render(request, "orders/order_history_admin.html", context)
 
 @login_required()

@@ -97,6 +97,10 @@
     text-align: left;
 }
 
+.medium{
+    font-size:medium;
+}
+
 @media screen and (max-width: 700px) {
     .cc2penourmus{
         margin:auto;
