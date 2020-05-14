@@ -276,12 +276,8 @@ input[id^='id_'], div[id*=' id_']{
     padding-left:50px;
 
 }
-dt{
-    padding-left:5px;
-}
-dd{
-    padding-left:5px;
-
+.no-margin{
+    margin:none;
 }
 
 .intro {

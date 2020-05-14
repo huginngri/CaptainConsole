@@ -19,6 +19,7 @@ class Product(models.Model):
     on_sale = models.BooleanField(default=False)
     discount = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(99)])
     discount_price = models.FloatField(default=0)
+    review_count = models.IntegerField(default=0)
     def __str__(self):
         return self.name
 

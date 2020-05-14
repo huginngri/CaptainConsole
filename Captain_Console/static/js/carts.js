@@ -256,6 +256,29 @@ function calculateRating(id, rating) {
         }
 }
 
+function calculateRatingHome(star_div, rating, reviewcount) {
+        while (star_div.hasChildNodes()) {
+            star_div.removeChild(star_div.firstChild);
+        }
+        // <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+        let total_rating = 5;
+        while (rating > 0) {
+            let star = document.createElement("span");
+             star.setAttribute("class", "glyphicon glyphicon-star");
+            star_div.appendChild(star);
+            total_rating -= 1;
+            rating -= 1;
+        }
+        while (total_rating > 0) {
+            let empty_star = document.createElement("span");
+            empty_star.setAttribute("class", "glyphicon glyphicon-star-empty");
+            star_div.appendChild(empty_star);
+            total_rating -= 1;
+            console.log("here 3")
+        }
+}
+
+
 function closeErrorDiv() {
     background = document.getElementById("error_background")
     the_product_list_element = document.getElementById("error_div")
