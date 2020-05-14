@@ -91,8 +91,11 @@ filler2{
 .adminbuttons_container{
     display:flex;
     flex-wrap: wrap;
-    padding-left:80%;
-    padding-right: 2%;
+    width: 100%;
+    padding:0px;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
 
 }
 
@@ -212,7 +215,7 @@ filler2{
     white-space:nowrap;
     /*margin: 0px;*/
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
@@ -410,7 +413,10 @@ filler2{
         width: 40%;
     }
     .productdetails{
-        height: 450px;
+        max-height:400px;
+        display: block;
+        width: 80%;
+        height: 500px;
         padding-top: 20px;
     }
     .image_box{
@@ -420,9 +426,13 @@ filler2{
         height: 40px;
 
     }
+    .filler {
+        height: 130px;
+    }
 
 }
 @media screen and (max-width: 700px) {
+
     .popup{
         width: 100%;
         padding: 50px;
@@ -462,7 +472,10 @@ filler2{
         width: 80%;
     }
     .productdetails{
-        height: 350px;
+        max-height:350px;
+        width: 80%;
+        display: block;
+        height: 500px;
         padding-top: 20px;
     }
     .image_box{
@@ -473,4 +486,9 @@ filler2{
 
     }
 
+}
+@media screen and (max-width: 500px) {
+    .filler {
+        height: 150px;
+    }
 }
