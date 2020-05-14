@@ -161,7 +161,7 @@ function sortit(sel) {
     let the_arr = []
     let keep_arr =[]
     let name_or_price = sel.options[sel.selectedIndex].value
-    let n_o_p = 0
+    let n_o_p = 1
     let r = 0
     let reverse_check = name_or_price.localeCompare("name_reverse") * name_or_price.localeCompare("price_reverse")
     if (reverse_check === 0){
@@ -169,21 +169,23 @@ function sortit(sel) {
     }
     let k = name_or_price.localeCompare("price") * name_or_price.localeCompare("price_reverse")
     if (k === 0) {
-        n_o_p = 1
+        n_o_p = 2
     }
     for (let x = 0; x<all_products.children.length; x++){
         keep_arr.push(all_products.children[x])
         let j = all_products.children[x].children[0].children[1].children[0].children[n_o_p].getAttribute("name")
-        if (n_o_p ===1){
-            j = parseFloat(j)
+        if (n_o_p ===2){
+            the_arr.push(parseFloat(j))
         }
-        the_arr.push(j.toUpperCase())
+        else {
+            the_arr.push(j.toUpperCase())
+        }
     }
     let new_arr = []
     for (let x = 0; x<the_arr.length; x++){
         new_arr.push(the_arr[x])
     }
-    if (n_o_p === 1) {
+    if (n_o_p === 2) {
         new_arr.sort(function (a, b) {
             return a - b;
         });
@@ -279,8 +281,8 @@ function calculateRatingHome(star_div, rating, count) {
 
 
 function closeErrorDiv() {
-    background = document.getElementById("error_background")
-    the_product_list_element = document.getElementById("error_div")
+    let background = document.getElementById("error_background")
+    let the_product_list_element = document.getElementById("error_div")
     the_product_list_element.style = "display:none"
     background.classList.remove("cover")
 }
