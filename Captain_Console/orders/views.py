@@ -40,8 +40,8 @@ def checkout(request, save=False, billing_saved=False, payment_saved=False):
         print(context)
         return render(request, "orders/checkout.html", context)
     return render(request, "orders/checkout.html", {
-        "form_billing": TemporaryBillingForm(instance=profile.billing),
-        "form_payment": TemporaryPaymentForm(instance=profile.payment),
+        "form_billing": TemporaryBillingForm(instance=profile.billing, data=request.POST),
+        "form_payment": TemporaryPaymentForm(instance=profile.payment, data=request.POST),
         'profile': profile
     })
 
@@ -57,7 +57,7 @@ def save_billing(request):
             profile.save()
             return checkout(request, save=True, billing_saved=True)
     return render(request, "orders/checkout.html", {
-        "form_billing": TemporaryBillingForm(instance=profile.billing),
+        "form_billing": TemporaryBillingForm(instance=profile.billing, data=request.POST),
         "form_payment": TemporaryPaymentForm(instance=profile.payment, data=request.POST),
         'profile': profile
     })
@@ -74,7 +74,7 @@ def save_payment(request):
             return checkout(request, save=True, payment_saved=True)
     return render(request, "orders/checkout.html", {
         "form_billing": TemporaryBillingForm(instance=profile.billing, data=request.POST),
-        "form_payment": TemporaryPaymentForm(instance=profile.payment),
+        "form_payment": TemporaryPaymentForm(instance=profile.payment, data=request.POST),
         'profile': profile
     })
 
