@@ -59,7 +59,7 @@
                 </li>
             {% endfor %}
 
-            <li class="ccdropdown"><button type="button" class="btn btn-default navbar-btn" id="cclightgray">Deals</button></li>
+            <li class="ccdropdown"><button type="button" class="btn btn-default navbar-btn" id="cclightgray" onclick="location.href='{% url 'manufacturers-product' 'Deals' %}'">Deals</button></li>
             <li class="ccdropdown"><button type="button" class="btn btn-default navbar-btn" id="cclightgray" onclick="location.href='{% url 'about' %}'">About us</button></li>
         </ul>
     </div>
