@@ -5,6 +5,9 @@
         {% if error == True %}
             {% include 'error.html' with message=message %}
         {% endif %}
+        {% if success == True %}
+            {% include 'success_msg.html' with message=message %}
+        {% endif %}
         <div>
             <h1 class="homepagetext cc2phuge"> Welcome to the largest retro gaming shop</h1>
         </div>

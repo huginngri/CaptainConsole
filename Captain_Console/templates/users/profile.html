@@ -5,11 +5,19 @@
             <p class="ccbluebold">Fill in info about your self (first name and image) before leaving a review </p>
         </div>
     {% endif %}
+
     <style>
         .helptext{display: none;}
     </style>
     <div class = "popup ccwhite" >
+
         <h1 class = cc2phuge>Profile</h1>
+        {% if error == True %}
+            {% include 'error.html' with message=message %}
+        {% endif %}
+        {% if success == True %}
+            {% include 'success_msg.html' with message=message %}
+        {% endif %}
         <div class="form-horizontal">
             <form class="form form-horizontal" method="post">
                 {% csrf_token %}

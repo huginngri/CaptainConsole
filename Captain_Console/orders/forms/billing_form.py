@@ -1,6 +1,6 @@
 from django.forms import ModelForm, widgets
 from django_countries.data import  COUNTRIES
-from orders.models import Billing
+from orders.models import Billing, TemporaryBilling
 
 
 class BillingFormOrder(ModelForm):
@@ -47,7 +47,7 @@ class TemporaryBillingForm(ModelForm):
 
             countries.append((x,x))
         countries = tuple(countries)
-        model = Billing
+        model = TemporaryBilling
         exclude = ['id']
         widgets = {
             'street_name': widgets.TextInput(attrs={'class': 'form-control'}),

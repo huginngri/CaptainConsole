@@ -19,6 +19,7 @@ class TemporaryBilling(models.Model):
     country = models.CharField(max_length=255,null=True, blank=True)
     zip = models.CharField(max_length=255,null=True, blank=True)
 
+
 class Payment(models.Model):
     card_holder = models.CharField(max_length=255)
     card_number = models.CharField(max_length=255)

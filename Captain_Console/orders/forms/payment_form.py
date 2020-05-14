@@ -1,5 +1,5 @@
 from django.forms import ModelForm, widgets
-from orders.models import Payment
+from orders.models import Payment, TemporaryPayment
 
 
 class PaymentFormOrder(ModelForm):
@@ -24,9 +24,10 @@ class PaymentUpdateFormOrder(ModelForm):
             'cvc': widgets.NumberInput(attrs={'class': 'form-control'}),
         }
 
-class TemporaryPaymentFrom(ModelForm):
+
+class TemporaryPaymentForm(ModelForm):
     class Meta:
-        model = Payment
+        model = TemporaryPayment
         exclude = ['id']
         widgets = {
             'card_holder': widgets.TextInput(attrs={'class': 'form-control'}),

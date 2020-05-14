@@ -3,23 +3,30 @@
 
     <div class = "popup ccwhite" >
         <h1 class = cc2phuge>Checkout</h1>
+        {% if billing_saved or payment_saved %}
+            {% include 'success_msg.html' with message=message %}
+        {% endif %}
+        {% if error == True %}
+            {% include 'error.html' with message=message %}
+        {% endif %}
+
         <form class="form form-horizontal" action="{% url 'checkout' %}" method="post">
             <h1 class="cc2pmedium underliner">Billing Info</h1>
             {% csrf_token %}
             {{ form_billing }}
-            {%  if saved_billing == True %}
-                 <button type="submit" class="btn btn-Success login-btn" formaction="{% url 'checkout-save-billing' %}">Save Billing</button>
+            {%  if billing_saved %}
+                 <button type="submit" class="btn btn-success login-btn" formaction="{% url 'checkout-save-billing' %}">Save Billing</button>
             {% else %}
                 <button type="submit" class="btn btn-default login-btn" formaction="{% url 'checkout-save-billing' %}">Save Billing</button>
             {% endif %}
             <h1 class="cc2pmedium underliner">Payment Info</h1>
+            {% csrf_token %}
             {{ form_payment }}
-            {%  if saved_payment == True %}
-                 <button type="submit" class="btn btn-Success login-btn" formaction="{% url 'checkout-save-billing' %}">Save Billing</button>
+            {%  if payment_saved %}
+                <button type="submit" class="btn btn-success login-btn" formaction="{% url 'checkout-save-payment' %}">Save Payment</button>
             {% else %}
-                <button type="submit" class="btn btn-default login-btn" formaction="{% url 'checkout-save-billing' %}">Save Billing</button>
+                <button type="submit" class="btn btn-default login-btn" formaction="{% url 'checkout-save-payment' %}">Save Payment</button>
             {% endif %}
-            <button type="submit" class="btn btn-default login-btn" formaction="{% url 'checkout-save-payment' %}">Save Payment</button>
             <input type="submit" class="btn btn-primary login-btn" value="Continue" />
         </form>
     </div>

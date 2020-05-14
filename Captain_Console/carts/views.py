@@ -12,9 +12,6 @@ from users.forms.billing_form import BillingForm
 # Create your views here.
 @login_required()
 def add_or_count_cart(request):
-    print(request.method)
-    print(request)
-
     if request.method == 'POST':
         customer = Customer.objects.filter(user=request.user).first()
         cart = Cart.objects.filter(user=customer.id).first()

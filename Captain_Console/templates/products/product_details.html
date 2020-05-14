@@ -6,7 +6,10 @@
                     background-repeat: no-repeat;
                     background-attachment: fixed;
                     background-size: cover;">
-    {% if success %}
+    {% if error == True %}
+            {% include 'error.html' with message=message %}
+        {% endif %}
+        {% if success == True %}
             {% include 'success_msg.html' with message=message %}
         {% endif %}
         <div class = "product_container">
@@ -58,6 +61,8 @@
             </div>
         </div>
 
+
+        <button type="button" id="give_review_button" class="btn btn-default navbar-btn" style="display: none" name="{{ product.id }}"  onclick="location.href='{% url 'review-product' product.id%}'" id="cclightgray">Review product</button>
 
 
         {# for comments on the products #}

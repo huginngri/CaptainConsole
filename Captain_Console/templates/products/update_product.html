@@ -2,7 +2,10 @@
 {% block content %}
     <div class="popup ccwhite">
     <h1 class="cc2plarge">Update product</h1>
-        {% if success %}
+        {% if error == True %}
+            {% include 'error.html' with message=message %}
+        {% endif %}
+        {% if success == True %}
             {% include 'success_msg.html' with message=message %}
         {% endif %}
     <form class="form form-horizontal" method="post">

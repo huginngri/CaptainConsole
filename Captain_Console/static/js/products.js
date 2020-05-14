@@ -93,9 +93,10 @@ $(document).ready(function() {
             }
         })
     })
-})
-if ($("#recent-views").length) {
-    $("#recent-views").ready(function () {
+
+if ($("#recent-views")) {
+        $("#recent-views").ready(function () {
+
 
         $.ajax({
             url: "/products/recent",
@@ -110,26 +111,51 @@ if ($("#recent-views").length) {
                                     <div class="info">
                                         <h4 class="name" name="${d.name}">${d.name}</h4>
                                         <p class="price" >${d.price} $</p>
+
                                     </div>
-                                </div>
-                            </a>
-                        `
+                                    </div>
+                                </a>
+                            `
 
-                    })
-                    recentproducts[0] = `<div class=product_container>` + recentproducts[0]
-                    recentproducts[-1] += `</div>`
-                    $("#recent-views").html(recentproducts.join(""))
+                        })
+                        recentproducts[0] = `<div class=product_container>` + recentproducts[0]
+                        recentproducts[-1] += `</div>`
+                        $("#recent-views").html(recentproducts.join(""))
 
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.log('error')
+                    console.error(error)
+                }
+            })
+        })
+    }
+
+    if ($("#give_review_button")) {
+        $("#give_review_button").ready(function () {
+        let review_button = document.getElementById('give_review_button');
+        let product_id = review_button.name
+        $.ajax({
+            type: 'GET',
+            method: 'GET',
+            url: '/orders/can_review/'+ product_id,
+            success: function (response) {
+                console.log(response['can_review'])
+                if (response['can_review'] == true){
+                    review_button.style= 'display: inline-block';
                 }
             },
             error: function (xhr, status, error) {
-                console.log('error')
-                console.error(error)
+                console.log('eitthvað vilaust');
             }
+        });
         })
-    })
+    }
+})
 
-}
+
+
 
 
 
