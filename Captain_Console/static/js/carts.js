@@ -106,10 +106,12 @@ function remove_from_cart(product_id, child) {
         url: '/carts/' + product_id,
         success: function (response) {
             console.log(response);
-            if (response['total_price'] === null){
+
+            if (response['total_price'] === null) {
                 location.reload()
             }
-            else{
+            else {
+
                 let container = document.getElementById("cart_products")
                 for (let x = 0; x < container.children.length; x++){
                     if (container.children[x] === deletediv){
@@ -121,8 +123,8 @@ function remove_from_cart(product_id, child) {
                 let price = document.getElementById('cart_total');
                 let total = parseFloat(response['total_price']);
                 price.textContent = 'Total price: ' + total + '$';
-            }
 
+            }
         },
         error: function (xhr, status, error) {
             console.log('eitthvað vilaust');

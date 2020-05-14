@@ -98,12 +98,10 @@
             </li>
 
             <li class="ccdropdown">
-                <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'products' %}'" id="cclightgray">Other</button>
+                <button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'manufacturers-product' 'Other' %}'" id="cclightgray">Other</button>
                 <ul class="ccdropdown-content ccblue">
-                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Xbox' 'Xbox original'  %}">I</a></li>
-                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Xbox' 'Xbox 360'  %}">Done</a></li>
-                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Xbox' 'Xbox 360'  %}">CARE</a></li>
-
+                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Other' 'The Fairchild Channel F'  %}">The Fairchild Channel F</a></li>
+                    <li><a class = "navlink" id="cclightgray" href="{% url 'consoles-product' 'Other' 'The Epoch Cassette Vision'  %}">The Epoch Cassette Vision</a></li>
                 </ul>
             </li>
 
@@ -114,5 +112,3 @@
 </nav>
 
 <div class = "filler cclightblue"></div>
-
-<!--button type="button" class="btn btn-default navbar-btn" -->

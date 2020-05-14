@@ -28,6 +28,7 @@ urlpatterns = [
     path('<int:id>/update', views.update_product, name="update-product"),
     path('<int:id>/update_photos', views.update_product_photo, name="update-product-photos"),
     path('<int:id>/delete', views.delete_product, name="delete-product"),
+    path('<int:id>/delete/confirm', views.delete_confirm, name="delete-product-confirm"),
     path('<int:id>/review', views.review_product, name='review-product'),
 
     # Admin create product

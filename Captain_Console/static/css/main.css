@@ -11,7 +11,6 @@ a:link{
 
 }
 
-
 /* nav bar --------------------------------------------*/
 #littlepadding{
     padding:10px;
@@ -242,7 +241,7 @@ input[id^='id_'], div[id*=' id_']{
 
 /* checkout ------------------------------------------------*/
 .underliner{
-    border-bottom: 3px solid #F1AA19;
+    border-bottom: 3px solid;
 }
 
 
@@ -290,6 +289,10 @@ dd{
 /*manufacturers----*/
 .manufacturer_header{
     margin-top:10%;
+}
+
+.manufacturer_description{
+    margin-top:2%;
 }
 
 /*footer------*/
