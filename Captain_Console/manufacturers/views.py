@@ -15,10 +15,17 @@ def index(request):
     return render(request, 'manufacturers/index.html', context)
 
 def get_manufacturer_by_name(request, name):
-    manufacturer = Manufacturer.objects.get(name=name)
-    context = {'manufacturer': manufacturer, 'products': list(Product.objects.filter(manufacturer=manufacturer.id)), 'consoles': Console.objects.filter(manufacturer=manufacturer.id)}
-    context = cases.get_profile(context, request)
-    return render(request, 'manufacturers/manufacturer_details.html', context)
+    if name != 'Deals':
+        manufacturer = Manufacturer.objects.get(name=name)
+        context = {'manufacturer': manufacturer, 'products': list(Product.objects.filter(manufacturer=manufacturer.id)), 'consoles': Console.objects.filter(manufacturer=manufacturer.id)}
+        context = cases.get_profile(context, request)
+        return render(request, 'manufacturers/manufacturer_details.html', context)
+    else:
+        context = {'products': list(Product.objects.filter(on_sale=True))}
+        context = cases.get_profile(context, request)
+        return render(request, 'manufacturers/deals.html', context)
+
+
 
 @login_required()
 def create_manufacturer(request):
