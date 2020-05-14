@@ -14,6 +14,7 @@ from django.http import JsonResponse
 # Create your views here.
 @login_required()
 def add_or_count_cart(request):
+    print("Flott")
     if request.method == 'POST':
         customer = Customer.objects.filter(user=request.user).first()
         cart = Cart.objects.filter(user=customer.id).first()
@@ -31,7 +32,7 @@ def add_or_count_cart(request):
         cart = Cart.objects.filter(user=customer.id).first()
         return JsonResponse({'count': count_cart(customer, cart)})
     else:
-        return JsonResponse({'error': 'Request failed'})
+        return JsonResponse({'error': 'invalid request'})
 
 
 @login_required()
