@@ -105,18 +105,33 @@ if ($("#recent-views").length>0) {
             success: function (response) {
                 if (response.data.length > 0) {
                     var recentproducts = response.data.map(d => {
-                        return `
+                        x =`
                                 <a class=" product_boxes box ccwhite" href="/products/${d.id}">
                                     <img class = "mediumimages" src="${d.image}" style="height:150px;">
                                 <div class="button_and_text">
                                     <div class="info">
                                         <h4 class="name" name="${d.name}">${d.name}</h4>
+                                        `
+                        if(d.on_sale === true) {
+                            return x + `
+                        
+                                        <p class="price" >${d.discount_price} $ (-${d.discount}%)</p>
+
+                                    </div>
+                                    </div>
+                                </a>`
+                        }
+                        else{
+                            return x + `
+                        
                                         <p class="price" >${d.price} $</p>
 
                                     </div>
                                     </div>
-                                </a>
-                            `
+                                </a>`
+
+                        }
+
 
                         })
                         recentproducts[0] = `<div class=product_container>` + recentproducts[0]

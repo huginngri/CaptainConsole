@@ -38,7 +38,7 @@ def recent_view(request):
             'price': x.price,
             'on_sale': x.on_sale,
             'discount': x.discount,
-            'dicount_price': x.discount_price,
+            'discount_price': x.discount_price,
             'rating': x.rating,
             'image': ProductImage.objects.filter(product=x.id).first().image
         } for x in the_products]
