@@ -11,10 +11,16 @@
 
     <div class="product_container">
     {% for console in  consoles%}
-        <div class="console_boxes box ccwhite">
-            <div class="centered-text" onclick="location.href='{% url 'consoles-product' 'Other' console.name %}'">
-                <img class="product_images_container" src="{{ console.image }}" style="width:35%;">
-                <h4>{{ console.name }}</h4>
+        <div class="product_boxes box ccwhite">
+            <div class="product_boxes_inside box_inside" >
+                <div class = "containerimage" onclick="location.href='{% url 'consoles-product' 'Other' console.name %}'">
+                    <img class="mediumimages" src="{{ console.image }}" style="width:35%;">
+                </div>
+                <div class="button_and_text">
+                    <div class="info">
+                        <h4 class="cc2pmedium">{{ console.name }}</h4>
+                    </div>
+                </div>
             </div>
         </div>
     {% endfor %}
