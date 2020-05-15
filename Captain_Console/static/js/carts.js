@@ -215,7 +215,13 @@ function change_quantity(product_id) {
     });
 }
 
-
+/*
+* This is the order by or sort by. It takes the select element as a parameter. Then it finds the container for the
+* products. 2 arrays are initialized and 3 other variables. name_or_price is in what order the products should be,
+* n_o_p is to store that as an integer 1 or 2 and that relates to the div it is in. r is just to say if it is in reversed or not.
+* Then a reverse check is done and localeCompare returns 0 if it is a match.
+*
+* */
 function sortit(sel) {
     let all_products = document.getElementById("container_for_products")
     let the_arr = []
@@ -231,6 +237,9 @@ function sortit(sel) {
     if (k === 0) {
         n_o_p = 2
     }
+    /*
+    * Loop through all children in all products and push it to keep_arr.
+    * Then i either add the price or name to the_arr and make sure it is float or uppercase and that is for the sorting */
     for (let x = 0; x<all_products.children.length; x++){
         keep_arr.push(all_products.children[x])
         let j = all_products.children[x].children[0].children[1].children[0].children[n_o_p].getAttribute("name")
@@ -242,6 +251,8 @@ function sortit(sel) {
         }
     }
     let new_arr = []
+    /*
+    * I create a copy of the the_arr and sort it and if it should be reversed i reverse it */
     for (let x = 0; x<the_arr.length; x++){
         new_arr.push(the_arr[x])
     }
@@ -256,10 +267,16 @@ function sortit(sel) {
     if (r === 1){
         new_arr.reverse()
     }
+    /*
+    * Remove all child from the product container */
     let order_arr = []
     while (all_products.firstChild){
         all_products.removeChild(all_products.lastChild)
     }
+    /*
+    * since the_arr and new_arr have the same values but at different location
+    * order arr gets the index of the div that should come first in the keep_arr
+    * and so on and the append the div to the product container*/
     for (let x=0; x<new_arr.length; x++){
         order_arr.push(the_arr.indexOf(new_arr[x]))
     }

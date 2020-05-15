@@ -8,13 +8,15 @@ from products.models import Product
 from consoles.models import Console
 
 
-
+#This is to get all manufacturers
 def index(request):
     context = {'manufacturers': Manufacturer.objects.all().order_by('name'), }
     context = cases.get_profile(context, request)
     return render(request, 'manufacturers/index.html', context)
 
+#This is to get all products for a specific manufacturer
 def get_manufacturer_by_name(request, name):
+    #Deals is a edge case and needs another process
     if name != 'Deals':
         manufacturer = Manufacturer.objects.get(name=name)
         context = {'manufacturer': manufacturer, 'products': list(Product.objects.filter(manufacturer=manufacturer.id)), 'consoles': Console.objects.filter(manufacturer=manufacturer.id)}
@@ -26,7 +28,7 @@ def get_manufacturer_by_name(request, name):
         return render(request, 'manufacturers/deals.html', context)
 
 
-
+#This is for creating a manufacturer and works in the same way as console
 @login_required()
 def create_manufacturer(request):
     if request.user.is_superuser:

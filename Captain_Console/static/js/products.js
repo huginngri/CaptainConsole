@@ -13,6 +13,7 @@ $(document).ready(function() {
                 }
 
                 let newHtml = resp.data.map(d => {
+                    // This is just to check if you should display discount price or real price
                     if (d.on_sale === true) {
 
                         x= `
@@ -49,7 +50,7 @@ $(document).ready(function() {
                         `
                     }
                     if (d.stock > 0) {
-
+                        // This is just to check if you should display buy and cart button or out of stock
                             return x +`<div class="below_box">
                                           <button type="button" class="product-btn buy ccbluemedium" onclick="buy_product(${d.id })">Buy</button>
                                           <button type="button" class="product-btn cart ccbluemedium" onclick="add_to_cart_js(${d.id })">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>

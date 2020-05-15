@@ -19,6 +19,7 @@ from users.forms.delete_user import RemoveUser
 from users.models import Customer
 from error_and_success import cases
 
+#This is to register
 def register(request):
     if request.method == "POST":
         form = UserCreationForm(data=request.POST)
@@ -29,13 +30,13 @@ def register(request):
             cart = Cart(total=0, user=customer)
             cart.save()
             request.user = form.instance
-            context = dict()
-            context = cases.error(context, 'User created')
             return redirect('login')
     context = {'form': UserCreationForm()}
     context = cases.get_profile(context, request)
     return render(request, 'users/register.html', context)
 
+
+#This is for updateing a profile it is made sure that if you fill in the form it comes back if you refresh
 @login_required()
 def update_profile(request):
     profile = Customer.objects.filter(user=request.user).first()
@@ -62,7 +63,7 @@ def update_profile(request):
             return render(request, "users/profile.html",context)
     return render(request, "users/profile.html", context)
 
-
+#This is to update your billing information
 @login_required()
 def update_billing(request):
     profile = Customer.objects.filter(user=request.user).first()
@@ -82,7 +83,7 @@ def update_billing(request):
             return render(request,'users/billing.html', context)
     return render(request, "users/billing.html", context)
 
-
+#This is to update your payment information
 @login_required()
 def update_payment(request):
     profile = Customer.objects.filter(user=request.user).first()
@@ -101,7 +102,7 @@ def update_payment(request):
             return render(request, 'users/payment.html', context)
     return render(request, "users/payment.html", context)
 
-
+#This is to change your password
 @login_required()
 def change_password(request):
     context = {
@@ -119,7 +120,7 @@ def change_password(request):
             messages.error(request, 'Error')
     return render(request, 'users/change_password.html', context)
 
-
+#This is only for superuser and to remove a malicous user
 @login_required()
 def delete_user(request):
     context = {'form': RemoveUser()}
@@ -141,6 +142,7 @@ def delete_user(request):
             context = cases.error(context, "Something went wrong")
     return render(request, 'users/remove_user.html', context)
 
+#This is to get your whole product history, all the products that you have viewed
 @login_required()
 def product_history(request):
     if request.user.is_authenticated:
