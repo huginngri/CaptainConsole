@@ -280,6 +280,7 @@ filler2{
     flex-wrap: wrap;
     justify-content: center;
     padding:50px;
+    padding-bottom: 0px;
 }
 
 
@@ -291,6 +292,17 @@ filler2{
     width:95%;
 }
 
+.footerbottom{
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:0px;
+    margin-top:50px;
+    width: 51%;
+    border-top: 3px solid #F1AA19;
+    padding: 30px;
+    padding-top: 50px;
+    padding-bottom:0px;
+}
 
 
 /*review -----------------------------------*/
