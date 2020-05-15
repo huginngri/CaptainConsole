@@ -1,10 +1,11 @@
 <div class="cclightblue">
-    {%  if user.is_authenticated %}
-        <p class="cclightblue recently_viewed cc2plarge">Recently viewed</p>
-        <div id="recent-views" class="recent-views-container">
-        </div>
+    <div style="padding:2%;">
+        {%  if user.is_authenticated %}
+            <p class="cclightblue recently_viewed cc2plarge">Recently viewed</p>
+            <div id="recent-views" class="recent-views-container">
+            </div>
     {%  endif %}
-
+    </div>
     <footer class = "footer ccblue">
     <div class="information cc2psmall">
         <p>Contact us</p>

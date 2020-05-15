@@ -12,7 +12,7 @@
 
         <div class = "product_container">
             <div class=" imageproductdetails productdetails ccwhite">
-                <img id="myImage" class = "product_details_images" src="{{   product.productimage_set.first.image  }}" onload="calculateRating({{ product.id }}, {{ product.rating }})">
+                <img id="myImage" class = "product_details_images" src="{{   product.productimage_set.first.image  }}">
                 <div class = "image_box_detailed box_detailed" >
                     {% for image in product.productimage_set.all %}
                             <img class="scrollimages" src="{{   image.image  }}" onclick="document.getElementById('myImage').src='{{   image.image  }}'">
