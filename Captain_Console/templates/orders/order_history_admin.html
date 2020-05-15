@@ -1,28 +1,36 @@
 {% extends "base.html" %}
+
+
 {% block content %}
     {% load static %}
+
+{#  this is page for the admins to see all orders made on the website#}
 
     <div id="order_review_div" class = "popup ccwhite" >
         <h1 id="order_header" class="cc2phuge">All orders</h1>
         <table class="table">
-        <p class="ccbluebold">Total orders: {{ orders.no }}</p>
-        <p class="ccbluebold">Total sold: {{ orders.total_sold }}</p>
-        <tr>
-            <th>Order number</th>
-            <th>User</th>
-            <th>Billing Address</th>
-            <th>Amount</th>
-        </tr>
-        {% for order in orders %}
-            {% if order.confirmed %}
-                <tr>
-                    <td>{{ order.id }}</td>
-                    <td>{{ order.customer.user  }}</td>
-                    <td>{{ order.address  }}</td>
-                    <td>{{ order.total  }}</td>
-                </tr>
-            {% endif %}
-        {% endfor %}
+            <p class="ccbluebold">Total orders: {{ orders.no }}</p>
+            <p class="ccbluebold">Total sold: {{ orders.total_sold }}</p>
+
+            <tr>
+                <th>Order number</th>
+                <th>User</th>
+                <th>Billing Address</th>
+                <th>Amount</th>
+            </tr>
+
+    {#       this foor loop displays all te orders into the table.#}
+            {% for order in orders %}
+                {% if order.confirmed %}
+                    <tr>
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.customer.user  }}</td>
+                        <td>{{ order.address  }}</td>
+                        <td>{{ order.total  }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+
         </table>
         <button class="profilebuttons btn btn-primary" onclick="location.href='{% url 'frontpage' %}'">Close</button>
     </div>

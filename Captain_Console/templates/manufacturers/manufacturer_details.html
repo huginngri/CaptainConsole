@@ -2,6 +2,8 @@
 {% load static %}
 
 {% block content %}
+
+{#    //this is the html page for when user has pressed in the navbar a manufacture console or a subtype of an console.#}
     <div class="cclightblue manufacturer_info">
         <a href="#"></a>
         <h4 class="homepagetext cc2phuge">{{ manufacturer.name }}</h4>
@@ -26,6 +28,8 @@
         </div>
     {% endfor %}
     </div>
+
+{#    this if claue is to have diffrent view for the user if there are no products.#}
     {% if  products == 'none' %}
 
         <div class = "hugemargnin informationbar ccblue">
@@ -34,10 +38,10 @@
 
     {% else %}
 
-    <div class = "informationbar ccblue">
-        <h1 class="homepagetext cc2phuge">Scroll down to shop <br>↓</h1>
-    </div>
-    </div>
+        <div class = "informationbar ccblue">
+            <h1 class="homepagetext cc2phuge">Scroll down to shop <br>↓</h1>
+        </div>
+
 
         <select  id="sort" onchange="sortit(this)">
             <option value="name">name (ascending)</option>
@@ -45,10 +49,13 @@
             <option value="price">price (ascending)</option>
             <option value="price_reverse">price (descending)</option>
         </select>
-    <div class="product_container" id="container_for_products">
-    {% for product in  products%}
-        {% include 'products/product_overview.html' with product=product %}
-    {% endfor %}
-    </div>
+
+        <div class="product_container" id="container_for_products">
+
+{#            // this if clause is for to show product for the specific manufacturer if there is one.#}
+            {% for product in  products%}
+                {% include 'products/product_overview.html' with product=product %}
+            {% endfor %}
+        </div>
     {% endif %}
 {% endblock %}

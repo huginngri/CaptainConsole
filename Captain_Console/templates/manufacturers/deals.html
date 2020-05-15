@@ -2,20 +2,26 @@
 {% load static %}
 
 {% block content %}
+
+{#    //this is the page that the user can see when he presses the deals on the navar.#}
+
     <div class="cclightblue manufacturer_info">
         <h4 class="homepagetext cc2phuge">Deals</h4>
         <p class="ccbluebold">Here you find the best deals for your bucks</p>
     </div>
 
-        <select  id="sort" onchange="sortit(this)">
-            <option value="name">name (ascending)</option>
-            <option value="name_reverse">name (descending)</option>
-            <option value="price">price (ascending)</option>
-            <option value="price_reverse">price (descending)</option>
-        </select>
+    <select  id="sort" onchange="sortit(this)">
+        <option value="name">name (ascending)</option>
+        <option value="name_reverse">name (descending)</option>
+        <option value="price">price (ascending)</option>
+        <option value="price_reverse">price (descending)</option>
+    </select>
+
     <div class="product_container" id="container_for_products">
-    {% for product in  products%}
-        {% include 'products/product_overview.html' with product=product %}
-    {% endfor %}
+
+    // this if clause is for to show product that has deals.
+        {% for product in  products%}
+            {% include 'products/product_overview.html' with product=product %}
+        {% endfor %}
     </div>
 {% endblock %}

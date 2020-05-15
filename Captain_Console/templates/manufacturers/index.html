@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
+
+{#    //to display all products.#}
+
     <div class="product_container">
         {% for manufacturer in  manufacturers%}
             {% include 'manufacturers/manufacturer_details.html' with manufacturer=manufacturer %}
