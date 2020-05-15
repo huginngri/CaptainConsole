@@ -104,7 +104,7 @@ if ($("#recent-views")) {
                 if (response.data.length > 0) {
                     var recentproducts = response.data.map(d => {
                         return `
-                                <a class=" product_boxes box ccwhite" href="/products/${d.id}">
+                                <a class=" product_boxes_recently_viewed box_recently_viewed ccwhite" href="/products/${d.id}">
                                     <img class = "mediumimages" src="${d.image}" style="height:150px;">
                                 <div class="button_and_text">
                                     <div class="info">
