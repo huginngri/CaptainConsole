@@ -45,10 +45,7 @@ def front_page(context):
             else:
                 s[g.product] = g.quantity
     final_list = sorted(s, key=s.get, reverse=True)[:3]
-    final_final_list = []
-    for prod in final_list:
-        final_final_list.append(prod.id)
     context['products_new'] = Product.objects.all().order_by('-id')[:3]
-    context['products_hot'] = Product.objects.filter(id__in=final_final_list)
+    context['products_hot'] = final_list
     context['products_deal'] = Product.objects.filter(on_sale=True).order_by('-discount')[:3]
     return context
