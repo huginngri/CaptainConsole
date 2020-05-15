@@ -10,7 +10,13 @@
 
         <div class = "product_container">
             <div class=" imageproductdetails productdetails ccwhite">
-                <img id="myImage" class = "product_details_images" src="{{   product.productimage_set.first.image  }}">
+                {% if error == True %}
+                        {% include 'error.html' with message=message %}
+                    {% endif %}
+                    {% if success == True %}
+                        {% include 'success_msg.html' with message=message %}
+                    {% endif %}
+                <img id="myImage" class = "product_details_images" src="{{   product.productimage_set.first.image  }}" onload="calculateRating({{ product.id}}, {{ product.rating }})">
                 <div class = "image_box_detailed box_detailed" >
                     {% for image in product.productimage_set.all %}
                             <img class="scrollimages" src="{{   image.image  }}" onclick="document.getElementById('myImage').src='{{   image.image  }}'">
@@ -21,7 +27,7 @@
                     <div class="info">
                         <p class="ccbluelarge">{{ product.console_type }}</p>
                         {% if product.on_sale == True %}
-                        <p class="ccbluemedium">{{ product.discount_price }} $</p>
+                        <p class="ccbluemedium">{{ product.discount_price }} $ (- {{ product.discount }}%)</p>
                         {% else %}
                         <p class="ccbluemedium">{{ product.price }} $</p>
                         {% endif %}
@@ -41,12 +47,6 @@
             </div>
 
             <div class="textproductdetails productdetails ccwhite ">
-                {% if error == True %}
-                    {% include 'error.html' with message=message %}
-                {% endif %}
-                {% if success == True %}
-                    {% include 'success_msg.html' with message=message %}
-                {% endif %}
                 <h4 class="cc2plarge">{{ product.name }}</h4>
                 <p class="ccbluelarge">{{ product.manufacturer }}</p>
                 <p class="ccbluemedium">{{ product.description }}</p>
@@ -59,6 +59,7 @@
 
                         </div>
                     {% endif %}
+
                     <button type="button" id="give_review_button" class="btn btn-primary login-btn" style="display: none" name="{{ product.id }}"  onclick="location.href='{% url 'review-product' product.id%}'">Review product</button>
                 </div>
 
