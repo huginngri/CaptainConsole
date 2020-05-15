@@ -120,7 +120,7 @@ function place_order(order) {
 
 
 function remove_from_cart(product_id, child) {
-    let deletediv = child.parentNode.parentNode.parentNode
+    let deletediv = child.parentNode
     $.ajax({
         type: "DELETE",
         method: 'DELETE',
