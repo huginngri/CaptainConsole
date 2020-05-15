@@ -105,10 +105,13 @@ def remove_from_cart(request, product_id):
     return JsonResponse({'message': 'invalid request'})
 
 def calc_price(cart):
+    # this simple function finds all cart_detail instances connected to a cart
+    # and returns the sum of the price of all the products in the cart
     total = 0
     cart_details = CartDetails.objects.filter(cart=cart)
     for cart_detail in cart_details:
         product = Product.objects.filter(id=cart_detail.product.id).first()
+        # if the product is on sale, discount price is used
         if product.on_sale == True:
             total += (product.discount_price * cart_detail.quantity)
         else:
@@ -117,11 +120,15 @@ def calc_price(cart):
 
 @login_required()
 def change_quantity(request, product_id):
+    # this function takes a request from a registered user and changes the
+    # quantity of a given product in the user's cart. The new quantity is
+    # provided in the request. Returns the new total price of the cart
     customer = Customer.objects.filter(user=request.user).first()
     if request.method == 'POST':
         cart = Cart.objects.filter(user=customer.id).first()
         product = Product.objects.get(id=product_id)
         cart_detail = CartDetails.objects.filter(cart=cart, product=product).first()
+        # if the new amount is 0, remove the product from the cart
         if request.POST['new_amount'] == 0:
             remove_from_cart(request, product_id)
         else:
