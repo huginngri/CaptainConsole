@@ -128,7 +128,7 @@ def confirm_order(request):
     for cart_detail in cart_details:
         product = Product.objects.get(id=cart_detail.product_id)
         quantity = cart_detail.quantity
-        if quantity >= product.stock:
+        if quantity > product.stock:
             order.delete()
             return JsonResponse({'message': 'out of stock', 'product': product.name, 'items_left': product.stock})
     for cart_detail in cart_details:
