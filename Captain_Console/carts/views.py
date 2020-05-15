@@ -14,8 +14,13 @@ from django.http import JsonResponse
 # Create your views here.
 @login_required()
 def add_or_count_cart(request):
+    # this function responds to GET and POST requests to the url: /carts
+    # it is used to add products to the cart (POST) and to display the size of the cart (GET)
     print("Flott")
     if request.method == 'POST':
+        # If the method is POST we get the user that send the request and the corresponding shopping cart
+        # If the cart already contains this product we raise the quantity in the cart by one, otherwise
+        # we initialize a cart detail instance that connects the product to the cart
         customer = Customer.objects.filter(user=request.user).first()
         cart = Cart.objects.filter(user=customer.id).first()
         product = Product.objects.get(id=request.POST['product_id'])
@@ -28,6 +33,8 @@ def add_or_count_cart(request):
         cart_detail.save()
         return JsonResponse({'count': count_cart(customer, cart)})
     elif request.method == 'GET':
+        # If the method is GET we get the user that send the request and the corresponding shopping cart
+        # and return the size of the cart
         customer = Customer.objects.filter(user=request.user).first()
         cart = Cart.objects.filter(user=customer.id).first()
         return JsonResponse({'count': count_cart(customer, cart)})
@@ -37,6 +44,8 @@ def add_or_count_cart(request):
 
 @login_required()
 def count_cart(customer, cart):
+    # this function calculates the size of a cart, looks at every cartdetail
+    # and returns the sum of the quantity of each product in the cart
     count = 0
     for cart_detail in CartDetails.objects.filter(cart=cart):
         count += cart_detail.quantity
@@ -44,6 +53,8 @@ def count_cart(customer, cart):
 
 @login_required()
 def view_cart(request):
+    # This function takes a request from a registered user and returns a a list
+    # of all the products in the user's cart along with the total price.
     customer = Customer.objects.filter(user=request.user).first()
     cart = Cart.objects.filter(user=customer.id).first()
     cart_details = CartDetails.objects.filter(cart=cart)
@@ -59,6 +70,9 @@ def view_cart(request):
         else:
             total += (product.price * cart_detail.quantity)
     orders = Order.objects.filter(customer=customer)
+    # The user only has one cart and therefore all unconfirmed orders are deleted if
+    # the user views his cart again without confirming an order, because if he is in
+    # the cart the old order may be invalid and a new is created if he presses checkout
     for order in orders:
         if order.confirmed == False:
             order_products = OrderProduct.objects.filter(order=order)
@@ -78,6 +92,9 @@ def view_cart(request):
 
 @login_required()
 def remove_from_cart(request, product_id):
+    # This function takes a DELETE request from a registered user and removes the product
+    # supplied in the request from the user's cart. If the process is successful, the
+    # new total price of the cart is returned
     customer = Customer.objects.filter(user=request.user).first()
     if request.method == 'DELETE':
         cart = Cart.objects.filter(user=customer.id).first()

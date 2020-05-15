@@ -119,5 +119,5 @@ UPDATE  users_payment SET card_number='1234123443214321' WHERE id<1000;
 UPDATE  users_payment SET exp_date='12/24' WHERE id<1000;
 UPDATE  users_payment SET cvc='123' WHERE id<1000;
 
-DELETE FROM products_productimage WHERE id=102;
+DELETE FROM manufacturers_manufacturer WHERE id=15;
 
