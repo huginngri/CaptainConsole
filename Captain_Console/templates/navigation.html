@@ -1,8 +1,9 @@
+<!-- This is the HTML file for the navbar on the site -->
+
 {% load static %}
 
 <nav  class="navbar navbar-default navbar-fixed-top ccblue ccnavbar" >
   <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
@@ -12,18 +13,16 @@
       </button>
       <a class="navbar-brand cc2pmedium" id = "ccorange" href="{% url "frontpage" %}">Captain Console</a>
     </div>
-{#    {% url 'other-index' %}#}
-    <!-- Collect the nav links, forms, and other content for toggling -->
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            <!-- The form -->
 
             <form class="navbar-form navbar-left search" action="action_page.php">
                 <input class="input" type="text" placeholder="Search.." id="search">
                 <button type="submit" class="btn btn-default search-btn" id="search-bt"><i class="fa fa-search"></i></button>
             </form>
 
+            <!-- User can see different buttons based on whether he/she has registered on to the site-->
             <ul class="nav navbar-nav navbar-right">
                   {%  if user.is_authenticated %}
                       <li role="presentation" ><a href="{% url 'view-cart' %}"><span id = "cclightgray" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <span class="badge primary" id="cart_count" ></span></a></li>
@@ -35,6 +34,7 @@
                   {%  endif %}
             </ul>
 
+            <!-- User has to be a superuser (admin) to be able to delete user and create product/console/manufacturer-->
             <ul class="nav navbar-nav">
                 {% if user.is_superuser %}
                 <li><button type="button" class="btn btn-default navbar-btn" onclick="location.href='{% url 'delete_user' %}'" id = "cclightgray">Delete user</button></li>
@@ -44,7 +44,7 @@
                 {%  endif %}
             </ul>
         </div>
-    </div><!-- /.container-fluid -->
+    </div>
     <div class="block">
         <ul class='ccnavbuttons'>
             {% for manufacturer, consoles in nav.items %}

@@ -1,3 +1,5 @@
+<!-- This is the HTML file for the base on the site -->
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -51,6 +53,8 @@
     </style>
 
 </head>
+
+<!-- If user is registered to the system he/she can see how many products are in the cart -->
 {%  if user.is_authenticated %}
     <body class = "cclightblue" onload="calculate_cart()" style="background-image: url('https://wallpaperplay.com/walls/full/1/d/d/101186.jpg' );
     background-repeat: no-repeat;

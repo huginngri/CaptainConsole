@@ -19,7 +19,6 @@ from django.http import JsonResponse
 
 
 
-# Create your views here.
 @login_required()
 def checkout(request, save=False, billing_saved=False, payment_saved=False):
     profile = Customer.objects.filter(user=request.user).first()
@@ -62,7 +61,6 @@ def checkout(request, save=False, billing_saved=False, payment_saved=False):
 @login_required()
 def save_billing(request):
     profile = Customer.objects.filter(user=request.user).first()
-    print('rétt')
     if request.method == "POST":
         form_billing = BillingForm(instance=profile.billing, data=request.POST)
         if form_billing.is_valid():
@@ -170,14 +168,20 @@ def update_order(request, order_id):
         return render(request, 'products/frontpage.html', context)
 
 
+# Function that allows user to see his/hers order history
+# and admin to see the order history of all users
+
 @login_required()
 def order_history(request):
     total = 0
     no_of_orders = 0
     total_no_of_orders = 0
     total_sold = 0
+
+    # If the user is not a superuser only his/her order are displayed
     if not request.user.is_superuser:
         profile = Customer.objects.filter(user=request.user).first()
+        # Orders that the customer has displayed are filtered out
         orders = Order.objects.filter(customer=profile)
         final_orders = []
         for order in orders:
@@ -186,13 +190,16 @@ def order_history(request):
             for order_detail in order_details:
                 product = Product.objects.get(id=order_detail.product_id)
                 prods.append({'product': product, 'quantity': order_detail.quantity, 'image': ProductImage.objects.filter(product=product).first()})
+                # The total amount spent is calculated based on whether the product was on discount price or not
                 if product.on_sale == True:
                     total += (product.discount_price * order_detail.quantity)
                 else:
                     total += (product.price * order_detail.quantity)
+            # Order is given an attribute total and addres that are sent in the context to the HTML file
             order.total = str(round(total, 2)) + " $"
             order.address = order.billing.street_name + " " + order.billing.house_number + ", " + order.billing.zip + ", " + order.billing.country
             total = 0
+            # Order is given an attribute confirmed
             if order.confirmed == True:
                 order.status = "Done"
             else:
@@ -202,6 +209,8 @@ def order_history(request):
         context = {'orders': final_orders, 'total_orders': no_of_orders}
         context = cases.get_profile(context, request)
         return render(request, "orders/order_history_user.html", context)
+    # If the user is a superuser (admin) all orders are displayed and the total that
+    # has been sold is calculated and sent as an attribute with all_orders in the context
     else:
         all_orders = Order.objects.all()
         for order in all_orders:

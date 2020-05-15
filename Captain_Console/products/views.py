@@ -191,7 +191,6 @@ def update_product_photo(request, id):
 def delete_product(request, id):
     if request.user.is_superuser:
         the_product = Product.objects.filter(pk=id).first()
-
         the_product.delete()
         context = cases.get_profile(dict(), request)
         context = cases.success(context, 'Product deleted')
@@ -201,7 +200,6 @@ def delete_product(request, id):
         context = cases.error(context, "You shall not pass")
         context = cases.front_page(context)
         return render(request, 'products/frontpage.html', context)
-
 
 @login_required()
 def delete_confirm(request, id):

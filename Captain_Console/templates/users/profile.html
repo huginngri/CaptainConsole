@@ -1,14 +1,13 @@
+<!-- HTML file to display the users profile. -->
 {% extends "base.html" %}
 {% block content %}
+    <!-- A logged in user can leave a review on a product -->
     {% if login == True %}
         <div id="please_fill_in_info" title="Fill in info">
             <p class="ccbluebold">Fill in info about your self (first name and image) before leaving a review </p>
         </div>
     {% endif %}
 
-    <style>
-        .helptext{display: none;}
-    </style>
     <div class = "popup ccwhite" >
 
         <h1 class = cc2phuge>Profile</h1>
@@ -25,6 +24,7 @@
                 {{ form2 }}
                 <input type="submit" class="login-btn btn btn-primary " value="Update Info" />
 
+            <!-- The user can edit billing, payment and password. He can also see order history and product history. -->
             </form>
             <button class="login-btn btn btn-primary "  onclick="location.href='{% url 'billing' %}'">Billing settings</button>
             <button class="login-btn btn btn-primary " onclick="location.href='{% url 'payment' %}'">Payment settings</button>

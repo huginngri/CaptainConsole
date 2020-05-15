@@ -18,6 +18,7 @@ from users.forms.user_form import UserForm
 from users.forms.delete_user import RemoveUser
 from users.models import Customer
 from error_and_success import cases
+
 def register(request):
     if request.method == "POST":
         form = UserCreationForm(data=request.POST)
