@@ -214,7 +214,6 @@ function buy_product(product_id) {
 }
 
 function viewOrderDetail(orderNumber){
-    console.log("in function")
     background = document.getElementById("background_"+orderNumber)
     the_product_list_element = document.getElementById("list_for_"+orderNumber)
 
