@@ -28,7 +28,10 @@ $.ajaxSetup({
     });
 
 function add_to_cart_js(product) {
-
+    /*
+    this function sends a post request to the server requesting
+    to add the provided product to the cart of the user that called the function
+     */
     $.ajax({
         type: "POST",
         method: 'POST',
@@ -41,6 +44,9 @@ function add_to_cart_js(product) {
                 window.location = '/carts/view';
             }
             else {
+                /*
+                the amount in the cart is changed if the request was successful
+                 */
                 let cart_number = document.getElementById("cart_count");
                 cart_number.textContent = response.count;
             }
@@ -52,11 +58,17 @@ function add_to_cart_js(product) {
 }
 
 function calculate_cart() {
+    /*
+    this function sends a get request to the server requesting
+    th ecount of the items in the cart of the user that called the function
+     */
     $.ajax({
         type: "GET",
         url: '/carts',
         success: function (response) {
-
+            /*
+            if the request is successful, the count is displayed
+             */
             let cart_number = document.getElementById("cart_count");
             cart_number.textContent = response.count;
         },
@@ -67,6 +79,10 @@ function calculate_cart() {
 }
 
 function place_order(order) {
+    /*
+    this function is used to confirm an order of a user, the order is provided as a
+    parameter and sent to the server in the request
+     */
     $.ajax({
         type: "POST",
         method: 'POST',
@@ -77,6 +93,9 @@ function place_order(order) {
         success: function (response) {
             console.log('sucess')
             if (response['message'] == 'out of stock'){
+                /*
+                if some product is out of stock, the corresponding message is displayed
+                 */
                 let header = document.getElementById('order_header')
                 header.textContent = 'Order denied.\nItem: "' + response['product'] + '" out of stock, only ' + response['items_left'] + ' items left.'
                 header.setAttribute('class', 'alert alert-danger')
@@ -95,6 +114,9 @@ function place_order(order) {
                 calculate_cart()
             }
             else {
+                /*
+                if the order was successfully confirmed, a confirmation message is displayed
+                 */
                 let header = document.getElementById('order_header')
                 header.textContent = 'Order confirmed'
                 let back_button = document.getElementById('edit_order')
@@ -120,17 +142,27 @@ function place_order(order) {
 
 
 function remove_from_cart(product_id, child) {
+    /*
+    this function sends a request to the server to remove a provided product
+    from the users cart
+     */
     let deletediv = child.parentNode
     $.ajax({
         type: "DELETE",
         method: 'DELETE',
         url: '/carts/' + product_id,
         success: function (response) {
+            /*
+            if the cart is now empty, the page is reloaded to display the correct message
+             */
             if (response['total_price'] === 0) {
                 location.reload()
             }
             else {
-
+                /*
+                if the  product is successfully removed from the cart, the div containing the product
+                is removed from the DOM and the new total price and cart count are displayed
+                 */
                 let container = document.getElementById("cart_products")
                 for (let x = 0; x < container.children.length; x++){
                     if (container.children[x] === deletediv){
@@ -152,7 +184,12 @@ function remove_from_cart(product_id, child) {
     });
 }
 
+
 function change_quantity(product_id) {
+    /*
+    this function sends a POSt request to a server requesting to
+    change the quantity of some product in the users  cart.
+     */
     let inp = document.getElementById(product_id)
     let new_amount = inp.value
     $.ajax({
@@ -163,6 +200,9 @@ function change_quantity(product_id) {
             new_amount: new_amount
         },
         success: function (response) {
+            /*
+            if the request is successful the new total price and cart count are displayed
+             */
             let price = document.getElementById('cart_total');
             let total = parseFloat(response['total_price']);
             price.textContent = 'Total price: ' + total + '$';
