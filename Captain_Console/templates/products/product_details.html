@@ -37,7 +37,7 @@
                     {% else %}
                         <div class="below_box">
                             <p class = "ccbluemedium bold center">Out of stock</p>
-                        </div>>
+                        </div>
                    {% endif %}
                 </div>
             </div>
@@ -56,7 +56,6 @@
                         </div>
                     {% endif %}
                     <button type="button" id="give_review_button" class="btn btn-primary login-btn" style="display: none" name="{{ product.id }}"  onclick="location.href='{% url 'review-product' product.id%}'">Review product</button>
-
                 </div>
 
             </div>

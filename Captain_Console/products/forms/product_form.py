@@ -11,7 +11,7 @@ class ProductForm(ModelForm):
             ('Accessory', 'Accessory')
         ]
         model = Product
-        exclude = ['id', 'rating', 'manufacturer']
+        exclude = ['id', 'rating', 'manufacturer', 'review_count', 'discount_price']
         widgets = {
             'name': widgets.TextInput(attrs={'class': 'form-control'}),
             'description': widgets.TextInput(attrs={'class': 'form-control'}),
