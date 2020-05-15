@@ -142,6 +142,7 @@ def update_product(request, id):
         context = cases.get_profile(context, request)
         if request.method == "POST":
             form = ProductForm(data=request.POST,instance=the_product)
+            context['form'] = form
             if form.is_valid():
                 the_cons = Console.objects.get(pk=form.instance.console_type.id)
                 form.instance.manufacturer = Manufacturer.objects.get(pk=the_cons.manufacturer.id)
@@ -149,6 +150,7 @@ def update_product(request, id):
                     form.instance.discount_price = round(form.instance.price*(1-form.instance.discount/100),2)
                 form.save()
                 context = cases.success(context, "Successfully updated product " + the_product.name)
+
                 return render(request, 'products/update_product.html', context)
             else:
                 context = cases.error(context, "Something went wrong")
