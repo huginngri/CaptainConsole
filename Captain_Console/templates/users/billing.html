@@ -1,10 +1,13 @@
+<!-- A form where the user can fill in billing information -->
 {% extends "base.html" %}
 {% block content %}
     <div class = "popup ccwhite" >
         <h1 class = cc2phuge>Billing</h1>
+        <!-- If some fields were left blank an error message is displayed-->
         {% if error == True %}
             {% include 'error.html' with message=message %}
         {% endif %}
+        <!-- If all fields were typed in correctly a success message is displayed-->
         {% if success == True %}
             {% include 'success_msg.html' with message=message %}
         {% endif %}
