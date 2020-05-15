@@ -4,15 +4,18 @@
 
     <div class="console_info cclightblue">
         <h4 class="homepagetext cc2plarge" onclick="location.href='{% url 'consoles-product' console.manufacturer console.name %}'">{{ console.name }}</h4>
+        <h3 class="cc2plarge">{{ filter }}</h3>
+
     </div>
 
     <div class="product_container">
         {% if  filter != 'none' %}
-            <h3>{{ filter }}</h3>
+{#            <h3 class="cc2phuge homepagetext">No products</h3>#}
+
         {% else %}
             <div class="product_boxes box ccwhite">
-                <div class="product_boxes_inside box_inside" >
-                    <div class = "containerimage" onclick="location.href='{% url 'consoles-consoles' console.manufacturer console.name %}'">
+                <div class="product_boxes_inside box_inside" onclick="location.href='{% url 'consoles-consoles' console.manufacturer console.name %}'">
+                    <div class = "containerimage" >
                         <img class="mediumimages" src="/static/images/console.jpeg" alt="console_img">
                     </div>
                     <div class="button_and_text">
@@ -21,10 +24,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="below_box" onclick="location.href='{% url 'consoles-consoles' console.manufacturer console.name %}'"></div>
             </div>
             <div class="product_boxes box ccwhite">
-                <div class="product_boxes_inside box_inside" >
-                    <div class = "containerimage" onclick="location.href='{% url 'consoles-games' console.manufacturer console.name %}'">
+                <div class="product_boxes_inside box_inside" onclick="location.href='{% url 'consoles-games' console.manufacturer console.name %}'">
+                    <div class = "containerimage" >
                         <img class="mediumimages" src="/static/images/game.jpeg" alt="game_img">
                     </div>
                     <div class="button_and_text">
@@ -33,10 +37,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="below_box" onclick="location.href='{% url 'consoles-games' console.manufacturer console.name %}'"></div>
             </div>
             <div class="product_boxes box ccwhite">
-                <div class="product_boxes_inside box_inside" >
-                    <div class = "containerimage" onclick="location.href='{% url 'consoles-accessories' console.manufacturer console.name %}'">
+                <div class="product_boxes_inside box_inside" onclick="location.href='{% url 'consoles-accessories' console.manufacturer console.name %}'">
+                    <div class = "containerimage" >
                         <img class="mediumimages" src="/static/images/accessories.png" alt="accessories_img">
                     </div>
                     <div class="button_and_text">
@@ -45,22 +50,30 @@
                         </div>
                     </div>
                 </div>
+                <div class="below_box" onclick="location.href='{% url 'consoles-accessories' console.manufacturer console.name %}'"></div>
             </div>
         {% endif %}
     </div>
+    {% if  filter != 'none' %}
+        <div class = "informationbar ccblue">
+            <h3 class="cc2phuge homepagetext">No products</h3>
+        </div>
 
-    <div class = "informationbar ccblue">
-        <h1 class="homepagetext cc2phuge">Scroll down to shop <br>↓</h1>
-    </div>
-    <select  id="sort" onchange="sortit(this)">
-            <option value="name">name (ascending)</option>
-            <option value="name_reverse">name (descending)</option>
-            <option value="price">price (ascending)</option>
-            <option value="price_reverse">price (descending)</option>
-        </select>
-    <div class="product_container" id="container_for_products">
-        {% for product in  products%}
-            {% include 'products/product_overview.html' with product=product filter=filter %}
-        {% endfor %}
-    </div>
+    {% else %}
+        <div class = "informationbar ccblue">
+            <h1 class="homepagetext cc2phuge">Scroll down to shop <br>↓</h1>
+        </div>
+
+        <select  id="sort" onchange="sortit(this)">
+                <option value="name">name (ascending)</option>
+                <option value="name_reverse">name (descending)</option>
+                <option value="price">price (ascending)</option>
+                <option value="price_reverse">price (descending)</option>
+            </select>
+        <div class="product_container" id="container_for_products">
+            {% for product in  products%}
+                {% include 'products/product_overview.html' with product=product filter=filter %}
+            {% endfor %}
+        </div>
+    {% endif %}
 {% endblock %}

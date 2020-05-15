@@ -57,6 +57,12 @@
     padding: 10px;
     text-align: center;
 }
+.cclightgrayxs {
+    color: #C4C4C4;
+    font-size: xx-small;
+    text-align: center;
+    font-family: Helvetica, Arial, sans-serif;;
+}
 
 .ccbluelarge{
     color: #51647D;
@@ -71,6 +77,14 @@
 .ccbluesmall{
     color: #51647D;
     font-size: medium;
+    text-align: center;
+    font-family: Helvetica,Arial,sans-serif;;
+
+}
+
+.ccbluexs{
+    color: #51647D;
+    font-size: xx-small;
     text-align: center;
     font-family: Helvetica,Arial,sans-serif;;
 
@@ -102,6 +116,7 @@
 .medium{
     font-size:medium;
 }
+
 
 @media screen and (max-width: 700px) {
     .cc2penourmus{

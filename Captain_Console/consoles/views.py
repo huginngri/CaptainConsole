@@ -20,20 +20,20 @@ def get_console_by_name(request, consolename, name=None):
 
 def get_consoles_by_name_console_names(request, consolename, name=None):
     console = Console.objects.get(name=consolename)
-    context = {'console': console, 'products': Product.objects.filter(console_type=console.id, type='console'), 'filter': 'Console'}
+    context = {'console': console, 'products': Product.objects.filter(console_type=console.id, type='Console'), 'filter': 'Console'}
     context = cases.get_profile(context, request)
     return render(request, 'consoles/console_details.html', context)
 
 def get_games_by_name_console_names(request, consolename, name=None):
     console = Console.objects.get(name=consolename)
-    context = {'console': console, 'products': Product.objects.filter(console_type=console.id, type='game'), 'filter': 'Game'}
+    context = {'console': console, 'products': Product.objects.filter(console_type=console.id, type='Game'), 'filter': 'Game'}
     context = cases.get_profile(context, request)
     return render(request, 'consoles/console_details.html', context)
 
 def get_accessories_by_name(request, consolename, name=None):
     console = Console.objects.get(name=consolename)
 
-    context = {'console': console, 'products': Product.objects.filter(console_type=console.id, type='accessory'),
+    context = {'console': console, 'products': Product.objects.filter(console_type=console.id, type='Accessory'),
                'filter': 'Accessory'}
     context = cases.get_profile(context, request)
 

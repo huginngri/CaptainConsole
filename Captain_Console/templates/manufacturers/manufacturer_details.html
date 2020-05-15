@@ -12,8 +12,8 @@
     <div class="product_container">
     {% for console in  consoles%}
         <div class="product_boxes box ccwhite">
-            <div class="product_boxes_inside box_inside" >
-                <div class = "containerimage" onclick="location.href='{% url 'consoles-product' 'Other' console.name %}'">
+            <div class="product_boxes_inside box_inside" onclick="location.href='{% url 'consoles-product' 'Other' console.name %}'">
+                <div class = "containerimage" >
                     <img class="mediumimages" src="{{ console.image }}" style="width:35%;">
                 </div>
                 <div class="button_and_text">
@@ -22,6 +22,7 @@
                     </div>
                 </div>
             </div>
+            <div class="below_box" onclick="location.href='{% url 'consoles-product' 'Other' console.name %}'"></div>
         </div>
     {% endfor %}
     </div>
