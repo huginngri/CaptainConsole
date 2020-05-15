@@ -16,7 +16,6 @@ from django.http import JsonResponse
 def add_or_count_cart(request):
     # this function responds to GET and POST requests to the url: /carts
     # it is used to add products to the cart (POST) and to display the size of the cart (GET)
-    print("Flott")
     if request.method == 'POST':
         # If the method is POST we get the user that send the request and the corresponding shopping cart
         # If the cart already contains this product we raise the quantity in the cart by one, otherwise

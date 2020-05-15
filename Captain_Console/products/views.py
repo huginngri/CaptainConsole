@@ -237,8 +237,6 @@ def review_product(request, id):
                 form.instance.customer = profile
                 form.instance.product = product
                 form.save()
-                print(product.rating)
-                print(form.instance.star)
                 product.review_count = product.review_count + 1
                 product.rating = round((product.rating*(product.review_count-1)+form.instance.star)/(product.review_count))
                 product.save()
