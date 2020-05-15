@@ -105,8 +105,8 @@ if ($("#recent-views").length>0) {
             success: function (response) {
                 if (response.data.length > 0) {
                     var recentproducts = response.data.map(d => {
-                        x =`
-                                <a class=" product_boxes box ccwhite" href="/products/${d.id}">
+                        return `
+                                <a class=" product_boxes_recently_viewed box_recently_viewed ccwhite" href="/products/${d.id}">
                                     <img class = "mediumimages" src="${d.image}" style="height:150px;">
                                 <div class="button_and_text">
                                     <div class="info">
@@ -169,6 +169,9 @@ if ($("#recent-views").length>0) {
         })
     }
 })
+
+
+
 
 
 
