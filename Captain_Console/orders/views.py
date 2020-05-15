@@ -21,24 +21,38 @@ from django.http import JsonResponse
 
 @login_required()
 def checkout(request, save=False, billing_saved=False, payment_saved=False):
+    # this function is used to create payment and billing instances in the database
+    # from forms that are provided in the requests. The parameters that are set to False
+    # are used if the call to the method is called from the save functions below. They
+    # are used to make sure that if billing or payment info is saved the request is not yet
+    # rendered to the order_review because tthe review should only be displayed when the forms are
+    # submitted
     profile = Customer.objects.filter(user=request.user).first()
     context = dict()
     if request.method == "POST" and save != True:
-
+        # if the forms are submitted real billing and payment forms are initialized,
+        # these forms allow no blank fields, different from the temporary forms.
         form_billing = BillingFormOrder(data=request.POST)
         form_payment = PaymentFormOrder(data=request.POST)
 
         if form_billing.is_valid() and form_payment.is_valid():
+            # if the forms are valid in  comparison to the model classes they are
+            # saved and sent to a function that displays an overview of the order
             new_billing = form_billing.save()
             new_payment = form_payment.save()
             return display_order(request, new_billing, new_payment)
         else:
+            # if the forms are not valid temporary that allow blank fields forms with the users
+            # input are initialized and the request is rendered to the sender again because
+            # real forms can only be created if all fields are filled out
             context = cases.error(context, 'Please make sure that every field is filled out')
             context['form_billing'] = TemporaryBillingForm(data=request.POST)
             context['form_payment'] = TemporaryPaymentForm(data=request.POST)
             context = cases.get_profile(context, request)
             return render(request, "orders/checkout.html", context)
     elif save == True:
+        # if the call to this function was from a svae function then the request is sennt back
+        # to the user with the information that the info has been saved.
         context = {
             "form_billing": TemporaryBillingForm(instance=profile.billing, data=request.POST),
             "form_payment": TemporaryPaymentForm(instance=profile.payment, data=request.POST),
@@ -51,7 +65,8 @@ def checkout(request, save=False, billing_saved=False, payment_saved=False):
             context["payment_saved"] = 'True'
             context['message'] = 'Payment information saved'
         return render(request, "orders/checkout.html", context)
-
+    # if the request is a GET request temporary forms are sent to the user but
+    # the users saved information is used as data in the forms.
     context['form_billing'] = TemporaryBillingForm(instance=profile.billing)
     context['form_payment'] = TemporaryPaymentForm(instance=profile.payment)
     context = cases.get_profile(context, request)
@@ -60,6 +75,10 @@ def checkout(request, save=False, billing_saved=False, payment_saved=False):
 
 @login_required()
 def save_billing(request):
+    # this function is used to save billing info of a user.
+    # A user billing form is initialized from the request and saved to
+    # the users profile. Then the checkout function is called to return appropriate response
+    # to the user
     profile = Customer.objects.filter(user=request.user).first()
     if request.method == "POST":
         form_billing = BillingForm(instance=profile.billing, data=request.POST)
@@ -75,6 +94,10 @@ def save_billing(request):
 
 @login_required()
 def save_payment(request):
+    # this function is used to save payment info of a user.
+    # A user payment form is initialized from the request and saved to
+    # the users profile. Then the checkout function is called to return appropriate response
+    # to the user
     profile = Customer.objects.filter(user=request.user).first()
     if request.method == "POST":
         form_payment = PaymentForm(instance=profile.payment, data=request.POST)
@@ -90,6 +113,10 @@ def save_payment(request):
 
 @login_required()
 def display_order(request, billing, payment):
+    # this function takes valid billing and payment information as input
+    # and initializes and order instance with all the products in the users carts
+    # and the provided billing and payment information. The order and products are
+    # then sent back to the user
     profile = Customer.objects.filter(user=request.user).first()
     cart = Cart.objects.filter(user=profile.id).first()
     cart_details = CartDetails.objects.filter(cart=cart)
@@ -100,7 +127,8 @@ def display_order(request, billing, payment):
 
 @login_required()
 def create_order(profile, billing, payment, cart_details):
-
+    # this function is used to help with the process of creating an order instance.
+    # Loops through all the product in the cart and appends them to the order.
     order = Order(customer=profile, billing=billing, payment=payment)
     order.save()
     total = 0
@@ -118,6 +146,10 @@ def create_order(profile, billing, payment, cart_details):
 
 @login_required()
 def confirm_order(request):
+    # this function is used to confirm an order. The order to confirm is provided in the request
+    # and the order is set to true. Then the cart of the user is emptied because all items have been ordered.
+    # The order is only served if there is enough stock of each product in the order, otherwise the order is deleted
+    # and the cart remains the same, that is  the cart is not emptied
     profile = Customer.objects.filter(user=request.user).first()
     order = Order.objects.get(id=request.POST['order'])
     order.confirmed = True
@@ -126,9 +158,11 @@ def confirm_order(request):
     for cart_detail in cart_details:
         product = Product.objects.get(id=cart_detail.product_id)
         quantity = cart_detail.quantity
+        # if any product is out of stock, the order is cancelled
         if quantity > product.stock:
             order.delete()
             return JsonResponse({'message': 'out of stock', 'product': product.name, 'items_left': product.stock})
+    # here, all products are in stock and the cart is emptied and stock modified
     for cart_detail in cart_details:
         product = Product.objects.get(id=cart_detail.product_id)
         quantity = cart_detail.quantity
@@ -140,6 +174,10 @@ def confirm_order(request):
 
 @login_required()
 def update_order(request, order_id):
+    # this function is used to update billing and payment information of an order.
+    # The order is provided in the request. The functionality is very similar to the
+    # checkout function except that the saved payment and billing of the order are sent
+    # to the user originally
     profile = Customer.objects.filter(user=request.user).first()
     order = Order.objects.get(id=order_id)
 
@@ -235,6 +273,8 @@ def order_history(request):
 
 @login_required()
 def can_review(request, product_id):
+    # this function takes a request form a user and checks if the user may review the product
+    # provided in the request. The user may only review it if he has ordered the product before.
     profile = Customer.objects.filter(user=request.user).first()
     orders = Order.objects.filter(customer=profile)
     product = Product.objects.get(id=product_id)
