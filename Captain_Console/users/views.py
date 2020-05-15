@@ -1,3 +1,24 @@
+
+from django.contrib.auth.forms import UserCreationForm
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.models import User
+
+# Create your views here.
+from carts.models import Cart
+from products.models import ProductHistory, Product, ProductImage
+from users.forms.payment_form import PaymentForm
+from users.forms.profile_form import ProfileForm
+from users.forms.billing_form import BillingForm
+from users.forms.user_form import UserForm
+from users.forms.delete_user import RemoveUser
+from users.models import Customer
+from error_and_success import cases
+
 def register(request):
     if request.method == "POST":
         form = UserCreationForm(data=request.POST)

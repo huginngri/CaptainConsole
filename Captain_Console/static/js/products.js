@@ -1,3 +1,4 @@
+// Function displayes all products that match the search and creates a new HTML file and adds it to the main HTML
 $(document).ready(function() {
     $('#search-bt').on('click', function (e) {
         e.preventDefault();
@@ -6,9 +7,8 @@ $(document).ready(function() {
             url: '/products?search_filter=' + searchText,
             type: 'GET',
             success: function (resp) {
-
+                // If there is no data to show (nothing exists in the database that matches the search) an error message is displayed
                 if (resp.data.length == 0) {
-                    console.log("in this if statement")
                     window.location.replace("http://127.0.0.1:8000/products/search_no_response");
                 }
 
@@ -95,6 +95,7 @@ $(document).ready(function() {
         })
     })
 
+// Function that displays the product/s that the user recently viewed
 if ($("#recent-views").length>0) {
         $("#recent-views").ready(function () {
 

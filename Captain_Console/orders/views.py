@@ -19,7 +19,6 @@ from django.http import JsonResponse
 
 
 
-# Create your views here.
 @login_required()
 def checkout(request, save=False, billing_saved=False, payment_saved=False):
     profile = Customer.objects.filter(user=request.user).first()
@@ -62,7 +61,6 @@ def checkout(request, save=False, billing_saved=False, payment_saved=False):
 @login_required()
 def save_billing(request):
     profile = Customer.objects.filter(user=request.user).first()
-    print('rétt')
     if request.method == "POST":
         form_billing = BillingForm(instance=profile.billing, data=request.POST)
         if form_billing.is_valid():
