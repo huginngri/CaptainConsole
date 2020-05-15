@@ -2,12 +2,8 @@
 {% block content %}
 
     <div class="single_comment review_boxes box ccwhite" >
-    {% if error == True %}
-            {% include 'error.html' with message=message %}
-        {% endif %}
-        {% if success == True %}
-            {% include 'success_msg.html' with message=message %}
-        {% endif %}
+
+
         <div class = "reviewcontainer">
             <img class = "iconimages" src="{{ comment.image }}" alt="pictureofuser" onload="calculateRating({{ comment.id }}, {{ comment.star }})">
             <h3 class="ccbluelarge bold">{{ comment.name }}</h3>

@@ -93,8 +93,7 @@ def get_product_by_id(request, id, consolename=None, name=None, context={}):
         'image': get_object_or_404(Customer, pk=x.customer_id).image,
         'name': get_object_or_404(Customer, pk=x.customer_id).user.username
     }for x in reviews]
-    if len(context) == 0:
-        context = cases.get_profile(context, request)
+    context = cases.get_profile(context, request)
     context['product'] = the_product
     context['filter'] = 'none'
     context['comments'] = full_reviews
@@ -118,7 +117,7 @@ def create_product(request):
                 the_cons = Console.objects.get(pk=form1.instance.console_type.id)
                 form1.instance.manufacturer = Manufacturer.objects.get(pk=the_cons.manufacturer.id)
                 if form1.instance.on_sale == True:
-                    form1.instance.discount_price = form1.instance.price*(1-form1.instance.discount/100)
+                    form1.instance.discount_price = round(form1.instance.price*(1-form1.instance.discount/100), 2)
                 form1.save()
                 form2.instance.product = form1.instance
                 form2.save()
@@ -143,13 +142,15 @@ def update_product(request, id):
         context = cases.get_profile(context, request)
         if request.method == "POST":
             form = ProductForm(data=request.POST,instance=the_product)
+            context['form'] = form
             if form.is_valid():
                 the_cons = Console.objects.get(pk=form.instance.console_type.id)
                 form.instance.manufacturer = Manufacturer.objects.get(pk=the_cons.manufacturer.id)
                 if form.instance.on_sale == True:
-                    form.instance.discount_price = form.instance.price*(1-form.instance.discount/100)
+                    form.instance.discount_price = round(form.instance.price*(1-form.instance.discount/100),2)
                 form.save()
                 context = cases.success(context, "Successfully updated product " + the_product.name)
+
                 return render(request, 'products/update_product.html', context)
             else:
                 context = cases.error(context, "Something went wrong")

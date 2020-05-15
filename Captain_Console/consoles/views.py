@@ -42,20 +42,19 @@ def get_accessories_by_name(request, consolename, name=None):
 @login_required()
 def create_console(request):
     if request.user.is_superuser:
-
+        context = {'form1': ConsoleForm()}
         if request.method == "POST":
-
             form1 = ConsoleForm(data=request.POST)
-            context = {'form1': form1}
-            context = cases.get_profile(context, request)
             if form1.is_valid():
                 form1.save()
+                context = cases.get_profile(context, request)
                 context = cases.success(context, 'Created console')
                 return render(request, 'consoles/create_console.html', context)
             else:
+                context = cases.get_profile(context, request)
                 context = cases.error(context, 'Something went wrong')
         else:
-            context = {'form1': ConsoleForm()}
+
             context = cases.get_profile(context, request)
         return render(request, 'consoles/create_console.html', context)
     else:

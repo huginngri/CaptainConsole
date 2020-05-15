@@ -35,15 +35,14 @@ def create_manufacturer(request):
         }
         if request.method == "POST":
             form1 = ManufacturerForm(data=request.POST)
-            context = {
-                'form1': form1,
-            }
-            context = cases.get_profile(context, request)
             if form1.is_valid():
                 form1.save()
+                context = cases.get_profile(context, request)
                 context = cases.success(context,'Created manufacturer')
                 return render(request, 'manufacturers/create_manufacturer.html', context)
             else:
+                context['form1'] = form1
+                context = cases.get_profile(context, request)
                 context = cases.error(context, 'Something went wrong')
         context = cases.get_profile(context, request)
         return render(request, 'manufacturers/create_manufacturer.html', context)
