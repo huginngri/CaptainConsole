@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
+
+{#   this html page is for when the admin wants to add a new product to the website#}
     <div class = "popup ccwhite" >
         <h1 class="cc2phuge">Create product</h1>
+
+{#      this is an error check#}
         {% if error == True %}
             {% include 'error.html' with message=message %}
         {% endif %}
         {% if success == True %}
             {% include 'success_msg.html' with message=message %}
         {% endif %}
+{#       this is the error form#}
         <form class="form form-horizontal" method="post">
             {% csrf_token %}
             {{ form1 }}
