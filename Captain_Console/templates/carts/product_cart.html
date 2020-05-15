@@ -2,7 +2,7 @@
 {% block content %}
 
     <div class=" product_boxes box ccwhite">
-        <button type="button" class="btn btn-default remove-btn cc2plarge" onclick="remove_from_cart({{ product.product.id }},this)">X</button>
+        <button type="button" class="btn btn-default remove-btn cc2pmedium" onclick="remove_from_cart({{ product.product.id }},this)">X</button>
 
         {% if filter == 'Consoles' %}
             <div class = "containerimage" onclick="location.href='{% url 'consoles-one-console' product.product.manufacturer product.product.console_type product.product.id %}'">
