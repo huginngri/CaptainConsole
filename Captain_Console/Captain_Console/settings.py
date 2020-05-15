@@ -45,8 +45,7 @@ INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
     'carts.apps.CartsConfig',
     'consoles.apps.ConsolesConfig',
-    'django_static_jquery3',
-    'django_yearmonth_widget'
+
 
 ]
 
