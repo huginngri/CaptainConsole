@@ -6,9 +6,7 @@
                     background-repeat: no-repeat;
                     background-attachment: fixed;
                     background-size: cover;">
-    {% if error == True %}
-            {% include 'error.html' with message=message %}
-        {% endif %}
+
 
         <div class = "product_container">
             <div class=" imageproductdetails productdetails ccwhite">
@@ -43,6 +41,12 @@
             </div>
 
             <div class="textproductdetails productdetails ccwhite ">
+                {% if error == True %}
+                    {% include 'error.html' with message=message %}
+                {% endif %}
+                {% if success == True %}
+                    {% include 'success_msg.html' with message=message %}
+                {% endif %}
                 <h4 class="cc2plarge">{{ product.name }}</h4>
                 <p class="ccbluelarge">{{ product.manufacturer }}</p>
                 <p class="ccbluemedium">{{ product.description }}</p>

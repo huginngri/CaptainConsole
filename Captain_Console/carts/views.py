@@ -100,8 +100,6 @@ def calc_price(cart):
 
 @login_required()
 def change_quantity(request, product_id):
-    print('litla veislan')
-    print(request.POST['new_amount'])
     customer = Customer.objects.filter(user=request.user).first()
     if request.method == 'POST':
         cart = Cart.objects.filter(user=customer.id).first()
