@@ -93,7 +93,7 @@ def calc_price(cart):
     for cart_detail in cart_details:
         product = Product.objects.filter(id=cart_detail.product.id).first()
         if product.on_sale == True:
-            total += (product.discount_price * cart_details.quantity)
+            total += (product.discount_price * cart_detail.quantity)
         else:
             total += (product.price * cart_detail.quantity)
     return round(total,2)
