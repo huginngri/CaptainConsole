@@ -283,6 +283,10 @@ input[id^='id_'], div[id*=' id_']{
 
 
 /* junk ------------------------------------------------*/
+.hugemargnin{
+    margin-top:300px;
+    margin-bottom: 300px;
+}
 
 #padding-xsmall{
     padding-left:10px;

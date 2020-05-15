@@ -58,8 +58,10 @@ filler2{
     padding:30px;
     text-align:center;
     margin: auto;
+    margin-bottom: 50px;
     /*padding:5%*/
     box-shadow:2px 2px;
+
 }
 
 /*productdetail ----------------------*/
