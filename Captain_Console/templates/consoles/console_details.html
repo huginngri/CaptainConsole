@@ -4,11 +4,14 @@
 
     <div class="console_info cclightblue">
         <h4 class="homepagetext cc2plarge" onclick="location.href='{% url 'consoles-product' console.manufacturer console.name %}'">{{ console.name }}</h4>
+        <h3 class="cc2plarge">{{ filter }}</h3>
+
     </div>
 
     <div class="product_container">
         {% if  filter != 'none' %}
-            <h3>{{ filter }}</h3>
+{#            <h3 class="cc2phuge homepagetext">No products</h3>#}
+
         {% else %}
             <div class="product_boxes box ccwhite">
                 <div class="product_boxes_inside box_inside" onclick="location.href='{% url 'consoles-consoles' console.manufacturer console.name %}'">
@@ -51,19 +54,26 @@
             </div>
         {% endif %}
     </div>
+    {% if  filter != 'none' %}
+        <div class = "informationbar ccblue">
+            <h3 class="cc2phuge homepagetext">No products</h3>
+        </div>
 
-    <div class = "informationbar ccblue">
-        <h1 class="homepagetext cc2phuge">Scroll down to shop <br>↓</h1>
-    </div>
-    <select  id="sort" onchange="sortit(this)">
-            <option value="name">name (ascending)</option>
-            <option value="name_reverse">name (descending)</option>
-            <option value="price">price (ascending)</option>
-            <option value="price_reverse">price (descending)</option>
-        </select>
-    <div class="product_container" id="container_for_products">
-        {% for product in  products%}
-            {% include 'products/product_overview.html' with product=product filter=filter %}
-        {% endfor %}
-    </div>
+    {% else %}
+        <div class = "informationbar ccblue">
+            <h1 class="homepagetext cc2phuge">Scroll down to shop <br>↓</h1>
+        </div>
+
+        <select  id="sort" onchange="sortit(this)">
+                <option value="name">name (ascending)</option>
+                <option value="name_reverse">name (descending)</option>
+                <option value="price">price (ascending)</option>
+                <option value="price_reverse">price (descending)</option>
+            </select>
+        <div class="product_container" id="container_for_products">
+            {% for product in  products%}
+                {% include 'products/product_overview.html' with product=product filter=filter %}
+            {% endfor %}
+        </div>
+    {% endif %}
 {% endblock %}

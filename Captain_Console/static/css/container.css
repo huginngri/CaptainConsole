@@ -53,7 +53,7 @@ filler2{
 }
 
 .console_info{
-    height: 100px;
+    padding:30px;
     text-align:center;
     margin: auto;
     /*padding:5%*/
