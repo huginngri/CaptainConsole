@@ -26,6 +26,13 @@
         </div>
     {% endfor %}
     </div>
+    {% if  products == 'none' %}
+
+        <div class = "hugemargnin informationbar ccblue">
+            <h3 class="cc2phuge homepagetext">No products</h3>
+        </div>
+
+    {% else %}
 
     <div class = "informationbar ccblue">
         <h1 class="homepagetext cc2phuge">Scroll down to shop <br>↓</h1>
@@ -43,4 +50,5 @@
         {% include 'products/product_overview.html' with product=product %}
     {% endfor %}
     </div>
+    {% endif %}
 {% endblock %}
