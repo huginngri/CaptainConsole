@@ -12,8 +12,8 @@
             {% csrf_token %}
             {{ form }}
         <div class="product_container">
-            <input type="submit" class="login-btn btn btn-primary" value="Login" /
-            <div id = "cclightgray" class="btn btn-primary che" href='{% url 'register' %}'>Register</div>
+            <input type="submit" class="btn btn-primary checkout_btn" value="Login" />
+            <div  class="btn btn-default checkout_btn" onclick="location.href='{% url 'register' %}'">Register</div>
         </div>
         </form>
     </div>
