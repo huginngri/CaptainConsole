@@ -11,7 +11,10 @@
         <form method="post" class="form form-horizontal">
             {% csrf_token %}
             {{ form }}
-        <input type="submit" class="login-btn btn btn-primary" value="Login" />
+        <div class="product_container">
+            <input type="submit" class="btn btn-primary checkout_btn" value="Login" />
+            <div  class="btn btn-default checkout_btn" onclick="location.href='{% url 'register' %}'">Register</div>
+        </div>
         </form>
     </div>
 {% endblock %}

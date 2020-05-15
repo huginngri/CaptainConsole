@@ -23,14 +23,14 @@
                 {% csrf_token %}
                 {{ form1 }}
                 {{ form2 }}
-                <input type="submit" class="login-btn btn btn-primary " value="Update" />
+                <input type="submit" class="login-btn btn btn-primary " value="Update Info" />
 
             </form>
-            <button class="login-btn btn btn-primary "  onclick="location.href='{% url 'billing' %}'">Billing</button>
-            <button class="login-btn btn btn-primary " onclick="location.href='{% url 'payment' %}'">Payment</button>
-            <button class="login-btn btn btn-primary " onclick="location.href='{% url 'change_password' %}'">Change password</button>
-            <button class="login-btn btn btn-primary " onclick="location.href='{% url 'order-history' %}'">See order history</button>
-            <button class="login-btn btn btn-primary " onclick="location.href='{% url 'full-product-history' %}'">See product history</button>
+            <button class="login-btn btn btn-primary "  onclick="location.href='{% url 'billing' %}'">Billing settings</button>
+            <button class="login-btn btn btn-primary " onclick="location.href='{% url 'payment' %}'">Payment settings</button>
+            <button class="login-btn btn btn-primary " onclick="location.href='{% url 'change_password' %}'">Password settings</button>
+            <button class="login-btn btn btn-primary " onclick="location.href='{% url 'order-history' %}'">Order history</button>
+            <button class="login-btn btn btn-primary " onclick="location.href='{% url 'full-product-history' %}'">Product history</button>
         </div>
     </div>
 

@@ -23,9 +23,9 @@ $(document).ready(function() {
                                     </div>
                                     <div class="button_and_text">
                                         <div class="info">
-                                            <h4 class="cc2psmall no-margin rating"></h4>
-                                            <h4 class="name ccbluemedium center" name="${d.name}">${d.name}</h4>
-                                            <p class="price ccbluesmall center" name="${d.discount_price}">${d.discount_price} $ (-${d.discount}%)</p>
+                                            <h4 class="cc2psmall no-margin rating no-margin" "></h4>
+                                            <h4 class="name ccbluemedium center no-margin" " name="${d.name}">${d.name}</h4>
+                                            <p class="price ccbluesmall center no-margin" " name="${d.discount_price}">${d.discount_price} $ (-${d.discount}%)</p>
                                         </div>
                                     </div>
                                 </a>
@@ -39,9 +39,9 @@ $(document).ready(function() {
                                     </div>
                                     <div class="button_and_text">
                                         <div class="info">
-                                            <h4 class="cc2psmall no-margin rating"></h4>
-                                            <h4 class="name ccbluemedium center" name="${d.name}">${d.name}</h4>
-                                            <p class="price ccbluesmall center" name="${d.price}">${d.price} $</p>
+                                            <h4 class="cc2psmall no-margin rating no-margin" "></h4>
+                                            <h4 class="name ccbluemedium center no-margin" " name="${d.name}">${d.name}</h4>
+                                            <p class="price ccbluesmall center no-margin" " name="${d.price}">${d.price} $</p>
                                         </div>
                                        
                                     </div>

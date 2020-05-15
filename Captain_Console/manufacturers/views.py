@@ -30,6 +30,9 @@ def get_manufacturer_by_name(request, name):
 @login_required()
 def create_manufacturer(request):
     if request.user.is_superuser:
+        context = {
+            'form1': ManufacturerForm(),
+        }
         if request.method == "POST":
             form1 = ManufacturerForm(data=request.POST)
             context = {
@@ -42,6 +45,7 @@ def create_manufacturer(request):
                 return render(request, 'manufacturers/create_manufacturer.html', context)
             else:
                 context = cases.error(context, 'Something went wrong')
+        context = cases.get_profile(context, request)
         return render(request, 'manufacturers/create_manufacturer.html', context)
     else:
         context = cases.get_profile(dict(), request)
