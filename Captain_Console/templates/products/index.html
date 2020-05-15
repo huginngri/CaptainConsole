@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+{#    here all of our products are shown.#}
+
     <h1 class="homepagetext cc2phuge"> All products</h1>
     <!--<h1 class="homepagetext cc2phuge">STORE</h1>-->
     <select  id="sort" onchange="sortit(this)">
@@ -9,8 +12,11 @@
             <option value="price">price (ascending)</option>
             <option value="price_reverse">price (descending)</option>
     </select>
+
+
     <div class="products product_container" id="container_for_products">
 
+{#      for loop to show all the products.#}
         {% for product in products%}
             {% include 'products/product_overview.html' with product=product%}
         {% endfor %}

@@ -2,6 +2,8 @@
 {% load static %}
 {% block content %}
 
+{#    this page show all the information about specific product.#}
+
     <div    style=" background-image: url({{    product.productimage_set.first.image  }});
                     background-repeat: no-repeat;
                     background-attachment: fixed;
@@ -10,13 +12,22 @@
 
         <div class = "product_container">
             <div class=" imageproductdetails productdetails ccwhite">
+
+{#               pop up error messeage pops up if there is an error is true. #}
                 {% if error == True %}
                         {% include 'error.html' with message=message %}
-                    {% endif %}
-                    {% if success == True %}
-                        {% include 'success_msg.html' with message=message %}
-                    {% endif %}
+                {% endif %}
+
+{#             success messeage pops up if there is an success is true. #}
+
+                {% if success == True %}
+                    {% include 'success_msg.html' with message=message %}
+                {% endif %}
+
+{#             on this images is a onload calculate rating to append the right amount of stars below#}
                 <img id="myImage" class = "product_details_images" src="{{   product.productimage_set.first.image  }}" onload="calculateRating({{ product.id}}, {{ product.rating }})">
+
+{#              this is the scroll image bar below the main image.#}
                 <div class = "image_box_detailed box_detailed" >
                     {% for image in product.productimage_set.all %}
                             <img class="scrollimages" src="{{   image.image  }}" onclick="document.getElementById('myImage').src='{{   image.image  }}'">
@@ -24,6 +35,7 @@
                 </div>
 
                 <div class="button_and_text">
+{#                 show the right price for the product#}
                     <div class="info">
                         <p class="ccbluelarge">{{ product.console_type }}</p>
                         {% if product.on_sale == True %}
@@ -31,8 +43,9 @@
                         {% else %}
                         <p class="ccbluemedium">{{ product.price }} $</p>
                         {% endif %}
-
                     </div>
+
+{#                show the but button if there is enought stock#}
                     {% if product.stock > 0 %}
                         <div class="below_box">
                               <button type="button" class="product-btn buy ccbluemedium" onclick="buy_product({{ product.id }})">Buy</button>
@@ -46,20 +59,23 @@
                 </div>
             </div>
 
+{#          here is all the info about the products#}
             <div class="textproductdetails productdetails ccwhite ">
                 <h4 class="cc2plarge">{{ product.name }}</h4>
                 <p class="ccbluelarge">{{ product.manufacturer }}</p>
                 <p class="ccbluemedium">{{ product.description }}</p>
                 <div class="button_and_text">
+
+{#                here are the stars appended to they are called buy the function calculaterating fucntion #}
                     <h4 class="cc2plarge" id="star_{{ product.id }}"></h4>
+{#                here are the buttons for the addmin displayed#}
                     {% if user.is_superuser %}
                         <div class="adminbuttons_container">
                             <button type="button" class="btn btn-primary login-btn"  onclick="location.href='{% url 'update-product' product.id%}'">update</button>
                             <button type="button" class="btn btn-primary login-btn"  onclick="location.href='{% url 'delete-product' product.id%}'">delete</button>
-
                         </div>
                     {% endif %}
-
+{#                  here is the review product button#}
                     <button type="button" id="give_review_button" class="btn btn-primary login-btn" style="display: none" name="{{ product.id }}"  onclick="location.href='{% url 'review-product' product.id%}'">Review product</button>
                 </div>
 
@@ -73,6 +89,7 @@
         <div class = "informationbar ccblue filler2">
             <h1 class="homepagetext cc2phuge">Reviews</h1>
         </div>
+{#         here are all the reviews appened below#}
         <div class="product_container" id="comment_section">
             {% for comment in comments %}
                 {% include 'products/review_details.html' with comment=comment profile=profile%}

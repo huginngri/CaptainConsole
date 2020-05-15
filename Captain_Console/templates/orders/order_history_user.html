@@ -2,37 +2,46 @@
 {% block content %}
     {% load static %}
 
+{#    this page is for when the user wants to see his orders and presses on his profile page #}
     <div id="order_review_div" class = "popup ccwhite" >
         <h1 id="order_header" class ="cc2phuge">Order history</h1>
 
         <table class="table">
-        <p class="ccbluebold">Orders ({{ total_orders }})</p>
-        <tr>
-            <th>Order number</th>
-            <th>Buyer</th>
-            <th>Billing Address</th>
-            <th>Amount</th>
+            <p class="ccbluebold">Orders ({{ total_orders }})</p>
 
-        {% for order in orders %}
-            {% if order.order.confirmed %}
-                <tr >
-                    <td>{{ order.order.id }}</td>
-                    <td>{{ order.order.payment.card_holder  }}</td>
-                    <td>{{ order.order.address  }}</td>
-                    <td>{{ order.order.total  }}</td>
-                    <td> <button class="btn btn-primary" onclick="viewOrderDetail({{ order.order.id }})">View order detail</button> </td>
-                </tr>
-            {% endif %}
-            <div class="display-none" id="background_{{ order.order.id }}">
-            </div>
-            <div class="display-none" id="list_for_{{ order.order.id }}">
-                <button type="submit" class="btn btn-default remove-btn cc2plarge" onclick="closeDiv({{ order.order.id }})">x</button>
-                <p class="ccbluelarge bold center">Your order number: {{ order.order.id }}</p>
-                {% for product in order.products %}
-                    {% include 'products/products_overview_checkout.html' with product=product %}
-                    <button type="button" class="btn btn-primary login-btn" onclick="location.href='{% url 'review-product' product.product.id%}'" id="ccwhite">Review product</button>
-                {% endfor %}
-            </div>
+            <tr>
+                <th>Order number</th>
+                <th>Buyer</th>
+                <th>Billing Address</th>
+                <th>Amount</th>
+            </tr>
+
+{#       this foor loop displays all te orders into the table if they have been confirmed.#}
+            {% for order in orders %}
+                {% if order.order.confirmed %}
+                    <tr >
+                        <td>{{ order.order.id }}</td>
+                        <td>{{ order.order.payment.card_holder  }}</td>
+                        <td>{{ order.order.address  }}</td>
+                        <td>{{ order.order.total  }}</td>
+                        <td> <button class="btn btn-primary" onclick="viewOrderDetail({{ order.order.id }})">View order detail</button> </td>
+                    </tr>
+                {% endif %}
+
+{#       this is for the pop up window that display your order.#}
+                <div class="display-none" id="background_{{ order.order.id }}">
+                </div>
+
+                <div class="display-none" id="list_for_{{ order.order.id }}">
+                    <button type="submit" class="btn btn-default remove-btn cc2plarge" onclick="closeDiv({{ order.order.id }})">x</button>
+                    <p class="ccbluelarge bold center">Your order number: {{ order.order.id }}</p>
+
+{#                this for loop displays all the products for the pop up window.#}
+                    {% for product in order.products %}
+                        {% include 'products/products_overview_checkout.html' with product=product %}
+                        <button type="button" class="btn btn-primary login-btn" onclick="location.href='{% url 'review-product' product.product.id%}'" id="ccwhite">Review product</button>
+                    {% endfor %}
+                </div>
 
 
         {% endfor %}

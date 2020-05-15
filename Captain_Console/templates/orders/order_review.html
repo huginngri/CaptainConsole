@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
+
+{#    this page is that is display when the user has confirmed the payment on the checkout page just an overview for the buyer#}
     <div id="order_review_div" class = "popup ccwhite" >
             <h1 id="order_header" class = cc2phuge>Checkout Overview</h1>
             <br>
@@ -18,6 +20,8 @@
             <br>
             <h4 class="cc2pmedium center">Your Products:</h4>
             <div class = "product_container">
+
+{#            this for loop displays all the pruduct thta the buyer is going to buy.#}
                 {% for product in  products%}
                     {% include 'products/products_overview_checkout.html' with product=product %}
                 {% endfor %}

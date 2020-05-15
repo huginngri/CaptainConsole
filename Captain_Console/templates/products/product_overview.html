@@ -1,7 +1,12 @@
 {% load static %}
 {% block content %}
+
+{#    this is html page that when product have when a product is loaded into a other page.#}
+
     <div class=" product_boxes box ccwhite">
         <a class="product_boxes_inside box_inside" href="/products/{{ product.id }}">
+
+{#         this is if clause to append right onclick link#}
             {% if filter == 'Consoles' %}
                 <div class = "containerimage" onclick="location.href='{% url 'consoles-one-console' product.manufacturer product.console_type product.id %}'">
             {% elif filter == 'Games' %}
@@ -11,8 +16,11 @@
             {% else %}
                 <div class = "containerimage" onclick="location.href='{% url 'consoles-one' product.manufacturer product.console_type product.id %}'">
             {% endif %}
+
+{#        this image has onload featuer that calculates how many star should be below#}
                 <img class = "mediumimages" src="{{product.productimage_set.first.image  }}" style="height:150px;" onload="calculateRatingHome(this.parentNode.parentNode.children[1].children[0].children[0], {{ product.rating }}, {{ product.review_count }})">
-                </div>
+            </div>
+
             <div class="button_and_text">
                 <div class="info">
                     <h4 class="cc2psmall no-margin rating"></h4>
@@ -25,17 +33,20 @@
                 </div>
             </div>
         </a>
+
+{#    this if clause is to check if there is enough stock of the profuct if so the button are displayed.#}
         {% if product.stock > 0 %}
             <div class="below_box">
                   <button type="button" class="product-btn buy ccbluemedium" onclick="buy_product({{ product.id }})">Buy</button>
                   <button type="button" class="product-btn cart ccbluemedium" onclick="add_to_cart_js({{ product.id }})">  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
             </div>
 
-            {% else %}
+        {% else %}
             <div class="out_of_stock">
                 <p class = "ccbluemedium bold center">Out of stock</p>
             </div>>
        {% endif %}
+
     </div>
 
 {% endblock %}

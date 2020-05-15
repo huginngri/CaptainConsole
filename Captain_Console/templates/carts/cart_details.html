@@ -2,16 +2,23 @@
 {% load static %}
 
 {% block content %}
+
+{#    //this is the html document you see when you press the cart in the nav bar or buy botton on a product.#}
+
     <h1 class="homepagetext cc2phuge">Your Cart</h1>
     <div class = "product_container" id="cart_products">
 
+{#    //this forloops gets the products that are in your cart.#}
         {% for product in  products %}
             {% include 'carts/product_cart.html' with product=product %}
         {% endfor %}
+
     </div>
     <div class = "product_container">
         <div class = "review_boxes box ccwhite">
             <h4 class="ccbluelarge center bold" id = "cart_total">Total price: {{ total_price }}$</h4>
+
+{#            //if the cart is empty we dont display the checkout button.#}
             {%  if total_price > 0%}
                 <button type="button" class="ccorange proceed-to-checkout-btn btn " id="ccwhite" onclick="location.href='{% url 'checkout' %}'">CHECKOUT</button>
             {%  endif%}

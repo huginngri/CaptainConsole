@@ -1,9 +1,12 @@
 {% load static %}
 {% block content %}
 
+{#    //this html page is for the products that are displayed in  the cart_details.html#}
+
     <div class=" product_boxes box ccwhite">
         <button type="button" class="btn btn-default remove-btn cc2pmedium" onclick="remove_from_cart({{ product.product.id }},this)">X</button>
 
+{#    //this if clouses are for a diffrent url link on the div.#}
         {% if filter == 'Consoles' %}
             <div class = "containerimage" onclick="location.href='{% url 'consoles-one-console' product.product.manufacturer product.product.console_type product.product.id %}'">
         {% elif filter == 'Games' %}
@@ -13,25 +16,29 @@
         {% else %}
             <div class = "containerimage" onclick="location.href='{% url 'consoles-one' product.product.manufacturer product.product.console_type product.product.id  %}'">
         {% endif %}
+
             <a href="/products/{{ product.product.id }}"></a>
             <img class = "mediumimages" src="{{ product.product.productimage_set.first.image  }}" style="height:150px;">
         </div>
+
         <div class="button_and_text">
             <div class="info">
                 <h4 class="name ccbluemedium center">{{ product.product.name }}</h4>
 
-                  {% if product.product.on_sale == True %}
+{#    //this if cloause is to show the right price if product is on discount.#}
+                {% if product.product.on_sale == True %}
                       <p class="price ccbluesmall center">{{ product.product.discount_price}}$ (-{{ product.product.discount}}%)</p>
                       {% else %}
                       <p class="price ccbluesmall center">{{ product.product.price}} $</p>
                 {% endif %}
             </div>
-            <div class="btn-group product_container" role="group" aria-label="...">
 
+            <div class="btn-group product_container" role="group" aria-label="...">
                 <label class = ccbluesmall>Quantity: </label>
                 <input type="number" id='{{ product.product.id }}' name="quantity" min="1" max="{{ product.product.stock }}"  value='{{product.quantity}}' onchange="change_quantity({{ product.product.id }})">
             </div>
         </div>
+
     </div>
 
 {% endblock %}

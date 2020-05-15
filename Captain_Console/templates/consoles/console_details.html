@@ -2,14 +2,20 @@
 {% load static %}
 {% block content %}
 
+{#    //this is the html page for when user has pressed in the navbar a manufacture console or a subtype of an console.#}
+
     <div class="console_info cclightblue">
         <h4 class="homepagetext cc2plarge" onclick="location.href='{% url 'consoles-product' console.manufacturer console.name %}'">{{ console.name }}</h4>
+
+{#    /this if clause displayes which subtype should be displayed if there is one.#}
         {% if  filter != 'none' %}
         <h3 class="cc2plarge">{{ filter }}</h3>
         {% endif %}
     </div>
 
     <div class="product_container">
+
+{#    //this if clause is for to display the subtype buttons for when user has not selected the subtype for the console.#}
         {% if  filter == 'none' %}
             <div class="product_boxes box ccwhite">
                 <div class="product_boxes_inside box_inside" onclick="location.href='{% url 'consoles-consoles' console.manufacturer console.name %}'">
@@ -24,6 +30,7 @@
                 </div>
                 <div class="below_box" onclick="location.href='{% url 'consoles-consoles' console.manufacturer console.name %}'"></div>
             </div>
+
             <div class="product_boxes box ccwhite">
                 <div class="product_boxes_inside box_inside" onclick="location.href='{% url 'consoles-games' console.manufacturer console.name %}'">
                     <div class = "containerimage" >
@@ -37,6 +44,7 @@
                 </div>
                 <div class="below_box" onclick="location.href='{% url 'consoles-games' console.manufacturer console.name %}'"></div>
             </div>
+
             <div class="product_boxes box ccwhite">
                 <div class="product_boxes_inside box_inside" onclick="location.href='{% url 'consoles-accessories' console.manufacturer console.name %}'">
                     <div class = "containerimage" >
@@ -52,6 +60,7 @@
             </div>
         {% endif %}
     </div>
+
     <div class = "informationbar ccblue">
         <h1 class="homepagetext cc2phuge">Scroll down to shop <br>↓</h1>
     </div>
@@ -61,8 +70,11 @@
             <option value="name_reverse">name (descending)</option>
             <option value="price">price (ascending)</option>
             <option value="price_reverse">price (descending)</option>
-        </select>
+    </select>
+
     <div class="product_container" id="container_for_products">
+
+{#    // this if clause is for to show prouct for the specific console and subtype if there is one.#}
         {% for product in  products%}
             {% include 'products/product_overview.html' with product=product filter=filter %}
         {% endfor %}

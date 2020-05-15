@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
+{#   this html document is for when the user presses the button checkout on the cart page show him the payment and billinginfo that needs to be fileld in.#}
+
     <div class = "popup ccwhite" >
         <h1 class = cc2phuge>Checkout</h1>
+
+{#        //error check#}
         {% if billing_saved or payment_saved %}
             {% include 'success_msg.html' with message=message %}
         {% endif %}
@@ -11,10 +15,14 @@
         {% endif %}
 
         <form class="form form-horizontal" action="{% url 'checkout' %}" method="post">
+
+{#        this is the billing form#}
             <div id="billing1" >
                 <h1 class="ccbluebold underliner">Billing Info</h1>
                 {% csrf_token %}
                 {{ form_billing }}
+
+{#                //this is just to show green button if he pressed save billing.#}
                 <div class="product_container">
                     {%  if billing_saved %}
                          <button type="submit" class="btn btn-success checkout_btn" formaction="{% url 'checkout-save-billing' %}">Save Billing</button>
@@ -22,25 +30,38 @@
                         <button type="submit" class="btn btn-default checkout_btn" formaction="{% url 'checkout-save-billing' %}">Save Billing</button>
                     {% endif %}
 
+{#                //this is a button but did not work if it is was not button type. #}
+{#                  if this button pressed the div id= billing 1 is dispalyed none. #}
                     <div class="btn btn-primary checkout_btn" onclick="display_checkout('payment', 'billing')">Continue</div>
                 </div>
             </div>
+
+{#         this is a container if this is pressed the payment form is displayed none#}
             <div id = "payment2" class ="display-none border_checkout" onclick="display_checkout('billing', 'payment')">
                 <h1 class="ccbluelarge center bold">Billing Info</h1>
             </div>
+
+{#         this is a container if this is pressed the billing form is displayed none#}
             <div id="billing2" class ="border_checkout" onclick="display_checkout('payment', 'billing')">
                 <h1 class="ccbluelarge center bold">Payment Info</h1>
             </div>
+
+{#       this is the payment form #}
             <div id="payment1" class="display-none">
                 <h1 class="ccbluebold underliner">Payment Info</h1>
                 {% csrf_token %}
                 {{ form_payment }}
+
+{#                //this is just to show green button if he pressed save billing.#}
                 <div class="product_container">
                     {%  if payment_saved %}
                         <button type="submit" class="btn btn-success checkout_btn" formaction="{% url 'checkout-save-payment' %}">Save Payment</button>
                     {% else %}
                         <button type="submit" class="btn btn-default checkout_btn" formaction="{% url 'checkout-save-payment' %}">Save Payment</button>
                     {% endif %}
+
+{#                //this is a button but did not work if it is was not button type. #}
+{#                  if this button pressed the div id= billing 1 is dispalyed none. #}
                     <div class="btn btn-primary checkout_btn" onclick="display_checkout('billing', 'payment')">Back</div>
                     <input type="submit" class="ccorange proceed-to-checkout-btn btn" value="Continue" id="ccwhite"/>
                 <div>

@@ -1,17 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
 
-    {% block content %}
+{% block content %}
 
+{#      this page is the frontpage of the website#}
+{#       if there is an error a pop up error massege is loaded#}
         {% if error == True %}
             {% include 'error.html' with message=message %}
         {% endif %}
         {% if success == True %}
             {% include 'success_msg.html' with message=message %}
         {% endif %}
+
         <div class="openingtext">
             <h1 class="homepagetext cc2penourmus"> Welcome to the largest retro gaming shop</h1>
         </div>
+
         <div class =  "informationbar ccblue">
             <div class = "cccontainer">
                 <img class ="largeimages" src="{% static 'images/controller.png' %}">
@@ -34,10 +38,12 @@
                 <p class="cclightgrayfont">Family friendly</p>
             </div>
         </div>
+
         <div>
             <h1 class="homepagetext cc2phuge">Scroll down to shop <br>↓</h1>
         </div>
 
+{#      Here are the products shown they are dived after being new, hot or deals#}
         <div class = "product_container" id="container_for_products">
             <div class="single_container_front">
                 <h2 class="cc2plarge center">NEWEST</h2>
@@ -58,4 +64,4 @@
                 {% endfor %}
             </div>
         </div>
-    {% endblock %}
+{% endblock %}
